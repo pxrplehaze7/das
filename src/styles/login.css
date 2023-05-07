@@ -1,0 +1,65 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: radial-gradient(circle, #f4941e, #ea781c, #dd5c1e, #cf3e21, #be1824);
+}
+
+
+.container-form {
+  width: 80%;
+  max-width: 300px;
+  /* Define el ancho máximo del formulario */
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  background: rgba( 255, 255, 255, 0.65 );
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 0px );
+  -webkit-backdrop-filter: blur( 0px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.container-form label {
+  margin-bottom: 6px;
+}
+
+.container-form h2 {
+  margin-bottom: 12px;
+}
+
+input[type="email"],
+[type="password"] {
+  margin-bottom: 15px;
+}
+
+input[type="submit"] {
+  margin-bottom: 5px;
+}
+
+.container-form a,
+a:visited,
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+.btn-login{
+  background: #88ac11;
+  border-color:#88ac11;
+}
+
+.btn-login:hover{
+  background: #82ab31;
+  border-color:#82ab31;
+}
+
+h2 {
+  color: #BE1824;
+  font-weight: bold;
+  
+
