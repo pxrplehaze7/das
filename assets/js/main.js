@@ -1,11 +1,11 @@
 // jquery
-$("#documentos").on("submit", function (event) {
+$("#documentosObligatorios").on("submit", function (event) {
   console.log("ola");
   // alert( "Handler for `submit` called." );
   event.preventDefault();
   let formData = new FormData(this);
 
-  formData.append('rut', $('#rut').val()); // Agregar el valor del input de tipo texto
+  formData.append('rut', $('#idRutInput').val()); // Agregar el valor del input de tipo texto
 
 
 

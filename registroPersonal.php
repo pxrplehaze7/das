@@ -26,16 +26,16 @@ if (!$conn) {
         <h4>Datos Personales</h4>
 
         <label for="idPersona">Nombres:</label>
-        <input type="text" name="namePersona" id="idPersona" required>
+        <input type="text" class="mb-3" name="namePersona" id="idPersona" required>
 
         <label for="idAppat">Apellido Paterno:</label>
-        <input type="text" name="namePaterno" id="idAppat" required>
+        <input type="text" class="mb-3" name="namePaterno" id="idAppat" required>
 
         <label for="idApmat">Apellido Materno:</label>
-        <input type="text" name="nameMaterno" id="idApmat">
+        <input type="text" class="mb-3" name="nameMaterno" id="idApmat">
 
         <label for="idRutInput">Rut:</label>
-        <input type="text" name="nameRut" id="idRutInput" required>
+        <input type="text" class="mb-3" name="nameRut" id="idRutInput" required>
 
         <h5>Sexo:</h5>
         <label for="idFemenino">Femenino</label>
@@ -49,10 +49,10 @@ if (!$conn) {
 
         <label for="idCelular">Celular</label>
         <p>+569</p>
-        <input type="tel" name="nameCel" id="idCelular">
+        <input type="tel" class="mb-3" name="nameCel" id="idCelular">
 
         <label for="idCorreo">Correo Electrónico</label>
-        <input type="emai" name="nameCorreo" id="idCorreo">
+        <input type="emai" class="mb-3" name="nameCorreo" id="idCorreo">
 
         <h4>Documentación</h4>
 

@@ -6,7 +6,13 @@
 //rut
 //rutPersona
 //sexo
+// Conectar a la base de datos
+$conn = mysqli_connect("localhost", "root", "", "pruebaarchivo");
 
+// Verificar la conexión
+if (!$conn) {
+    die("La conexión a la base de datos falló: " . mysqli_connect_error());
+}
 
 $rutPersona = $_POST['rut'];
 
@@ -29,13 +35,29 @@ if (!file_exists($ruta . $rutPersona)) {
 
 }
   
+// Crear la ruta final del archivo
+$ruta_afpFINAL = $ruta . $rutPersona . '/AFP/' . $pdfAFP;
+$ruta_nacFINAL = $ruta . $rutPersona . '/AFP/' . $pdfAFP;
+
   // Mover los archivos PDF a la nueva ubicación
-  move_uploaded_file($_FILES['nameAFPdoc']['tmp_name'], $ruta . $rutPersona . '/AFP/' . $pdfAFP);
-  move_uploaded_file($_FILES['nameNACdoc']['tmp_name'], $ruta . $rutPersona . '/NACIMIENTO/' . $pdfNacimiento);
+  move_uploaded_file($_FILES['nameAFPdoc']['tmp_name'], $ruta_afpFINAL);
+  move_uploaded_file($_FILES['nameAFPdoc']['tmp_name'], $ruta_nacFINAL);
   
-  echo "Archivos guardados correctamente en la ruta: " . $ruta . $rutPersona;
+  // echo "Archivos guardados correctamente en la ruta: " . $ruta . $rutPersona;
 
 
+
+// Insertar la ruta final del archivo en la base de datos
+$sql = "INSERT INTO trabajador (Rut, RutaAFP, RutaNac) VALUES ('$rutPersona', '$ruta_afpFINAL' , '$ruta_nacFINAL')";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Archivos guardados correctamente en la ruta";
+} else {
+    echo "Error al guardar los archivos: " . mysqli_error($conn);
+}
+
+// Cerrar la conexión a la base de datos
+mysqli_close($conn);
 
 
 
