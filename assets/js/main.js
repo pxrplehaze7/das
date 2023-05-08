@@ -5,7 +5,7 @@ $("#documentos").on("submit", function (event) {
   event.preventDefault();
   let formData = new FormData(this);
 
-  formData.append('nombre', $('#nombre').val()); // Agregar el valor del input de tipo texto
+  formData.append('rut', $('#rut').val()); // Agregar el valor del input de tipo texto
 
 
 

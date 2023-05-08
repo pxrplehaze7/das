@@ -13,18 +13,18 @@
 <body>
     <form id="documentos" enctype="multipart/form-data" method="POST">
 
-        <label for="nombre">NOMBRE</label>
-        <input type="text" name="nombre" id="nombre">
+        <label for="rut">rut</label>
+        <input type="text" name="rutcito" id="rut">
         <br>
 
 
-        <label for="pdf-files">Antecedentes</label>
-        <input type="file" id="pdf-files" name="pdf-files" accept=".pdf">
+        <label for="idAFPinput">AFP</label>
+        <input type="file" id="idAFPinput" name="nameAFPdoc" accept=".pdf">
         <br>
 
 
-        <label for="pdf2-files">Cedula</label>
-        <input type="file" id="pdf2-files" name="pdf2-files" accept=".pdf">
+        <label for="idNACinput">Certificado de Nacimiento</label>
+        <input type="file" id="idNACinput" name="nameNACdoc" accept=".pdf">
         <br>
 
 
