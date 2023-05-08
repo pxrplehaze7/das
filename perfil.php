@@ -28,9 +28,11 @@ if (isset($_GET['nameBuscaRut'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Perfil de trabajador</title>
 </head>
+
 <body>
   <form method="GET">
     <label>Buscar por rut:</label>
@@ -38,23 +40,28 @@ if (isset($_GET['nameBuscaRut'])) {
     <button type="submit">Buscar</button>
   </form>
 
-  <?php if (isset($persona)): ?>
+  <?php if (isset($persona)) : ?>
 
     <p>Rut: <?php echo $persona['Rut'] ?></p>
 
-<!-- Mostrar la ruta de los archivos PDF -->
+    <!-- Mostrar la ruta de los archivos PDF -->
     <p>Ruta de archivo AFP: <?php echo $persona['RutaAFP'] ?></p>
     <p>Ruta de archivo de nacimiento: <?php echo $persona['RutaNac'] ?></p>
-    
-<!-- Agregar botones para ver y descargar los archivos PDF -->
-<div class="pdf-buttons">
-  <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">Ver archivo AFP</a><br>
-  <a href="<?php echo $persona['RutaAFP']; ?>" download>Descargar archivo AFP</a><br>
-  <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">Ver archivo de nacimiento</a><br>
-  <a href="<?php echo $persona['RutaNac']; ?>" download>Descargar archivo de nacimiento</a>
-</div>
+    <p>Ruta de archivo de Militar: <?php echo $persona['RutaSerM'] ?></p>
+
+
+    <!-- Agregar botones para ver y descargar los archivos PDF -->
+    <div class="pdf-buttons">
+      <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">Ver archivo AFP</a><br>
+      <a href="<?php echo $persona['RutaAFP']; ?>" download>Descargar archivo AFP</a><br>
+      <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">Ver archivo de nacimiento</a><br>
+      <a href="<?php echo $persona['RutaNac']; ?>" download>Descargar archivo de nacimiento</a>
+      <a href="<?php echo $persona['RutaSerM']; ?>" target="_blank">Ver certificado de Servicio Militar</a><br>
+      <a href="<?php echo $persona['RutaSerM']; ?>" download>Descargar certificado de Servicio Militar</a>
+    </div>
 
 
   <?php endif; ?>
 </body>
+
 </html>

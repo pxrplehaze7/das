@@ -37,7 +37,7 @@ if (!$conn) {
         <label for="idRutInput">Rut:</label>
         <input type="text" class="mb-3" name="nameRut" id="idRutInput" required>
 
-        <h5>Sexo:</h5>
+        <h5>Genero:</h5>
         <label for="idFemenino">Femenino</label>
         <input type="radio" name="sexo" id="idFemenino" value="Femenino" required>
 
@@ -57,34 +57,97 @@ if (!$conn) {
         <h4>Documentación</h4>
 
 
-        <div class="container-afp">
-
+        <div class="container-afp"><!-- TIPO DE AFP -->
             <h4>AFP</h4>
             <?php
-
-            // select de AFP
-            $sqlAFP = "SELECT idAFP, nombreAFP FROM afp";
+            $sqlAFP = "SELECT IDAFP, NombreAFP FROM afp";
             $resultadoAFP = mysqli_query($conn, $sqlAFP);
-            echo "<label for='idSelectAFP'>Seleccione AFP</label>";
+            echo "<label for='idSelectAFP'>Seleccione AFP: </label>"; //Label 
             echo "<select name='nameSelectAFP' id='idSelectAFP'>";
-            echo '<option value=""> </option>'; // Opción por defecto en blanco
+            echo '<option value="" hidden> Selecciona una opción</option>'; // Opción por defecto en blanco
 
             while ($fila = mysqli_fetch_assoc($resultadoAFP)) {
-                echo "<option value='" . $fila['idAFP'] . "'>" . $fila['nombreAFP'] . "</option>";
+                echo "<option value='" . $fila['IDAFP'] . "'>" . $fila['NombreAFP'] . "</option>";
             }
             echo "</select>";
             // Cierre de la conexión
             ?>
-
-
-
-
         </div>
 
 
 
 
+        <div class="container-contrato"> <!-- TIPO DE CONTRATO -->
+            <h4>Tipo de Contrato</h4>
+            <?php
+            $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
+            $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
+            echo "<label for='idSelectCon'>Seleccione Contrato: </label>"; //Label 
+            echo "<select name='nameSelectCon' id='idSelectCon'>";
+            echo '<option value="" hidden> Selecciona una opción</option>'; // Opción por defecto en blanco
 
+            while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
+                echo "<option value='" . $fila['IDCon'] . "'>" . $fila['NombreCon'] . "</option>";
+            }
+            echo "</select>";
+            // Cierre de la conexión
+            ?>
+        </div>
+
+        <div class="container-categoria"> <!-- CATEGORIA -->
+            <h4>Categoría</h4>
+            <?php
+            $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
+            $resultadoCategoria = mysqli_query($conn, $sqlCategoria);
+            echo "<label for='idSelectCat'>Seleccione Categoría: </label>"; //Label 
+            echo "<select name='nameSelectCat' id='idSelectCat'>";
+            echo '<option value="" hidden> Selecciona una opción</option>'; // Opción por defecto en blanco
+
+            while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
+                echo "<option value='" . $fila['IDCat'] . "'>" . $fila['NombreCat'] . "</option>";
+            }
+            echo "</select>";
+            // Cierre de la conexión
+            ?>
+        </div>
+
+
+        <div class="container-prevision"> <!-- PREVISION -->
+            <h4>Previsión</h4>
+            <?php
+            $sqlPrevision = "SELECT IDPrev, NombrePrev FROM prevision";
+            $resultadoPrevision = mysqli_query($conn, $sqlPrevision);
+            echo "<label for='idSelectPrev'> Seleccione Previsión: </label>"; //Label 
+            echo "<select name='nameSelectPrev' id='idSelectPrev'>";
+            echo '<option value="" hidden> Selecciona una opción</option>'; // Opción por defecto en blanco
+
+            while ($fila = mysqli_fetch_assoc($resultadoPrevision)) {
+                echo "<option value='" . $fila['IDPrev'] . "'>" . $fila['NombrePrev'] . "</option>";
+            }
+            echo "</select>";
+            // Cierre de la conexión
+            ?>
+        </div>
+
+
+
+
+        <div class="container-lugar"> <!-- LUGAR -->
+            <h4>Lugar</h4>
+            <?php
+            $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
+            $resultadoLugar = mysqli_query($conn, $sqlLugar);
+            echo "<label for='idSelectLugar'> Seleccione Lugar: </label>"; //Label 
+            echo "<select name='nameSelectLugar' id='idSelectLugar'>";
+            echo '<option value="" hidden> Selecciona una opción</option>'; // Opción por defecto en blanco
+
+            while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
+                echo "<option value='" . $fila['IDLugar'] . "'>" . $fila['NombreLug'] . "</option>";
+            }
+            echo "</select>";
+            // Cierre de la conexión
+            ?>
+        </div>
 
 
 
