@@ -10,15 +10,13 @@ include("./controller/config/conexion.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Personal</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    
 </head>
 
 <body>
     <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
 
-        <label for="rut">rut</label>
-        <input type="text" name="nameRut" id="idRutInput">
-        <br>
+    <label for="idRutInput">Rut:</label>
+        <input type="text" class="mb-3" name="nameRut" id="idRutInput" required>
 
 
         <label for="idAFPinput">AFP</label>

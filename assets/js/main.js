@@ -12,7 +12,7 @@ $("#documentosObligatorios").on("submit", function (event) {
   console.log(formData);
 
   $.ajax({
-    url: "./controller/procesoDatos.php",
+    url: "./controller/addPersonal.php",
     method: "POST",
     data: formData,
     cache: false,

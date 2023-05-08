@@ -21,7 +21,7 @@ if (!$conn) {
 </head>
 
 <body>
-    <form>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
         <h2>Registro de Trabajadores</h2>
         <h4>Datos Personales</h4>
 
@@ -62,7 +62,7 @@ if (!$conn) {
             <h4>AFP</h4>
             <?php
 
-            // select de afp
+            // select de AFP
             $sqlAFP = "SELECT idAFP, nombreAFP FROM afp";
             $resultadoAFP = mysqli_query($conn, $sqlAFP);
             echo "<label for='idSelectAFP'>Seleccione AFP</label>";
@@ -74,8 +74,8 @@ if (!$conn) {
             }
             echo "</select>";
             // Cierre de la conexión
-
             ?>
+
 
 
 
