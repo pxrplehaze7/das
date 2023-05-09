@@ -18,8 +18,6 @@ if (isset($_GET['nameBuscaRut'])) {
     // Cerrar la conexión a la base de datos
     mysqli_close($conn);
 
-    // Mostrar la información de la persona en la página de perfil
-    // ...
   } else {
     echo "No se encontró ninguna persona con el rut ingresado";
   }
@@ -40,7 +38,10 @@ if (isset($_GET['nameBuscaRut'])) {
     <button type="submit">Buscar</button>
   </form>
 
-  <?php if (isset($persona)) : ?>
+  <?php if (isset($persona)){ ?>
+    
+
+   
 
     <p>Rut: <?php echo $persona['Rut'] ?></p>
 
@@ -61,7 +62,7 @@ if (isset($_GET['nameBuscaRut'])) {
     </div>
 
 
-  <?php endif; ?>
+  <?php  } ?>
 </body>
 
 </html>

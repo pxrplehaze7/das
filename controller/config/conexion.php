@@ -1,7 +1,7 @@
 <?php
 // Conexión a la base de datos
 // $conn = mysqli_connect('localhost', 'root', '', 'pruebaarchivo');
-$conn = mysqli_connect('localhost', 'root', '', 'dasPruebas');
+$conn = mysqli_connect('localhost', 'root', '', 'das');
 
 // Verificación de la conexión
 if (!$conn) {
