@@ -1,0 +1,95 @@
+/* Estilos para el cuerpo de la página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el contenedor principal del formulario */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+/* Estilos para los títulos de sección */
+.container h2 {
+  margin-top: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+/* Estilos para los campos de entrada de texto */
+input[type="text"],[type="cel"],[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Estilos para los campos de selección */
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+/* Estilos para los botones de carga de archivos */
+input[type="file"] {
+  margin-top: 5px;
+}
+
+/* Estilos para el botón de envío del formulario */
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para las secciones del formulario */
+.container > div {
+  margin-bottom: 20px;
+}
+
+.container > div:last-child {
+  margin-bottom: 0;
+}
+
+.container > div p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Estilos para los mensajes de error */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Estilos para los mensajes de éxito */
+.success {
+  color: green;
+  font-size: 14px;
+  margin-top: 5px;
+}
