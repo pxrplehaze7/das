@@ -30,9 +30,11 @@ include("./controller/config/conexion.php");
         <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
 
             <h2>Registro de Trabajadores</h2>
-<br>
+
             <div class="datosPersonales seccion">
-                <p>Datos Personales</p>
+                <center>
+                    <h2><?php echo $persona['NombreTra'] . ' ' . $persona['PaternoTra'] . ' ' . $persona['MaternoTra'] ?></h1>
+                </center>
                 <div class="primerGrupo row ">
                     <div class="rut col-md">
                         <span class="obligatorio">*</span>
@@ -41,28 +43,35 @@ include("./controller/config/conexion.php");
                         <div id="rut-validation"></div>
                         <br>
                     </div>
-                    <div class="nombre col-md">
-                        <span class="obligatorio">*</span>
-                        <label for="idPersona">Nombres</label>
-                        <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
-                        <br>
+                    
+               
+                  
+
+                </div>
+
+
+
+
+                <div class="tercerGrupo radioCentro row">
+                    <center>
+                        <label>Seleccione Género:</label>
+                    </center>
+                    <div class="opciones">
+
+                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput">
+                        <label for="idFemenino" class="radio">Femenino</label>
+
+                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput">
+                        <label for="idMasculino" class="radio">Masculino</label>
+
+
+
                     </div>
                 </div>
 
-                <div class="segundoGrupo row">
-                    <div class="paterno col-md">
-                        <span class="obligatorio">*</span>
-                        <label for="idAppat">Apellido Paterno</label>
-                        <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
-                        <br>
-                    </div>
 
-                    <div class="materno col-md">
-                        <label for="idApmat">Apellido Materno</label>
-                        <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control">
-                        <br>
-                    </div>
-                </div>
+
+
 
 
                 <div class="datosTrabajo row">
@@ -107,22 +116,7 @@ include("./controller/config/conexion.php");
 
                 <!-- hasta aqui esta bien -->
 
-                <div class="tercerGrupo radioCentro row">
-                    <center>
-                        <label>Seleccione Género:</label>
-                    </center>
-                    <div class="opciones">
 
-                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput">
-                        <label for="idFemenino" class="radio">Femenino</label>
-
-                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput">
-                        <label for="idMasculino" class="radio">Masculino</label>
-
-
-
-                    </div>
-                </div>
             </div>
             <br>
             <div class="datosContacto seccion">

@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.115), rgba(0, 0, 0, 0.104)),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.243)),
     url("../img/bg-2.jpg");
   background-size: cover;
   background-position: center;
@@ -23,9 +23,16 @@ body {
 h2 {
   text-align: center;
   padding: 20px;
-  color: black;
+  color: rgb(255, 255, 255);
   font-weight: bold;
   font-size: 2rem;
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.192);
+  border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .radioCentro {
@@ -33,21 +40,21 @@ h2 {
 }
 
 .radio {
-  padding-left: 15px;
-}
-.radioInput {
-  padding-right: 20px;
+  padding-left: 2px;
+  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
+
 .seccion {
-  /* From https://css.glass */
-  /* From https://css.glass */
-  background: rgba(231, 231, 231, 0.514);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(6.2px);
-  -webkit-backdrop-filter: blur(6.2px);
-  border: 1px solid rgba(231, 231, 231, 0.13);
+/* From https://css.glass */
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.25);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 40px;
   border-radius: 30px;
   margin-bottom: 20px;
@@ -59,8 +66,17 @@ p{
   font-size: 1.5rem;
 }
 
-input[type=radio]:checked ~ .check {
-  border: 5px solid #0DFF92;
+label{
+  padding-bottom: 5px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+select{
+  cursor: pointer;
 }
 
 
+input[type="text"]{
+/* lo puedo hacer trasparente */
+}
