@@ -1,95 +1,66 @@
-/* Estilos para el cuerpo de la página */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+* {
   margin: 0;
   padding: 0;
+  font-family: sans-serif;
 }
 
-/* Estilos para el contenedor principal del formulario */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.115), rgba(0, 0, 0, 0.104)),
+    url("../img/bg-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container-md {
+  max-width: 1280px;
+  padding-left: 80px;
+  padding-right: 80px;
+  border-radius: 50px;
+  margin-top: 30px;
+}
+
+h2 {
+  text-align: center;
   padding: 20px;
-}
-
-/* Estilos para los títulos de sección */
-.container h2 {
-  margin-top: 0;
-  font-size: 24px;
+  color: black;
   font-weight: bold;
-  color: #333;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 10px;
+  font-size: 2rem;
 }
 
-/* Estilos para los campos de entrada de texto */
-input[type="text"],[type="cel"],[type="email"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+.radioCentro {
+  text-align: center;
 }
 
-/* Estilos para los campos de selección */
-select {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  background-color: #fff;
+.radio {
+  padding-left: 15px;
+}
+.radioInput {
+  padding-right: 20px;
 }
 
-/* Estilos para los botones de carga de archivos */
-input[type="file"] {
-  margin-top: 5px;
-}
-
-/* Estilos para el botón de envío del formulario */
-input[type="submit"] {
-  display: block;
-  width: 100%;
-  background-color: #4CAF50;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Estilos para las secciones del formulario */
-.container > div {
+.seccion {
+  /* From https://css.glass */
+  /* From https://css.glass */
+  background: rgba(231, 231, 231, 0.514);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.2px);
+  -webkit-backdrop-filter: blur(6.2px);
+  border: 1px solid rgba(231, 231, 231, 0.13);
+  padding: 40px;
+  border-radius: 30px;
   margin-bottom: 20px;
 }
 
-.container > div:last-child {
-  margin-bottom: 0;
+p{
+  text-align: center;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
 }
 
-.container > div p {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 0;
+input[type=radio]:checked ~ .check {
+  border: 5px solid #0DFF92;
 }
 
-/* Estilos para los mensajes de error */
-.error {
-  color: red;
-  font-size: 14px;
-  margin-top: 5px;
-}
 
-/* Estilos para los mensajes de éxito */
-.success {
-  color: green;
-  font-size: 14px;
-  margin-top: 5px;
-}

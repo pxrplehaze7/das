@@ -25,167 +25,216 @@ include("./controller/config/conexion.php");
     <header>
         <?php include("./controller/navbar.html") ?>
     </header>
-    <div class="container-md container-formulario">
+    <div class="container-md">
 
         <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
 
             <h2>Registro de Trabajadores</h2>
-            <div class="container-md datosPersonales">
+
+            <div class="datosPersonales seccion">
                 <p>Datos Personales</p>
                 <div class="primerGrupo row ">
-                    <div class="rut col-6">
-                        <!-- <label for="idRutInput">Rut:</label> -->
-                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" required>
+                    <div class="rut col-md">
+                        <span class="obligatorio">*</span>
+                        <label for="idRutInput">Rut</label>
+                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" class="form-control" required>
                         <div id="rut-validation"></div>
+                        <br>
                     </div>
-                    <div class="nombre col-6">
-                        <!-- <label for="idPersona">Nombres:</label> -->
-                        <input type="text" name="namePersona" id="idPersona" placeholder="Nombres" required>
+                    <div class="nombre col-md">
+                        <span class="obligatorio">*</span>
+                        <label for="idPersona">Nombres</label>
+                        <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
+                        <br>
                     </div>
                 </div>
-                <br>
+
                 <div class="segundoGrupo row">
-                    <div class="paterno col-6">
-                        <input type="text" name="namePaterno" id="idAppat" placeholder="Apellido Paterno" required>
+                    <div class="paterno col-md">
+                        <span class="obligatorio">*</span>
+                        <label for="idAppat">Apellido Paterno</label>
+                        <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
+                        <br>
                     </div>
-                    <div class="materno col-6">
-                        <input type="text" name="nameMaterno" id="idApmat" placeholder="Apellido Materno">
+
+                    <div class="materno col-md">
+                        <label for="idApmat">Apellido Materno</label>
+                        <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control">
+                        <br>
                     </div>
                 </div>
+
+
+                <div class="datosTrabajo row">
+                    <div class="contrato col-md"> <!-- TIPO DE CONTRATO -->
+                        <?php include("./controller/consulta_select/select_contrato.php"); ?>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="lugar col-md"> <!-- LUGAR -->
+                        <?php include("./controller/consulta_select/select_lugar.php"); ?>
+                    </div>
+                    <br>
+                    <div class="categoria col-md"> <!-- CATEGORIA -->
+                        <?php include("./controller/consulta_select/select_categoria.php"); ?>
+                        <br>
+                    </div>
+
+                    <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
+                        <center>
+                            <p>¿Es médico?</p>
+                        </center>
+                        <div class="opciones">
+                            <label for="idSiMedico">Sí</label>
+                            <input type="radio" name="nameMedico" id="idSiMedico" value="Sí" class="radioInput" novalidate>
+
+                            <label for="idNoMedico">No</label>
+                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput" novalidate>
+                        </div>
+                    </div>
+
+
+                    <div class="profesion">
+                        <span class="obligatorio">*</span>
+                        <label for="idProfesion">Profesión:</label>
+                        <input type="text" name="nameProfesion" id="idProfesion" class="form-control">
+                    </div>
+
+                </div>
+
+                <br>
 
                 <!-- hasta aqui esta bien -->
 
-                <div class="tercerGrupo row">
-                    <p>Género:</p>
+                <div class="tercerGrupo radioCentro row">
+                    <center>
+                        <label>Género:</label>
+                    </center>
                     <div class="opciones">
-                        <label for="idFemenino">Femenino</label>
-                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required>
+                        <label for="idFemenino" class="radio">Femenino</label>
+                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput">
 
-                        <label for="idMasculino">Masculino</label>
-                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required>
+                        <label for="idMasculino" class="radio">Masculino</label>
+                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput">
+
+                        
                     </div>
                 </div>
             </div>
-    </div>
-    <br>
-    <div class="container-md datosContacto">
-        <p>Datos de Contacto</p>
-        <br>
-        <div class="cuartoGrupo row">
-            <div class="celular col-6">
-                <input type="cel" name="nameCelular" id="idCelular" placeholder="9876 5432">
-            </div>
-            <div class="correo col-6">
-                <input type="email" name="nameCorreo" id="idCorreo" placeholder="correo@correo.com">
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="datosTrabajo row">
-        <div class="contrato col"> <!-- TIPO DE CONTRATO -->
-            <?php include("./controller/consulta_select/select_contrato.php"); ?>
             <br>
-        </div>
-        <br>
-        <div class="lugar col"> <!-- LUGAR -->
-            <?php include("./controller/consulta_select/select_lugar.php"); ?>
-        </div>
-        <br>
-        <div class="categoria col"> <!-- CATEGORIA -->
-            <?php include("./controller/consulta_select/select_categoria.php"); ?>
-            <br>
-            <div id="idPreguntaCat1" style="display:none;">
-                <p>¿Es médico?</p>
-
-                <label for="idSiMedico">Sí</label>
-                <input type="radio" name="nameMedico" id="idSiMedico" value="Sí" required>
-
-                <label for="idNoMedico">No</label>
-                <input type="radio" name="nameMedico" id="idNoMedico" value="No" required>
+            <div class="datosContacto seccion">
+                <p>Datos de Contacto</p>
+                <div class="cuartoGrupo row">
+                    <div class="celular col-md">
+                        <label for="idCelular">Celular</label>
+                        <input type="cel" name="nameCelular" id="idCelular" placeholder="9876 5432" class="form-control">
+                    </div>
+                    <br>
+                    <div class="correo col-md">
+                        <label for="idCorreo">Correo Electrónico</label>
+                        <input type="email" name="nameCorreo" id="idCorreo" placeholder="correo@correo.com" class="form-control">
+                    </div>
+                </div>
             </div>
-
-
-        </div>
-    </div>
-
-
-    <label for="idProfesion">Profesión:</label>
-    <input type="text" name="nameProfesion" id="idProfesion">
-    <br>
+            <br>
 
 
 
-    <div class="container-md afp"> <!-- AFP -->
-        <p>AFP</p>
-        <?php include("./controller/consulta_select/select_afp.php"); ?>
-        <br>
-        <label for="idAFPinput">Certificado de Afiliación</label>
-        <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
-        <br>
-    </div>
-    <br>
-    <div class="container-md nacimiento">
-        <label for="idNACinput">Certificado de Nacimiento:</label>
-        <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md antecedentes">
-        <label for="idANTECEinput">Certificado de Antecedentes:</label>
-        <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md cedula">
-        <label for="idCedulainput">Fotocopia Cédula de Identidad:</label>
-        <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md curriculum">
-        <label for="idCVinput">Curriculum Vitae</label>
-        <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md examenM" id="examenMedico">
-        <label for="idExamenMinput">Examen Médico Unico Nacional</label>
-        <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md prevision"> <!-- PREVISION -->
-        <p>Previsión:</p>
-        <?php include("./controller/consulta_select/select_prevision.php"); ?>
-        <label for="idPREVinput">Certificado de Afiliación</label>
-        <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md estudios">
-        <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
-        <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md decJurada">
-        <label for="idDJuradainput">Declaración Jurada</label>
-        <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div class="container-md saludCompatible">
-        <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
-        <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
-    </div>
-    <br>
-    <div id="servicioMilitarHombre">
-        <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día:</label>
-        <input type="file" id="idMilitarDoc" name="nameMilitarDoc" class="form-control" accept=".pdf">
-        <br>
-    </div>
-    <br>
-    <div class="container-md observaciones">
-        <label for="idObserv">Observaciones:</label>
-        <textarea id="idObserv" name="nameObserv" class="form-control" rows="4" cols="50"></textarea>
-    </div>
-    <br>
+            <div class="documentacion seccion">
+                <p>Documentación</p>
+                <div class="afp row"> <!-- AFP -->
+                    <div class="col-md">
+                        <?php include("./controller/consulta_select/select_afp.php"); ?>
+                        <br>
+                    </div>
+                    <div class="col-md">
+                        <span class="obligatorio">*</span>
+                        <label for="idAFPinput">Certificado de Afiliación</label>
+                        <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
+                    </div>
+                </div>
+                <br>
 
+                <div class="prevision row"> <!-- PREVISION -->
+                    <div class="col-md">
+                        <?php include("./controller/consulta_select/select_prevision.php"); ?>
+                        <br>
+                    </div>
+                    <div class="col-md">
+                        <span class="obligatorio">*</span>
+                        <label for="idPREVinput">Certificado de Afiliación</label>
+                        <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
+                    </div>
 
-    <input type="submit" value="Enviar">
-    </form>
+                </div>
+                <br>
+
+                <div class="nacimiento">
+                    <span class="obligatorio">*</span>
+                    <label for="idNACinput">Certificado de Nacimiento:</label>
+                    <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+                <div class="antecedentes">
+                    <span class="obligatorio">*</span>
+                    <label for="idANTECEinput">Certificado de Antecedentes:</label>
+                    <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+                <div class="cedula">
+                    <span class="obligatorio">*</span>
+                    <label for="idCedulainput">Fotocopia Cédula de Identidad:</label>
+                    <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+                <div class="curriculum">
+                    <span class="obligatorio">*</span>
+                    <label for="idCVinput">Curriculum Vitae</label>
+                    <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
+                </div>
+
+                <div class="examenM" id="examenMedico">
+                    <br>
+                    <span class="obligatorio">*</span>
+                    <label for="idExamenMinput">Examen Médico Unico Nacional</label>
+                    <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+
+                <div class="estudios">
+                    <span class="obligatorio">*</span>
+                    <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
+                    <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+                <div class="decJurada">
+                    <span class="obligatorio">*</span>
+                    <label for="idDJuradainput">Declaración Jurada</label>
+                    <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+                <div class="saludCompatible">
+                    <span class="obligatorio">*</span>
+                    <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
+                    <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+                <div id="servicioMilitarHombre">
+                    <span class="obligatorio">*</span>
+                    <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día:</label>
+                    <input type="file" id="idMilitarDoc" name="nameMilitarDoc" class="form-control" accept=".pdf">
+                </div>
+                <br>
+            </div>
+            <br>
+            <div class="observaciones seccion">
+                <label for="idObserv">Observaciones:</label>
+                <textarea id="idObserv" name="nameObserv" class="form-control" rows="4" cols="50"></textarea>
+            </div>
+            <br>
+
+            <input type="submit" value="Enviar">
+        </form>
 
 
     </div>
