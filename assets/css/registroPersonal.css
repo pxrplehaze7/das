@@ -87,15 +87,3 @@ input[type="text"]{
 
 
 
-
-/* de editar */
-.archivos-ver{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.archivos-ver a{
-  text-decoration: none;
-  
-}

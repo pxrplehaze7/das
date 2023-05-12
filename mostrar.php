@@ -2,11 +2,11 @@
 // Conectar a la base de datos
 include("./controller/config/conexion.php");
 
-// Obtener el rut enviado por GET
+// Obtener el rut enviado por POST
 if (isset($_POST['nameBuscaRut'])) {
-    $rut = $_POST['nameBuscaRut'];
+    $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
 
-    // Realizar la consulta para obtener la información de la persona
+    // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
     $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, NombreTra, PaternoTra, MaternoTra, Rut, Sexo, Profesion, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur,RutaSerM, RutaSCom, RutaExaM, Observ
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
@@ -18,18 +18,19 @@ if (isset($_POST['nameBuscaRut'])) {
 
     $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
 
-
-    // Verificar si se encontró la persona en la base de datos
+    // Verificar si se encontró una persona en la base de datos con el valor de $rut
     if (mysqli_num_rows($resultadoDatosTra) == 1) {
-        // Obtener la información de la persona
+        // Si se encuentra una persona, se asigna el resultado a $persona
         $persona = mysqli_fetch_assoc($resultadoDatosTra);
 
         // Cerrar la conexión a la base de datos  
-        mysqli_close($conn);
+        // mysqli_close($conn);
     } else {
         echo "No se encontró ninguna persona con el rut ingresado";
     }
 }
+
+
 ?>
 
 
@@ -43,11 +44,13 @@ if (isset($_POST['nameBuscaRut'])) {
     <title>Perfil del Trabajador</title>
     <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- cdn iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- cdn css bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- estilo de registro -->
-    <link href="./assets/css/registroPersonal.css" rel="stylesheet">
+    <link href="./assets/css/perfil.css" rel="stylesheet">
     <!-- revisa si el rut ya existe -->
     <script src="./assets/js/revisa_rut.js"></script>
 
@@ -67,7 +70,7 @@ if (isset($_POST['nameBuscaRut'])) {
             <div class="datosPersonales-ver seccion">
 
                 <div class="primerGrupo row ">
-                    <p>Datos Personales</p>
+                    <h4>Datos Personales</h4>
                     <div class="rut-ver col-md">
                         <label>Rut</label>
                         <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
@@ -124,7 +127,7 @@ if (isset($_POST['nameBuscaRut'])) {
             <br>
 
             <div class="datosContacto seccion">
-                <p>Datos de Contacto</p>
+                <h4>Datos de Contacto</h4>
                 <div class="cuartoGrupo row">
                     <div class="celular-ver col-md">
                         <label>Celular </label>
@@ -143,138 +146,158 @@ if (isset($_POST['nameBuscaRut'])) {
 
 
             <div class="documentacion seccion">
-                <p>Documentación</p>
+                <h4>Documentación</h4>
+                <br>
+                <div class="container c-nacimiento"><!-- CERTIFICADO DE NACIMIENTO -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">Certificado de Nacimiento</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaNac']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="container cedula"> <!-- CEDULA DE IDENTIDAD -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaCedula']; ?>" target="_blank">Fotocopia de Cédula de Identidad</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaCedula']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaCedula']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
 
-                <div class="c-nacimiento row"> <!-- CERTIFICADO DE NACIMIENTO -->
-                    <div class="col-md">
-                        <h6>Certificado de Nacimiento</h6>
+                </div>
+                <br>
+                <div class="container antecedentes"> <!-- ANTECEDENTES -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaAntec']; ?>" target="_blank">Certificado de Antecedentes</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaAntec']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaAntec']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">VER</a>
+                </div>
+                <br>
+                <div class="container curriculum"> <!-- CURRICULUM -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaCV']; ?>" target="_blank">Curriculum Vitae</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaCV']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaCV']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaNac']; ?>" download>DESCARGAR</a>
+                </div>
+                <br>
+                <div class="container estudios"> <!-- CERTIFICADO DE ESTUDIOS-->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaEstudio']; ?>" target="_blank">Certificado de Estudios o Título Profesional</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaEstudio']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaEstudio']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="cedula row"> <!-- CEDULA DE IDENTIDAD -->
-                    <div class="col-md">
-                        <h6>Fotocopia de Cédula de Identidad</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaCedula']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaCedula']; ?>" download>DESCARGAR</a>
+
+
+
+
+<?php include('./controller/consulta_archivo/servicioMilitar.php')?>
+
+
+
+
+                <br>
+                <div class="container afp"> <!-- AFP -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">Certificado de Afiliacion a AFP</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaAFP']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="antecedentes row"> <!-- ANTECEDENTES -->
-                    <div class="col-md">
-                        <h6>Certificado de Antecedentes</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaAntec']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaAntec']; ?>" download>DESCARGAR</a>
-                    </div>
-                </div>
-
-                <div class="curriculum row"> <!-- CURRICULUM -->
-                    <div class="col-md">
-                        <h6>Curriculum Vitae</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaCV']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaCV']; ?>" download>DESCARGAR</a>
+                <br>
+                <div class="container declaracion"> <!-- DECLARACION JURADA -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaDJur']; ?>" target="_blank">Declaración Jurada</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaDJur']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaDJur']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="estudios row"> <!-- CERTIFICADO DE ESTUDIOS-->
-                    <div class="col-md">
-                        <h6>Certificado de Estudios o Título Profesional</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaEstudio']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaEstudio']; ?>" download>DESCARGAR</a>
-                    </div>
-                </div>
-
-                <div class="servicioMilitar row"> <!-- SERVICIO MILITAR hacer que se vea solo si existe -->
-                    <div class="col-md">
-                        <h6>Certificado de Servicio Militar al Día</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaSerM']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaSerM']; ?>" download>DESCARGAR</a>
+                <br>
+                <div class="container saludCompatible"> <!-- SALUD COMPATIBLE -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaSCom']; ?>" target="_blank">Certificado de Salud Compatible</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaSCom']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaSCom']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="afp row"> <!-- AFP -->
-                    <div class="col-md">
-                        <h6>Certificado de Afiliacion a AFP</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaAFP']; ?>" download>DESCARGAR</a>
-                    </div>
-                </div>
-
-                <div class="declaracion row"> <!-- DECLARACION JURADA -->
-                    <div class="col-md">
-                        <h6>Declaración Jurada</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaDJur']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaDJur']; ?>" download>DESCARGAR</a>
+                <br>
+                <div class="container examenMedico"> <!-- EXAMEN MEDICO UNICO NACIONAL hacer que se vea solo si existe -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaExaM']; ?>" target="_blank">Examen Médico Único Nacional</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaExaM']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaExaM']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
                     </div>
                 </div>
+                <br>
+                <div class="container prevision"> <!-- CEDULA DE IDENTIDAD -->
+                    <div class="row doc">
+                        <div class="col-sm-4 col-md-6 titulo">
+                            <a href="<?php echo $persona['RutaPrev']; ?>" target="_blank">Certificado de Afiliación a Sistema de Salud</a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaPrev']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
+                        </div>
+                        <div class="archivos-ver col-sm-4 col-md-3">
+                            <a href="<?php echo $persona['RutaPrev']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        </div>
+                    </div>
 
-                <div class="saludCompatible row"> <!-- SALUD COMPATIBLE -->
-                    <div class="col-md">
-                        <h6>Certificado de Salud Compatible</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaSCom']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaSCom']; ?>" download>DESCARGAR</a>
-                    </div>
-                </div>
-
-                <div class="examenMedico row"> <!-- EXAMEN MEDICO UNICO NACIONAL hacer que se vea solo si existe -->
-                    <div class="col-md">
-                        <h6>Examen Médico Único Nacional</h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaExaM']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaExaM']; ?>" download>DESCARGAR</a>
-                    </div>
-                </div>
-
-                <div class="prevision row"> <!-- CEDULA DE IDENTIDAD -->
-                    <div class="col-md">
-                        <h6>Certificado de Afiliación a Sistema de Salud </h6>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaPrev']; ?>" target="_blank">VER</a>
-                    </div>
-                    <div class="archivos-ver col-md">
-                        <a href="<?php echo $persona['RutaPrev']; ?>" download>DESCARGAR</a>
-                    </div>
                 </div>
 
             </div>
