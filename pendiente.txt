@@ -1,0 +1,6 @@
+expresion regular para el rut y correo
+
+agregar lugares de salud
+
+arreglar la base de datos
+

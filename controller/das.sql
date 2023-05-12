@@ -103,3 +103,9 @@ INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (5,'Cesfam Chiguayante');
 INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (1,'FONASA');
 INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (2,'ISAPRE');
 
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (1,'a) Médicos Cirujanos, Farmacéuticos, Químico-Farmacéuticos, Bioquímicos y Cirujano-Dentistas.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (2,'b) Otros profesionales.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (3,'c) Técnicos de nivel superior.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (4,'d) Técnicos de Salud.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5,'e) Administrativos de Salud.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6,'f) Auxiliares de servicios de Salud.');

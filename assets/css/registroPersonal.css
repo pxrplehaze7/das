@@ -80,3 +80,22 @@ select{
 input[type="text"]{
 /* lo puedo hacer trasparente */
 }
+
+
+
+
+
+
+
+
+/* de editar */
+.archivos-ver{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.archivos-ver a{
+  text-decoration: none;
+  
+}

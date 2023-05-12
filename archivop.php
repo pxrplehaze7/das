@@ -30,7 +30,7 @@ include("./controller/config/conexion.php");
         <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
 
             <h2>Registro de Trabajadores</h2>
-<br>
+            <br>
             <div class="datosPersonales seccion">
                 <p>Datos Personales</p>
                 <div class="primerGrupo row ">

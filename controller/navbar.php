@@ -26,7 +26,7 @@
          
 
         </ul>
-        <form class="d-flex" role="search" action="perfil.php" method="POST">
+        <form class="d-flex" role="search" action="mostrar.php" method="POST">
           <input class="form-control me-2" name="nameBuscaRut" type="search" placeholder="Buscar Rut">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>

@@ -95,18 +95,18 @@ move_uploaded_file($_FILES['nameSCompatibledoc']['tmp_name'], $ruta_SaludCompatF
 
 
 // Construir la URL completa a la ubicación del archivo
-$url_afpFINAL = 'http://' . $host . '/personal/controller/' . $ruta_afpFINAL;
-$url_nacFINAL = 'http://' . $host . '/personal/controller/' . $ruta_nacFINAL;
-$url_militarFINAL = 'http://' . $host . '/personal/controller/' . $ruta_militarFINAL;
+$url_afpFINAL = 'http://' . $host . '/das/controller/' . $ruta_afpFINAL;
+$url_nacFINAL = 'http://' . $host . '/das/controller/' . $ruta_nacFINAL;
+$url_militarFINAL = 'http://' . $host . '/das/controller/' . $ruta_militarFINAL;
 
-$url_AntecedentesFINAL = 'http://' . $host . '/personal/controller/' . $ruta_AntecedentesFINAL;
-$url_CedulaFINAL = 'http://' . $host . '/personal/controller/' . $ruta_CedulaFINAL;
-$url_CurriculumFINAL = 'http://' . $host . '/personal/controller/' . $ruta_CurriculumFINAL;
-$url_ExamenMFINAL = 'http://' . $host . '/personal/controller/' . $ruta_ExamenMFINAL;
-$url_PrevisionFINAL = 'http://' . $host . '/personal/controller/' . $ruta_PrevisionFINAL;
-$url_EstudiosFINAL = 'http://' . $host . '/personal/controller/' . $ruta_EstudiosFINAL;
-$url_DJuradaFINAL = 'http://' . $host . '/personal/controller/' . $ruta_DJuradaFINAL;
-$url_SaludCompatFINAL = 'http://' . $host . '/personal/controller/' . $ruta_SaludCompatFINAL;
+$url_AntecedentesFINAL = 'http://' . $host . '/das/controller/' . $ruta_AntecedentesFINAL;
+$url_CedulaFINAL = 'http://' . $host . '/das/controller/' . $ruta_CedulaFINAL;
+$url_CurriculumFINAL = 'http://' . $host . '/das/controller/' . $ruta_CurriculumFINAL;
+$url_ExamenMFINAL = 'http://' . $host . '/das/controller/' . $ruta_ExamenMFINAL;
+$url_PrevisionFINAL = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
+$url_EstudiosFINAL = 'http://' . $host . '/das/controller/' . $ruta_EstudiosFINAL;
+$url_DJuradaFINAL = 'http://' . $host . '/das/controller/' . $ruta_DJuradaFINAL;
+$url_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
 
 
 // Insertar la ruta final del archivo en la base de datos

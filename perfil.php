@@ -132,7 +132,6 @@ if (isset($_POST['nameBuscaRut'])) {
 
           <div class="descarga">
             <a href="<?php echo $persona['RutaAFP']; ?>" download><i class="fa-solid fa-file-arrow-down" style="color: #000000;"></i>DESCARGAR</a><br>
-
           </div>
 
 
