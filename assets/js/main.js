@@ -25,3 +25,28 @@ $("#documentosObligatorios").on("submit", function (event) {
 
 });
 
+// FUNCION QUE VERIFICA SI EL RUT A REGISTRAR YA ESTA INGRESADO
+$(document).ready(function() {
+  $('#idRutInput').on('blur', function() {
+    var rut = $(this).val();
+    $.ajax({
+      url: './controller/check_rut.php',
+      type: 'POST',
+      data: {rut: rut},
+      success: function(response) {
+        $('#rut-validation').html(response);
+      }
+    });
+  });
+});
+
+
+
+
+
+// FUNCION PARA LIMPIAR EL INPUT FILE
+function clearFileInput(inputId) {
+  var fileInput = document.getElementById(inputId);
+  fileInput.value = "";
+}
+
