@@ -1,5 +1,6 @@
 <?php
 include("./controller/config/conexion.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,6 +19,7 @@ include("./controller/config/conexion.php");
     <link href="./assets/css/registroPersonal.css" rel="stylesheet">
     <!-- revisa si el rut ya existe -->
     <script src="./assets/js/revisa_rut.js"></script>
+    <script src="./assets/js/botonesLimpiar.js"></script>
 
 </head>
 
@@ -35,14 +37,14 @@ include("./controller/config/conexion.php");
                 <p>Datos Personales</p>
                 <div class="primerGrupo row ">
                     <div class="rut col-md">
-                        <span class="obligatorio">*</span>
+
                         <label for="idRutInput">Rut</label>
                         <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" class="form-control" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
                     <div class="nombre col-md">
-                        <span class="obligatorio">*</span>
+
                         <label for="idPersona">Nombres</label>
                         <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
                         <br>
@@ -51,7 +53,7 @@ include("./controller/config/conexion.php");
 
                 <div class="segundoGrupo row">
                     <div class="paterno col-md">
-                        <span class="obligatorio">*</span>
+
                         <label for="idAppat">Apellido Paterno</label>
                         <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
                         <br>
@@ -86,7 +88,7 @@ include("./controller/config/conexion.php");
                         </center>
                         <div class="opciones">
 
-                            <input type="radio" name="nameMedico" id="idSiMedico" value="Sí" class="radioInput" novalidate>
+                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput" novalidate>
                             <label for="idSiMedico" class="radio">Sí</label>
 
                             <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput" novalidate>
@@ -96,7 +98,7 @@ include("./controller/config/conexion.php");
 
 
                     <div class="profesion">
-                        <span class="obligatorio">*</span>
+
                         <label for="idProfesion">Profesión:</label>
                         <input type="text" name="nameProfesion" id="idProfesion" class="form-control">
                     </div>
@@ -130,12 +132,12 @@ include("./controller/config/conexion.php");
                 <div class="cuartoGrupo row">
                     <div class="celular col-md">
                         <label for="idCelular">Celular</label>
-                        <input type="number" name="nameCelular" id="idCelular" placeholder="9876 5432" class="form-control">
+                        <input type="text" name="nameCelular" id="idCelular" placeholder="9876 5432" class="form-control">
                     </div>
                     <br>
                     <div class="correo col-md">
                         <label for="idCorreo">Correo Electrónico</label>
-                        <input type="email" name="nameCorreo" id="idCorreo" placeholder="correo@correo.com" class="form-control">
+                        <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@correo.com" class="form-control">
                     </div>
                 </div>
             </div>
@@ -151,7 +153,7 @@ include("./controller/config/conexion.php");
                         <br>
                     </div>
                     <div class="col-md">
-                        <span class="obligatorio">*</span>
+
                         <label for="idAFPinput">Certificado de Afiliación</label>
                         <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
                     </div>
@@ -164,7 +166,7 @@ include("./controller/config/conexion.php");
                         <br>
                     </div>
                     <div class="col-md">
-                        <span class="obligatorio">*</span>
+
                         <label for="idPREVinput">Certificado de Afiliación</label>
                         <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
                     </div>
@@ -172,60 +174,99 @@ include("./controller/config/conexion.php");
                 </div>
                 <br>
 
-                <div class="nacimiento">
-                    <span class="obligatorio">*</span>
+                <div class="nacimiento row">
                     <label for="idNACinput">Certificado de Nacimiento:</label>
-                    <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idNACinput')">Clear</button>
+                    </div>
                 </div>
+
+
                 <br>
-                <div class="antecedentes">
-                    <span class="obligatorio">*</span>
+                <div class="antecedentes row">
                     <label for="idANTECEinput">Certificado de Antecedentes:</label>
-                    <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idANTECEinput')">Clear</button>
+                    </div>
+
                 </div>
                 <br>
-                <div class="cedula">
-                    <span class="obligatorio">*</span>
+                <div class="cedula row">
                     <label for="idCedulainput">Fotocopia Cédula de Identidad:</label>
-                    <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idCedulainput')">Clear</button>
+                    </div>
                 </div>
                 <br>
-                <div class="curriculum">
-                    <span class="obligatorio">*</span>
+                <div class="curriculum row">
                     <label for="idCVinput">Curriculum Vitae</label>
-                    <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idCVinput')">Clear</button>
+                    </div>
                 </div>
 
-                <div class="examenM" id="examenMedico">
+                <div class="examenM row" id="examenMedico">
                     <br>
-                    <span class="obligatorio">*</span>
                     <label for="idExamenMinput">Examen Médico Unico Nacional</label>
-                    <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idExamenMinput')">Clear</button>
+                    </div>
                 </div>
                 <br>
 
-                <div class="estudios">
-                    <span class="obligatorio">*</span>
+                <div class="estudios row">
                     <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
-                    <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idEstudioinput')">Clear</button>
+                    </div>
                 </div>
                 <br>
-                <div class="decJurada">
-                    <span class="obligatorio">*</span>
+                <div class="decJurada row">
                     <label for="idDJuradainput">Declaración Jurada</label>
-                    <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idDJuradainput')">Clear</button>
+                    </div>
                 </div>
                 <br>
-                <div class="saludCompatible">
-                    <span class="obligatorio">*</span>
+                <div class="saludCompatible row">
                     <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
-                    <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idSCompatibleinput')">Clear</button>
+                    </div>
                 </div>
                 <br>
-                <div id="servicioMilitarHombre">
-                    <span class="obligatorio">*</span>
+                <div id="servicioMilitarHombre" class="servicioMilitarHombre row">
                     <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día:</label>
-                    <input type="file" id="idMilitarDoc" name="nameMilitarDoc" class="form-control" accept=".pdf">
+                    <div class="inputFile col-sm-9 col-md-10">
+                        <input type="file" id="idMilitarDoc" name="nameMilitarDoc" class="form-control" accept=".pdf">
+                    </div>
+                    <div class="eliminarBoton col-sm-3 col-md-2">
+                        <button class="btn btn-outline-secondary" type="button" onclick="clearFileInput('idMilitarDoc')">Clear</button>
+                    </div>
                 </div>
                 <br>
             </div>

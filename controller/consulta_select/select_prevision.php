@@ -1,7 +1,6 @@
 <?php
 $sqlPrevision = "SELECT IDPrev, NombrePrev FROM prevision";
 $resultadoPrevision = mysqli_query($conn, $sqlPrevision);
-echo '<span class="obligatorio">* </span>';
 echo "<label for='idSelectCat'>Seleccione Previsión: </label>"; //Label 
 echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select'>";
 echo '<option value=""> Selecciona una opción</option>'; // Opción por defecto en blanco

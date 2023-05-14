@@ -38,3 +38,7 @@ Hacer que si al ver el perfilde una persona, tenga un documento pendiente y sea 
 
 
 
+hare que cuando el trabajador sea medico, se guarde si o no en la base de datos, para que luego consulte si es igual a si para mostrar el archivo o muestre pendiente
+
+
+hacer que si sube un archivo por error, lo pueda eliminar en ese mismo input

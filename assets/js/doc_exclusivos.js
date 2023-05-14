@@ -52,7 +52,7 @@ $(document).ready(function () {
     var valor = $(this).val();
 
     // Muestra u oculta el campo según el valor del input de tipo radio
-    if (valor == "Sí") {
+    if (valor == "Si") {
       $("#examenMedico").show();
     } else {
       $("#examenMedico").hide();

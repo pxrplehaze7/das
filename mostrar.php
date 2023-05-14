@@ -7,7 +7,7 @@ if (isset($_POST['nameBuscaRut'])) {
     $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
 
     // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-    $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, NombreTra, PaternoTra, MaternoTra, Rut, Sexo, Profesion, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur,RutaSerM, RutaSCom, RutaExaM, Observ
+    $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, NombreTra, PaternoTra, MaternoTra, Rut, Sexo, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur,RutaSerM, RutaSCom, RutaExaM, Observ
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
                   INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
@@ -147,20 +147,7 @@ if (isset($_POST['nameBuscaRut'])) {
 
             <div class="documentacion seccion">
                 <h4>Documentación</h4>
-                <br>
-                <div class="container c-nacimiento"><!-- CERTIFICADO DE NACIMIENTO -->
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
-                            <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">Certificado de Nacimiento</a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaNac']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaNac']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/certificadoNac.php')?>
                 <br>
                 <div class="container cedula"> <!-- CEDULA DE IDENTIDAD -->
                     <div class="row doc">
@@ -223,7 +210,7 @@ if (isset($_POST['nameBuscaRut'])) {
 
 
 
-<?php include('./controller/consulta_archivo/servicioMilitar.php')?>
+                <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
 
 
 
@@ -270,20 +257,7 @@ if (isset($_POST['nameBuscaRut'])) {
                         </div>
                     </div>
                 </div>
-                <br>
-                <div class="container examenMedico"> <!-- EXAMEN MEDICO UNICO NACIONAL hacer que se vea solo si existe -->
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
-                            <a href="<?php echo $persona['RutaExaM']; ?>" target="_blank">Examen Médico Único Nacional</a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaExaM']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaExaM']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/examenMedico.php') ?>
                 <br>
                 <div class="container prevision"> <!-- CEDULA DE IDENTIDAD -->
                     <div class="row doc">

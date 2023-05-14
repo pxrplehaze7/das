@@ -5,11 +5,12 @@
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.243)),
-    url("../img/bg-2.jpg");
+  background-image: linear-gradient(rgba(255, 166, 0, 0.166), rgba(255, 111, 0, 0.161)),
+    url("../img/bg-8.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  min-width: 600px;
 }
 
 .container-md {
@@ -23,16 +24,16 @@ body {
 h2 {
   text-align: center;
   padding: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-weight: bold;
-  font-size: 2rem;
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.192);
-  border-radius: 16px;
+  font-size: 30px;
+
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.31);
+border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .radioCentro {
@@ -47,14 +48,14 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
 
 .seccion {
+
 /* From https://css.glass */
-/* From https://css.glass */
-background: rgba(255, 255, 255, 0.25);
+background: rgba(255, 255, 255, 0.17);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(20px);
 -webkit-backdrop-filter: blur(20px);
-border: 1px solid rgba(255, 255, 255, 0.3);
+border: 1px solid rgba(255, 255, 255, 1);
   padding: 40px;
   border-radius: 30px;
   margin-bottom: 20px;
@@ -76,12 +77,9 @@ select{
   cursor: pointer;
 }
 
-
-input[type="text"]{
-/* lo puedo hacer trasparente */
+.eliminarBoton{
+  text-align: right;
 }
-
-
 
 
 
