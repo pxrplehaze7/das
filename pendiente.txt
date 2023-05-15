@@ -28,7 +28,8 @@ Hacer que si al ver el perfilde una persona, tenga un documento pendiente y sea 
 
 
 
-hare que cuando el trabajador sea medico, se guarde si o no en la base de datos, para que luego consulte si es igual a si para mostrar el archivo o muestre pendiente
-
-
 EL RADIO DE: ES MEDICO ME DA ERROR
+
+hacer que se limpien los campos al enviar el form
+
+crear alerta de usuario registrado y error
