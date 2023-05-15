@@ -1,6 +1,5 @@
 expresion regular para el rut y correo
 
-agregar lugares de salud
 
 arreglar la base de datos
 
@@ -16,14 +15,6 @@ si la persona no tiene registrado un archivo, como el del servicio militar, ocul
 Entonces consultar si existe para poder ver el documentos
 
 
-En cesfam pinares esta: Optica Municipal y Ruca
-Agregar drogueria
-En Valle la Piedra esta el laboratorio dental.
-Cesfam leonera es cesfam y sapu o son diferentes* preguntar.
-
-SAR chiguayante agregar
-Farmacia Municipal agregar.
-Casa Salud Mental
 
 
 agregar calificaciones, son texto o numeros? preguntar, ingresar periodo (desde-hasta). preguntar si por ejemplo el año 2023 es de enero hasta diciembre o si varia en cada mes.
@@ -32,7 +23,6 @@ preguntar si apelo calificaciones con radio y si apelo, subir apelacion.
 
 el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
 
-hacer que si lapantalla se achica, las <a> queden centradas.
 
 Hacer que si al ver el perfilde una persona, tenga un documento pendiente y sea obligatorio para ella, mostrar mensaje de pendiente
 
@@ -41,4 +31,4 @@ Hacer que si al ver el perfilde una persona, tenga un documento pendiente y sea 
 hare que cuando el trabajador sea medico, se guarde si o no en la base de datos, para que luego consulte si es igual a si para mostrar el archivo o muestre pendiente
 
 
-hacer que si sube un archivo por error, lo pueda eliminar en ese mismo input
+EL RADIO DE: ES MEDICO ME DA ERROR

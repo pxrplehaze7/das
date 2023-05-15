@@ -7,7 +7,7 @@ if (isset($_POST['nameBuscaRut'])) {
     $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
 
     // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-    $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, NombreTra, PaternoTra, MaternoTra, Rut, Sexo, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur,RutaSerM, RutaSCom, RutaExaM, Observ
+    $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, NombreTra, PaternoTra, MaternoTra, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur,RutaSerM, RutaSCom, RutaExaM, Observ
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
                   INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
@@ -78,7 +78,7 @@ if (isset($_POST['nameBuscaRut'])) {
                     </div>
                     <div class="genero-ver col-md">
                         <label>Género</label>
-                        <input value="<?php echo $persona['Sexo'] ?>" class="form-control" readonly>
+                        <input value="<?php echo $persona['Genero'] ?>" class="form-control" readonly>
                         <br>
                     </div>
                 </div>

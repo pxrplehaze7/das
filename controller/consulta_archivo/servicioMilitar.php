@@ -1,5 +1,5 @@
 <?php
-    if ($persona['Sexo'] == 'Masculino') {
+    if ($persona['Genero'] == 'Masculino') {
         if (!empty($persona['RutaSerM'])) {
             echo '<br>
             <div class="container servicioMilitar">

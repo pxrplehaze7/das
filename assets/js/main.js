@@ -41,12 +41,40 @@ $(document).ready(function() {
 });
 
 
-
-
-
 // FUNCION PARA LIMPIAR EL INPUT FILE
 function clearFileInput(inputId) {
   var fileInput = document.getElementById(inputId);
   fileInput.value = "";
 }
+
+
+
+  const lugarSelect = document.getElementById('idSelectLugar');
+  const sectorSelect = document.getElementById('idSelectSector');
+  
+  lugarSelect.addEventListener('change', function() {
+    const lugarId = lugarSelect.value;
+    
+    if (lugarId === '2') {
+      sectorSelect.innerHTML = `
+        <option value="">No Aplica</option>
+        <option value="Óptica Municipal">Óptica Municipal</option>
+        <option value="Centro de Salud Integral Ruka Antu">Centro de Salud Integral Ruka Antu</option>
+      `;
+      sectorSelect.disabled = false;
+
+    } else if (lugarId === '4') {
+      sectorSelect.innerHTML = `
+         <option value="">No Aplica</option>
+         <option value="Laboratorio Dental">Laboratorio Dental</option>
+      `;
+      sectorSelect.disabled = false;
+    } else {
+      sectorSelect.innerHTML = `
+        <option value=""></option>
+      `;
+      sectorSelect.disabled = true;
+    }
+  });
+
 

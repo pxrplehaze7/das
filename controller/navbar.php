@@ -10,17 +10,13 @@
           <a class="nav-link" aria-current="page" href="#">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="registro.php">Registrar</a>
         </li>
       </ul>
       <form class="d-flex" role="search" action="mostrar.php" method="POST">
         <input class="form-control me-2" name="nameBuscaRut" type="search" placeholder="Buscar Rut">
         <button class="btn btn-buscar" type="submit">Buscar</button>
       </form>
-
-
-
-
     </div>
   </div>
 </nav>
