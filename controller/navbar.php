@@ -15,7 +15,7 @@
       </ul>
       <form class="d-flex" role="search" action="mostrar.php" method="POST">
         <input class="form-control me-2" name="nameBuscaRut" type="search" placeholder="Buscar Rut">
-        <button class="btn btn-buscar" type="submit">Buscar</button>
+        <button class="btn btn-buscar" type="submit">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
   </div>

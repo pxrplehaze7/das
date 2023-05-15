@@ -68,27 +68,16 @@ include("./controller/config/conexion.php");
                 </div>
 
                 <div class="datosTrabajo art row">
-                    <div class="contrato col-md"> <!-- TIPO DE CONTRATO -->
-                        <?php include("./controller/consulta_select/select_contrato.php"); ?>
-                        <br>
-                    </div>
-                    <br>
-                    <div class="categoria col-md"> <!-- CATEGORIA -->
+                    <div class="categoria col-md-6"> <!-- CATEGORIA -->
                         <?php include("./controller/consulta_select/select_categoria.php"); ?>
                         <br>
                     </div>
                     <br>
-
-                    <div class="lugar col-md"> <!-- LUGAR -->
-                        <?php include("./controller/consulta_select/select_lugar.php"); ?>
+                    <div class="contrato col-md-6"> <!-- TIPO DE CONTRATO -->
+                        <?php include("./controller/consulta_select/select_contrato.php"); ?>
                         <br>
                     </div>
-
-                    <label for="idSelectSector">Sector:</label>
-                    <select class="form-select" id="idSelectSector" name="nameSelectSector" disabled>
-                        <option value="">No Aplica</option>
-                    </select>
-
+                    <br>
 
                     <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
                         <center>
@@ -96,16 +85,29 @@ include("./controller/config/conexion.php");
                         </center>
                         <div class="opciones">
 
-                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput" novalidate>
-                            <label for="idSiMedico" class="radio">Sí</label>
-
-                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput" novalidate>
-                            <label for="idNoMedico" class="radio">No</label>
+                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput  form-check-input" novalidate>
+                            <label for="idSiMedico" class="radio label form-check-label">Sí</label>
+                            <br>
+                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput form-check-input" novalidate>
+                            <label for="idNoMedico" class="radio label form-check-label">No</label>
                         </div>
+                        <br>
                     </div>
 
-                    <div class="profesion art">
+                    <div class="lugar col-md-6"> <!-- LUGAR -->
+                        <?php include("./controller/consulta_select/select_lugar.php"); ?>
+                        <br>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="idSelectSector">Sector:</label>
+                        <select class="form-select" id="idSelectSector" name="nameSelectSector" readonly >
+                            <option value="">No Aplica</option>
+                        </select>
+                    </div>
 
+
+
+                    <div class="profesion art">
                         <label for="idProfesion">Profesión</label>
                         <input type="text" name="nameProfesion" id="idProfesion" class="form-control">
                     </div>
@@ -118,11 +120,11 @@ include("./controller/config/conexion.php");
                         <label>Seleccione Género</label>
                     </center>
                     <div class="opciones">
-                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput">
-                        <label for="idFemenino" class="radio">Femenino</label>
+                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input">
+                        <label for="idFemenino" class="radio form-check-label">Femenino</label>
 
-                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput">
-                        <label for="idMasculino" class="radio">Masculino</label>
+                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput form-check-input">
+                        <label for="idMasculino" class="radio form-check-label">Masculino</label>
                     </div>
                 </div>
             </div>
@@ -133,24 +135,17 @@ include("./controller/config/conexion.php");
                     <div class="col-6">
                         <label for="idCelular">Celular</label>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">+569</span>
-                            <input type="text" name="nameCelular" id="idCelular" placeholder="9876 5432" class="form-control">
+                            <span class="input-group-text">+56</span>
+                            <input type="text" name="nameCelular" id="idCelular" placeholder="9 8765 4321" class="form-control">
                         </div>
                     </div>
-                    <div class="col-6">
-
+                    <div class="correo col-6">
                         <label for="idCorreo">Correo Electrónico</label>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text">@</span>
-                            <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@correo.com" class="form-control">
-                        </div>
+                        <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control">
                     </div>
                 </div>
             </div>
             <br>
-
-
-
 
             <div class="documentacion seccion">
                 <h6>Documentación</h6>
@@ -166,8 +161,6 @@ include("./controller/config/conexion.php");
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
-
-
                 </div>
                 <br>
 
@@ -182,9 +175,37 @@ include("./controller/config/conexion.php");
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
-
                 </div>
                 <br>
+
+
+
+
+
+                <div class="prevision row art"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
+                    <div class="col-md-3">
+                        <label for="idDecreto">Decreto</label>
+                        <input type="text" name="nameDecreto" id="idDecreto" class="form-control">
+                    </div>
+
+                    <div class="col-md-9">
+                        <label for="idDocContratoInput">Contrato</label>
+                        <div class="input-group">
+                            <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
+                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDocContratoInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+
+
+
+
+
+
+
+
                 <div class="nacimiento art">
                     <label for="idNACinput">Certificado de Nacimiento</label>
                     <div class="input-group ">
@@ -270,7 +291,7 @@ include("./controller/config/conexion.php");
             </div>
             <br>
             <div class="boton">
-                <button class="btn btn-enviar" type="submit">Enviar</button>
+                <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
             </div>
         </form>
     </div>
@@ -279,6 +300,8 @@ include("./controller/config/conexion.php");
     <script src="./assets/js/doc_exclusivos.js"></script>
     <!-- cdn js de boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+
 </body>
 
 </html>

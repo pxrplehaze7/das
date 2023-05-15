@@ -62,6 +62,7 @@ CREATE TABLE
         `PaternoTra` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
         `MaternoTra` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
         `Rut` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+        `Decreto` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
         `Genero` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
         `Medico` VARCHAR(2) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
         `Profesion` VARCHAR(300) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -79,6 +80,7 @@ CREATE TABLE
         `RutaSerM` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
         `RutaSCom` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
         `RutaExaM` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
+        `RutaContrato` VARCHAR(400) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
         `Observ` VARCHAR(1000) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
         PRIMARY KEY (`IDTra`),
         FOREIGN KEY (`IDCat`) REFERENCES categoria (`IDCat`),
@@ -148,3 +150,76 @@ INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (4, 'd) Técnicos de Salud.
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5,'e) Administrativos de Salud.');
 
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6,'f) Auxiliares de servicios de Salud.');
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO trabajador (IDCat) VALUES ('$categoriaP');
+    INSERT INTO trabajador (IDCon) VALUES ('$contratoP');----tipo de contrato--
+    INSERT INTO trabajador (IDAFP) VALUES ('$afpP');
+    INSERT INTO trabajador (IDPrev) VALUES ('$prevP');
+    INSERT INTO trabajador (IDLugar) VALUES ('$lugarP');
+    INSERT INTO trabajador (NombreTra) VALUES ('$nombreP');
+    INSERT INTO trabajador (PaternoTra) VALUES ('$paternoP');
+    INSERT INTO trabajador (MaternoTra) VALUES ('$maternoP');
+    INSERT INTO trabajador (Rut) VALUES ('$rutPersona');
+    INSERT INTO trabajador (Genero) VALUES ('$generoP');
+    INSERT INTO trabajador (Profesion) VALUES ('$profesionP');
+    INSERT INTO trabajador (Sector) VALUES ('$sector');
+    INSERT INTO trabajador (Decreto) VALUES ('$decreto');
+    INSERT INTO trabajador (Medico) VALUES ('$medicoOno');
+    INSERT INTO trabajador (CelularTra) VALUES ('$CelularP');
+    INSERT INTO trabajador (CorreoTra) VALUES ('$correoP');
+    INSERT INTO trabajador (RutaPrev) VALUES ('$ruta_PrevisionFINAL');
+    INSERT INTO trabajador (RutaCV) VALUES ('$ruta_CurriculumFINAL');
+    INSERT INTO trabajador (RutaAFP) VALUES ('$ruta_afpFINAL');
+    INSERT INTO trabajador (RutaContrato) VALUES ('$ruta_ContratoFINAL'); ---contrato en pdf ruta---
+    INSERT INTO trabajador (RutaNac) VALUES ('$ruta_nacFINAL');
+    INSERT INTO trabajador (RutaAntec) VALUES ('$ruta_AntecedentesFINAL');
+    INSERT INTO trabajador (RutaCedula) VALUES ('$ruta_CedulaFINAL');
+    INSERT INTO trabajador (RutaEstudio) VALUES ('$ruta_EstudiosFINAL');
+    INSERT INTO trabajador (RutaDJur) VALUES ('$ruta_DJuradaFINAL');
+    INSERT INTO trabajador (RutaSerM) VALUES ('$ruta_militarFINAL');
+    INSERT INTO trabajador (RutaSCom) VALUES ('$ruta_SaludCompatFINAL');
+    INSERT INTO trabajador (RutaExaM) VALUES ('$ruta_ExamenMFINAL');
+    INSERT INTO trabajador (Obser) VALUES ('$obsP');";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

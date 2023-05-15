@@ -38,6 +38,11 @@ body {
   }
 }
 
+form {
+  padding-bottom: 30px;
+}
+
+/* EL TITULO DE LA PAGINA */
 h2 {
   text-align: center;
   color: #ffffff;
@@ -46,16 +51,7 @@ h2 {
   text-shadow: 2px 3px 0px #454545;
 }
 
-.radioCentro {
-  text-align: center;
-}
-
-.radio {
-  padding-left: 2px;
-  padding-right: 10px;
-  padding-bottom: 10px;
-}
-
+/* SECCIONES COMO DATOS PERSONALES, CONTACTO */
 .seccion {
   border-radius: 30px;
   margin-bottom: 20px;
@@ -64,10 +60,10 @@ h2 {
   padding-top: 60px;
   padding-bottom: 60px;
   background-color: #ffffff;
-
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.18);
 }
 
+/* SUBTITULOS DE SECCIONES */
 h6 {
   text-align: center;
   padding-bottom: 20px;
@@ -77,30 +73,63 @@ h6 {
   text-shadow: 2px 3px 0px #4545455b;
 }
 
+/* LABEL DE LOS INPUT */
 label {
   padding-bottom: 5px;
   padding-top: 10px;
   cursor: pointer;
   padding-left: 9px;
+  padding-right: 9px;
   font-size: 18px;
 }
+
+/* INICIO RADIOS */
+/* CLASE LABEL PARA LOS RADIO */
+.label {
+  margin-right: 15px;
+}
+
+.radioCentro {
+  text-align: center;
+}
+
+/* ALINEACION VERTICAL DE LOS INPUT RADIO */
+.radioInput,
+.radio {
+  display: inline-block;
+}
+
+.form-check-input[type="radio"] {
+  margin-left: 15px;
+}
+
+/* CENTRADO HORIZONAL DE LOS RADIO */
+.opciones {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+/* FIN RADIOS */
 
 select {
   cursor: pointer;
 }
 
+/* VALIDACION DE RUT A REGISTRAR */
 #valido p {
   padding-left: 9px;
   font-size: 15px;
   color: rgb(54, 176, 6);
 }
-
 #invalido p {
   padding-left: 9px;
   font-size: 15px;
   color: rgb(176, 6, 6);
 }
+/* FIN VALIDACION DE RUT A REGISTRAR */
 
+
+/* INICIO INPUTS TEXT, FILE Y SELECT */
 input[type="text"],
 [type="file"],
 .form-select,
@@ -119,19 +148,20 @@ input[type="text"],
   border-width: 3px;
 }
 
+/* COLOR DE TEXTO DE LOS FORM-CONTROL */
+.form-control {
+  color: #6e707e;
+}
+/* FIN INPUTS TEXT, FILE Y SELECT */
+
+
+/* ESPACIO ENTRE FILAS DE INPUTS */
 .art {
   padding-bottom: 10px;
 }
 
-.btn-limpiar {
-  background-color: #f36f03;
-  color: white;
-}
 
-.form-control {
-  color: #6e707e;
-}
-
+/* BOTON ENVIAR */
 .boton {
   display: flex;
   justify-content: center;
@@ -139,7 +169,7 @@ input[type="text"],
 
 .btn-enviar {
   background-color: #fff7ee;
-  color:#f36f03;
+  color: #f36f03;
   font-weight: bold;
   font-size: 20px;
   border-radius: 30px;
@@ -147,12 +177,26 @@ input[type="text"],
   height: 50px;
 }
 
-
-form{
-  padding-bottom: 30px;
-}
 .btn-enviar:hover {
   background-color: #a1dc3c;
   color: white;
 }
+/* FIN BOTON ENVIAR */
+
+
+/* INICIO BOTON ENVIAR FORMULARIO*/
+.btn-limpiar {
+  background-color: #f36f03;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+.btn-limpiar:hover{
+background-color: #ff821b;
+color: white;
+}
+/* FIN BOTON ENVIAR FORMULARIO */
+
+
 

@@ -19,6 +19,31 @@ $prevP      = $_POST['nameSelectPrev'];
 $obsP       = $_POST['nameObserv'];
 $medicoOno  = $_POST['nameMedico'];
 $sector     = $_POST['nameSelectSector'];
+$decreto     = $_POST['nameDecreto'];
+
+
+$nombreP = mysqli_real_escape_string($conn, $nombreP);
+$paternoP = mysqli_real_escape_string($conn, $paternoP);
+$maternoP = mysqli_real_escape_string($conn, $maternoP);
+$categoriaP = mysqli_real_escape_string($conn, $categoriaP);
+$profesionP = mysqli_real_escape_string($conn, $profesionP);
+$lugarP = mysqli_real_escape_string($conn, $lugarP);
+$sector = mysqli_real_escape_string($conn, $sector);
+$obsP = mysqli_real_escape_string($conn, $obsP);
+$decreto = mysqli_real_escape_string($conn, $decreto);
+
+
+$CelularP = str_replace(" ", "", $CelularP); // eliminar espacios
+$correoP = str_replace(" ", "", $correoP); // eliminar espacios
+
+
+
+
+
+
+
+
+
 
 //Elimina los espacios y los reemplaza por _
 $pdfAFP          = str_replace(array(' ', '(', ')'), '_', $_FILES['nameAFPdoc']['name']);
@@ -32,6 +57,8 @@ $pdfPrevision    = str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']
 $pdfEstudios     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']);
 $pdfDJurada      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']);
 $pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']);
+
+$pdfContrato  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
 
 // Obtener el nombre del host (localhost)
 $host = $_SERVER['HTTP_HOST'];
@@ -55,6 +82,8 @@ if (!file_exists($ruta . $rutPersona)) {
     mkdir($ruta . $rutPersona . '/C_ESTUDIOS/', 0777, true);
     mkdir($ruta . $rutPersona . '/DEC_JURADA/', 0777, true);
     mkdir($ruta . $rutPersona . '/C_SALUD_COMPATIBLE/', 0777, true);
+
+    mkdir($ruta . $rutPersona . '/CONTRATO/', 0777, true);
 }
 
 
@@ -74,7 +103,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $ruta_EstudiosFINAL     = NULL;
     $ruta_DJuradaFINAL      = NULL;
     $ruta_SaludCompatFINAL  = NULL;
-
+    $ruta_ContratoFINAL  = NULL;
 
     if (!empty($pdfAFP)) {
         // Crear la ruta final del archivo
@@ -176,13 +205,23 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
         // Construir la URL completa a la ubicación del archivo
         $ruta_SaludCompatFINAL  = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
     }
+
+    if (!empty($pdfContrato)) {
+      // Crear la ruta final del archivo
+      $ruta_ContratoFINAL  = $ruta . $rutPersona . '/CONTRATO/' . $pdfContrato;
+        // Mover los archivos PDF a la nueva ubicación
+      move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
+      // Construir la URL completa a la ubicación del archivo
+      $ruta_ContratoFINAL  = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
+  }
        
         
     
     // Insertar la ruta final del archivo en la base de datos
 
-    $sqlTrabajador = "INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Genero, Profesion, Sector, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, Observ) VALUES ('$categoriaP','$contratoP','$afpP','$prevP','$lugarP','$nombreP','$paternoP','$maternoP','$rutPersona','$generoP','$profesionP','$sector','$medicoOno','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL', '$obsP')";
-
+    $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato, Observ) VALUES ('$categoriaP','$contratoP','$afpP','$prevP','$lugarP','$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL',' $ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP')";
+    
+         
 
 
     if (mysqli_query($conn, $sqlTrabajador)) {

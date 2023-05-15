@@ -1,4 +1,4 @@
-expresion regular para el rut y correo
+expresion regular para el rut 
 
 
 arreglar la base de datos
@@ -7,7 +7,6 @@ agregar decretos con numero y pedir subir contrato
 
 al buscar en el nav, que envie al perfil del trabajador, si no encuentra, mostrar alerta.
 
-cambiar celular a varchar
 
 cuando no se ingresa un rut, sale validado
 
@@ -33,3 +32,10 @@ EL RADIO DE: ES MEDICO ME DA ERROR
 hacer que se limpien los campos al enviar el form
 
 crear alerta de usuario registrado y error
+
+agregar decreto varchar y ruta de contrato a base de datos y addpersonal.php
+
+
+hacer que el celular y el correo se guarden sin espacio
+
+hacer que se abra el correo al hacer click 

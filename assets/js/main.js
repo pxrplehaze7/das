@@ -1,3 +1,6 @@
+
+
+
 // jquery
 $("#documentosObligatorios").on("submit", function (event) {
   console.log("ola");
@@ -29,16 +32,20 @@ $("#documentosObligatorios").on("submit", function (event) {
 $(document).ready(function() {
   $('#idRutInput').on('blur', function() {
     var rut = $(this).val();
-    $.ajax({
-      url: './controller/check_rut.php',
-      type: 'POST',
-      data: {rut: rut},
-      success: function(response) {
-        $('#rut-validation').html(response);
-      }
-    });
+    if (rut.trim() !== '') { // Verifica si el campo no está vacío
+      $.ajax({
+        url: './controller/check_rut.php',
+        type: 'POST',
+        data: {rut: rut},
+        success: function(response) {
+          $('#rut-validation').html(response);
+        }
+      });
+    }
   });
 });
+
+
 
 
 // FUNCION PARA LIMPIAR EL INPUT FILE
@@ -61,19 +68,19 @@ function clearFileInput(inputId) {
         <option value="Óptica Municipal">Óptica Municipal</option>
         <option value="Centro de Salud Integral Ruka Antu">Centro de Salud Integral Ruka Antu</option>
       `;
-      sectorSelect.disabled = false;
+      sectorSelect.readonly = false;
 
     } else if (lugarId === '4') {
       sectorSelect.innerHTML = `
          <option value="">No Aplica</option>
          <option value="Laboratorio Dental">Laboratorio Dental</option>
       `;
-      sectorSelect.disabled = false;
+      sectorSelect.readonly = false;
     } else {
       sectorSelect.innerHTML = `
         <option value=""></option>
       `;
-      sectorSelect.disabled = true;
+      sectorSelect.readonly = true;
     }
   });
 
