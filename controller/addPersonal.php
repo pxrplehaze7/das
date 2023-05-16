@@ -11,13 +11,18 @@ $generoP    = $_POST['nameGenero'];
 $CelularP   = $_POST['nameCelular'];
 $correoP    = $_POST['nameCorreo'];
 $categoriaP = $_POST['nameSelectCat'];
+if($categoriaP==1){
+  $medicoOno  = $_POST['nameMedico'];
+}else{
+  $medicoOno  = 'No';
+}
 $profesionP = $_POST['nameProfesion'];
 $contratoP  = $_POST['nameSelectCon'];
 $lugarP     = $_POST['nameSelectLugar'];
-$afpP       = $_POST['nameSelectAFP'];
+$afpP       = $_POST['nameSelectAFP']!=""?$_POST['nameSelectAFP']:NULL;
 $prevP      = $_POST['nameSelectPrev'];
 $obsP       = $_POST['nameObserv'];
-$medicoOno  = $_POST['nameMedico'];
+
 $sector     = $_POST['nameSelectSector'];
 $decreto     = $_POST['nameDecreto'];
 
@@ -219,7 +224,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     
     // Insertar la ruta final del archivo en la base de datos
 
-    $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato, Observ) VALUES ('$categoriaP','$contratoP','$afpP','$prevP','$lugarP','$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL',' $ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP')";
+    $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato, Observ) VALUES ('$categoriaP','$contratoP',$afpP,'$prevP','$lugarP','$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL',' $ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP')";
     
          
 
@@ -234,5 +239,3 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 }
     // Cerrar la conexión a la base de datos
     mysqli_close($conn);
-
-    ?>

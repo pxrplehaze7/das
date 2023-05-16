@@ -67,17 +67,19 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
 
-                <div class="datosTrabajo art row">
-                    <div class="categoria col-md-6"> <!-- CATEGORIA -->
-                        <?php include("./controller/consulta_select/select_categoria.php"); ?>
+                <div class="datosTrabajo art">
+                    <div class="grupo1 row">
+                        <div class="contrato col-md-6"> <!-- TIPO DE CONTRATO -->
+                            <?php include("./controller/consulta_select/select_contrato.php"); ?>
+                            <br>
+                        </div>
+
+                        <div class="categoria col-md-6"> <!-- CATEGORIA -->
+                            <?php include("./controller/consulta_select/select_categoria.php"); ?>
+                            <br>
+                        </div>
                         <br>
                     </div>
-                    <br>
-                    <div class="contrato col-md-6"> <!-- TIPO DE CONTRATO -->
-                        <?php include("./controller/consulta_select/select_contrato.php"); ?>
-                        <br>
-                    </div>
-                    <br>
 
                     <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
                         <center>
@@ -85,25 +87,29 @@ include("./controller/config/conexion.php");
                         </center>
                         <div class="opciones">
 
-                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput  form-check-input" novalidate>
+                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput  form-check-input">
                             <label for="idSiMedico" class="radio label form-check-label">Sí</label>
                             <br>
-                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput form-check-input" novalidate>
+                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput form-check-input">
                             <label for="idNoMedico" class="radio label form-check-label">No</label>
                         </div>
                         <br>
                     </div>
 
-                    <div class="lugar col-md-6"> <!-- LUGAR -->
-                        <?php include("./controller/consulta_select/select_lugar.php"); ?>
-                        <br>
+                    <div class="grupo2 row">
+                        <div class="lugar col-md-6"> <!-- LUGAR -->
+                            <?php include("./controller/consulta_select/select_lugar.php"); ?>
+                            <br>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="idSelectSector">Sector:</label>
+                            <select class="form-select" id="idSelectSector" name="nameSelectSector" readonly>
+                                <option value="">No Aplica</option>
+                            </select>
+                        </div>
+
                     </div>
-                    <div class="col-md-6">
-                        <label for="idSelectSector">Sector:</label>
-                        <select class="form-select" id="idSelectSector" name="nameSelectSector" readonly >
-                            <option value="">No Aplica</option>
-                        </select>
-                    </div>
+
 
 
 

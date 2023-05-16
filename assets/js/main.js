@@ -6,6 +6,20 @@ $("#documentosObligatorios").on("submit", function (event) {
   console.log("ola");
   // alert( "Handler for `submit` called." );
   event.preventDefault();
+
+
+  let selectCat = document.querySelector('#idSelectCat');
+  if (selectCat.value == 1) {
+    if (!document.querySelector('#idSiMedico').checked && !document.querySelector('#idNoMedico').checked) {
+      alert('Debe indicar si es medico o no')
+      return
+    }
+
+  }
+  var radios = document.querySelectorAll('input[type="radio"]');
+
+
+
   let formData = new FormData(this);
 
   formData.append('rut', $('#idRutInput').val()); // Agregar el valor del input de tipo texto
@@ -21,23 +35,23 @@ $("#documentosObligatorios").on("submit", function (event) {
     cache: false,
     contentType: false,
     processData: false
-  }).done(function(data) {
- //   $( this ).addClass( "done" );
+  }).done(function (data) {
+    //   $( this ).addClass( "done" );
     console.log(data)
   });
 
 });
 
 // FUNCION QUE VERIFICA SI EL RUT A REGISTRAR YA ESTA INGRESADO
-$(document).ready(function() {
-  $('#idRutInput').on('blur', function() {
+$(document).ready(function () {
+  $('#idRutInput').on('blur', function () {
     var rut = $(this).val();
     if (rut.trim() !== '') { // Verifica si el campo no está vacío
       $.ajax({
         url: './controller/check_rut.php',
         type: 'POST',
-        data: {rut: rut},
-        success: function(response) {
+        data: { rut: rut },
+        success: function (response) {
           $('#rut-validation').html(response);
         }
       });
@@ -56,32 +70,32 @@ function clearFileInput(inputId) {
 
 
 
-  const lugarSelect = document.getElementById('idSelectLugar');
-  const sectorSelect = document.getElementById('idSelectSector');
-  
-  lugarSelect.addEventListener('change', function() {
-    const lugarId = lugarSelect.value;
-    
-    if (lugarId === '2') {
-      sectorSelect.innerHTML = `
+const lugarSelect = document.getElementById('idSelectLugar');
+const sectorSelect = document.getElementById('idSelectSector');
+
+lugarSelect.addEventListener('change', function () {
+  const lugarId = lugarSelect.value;
+
+  if (lugarId === '2') {
+    sectorSelect.innerHTML = `
         <option value="">No Aplica</option>
         <option value="Óptica Municipal">Óptica Municipal</option>
         <option value="Centro de Salud Integral Ruka Antu">Centro de Salud Integral Ruka Antu</option>
       `;
-      sectorSelect.readonly = false;
+    sectorSelect.readonly = false;
 
-    } else if (lugarId === '4') {
-      sectorSelect.innerHTML = `
+  } else if (lugarId === '4') {
+    sectorSelect.innerHTML = `
          <option value="">No Aplica</option>
          <option value="Laboratorio Dental">Laboratorio Dental</option>
       `;
-      sectorSelect.readonly = false;
-    } else {
-      sectorSelect.innerHTML = `
+    sectorSelect.readonly = false;
+  } else {
+    sectorSelect.innerHTML = `
         <option value=""></option>
       `;
-      sectorSelect.readonly = true;
-    }
-  });
+    sectorSelect.readonly = true;
+  }
+});
 
 

@@ -23,6 +23,7 @@ body {
   );
 }
 
+
 .container-md {
   max-width: 1650px;
   padding-left: 30px;
@@ -200,3 +201,35 @@ color: white;
 
 
 
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.doc {
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+padding: 20px;
+  border-radius: 30px;
+}
+
+.titulo a:hover {
+  color: black;
+}
+
+.archivos-ver{
+  text-align: right;
+}
+
+label{
+  font-size: 18px;
+}
+
+.pendiente a{
+  cursor:default;
+}

@@ -24,7 +24,7 @@
                         <a>Examen Único Nacional de Conocimientos de Medicina</a>
                     </div>
                     <div class="archivos-ver col-sm-6 col-md-4 pendiente">
-                        <center><a>Documento en estado pendiente</a></center>
+                        <center><a>Documento Pendiente <i class="fa-sharp fa-solid fa-clock"></i></a></center>
                     </div>
                 </div>
             </div>';
