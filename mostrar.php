@@ -189,6 +189,8 @@ if (isset($_POST['nameBuscaRut'])) {
                         <div class="archivos-ver col-sm-4 col-md-3">
                             <a href="<?php echo $persona['RutaEstudio']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
                         </div>
+
+
                     </div>
                 </div>
 
@@ -199,7 +201,7 @@ if (isset($_POST['nameBuscaRut'])) {
                 <br>
                 <?php include('./controller/consulta_archivo/afp.php') ?>
                 <br>
-                
+
                 <div class="container declaracion"> <!-- DECLARACION JURADA -->
                     <div class="row doc">
                         <div class="col-sm-4 col-md-6 titulo">
@@ -211,22 +213,28 @@ if (isset($_POST['nameBuscaRut'])) {
                         <div class="archivos-ver col-sm-4 col-md-3">
                             <a href="<?php echo $persona['RutaDJur']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
                         </div>
+
                     </div>
                 </div>
+
                 <br>
-                <div class="container saludCompatible"> <!-- SALUD COMPATIBLE -->
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
+                <div class="container saludCompatible">
+                    <div class="row doc flex-wrap">
+                        <div class=" col-xs-8 col-md-8 titulo d-flex align-items-center">
                             <a href="<?php echo $persona['RutaSCom']; ?>" target="_blank">Certificado de Salud Compatible</a>
                         </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaSCom']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaSCom']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        <div class=" col-xs-4 col-md-4 contenedor-botones">
+                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')">Visualizar <i class="fa-solid fa-expand"></i></button>
+                            <a href="<?php echo $persona['RutaSCom']; ?>" download class="btn btn-primary boton-descargar w-100">Descargar <i clxss="fa-sharp fa-solid fa-download"></i></a>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
                 <?php include('./controller/consulta_archivo/examenMedico.php') ?>
                 <br>
                 <div class="container prevision">

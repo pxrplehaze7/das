@@ -5,7 +5,7 @@
 }
 
 body {
-  min-width: 600px;
+  min-width: 750px;
   background-image: radial-gradient(
     circle,
     #ffa75e,
@@ -23,7 +23,6 @@ body {
   );
 }
 
-
 .container-md {
   max-width: 1650px;
   padding-left: 30px;
@@ -32,11 +31,12 @@ body {
   margin-top: 30px;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 500px) {
   .container-md {
     padding-left: 0;
     padding-right: 0;
   }
+
 }
 
 form {
@@ -129,7 +129,6 @@ select {
 }
 /* FIN VALIDACION DE RUT A REGISTRAR */
 
-
 /* INICIO INPUTS TEXT, FILE Y SELECT */
 input[type="text"],
 [type="file"],
@@ -155,12 +154,10 @@ input[type="text"],
 }
 /* FIN INPUTS TEXT, FILE Y SELECT */
 
-
 /* ESPACIO ENTRE FILAS DE INPUTS */
 .art {
   padding-bottom: 10px;
 }
-
 
 /* BOTON ENVIAR */
 .boton {
@@ -184,7 +181,6 @@ input[type="text"],
 }
 /* FIN BOTON ENVIAR */
 
-
 /* INICIO BOTON ENVIAR FORMULARIO*/
 .btn-limpiar {
   background-color: #f36f03;
@@ -193,13 +189,11 @@ input[type="text"],
   border-bottom-right-radius: 30px;
   border-top-right-radius: 30px;
 }
-.btn-limpiar:hover{
-background-color: #ff821b;
-color: white;
+.btn-limpiar:hover {
+  background-color: #ff821b;
+  color: white;
 }
 /* FIN BOTON ENVIAR FORMULARIO */
-
-
 
 a {
   text-decoration: none;
@@ -207,29 +201,46 @@ a {
   font-size: 18px;
 }
 
-.doc {
-  background: rgba(255, 255, 255, 0.09);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-padding: 20px;
-  border-radius: 30px;
-}
-
 .titulo a:hover {
   color: black;
 }
 
-.archivos-ver{
-  text-align: right;
+.archivos-ver {
+  text-align: center;
+  background-color: #ffa75e;
+  width: 180px;
 }
 
-label{
+label {
   font-size: 18px;
 }
 
-.pendiente a{
-  cursor:default;
+.pendiente a {
+  cursor: default;
+}
+
+.contenedor-botones {
+  display: flex;
+justify-content: right;
+}
+
+.boton-descargar {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  width: 130px;
+}
+
+.boton-ver {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  width: 130px;
+}
+
+h4{
+  font-size: 20px;
+  margin-bottom: 0;
 }
