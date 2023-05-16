@@ -196,24 +196,10 @@ if (isset($_POST['nameBuscaRut'])) {
                 <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
-
                 <br>
-                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
-
-                <div class="container afp"> <!-- AFP -->
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
-                            <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">Certificado de Afiliacion a AFP</a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaAFP']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaAFP']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/afp.php') ?>
                 <br>
+                
                 <div class="container declaracion"> <!-- DECLARACION JURADA -->
                     <div class="row doc">
                         <div class="col-sm-4 col-md-6 titulo">
