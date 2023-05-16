@@ -39,14 +39,14 @@ include("./controller/config/conexion.php");
                 <div class="primerGrupo art row ">
                     <div class="rut col-md">
 
-                        <label for="idRutInput">Rut</label>
+                        <label for="idRutInput">(*) Rut</label>
                         <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" class="form-control" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
                     <div class="nombre col-md">
 
-                        <label for="idPersona">Nombres</label>
+                        <label for="idPersona">(*) Nombres</label>
                         <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
                         <br>
                     </div>
@@ -55,7 +55,7 @@ include("./controller/config/conexion.php");
                 <div class="segundoGrupo row">
                     <div class="paterno art col-md">
 
-                        <label for="idAppat">Apellido Paterno</label>
+                        <label for="idAppat">(*) Apellido Paterno</label>
                         <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
                         <br>
                     </div>
@@ -83,7 +83,7 @@ include("./controller/config/conexion.php");
 
                     <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
                         <center>
-                            <label>¿Es médico?</label>
+                            <label>(*) ¿Es médico?</label>
                         </center>
                         <div class="opciones">
 
@@ -103,18 +103,16 @@ include("./controller/config/conexion.php");
                         </div>
                         <div class="col-md-6">
                             <label for="idSelectSector">Sector:</label>
-                            <select class="form-select" id="idSelectSector" name="nameSelectSector" readonly>
-                                <option value="">No Aplica</option>
+                            <select class="form-select" id="idSelectSector" name="nameSelectSector">
+                            <option value="No Aplica">No Aplica</option>
                             </select>
                         </div>
 
                     </div>
 
 
-
-
                     <div class="profesion art">
-                        <label for="idProfesion">Profesión</label>
+                        <label for="idProfesion">(*) Profesión</label>
                         <input type="text" name="nameProfesion" id="idProfesion" class="form-control">
                     </div>
 
@@ -123,7 +121,7 @@ include("./controller/config/conexion.php");
 
                 <div class="tercerGrupo radioCentro row">
                     <center>
-                        <label>Seleccione Género</label>
+                        <label>(*) Seleccione Género</label>
                     </center>
                     <div class="opciones">
                         <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input">
@@ -190,7 +188,7 @@ include("./controller/config/conexion.php");
 
                 <div class="prevision row art"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                     <div class="col-md-3">
-                        <label for="idDecreto">Decreto</label>
+                        <label for="idDecreto">(*) Decreto</label>
                         <input type="text" name="nameDecreto" id="idDecreto" class="form-control">
                     </div>
 

@@ -39,3 +39,6 @@ agregar decreto varchar y ruta de contrato a base de datos y addpersonal.php
 hacer que el celular y el correo se guarden sin espacio
 
 hacer que se abra el correo al hacer click 
+
+
+calificaciones son por periodo, por ejemplo año 2022 - año 2023 y que se suba archivo, preguntar si apelo o no y subir si es que apelo

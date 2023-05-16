@@ -78,23 +78,23 @@ lugarSelect.addEventListener('change', function () {
 
   if (lugarId === '2') {
     sectorSelect.innerHTML = `
-        <option value="">No Aplica</option>
+        <option value="No aplica">No Aplica</option>
         <option value="Óptica Municipal">Óptica Municipal</option>
         <option value="Centro de Salud Integral Ruka Antu">Centro de Salud Integral Ruka Antu</option>
       `;
-    sectorSelect.readonly = false;
+  
 
   } else if (lugarId === '4') {
     sectorSelect.innerHTML = `
-         <option value="">No Aplica</option>
+         <option value="No Aplica">No Aplica</option>
          <option value="Laboratorio Dental">Laboratorio Dental</option>
       `;
-    sectorSelect.readonly = false;
+    
   } else {
     sectorSelect.innerHTML = `
-        <option value=""></option>
+        <option value="No Aplica">No aplica</option>
       `;
-    sectorSelect.readonly = true;
+   
   }
 });
 

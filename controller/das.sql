@@ -55,8 +55,8 @@ CREATE TABLE
         `IDTra` INT NOT NULL AUTO_INCREMENT,
         `IDCat` INT NOT NULL,
         `IDCon` INT NOT NULL,
-        `IDAFP` INT NULL,
-        `IDPrev` INT NULL,
+        `IDAFP` INT NOT NULL,
+        `IDPrev` INT NOT NULL,
         `IDLugar` INT NOT NULL,
         `NombreTra` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
         `PaternoTra` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -91,7 +91,8 @@ CREATE TABLE
         UNIQUE (`Rut`)
     ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (1,'AFP Capital');
+
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (1,'No posee');
 
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (2,'AFP Cuprum');
 
@@ -104,6 +105,8 @@ INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (5,'AFP PlanVital');
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (6,'AFP Provida');
 
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (7,'AFP Uno');
+
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (8,'AFP Capital');
 
 
 INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (1,'Reemplazo');
@@ -134,9 +137,11 @@ INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (8, 'Farmacia Municipal');
 INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (9,'Droguería');
 
 
-INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (1,'FONASA');
+INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (1,'No posee');
 
-INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (2,'ISAPRE');
+INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (2,'FONASA');
+
+INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (3,'ISAPRE');
 
 
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (1,'a) Médicos Cirujanos, Farmacéuticos, Químico-Farmacéuticos, Bioquímicos y Cirujano-Dentistas.');
