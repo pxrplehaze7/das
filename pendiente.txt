@@ -1,8 +1,5 @@
-expresion regular para el rut 
-
 
 arreglar la base de datos
-
 
 
 al buscar en el nav, que envie al perfil del trabajador, si no encuentra, mostrar alerta.
@@ -10,20 +7,9 @@ al buscar en el nav, que envie al perfil del trabajador, si no encuentra, mostra
 
 
 
-si la persona no tiene registrado un archivo, como el del servicio militar, ocultar.
-Entonces consultar si existe para poder ver el documentos
-
-
-
-
-agregar calificaciones, son texto o numeros? preguntar, ingresar periodo (desde-hasta). preguntar si por ejemplo el año 2023 es de enero hasta diciembre o si varia en cada mes.
-
 preguntar si apelo calificaciones con radio y si apelo, subir apelacion.
 
 el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
-
-
-Hacer que si al ver el perfilde una persona, tenga un documento pendiente y sea obligatorio para ella, mostrar mensaje de pendiente
 
 
 
@@ -32,10 +18,10 @@ hacer que se limpien los campos al enviar el form
 crear alerta de usuario registrado y error
 
 
-
-hacer que el celular y el correo se guarden sin espacio
-
 hacer que se abra el correo al hacer click 
 
 
 calificaciones son por periodo, por ejemplo año 2022 - año 2023 y que se suba archivo, preguntar si apelo o no y subir si es que apelo
+
+
+preguntar si se sube el documento del decreto y el contrato

@@ -1,27 +1,26 @@
-
-        <?php
-        if (!empty($persona['RutaCedula'])) {
-            echo '
+<?php
+if (!empty($persona['RutaSCom'])) {
+    echo '
         <div class="documento">
             <div class="container">
                 <div class="row doc flex-wrap">
                     <div class="col-md-6 titulo d-flex align-items-center">
-                        <a>Fotocopia de Cédula de Identidad</a>
+                        <a>Certificado de Salud Compatible</a>
                     </div>
                     <div class="col-md-6 contenedor-botones">
-                        <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaCedula'] . '\', \'_blank\')">Visualizar <i class="fa-solid fa-expand"></i></button>
-                        <a href="' . $persona['RutaCedula'] . '" download class="btn btn-primary boton-descargar w-100">Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
+                        <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaSCom'] . '\', \'_blank\')">Visualizar <i class="fa-solid fa-expand"></i></button>
+                        <a href="' . $persona['RutaSCom'] . '" download class="btn btn-primary boton-descargar w-100">Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
                     </div>
                 </div>
             </div>
         </div>';
-        } else {
-            echo '
+} else {
+    echo '
             <div class="documento">
                 <div class="container">
                     <div class="row doc flex-wrap">
                         <div class="col-md-6 titulo d-flex align-items-center">
-                            <a>Fotocopia de Cédula de Identidad</a>
+                            <a>Certificado de Salud Compatible</a>
                         </div>
 
                         <div class="col-md-6 contenedor-botones">
@@ -30,4 +29,4 @@
                     </div>
                 </div>
             </div>';
-        }
+}

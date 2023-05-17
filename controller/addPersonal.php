@@ -10,6 +10,7 @@ $maternoP   = $_POST['nameMaterno'];
 $generoP    = $_POST['nameGenero'];
 $CelularP   = $_POST['nameCelular'];
 $correoP    = $_POST['nameCorreo'];
+$sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
 $decreto     = $_POST['nameDecreto'];
 $obsP       = $_POST['nameObserv'];
@@ -41,15 +42,13 @@ if ($_POST['nameSelectLugar'] != "") {
   $lugarP = NULL;
 }
 
-$sector     = $_POST['nameSelectSector'];
-
-
-
 
 
 $afpP       = $_POST['nameSelectAFP']!=""?$_POST['nameSelectAFP']:NULL;
 $prevP       = $_POST['nameSelectPrev']!=""?$_POST['nameSelectPrev']:NULL;
 
+
+$correoP = str_replace(' ', '', $correoP);
 
 $nombreP    = mysqli_real_escape_string($conn, $nombreP);
 $paternoP   = mysqli_real_escape_string($conn, $paternoP);

@@ -14,7 +14,7 @@
         </li>
       </ul>
       <form class="d-flex" role="search" action="mostrar.php" method="POST">
-        <input class="form-control me-2" name="nameBuscaRut" type="search" placeholder="Buscar Rut">
+        <input class="form-control me-2" name="nameBuscaRut" type="search" placeholder="12345678-k" pattern="^\d{7,8}-[kK\d]$">
         <button class="btn btn-buscar" type="submit">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>

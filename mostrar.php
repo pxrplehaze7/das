@@ -166,96 +166,26 @@ if (isset($_POST['nameBuscaRut'])) {
 
             <div class="documentacion seccion">
                 <h6>Documentación</h6>
-                <?php include('./controller/consulta_archivo/certificadoNac.php') ?>
-
                 <br>
-
-                <?php include('./controller/consulta_archivo/antecedentes.php') ?>
-
-                <br>
-
-                <?php include('./controller/consulta_archivo/curriculum.php') ?>
-
-
-                <br>
-                <div class="container estudios"> <!-- CERTIFICADO DE ESTUDIOS-->
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
-                            <a href="<?php echo $persona['RutaEstudio']; ?>" target="_blank">Certificado de Estudios o Título Profesional</a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaEstudio']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaEstudio']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-                <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
+                <?php include('./controller/consulta_archivo/saludCompatible.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/afp.php') ?>
                 <br>
-
-                <div class="container declaracion"> <!-- DECLARACION JURADA -->
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
-                            <a href="<?php echo $persona['RutaDJur']; ?>" target="_blank">Declaración Jurada</a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaDJur']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaDJur']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-
+                <?php include('./controller/consulta_archivo/antecedentes.php') ?>
                 <br>
-                <div class="container saludCompatible">
-                    <div class="row doc flex-wrap">
-                        <div class=" col-xs-8 col-md-8 titulo d-flex align-items-center">
-                            <a href="<?php echo $persona['RutaSCom']; ?>" target="_blank">Certificado de Salud Compatible</a>
-                        </div>
-                        <div class=" col-xs-4 col-md-4 contenedor-botones">
-                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')">Visualizar <i class="fa-solid fa-expand"></i></button>
-                            <a href="<?php echo $persona['RutaSCom']; ?>" download class="btn btn-primary boton-descargar w-100">Descargar <i clxss="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
+                <?php include('./controller/consulta_archivo/certificadoNac.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/curriculum.php') ?>
+                <br>
                 <?php include('./controller/consulta_archivo/examenMedico.php') ?>
                 <br>
-                <div class="container prevision">
-                    <div class="row doc">
-                        <div class="col-sm-4 col-md-6 titulo">
-                            <a href="<?php echo $persona['RutaPrev']; ?>" target="_blank">Certificado de Afiliación a Sistema de Salud</a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaPrev']; ?>" target="_blank">Visualizar <i class="fa-solid fa-expand"></i></a>
-                        </div>
-                        <div class="archivos-ver col-sm-4 col-md-3">
-                            <a href="<?php echo $persona['RutaPrev']; ?>" download>Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
+                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
             </div>
 
 
-            <script src="./assets/js/radios.js"></script>
+
             <!-- cdn js de boostrap -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 

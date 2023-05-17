@@ -40,7 +40,7 @@ include("./controller/config/conexion.php");
                     <div class="rut col-md">
 
                         <label for="idRutInput">(*) Rut</label>
-                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" class="form-control" required>
+                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" class="form-control" pattern="^\d{7,8}-[kK\d]$" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
@@ -140,12 +140,12 @@ include("./controller/config/conexion.php");
                         <label for="idCelular">Celular</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">+56</span>
-                            <input type="text" name="nameCelular" id="idCelular" placeholder="9 8765 4321" class="form-control">
+                            <input type="text" name="nameCelular" id="idCelular" placeholder="987654321" class="form-control" maxlength="9">
                         </div>
                     </div>
                     <div class="correo col-6">
                         <label for="idCorreo">Correo Electrónico</label>
-                        <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control">
+                        <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                     </div>
                 </div>
             </div>

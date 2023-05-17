@@ -5,7 +5,7 @@
 }
 
 body {
-  min-width: 750px;
+  min-width: 600px;
   background-image: radial-gradient(
     circle,
     #ffa75e,
@@ -24,19 +24,11 @@ body {
 }
 
 .container-md {
-  max-width: 1650px;
+  max-width: 75%;
   padding-left: 30px;
   padding-right: 30px;
   border-radius: 50px;
   margin-top: 30px;
-}
-
-@media screen and (max-width: 500px) {
-  .container-md {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
 }
 
 form {
@@ -56,8 +48,8 @@ h2 {
 .seccion {
   border-radius: 30px;
   margin-bottom: 20px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 10%;
+  padding-right: 10%;
   padding-top: 60px;
   padding-bottom: 60px;
   background-color: #ffffff;
@@ -199,6 +191,7 @@ a {
   text-decoration: none;
   color: black;
   font-size: 18px;
+  cursor: default;
 }
 
 .titulo a:hover {
@@ -221,7 +214,8 @@ label {
 
 .contenedor-botones {
   display: flex;
-justify-content: right;
+  justify-content: center;
+  padding-right: 0;
 }
 
 .boton-descargar {
@@ -230,6 +224,9 @@ justify-content: right;
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   width: 130px;
+  background-color: #79cb41b8;
+  color: black;
+  border-color: #79cb41b8;
 }
 
 .boton-ver {
@@ -238,9 +235,70 @@ justify-content: right;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   width: 130px;
+  background-color: #79cb41b8;
+  color: black;
+  border-color: #79cb41b8;
 }
 
-h4{
+.boton-ver:hover,
+.boton-descargar:hover {
+  background-color: #99e564b8;
+  color: black;
+  border-color: #99e564b8;
+}
+
+h4 {
   font-size: 20px;
   margin-bottom: 0;
+}
+
+.container {
+  border-radius: 30px;
+  width: 90%;
+}
+
+.documento{
+  background-color: #7b7b7b2e;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 30px;
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.18);
+}
+
+.pendiente:disabled{
+  background-color: #f4e50096;;
+  border-radius: 30px;
+  border-color: #f4e50096;;
+  color: black;
+  cursor:default;
+  opacity: 1; /* Restaura la opacidad normal */
+}
+
+
+
+@media screen and (max-width: 1200px) {
+  .seccion {
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #a1dc3c;
+  }
+
+  .container-md {
+    max-width: 95%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .row.doc .col-md-6 {
+    width: 100%;
+  }
+  .titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container {
+    background-color: #a1dc3c00;
+}
 }
