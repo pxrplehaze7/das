@@ -227,6 +227,9 @@ label {
   background-color: #79cb41b8;
   color: black;
   border-color: #79cb41b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .boton-ver {
@@ -257,7 +260,7 @@ h4 {
   width: 90%;
 }
 
-.documento{
+.documento {
   background-color: #7b7b7b2e;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -265,16 +268,14 @@ h4 {
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.18);
 }
 
-.pendiente:disabled{
-  background-color: #f4e50096;;
+.pendiente:disabled {
+  background-color: #f4e50096;
   border-radius: 30px;
-  border-color: #f4e50096;;
+  border-color: #f4e50096;
   color: black;
-  cursor:default;
+  cursor: default;
   opacity: 1; /* Restaura la opacidad normal */
 }
-
-
 
 @media screen and (max-width: 1200px) {
   .seccion {
@@ -300,5 +301,5 @@ h4 {
 
   .container {
     background-color: #a1dc3c00;
-}
+  }
 }

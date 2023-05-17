@@ -167,19 +167,27 @@ if (isset($_POST['nameBuscaRut'])) {
             <div class="documentacion seccion">
                 <h6>Documentación</h6>
                 <br>
+                <?php include('./controller/consulta_archivo/contrato.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/declaracionJ.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/certificadoNac.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/antecedentes.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/curriculum.php') ?>
+                <br>
+                <?php include('./controller/consulta_archivo/estudios.php') ?>
+                <br>
                 <?php include('./controller/consulta_archivo/saludCompatible.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/afp.php') ?>
                 <br>
-                <?php include('./controller/consulta_archivo/antecedentes.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/certificadoNac.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/curriculum.php') ?>
+                <?php include('./controller/consulta_archivo/consultaPrev.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/examenMedico.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
             </div>

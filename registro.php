@@ -40,7 +40,7 @@ include("./controller/config/conexion.php");
                     <div class="rut col-md">
 
                         <label for="idRutInput">(*) Rut</label>
-                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-2" class="form-control" pattern="^\d{7,8}-[kK\d]$" required>
+                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
@@ -104,7 +104,7 @@ include("./controller/config/conexion.php");
                         <div class="col-md-6">
                             <label for="idSelectSector">Sector:</label>
                             <select class="form-select" id="idSelectSector" name="nameSelectSector">
-                            <option value="No Aplica">No Aplica</option>
+                            <option value="No Aplica">No aplica</option>
                             </select>
                         </div>
 
@@ -189,7 +189,7 @@ include("./controller/config/conexion.php");
                 <div class="prevision row art"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                     <div class="col-md-3">
                         <label for="idDecreto">(*) Decreto</label>
-                        <input type="text" name="nameDecreto" id="idDecreto" class="form-control">
+                        <input type="text" name="nameDecreto" id="idDecreto" class="form-control" maxlength="30">
                     </div>
 
                     <div class="col-md-9">
@@ -289,11 +289,11 @@ include("./controller/config/conexion.php");
                 <br>
             </div>
             <br>
-            <div class="observaciones seccion">
+            <!-- <div class="observaciones seccion">
                 <h6>Observaciones</h6>
                 <textarea id="idObserv" name="nameObserv" class="form-control" rows="4" cols="50"></textarea>
             </div>
-            <br>
+            <br> -->
             <div class="boton">
                 <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
             </div>

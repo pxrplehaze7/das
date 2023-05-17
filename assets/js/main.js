@@ -94,13 +94,13 @@ lugarSelect.addEventListener('change', function () {
   } else if (lugarId === '4') {
     // SI LA OPCION SELECCIONADA TIENE ID 4 ESTABLECE ESTAS OPCIONES
     sectorSelect.innerHTML = `
-         <option value="No Aplica">No Aplica</option>
+         <option value="No aplica">No Aplica</option>
          <option value="Laboratorio Dental">Laboratorio Dental</option>
       `;
   } else {
     // SI ES DISTINTO
     sectorSelect.innerHTML = `
-        <option value="No Aplica">No aplica</option>
+        <option value="No aplica">No aplica</option>
       `;
   }
 });

@@ -65,7 +65,7 @@ CREATE TABLE `das`.`trabajador` (
     `PaternoTra` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
     `MaternoTra` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
     `Rut` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-    `Decreto` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+    `Decreto` INT(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
     `Genero` VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
     `Medico` VARCHAR(2) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
     `Profesion` VARCHAR(300) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,

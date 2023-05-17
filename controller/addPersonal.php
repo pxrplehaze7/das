@@ -13,7 +13,7 @@ $correoP    = $_POST['nameCorreo'];
 $sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
 $decreto     = $_POST['nameDecreto'];
-$obsP       = $_POST['nameObserv'];
+// $obsP       = $_POST['nameObserv'];
 
 // SE ASIGNA EL VALOR DEL SELECT CATEGORIA A LA VARIABLE
 $categoriaP = $_POST['nameSelectCat'];
@@ -246,8 +246,10 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 
   // SE INSERTAN DATOS A LA BASE DE DATOS
-  $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato, Observ) VALUES ($categoriaP,$contratoP,$afpP,$prevP,$lugarP,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL',' $ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP')";
+  $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato) VALUES ($categoriaP,$contratoP,$afpP,$prevP,$lugarP,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL',' $ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL')";
 
+
+  // Observ,'$obsP' eliminadas
 
   //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
   if (mysqli_query($conn, $sqlTrabajador)) {
