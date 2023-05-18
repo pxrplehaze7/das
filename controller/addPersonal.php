@@ -252,15 +252,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
   if (mysqli_query($conn, $sqlTrabajador)) {
-    // echo "Archivos guardados correctamente en la ruta";
+    echo "Archivos guardados correctamente en la ruta";
 
-    echo "<script> Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Guardado Correctamente',
-      showConfirmButton: false,
-      timer: 1500
-    });</script>";
+
   } else {
     echo "Error al guardar los archivos: " . mysqli_error($conn);
   }

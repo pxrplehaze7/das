@@ -63,8 +63,7 @@ if (isset($_POST['nameBuscaRut'])) {
 
                 <form action="calificaciones.php" method="POST">
                     <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
-                    <input type="hidden" name="nameIdTrabajador" value="<?php echo $persona['IDTra'] ?>">
-                    <input type="hidden" name="nameNombreCalifica" value="<?php echo $persona['NombreTra'] . ' ' . $persona['PaternoTra'] . ' ' . $persona['MaternoTra'] ?>">
+                  
                     <button class="btn btn-calificacion" type="submit">Ir a Calificaciones <i class="fa-solid fa-right-long"></i></button>
                 </form>
         </div>

@@ -1,8 +1,17 @@
 <?php
-if (isset($_POST['nameRutCalifica']) && isset($_POST['nameNombreCalifica']) && isset($_POST['nameIdTrabajador'])) {
+
+include("./controller/config/conexion.php");
+
+if (isset($_POST['nameRutCalifica'])) {
     $rut = $_POST['nameRutCalifica'];
-    $nombre = $_POST['nameNombreCalifica'];
-    $idTrabajador = $_POST['nameIdTrabajador'];
+
+    $sqlTra = "SELECT idTra FROM `trabajador`
+    WHERE Rut='$rut' LIMIT 1";
+
+$resultadoDatosTra = mysqli_query($conn, $sqlTra);
+
+
+consultar nombres y rut de trabajador para despues mostrar y guardar
 }
 
 
@@ -45,12 +54,12 @@ if (isset($_POST['nameRutCalifica']) && isset($_POST['nameNombreCalifica']) && i
                 <div class="primerGrupo art row ">
                     <div class="rut-ver col-md">
                         <label>Rut</label>
-                        <input id="idRutCap" name="nameRutCap" value="<?php echo $rut ?>" class="form-control" readonly>
+                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" readonly>
                         <br>
                     </div>
                     <div class=" col-md">
-                        <label for="idTrabCap">(*) ID Trabajador</label>
-                        <input id="idTrabCap" name="nameTrabCap" value="<?php echo $idTrabajador ?>" class="form-control" readonly>
+                        <label for="idTrabCa">(*) ID Trabajador</label>
+                        <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" readonly>
                         <br>
                     </div>
                 </div>

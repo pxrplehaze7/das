@@ -19,7 +19,7 @@ solucionar que no se creen carpetas si no se sube el archivo
 hacer que pida menos documentos si es honorario
 solucionar que en mostrar la categoria no se lee completa
 
-calificaciones son por periodo, por ejemplo año 2022 - año 2023 y que se suba archivo, preguntar si apelo o no y subir si es que apelo
+
 
 
 

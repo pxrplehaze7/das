@@ -94,7 +94,8 @@ CREATE TABLE `das`.`calificaciones` (
     `IDTra` INT NOT NULL,
     `fecha` INT NOT NULL,  
     `apelo` VARCHAR(2) NOT NULL,
-    `RutaApelo` VARCHAR(400) NULL,
+    `RutaCalificacion` VARCHAR(400) NULL,
+    `RutaApelacion` VARCHAR(400) NULL,
     PRIMARY KEY (`IDCalif`),
     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
