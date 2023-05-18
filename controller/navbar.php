@@ -1,3 +1,56 @@
+
+<?php
+include("./controller/config/conexion.php");
+
+// Obtener el rut enviado por POST
+if (isset($_POST['nameBuscaRut'])) {
+    $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
+
+    // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
+    $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, IDTra, NombreTra, PaternoTra, MaternoTra, Sector, Decreto, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM
+                  FROM trabajador tra
+                  INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
+                  INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
+                  INNER JOIN afp afp        ON (afp.IDAFP   = tra.IDAFP)
+                  INNER JOIN lugar lug      ON (lug.IDLugar = tra.IDLugar)
+                  INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
+                  WHERE Rut='$rut' LIMIT 1";
+
+    $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
+
+    // Verificar si se encontró una persona en la base de datos con el valor de $rut
+    if (mysqli_num_rows($resultadoDatosTra) == 1) {
+        // Si se encuentra una persona, se asigna el resultado a $persona
+        $persona = mysqli_fetch_assoc($resultadoDatosTra);
+
+        // Cerrar la conexión a la base de datos  
+        // mysqli_close($conn);
+    } else {
+      echo "<script>
+      Swal.fire({
+        title: 'Usuario no encontrado',
+        text: '¿Desea registrar?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'registro.php';
+        } else {
+          window.location.href = 'home.php';
+        }
+      });
+    </script>";
+      
+    }
+}
+?>
+
+
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="home.php"><img src="./assets/img/logo.png" width="40px" alt="Descripción de la imagen"></a>

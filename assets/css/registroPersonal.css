@@ -36,7 +36,7 @@ form {
 }
 
 /* EL TITULO DE LA PAGINA */
-h2 {
+h1 {
   text-align: center;
   color: #ffffff;
   font-weight: bold;
@@ -291,6 +291,12 @@ h4 {
   display: flex;
   justify-content: space-evenly;
 }
+
+/* Establece un alto valor de z-index para la alerta de Sweet Alert */
+.swal2-container {
+  z-index: 9999;
+}
+
 
 @media screen and (max-width: 1200px) {
   .seccion {

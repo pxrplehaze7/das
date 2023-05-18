@@ -11,7 +11,7 @@ if (isset($_POST['nameRutCalifica'])) {
 $resultadoDatosTra = mysqli_query($conn, $sqlTra);
 
 
-consultar nombres y rut de trabajador para despues mostrar y guardar
+//consultar nombres y rut de trabajador para despues mostrar y guardar
 }
 
 
