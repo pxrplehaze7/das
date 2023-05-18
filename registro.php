@@ -280,11 +280,6 @@ include("./controller/config/conexion.php");
                         <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
-
-
-
-
-
                 </div>
                 <br>
             </div>

@@ -8,7 +8,6 @@ $("#documentosObligatorios").on("submit", function (event) {
   event.preventDefault();
 
 
-
   //SELECCIONA EL ELEMENTO  DEL HTML CON EL ID idSelectCat Y LO ASIGNA A LA VARIABLE selectCat
   let selectCat = document.querySelector('#idSelectCat');
   if (selectCat.value == 1) {
@@ -25,7 +24,7 @@ $("#documentosObligatorios").on("submit", function (event) {
 
   let formData = new FormData(this);
 
-  formData.append('rut', $('#idRutInput').val()); // Agregar el valor del input de tipo texto
+  formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
 
 
 
@@ -97,6 +96,19 @@ lugarSelect.addEventListener('change', function () {
          <option value="No aplica">No Aplica</option>
          <option value="Laboratorio Dental">Laboratorio Dental</option>
       `;
+    } else if (lugarId === '1') {
+      // SI LA OPCION SELECCIONADA TIENE ID 1 ESTABLECE ESTAS OPCIONES
+      sectorSelect.innerHTML = `
+           <option value="No aplica">No Aplica</option>
+           <option value="Droguería">Droguería</option>
+        `;
+      } else if (lugarId === '5') {
+        // SI LA OPCION SELECCIONADA TIENE ID 5 ESTABLECE ESTAS OPCIONES
+        sectorSelect.innerHTML = `
+             <option value="No aplica">No Aplica</option>
+             <option value="Farmacia Municipal">Farmacia Municipal</option>
+             <option value="Casa de Salud Mental">Casa de Salud Mental</option>
+          `;
   } else {
     // SI ES DISTINTO
     sectorSelect.innerHTML = `
@@ -106,3 +118,30 @@ lugarSelect.addEventListener('change', function () {
 });
 
 
+$("#documentosApelacion").on("submit", function (event) {
+  event.preventDefault();
+
+  if (!document.querySelector('#idNoApelo').checked && !document.querySelector('#iSiApelo').checked) {
+    //SI ESTAN VACIOS ENVIA ALERTA
+    alert('Debe indicar si apelo o no')
+    return
+  }
+
+  let formData = new FormData(this);
+
+
+  formData.append('rutCapacitacion', $('#idRutCap').val()); // Agrega el valor del input de tipo texto
+  console.log(formData);
+
+  $.ajax({
+    url: "./controller/addCapacitacion.php",
+    method: "POST",
+    data: formData,
+    cache: false,
+    contentType: false,
+    processData: false
+  }).done(function (data) {
+    //   $( this ).addClass( "done" );
+    console.log(data)
+  });
+});

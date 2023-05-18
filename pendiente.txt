@@ -6,9 +6,6 @@ al buscar en el nav, que envie al perfil del trabajador, si no encuentra, mostra
 
 
 
-
-preguntar si apelo calificaciones con radio y si apelo, subir apelacion.
-
 el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
 
 
@@ -17,16 +14,16 @@ hacer que se limpien los campos al enviar el form
 
 crear alerta de usuario registrado y error
 
-solucionar los lugares.
+
 solucionar que no se creen carpetas si no se sube el archivo
-
-
+hacer que pida menos documentos si es honorario
+solucionar que en mostrar la categoria no se lee completa
 
 calificaciones son por periodo, por ejemplo año 2022 - año 2023 y que se suba archivo, preguntar si apelo o no y subir si es que apelo
 
 
-preguntar si se sube el documento del decreto y el contrato
 
-de la das es la drogueria:
-tengo cesfam y sar chiguayante, son lo mismo?
-y de cual es la farmacia municipal y centro de salud mental
+
+cambiar cursor en menu
+
+

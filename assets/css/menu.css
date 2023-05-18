@@ -13,6 +13,10 @@
     font-weight: bold;
   }
   
+  .nav-link:hover {
+    color: rgb(144, 65, 0);
+    font-weight: bold;
+  }
   .btn-buscar {
     background-color: #f36f03;
     color: rgb(255, 255, 255);
@@ -34,9 +38,22 @@
   padding-bottom: 0;
   }
 
+  .nav-item a{
+    cursor: pointer;
+  }
+
+  .navbar-brand img{
+    cursor: pointer;
+  }
+
   @media screen and (max-width: 991px) {
     .container-fluid{
       padding-bottom: 15px;
       }
+
+      .navbar-brand img{
+        display: none;
+      }
+    
   }
   

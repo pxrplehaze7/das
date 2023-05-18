@@ -44,8 +44,8 @@ if ($_POST['nameSelectLugar'] != "") {
 
 
 
-$afpP       = $_POST['nameSelectAFP']!=""?$_POST['nameSelectAFP']:NULL;
-$prevP       = $_POST['nameSelectPrev']!=""?$_POST['nameSelectPrev']:NULL;
+$afpP       = $_POST['nameSelectAFP'] != "" ? $_POST['nameSelectAFP'] : NULL;
+$prevP       = $_POST['nameSelectPrev'] != "" ? $_POST['nameSelectPrev'] : NULL;
 
 
 $correoP = str_replace(' ', '', $correoP);
@@ -57,7 +57,7 @@ $categoriaP = mysqli_real_escape_string($conn, $categoriaP);
 $profesionP = mysqli_real_escape_string($conn, $profesionP);
 $lugarP     = mysqli_real_escape_string($conn, $lugarP);
 $sector     = mysqli_real_escape_string($conn, $sector);
-$obsP       = mysqli_real_escape_string($conn, $obsP);
+// $obsP       = mysqli_real_escape_string($conn, $obsP);
 $decreto    = mysqli_real_escape_string($conn, $decreto);
 $CelularP   = str_replace(" ", "", $CelularP); // ELIMINA ESPACIOS DE LA CADENA
 $correoP    = str_replace(" ", "", $correoP); // ELIMINA ESPACIOS DE LA CADENA
@@ -75,7 +75,6 @@ $pdfPrevision    = str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']
 $pdfEstudios     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']);
 $pdfDJurada      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']);
 $pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']);
-
 $pdfContrato  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
 
 // OBTIENE EL NOMBRE EL HOST
@@ -253,7 +252,15 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
   if (mysqli_query($conn, $sqlTrabajador)) {
-    echo "Archivos guardados correctamente en la ruta";
+    // echo "Archivos guardados correctamente en la ruta";
+
+    echo "<script> Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Guardado Correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    });</script>";
   } else {
     echo "Error al guardar los archivos: " . mysqli_error($conn);
   }

@@ -277,6 +277,21 @@ h4 {
   opacity: 1; /* Restaura la opacidad normal */
 }
 
+.btn-calificacion{
+  background-color: #fff7ee;
+  color: #f36f03;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 30px;
+  width: 180px;
+  height: 50px;
+}
+
+.tituloMostrar{
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media screen and (max-width: 1200px) {
   .seccion {
     padding-left: 10%;

@@ -19,6 +19,27 @@ $(document).ready(function () {
   });
 });
 
+
+//Muestra o mantiene oculto el input tipo file,
+//si es hombre, debe subir el Certificado de Servicio militar
+$(document).ready(function () {
+  // Oculta el campo al cargar la página
+  $("#adjuntaApelacion").hide();
+
+  // Agrega un evento change a los inputs de tipo radio
+  $('input[name="nameApeloRes"]').change(function () {
+    // Obtiene el valor del input de tipo radio seleccionado
+    var valor = $(this).val();
+
+    // Muestra u oculta el campo según el valor del input de tipo radio
+    if (valor == "Si") {
+      $("#adjuntaApelacion").show();
+    } else {
+      $("#adjuntaApelacion").hide();
+    }
+  });
+});
+
 //Si se selecciona la primera categoria, pregunta si es medico
 var selectCat = document.getElementById("idSelectCat");
 var preguntaMedico = document.getElementById("idPreguntaCat1");
