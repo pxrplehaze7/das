@@ -1,7 +1,4 @@
-<?php
-include("./controller/config/conexion.php");
-
-?>
+<?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,11 +14,12 @@ include("./controller/config/conexion.php");
     <!-- cdn iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- estilo de registro -->
-    <link href="./assets/css/registroPersonal.css" rel="stylesheet">
+    <link href="./assets/css/styles.css" rel="stylesheet">
     <!-- estilo menu -->
     <link href="./assets/css/menu.css" rel="stylesheet">
-
-
+    <!-- SweetAlert -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -29,64 +27,55 @@ include("./controller/config/conexion.php");
         <?php include("./controller/navbar.php") ?>
     </header>
     <div class="container-md">
-
         <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
-
             <h1>Registro de Trabajadores</h1>
             <br>
-            <div class="datosPersonales seccion">
+            <div class="seccion">
                 <h6>Datos Personales</h6>
-                <div class="primerGrupo art row ">
-                    <div class="rut col-md">
-
-                        <label for="idRutInput">(*) Rut</label>
+                <div class="row ">
+                    <div class="col-md">
+                        <label for="idRutInput"><span>*</span> Rut</label>
                         <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
-                    <div class="nombre col-md">
-
-                        <label for="idPersona">(*) Nombres</label>
+                    <div class="col-md">
+                        <label for="idPersona"><span>*</span> Nombres</label>
                         <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
                         <br>
                     </div>
                 </div>
 
-                <div class="segundoGrupo row">
-                    <div class="paterno art col-md">
-
-                        <label for="idAppat">(*) Apellido Paterno</label>
+                <div class="row">
+                    <div class="col-md">
+                        <label for="idAppat"><span>*</span> Apellido Paterno</label>
                         <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
                         <br>
                     </div>
-
-                    <div class="materno art col-md">
+                    <div class="col-md">
                         <label for="idApmat">Apellido Materno</label>
                         <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control">
                         <br>
                     </div>
                 </div>
 
-                <div class="datosTrabajo art">
-                    <div class="grupo1 row">
-                        <div class="contrato col-md-6"> <!-- TIPO DE CONTRATO -->
+                <div class="art">
+                    <div class="row">
+                        <div class="col-md-6"> <!-- TIPO DE CONTRATO -->
                             <?php include("./controller/consulta_select/select_contrato.php"); ?>
                             <br>
                         </div>
-
-                        <div class="categoria col-md-6"> <!-- CATEGORIA -->
+                        <div class="col-md-6"> <!-- CATEGORIA -->
                             <?php include("./controller/consulta_select/select_categoria.php"); ?>
                             <br>
                         </div>
                         <br>
                     </div>
-
                     <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
                         <center>
-                            <label>(*) ¿Es médico?</label>
+                            <label><span>*</span> ¿Es médico?</label>
                         </center>
                         <div class="opciones">
-
                             <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput  form-check-input">
                             <label for="idSiMedico" class="radio label form-check-label">Sí</label>
                             <br>
@@ -95,46 +84,40 @@ include("./controller/config/conexion.php");
                         </div>
                         <br>
                     </div>
-
-                    <div class="grupo2 row">
-                        <div class="lugar col-md-6"> <!-- LUGAR -->
+                    <div class="row">
+                        <div class="col-md-6"> <!-- LUGAR -->
                             <?php include("./controller/consulta_select/select_lugar.php"); ?>
                             <br>
                         </div>
                         <div class="col-md-6">
                             <label for="idSelectSector">Sector:</label>
                             <select class="form-select" id="idSelectSector" name="nameSelectSector">
-                            <option value="No Aplica">No aplica</option>
+                                <option value="No aplica">No Aplica</option>
                             </select>
                         </div>
-
                     </div>
-
-                    <div class="profesion art">
-                        <label for="idProfesion">(*) Profesión</label>
-                        <input type="text" name="nameProfesion" id="idProfesion" class="form-control">
+                    <div class="">
+                        <label for="idProfesion"><span>*</span> Profesión</label>
+                        <input type="text" name="nameProfesion" id="idProfesion" class="form-control" require>
                     </div>
-
                 </div>
                 <br>
-
-                <div class="tercerGrupo radioCentro row">
+                <div class="radioCentro row">
                     <center>
-                        <label>(*) Seleccione Género</label>
+                        <label><span>*</span> Seleccione Género</label>
                     </center>
                     <div class="opciones">
                         <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input">
                         <label for="idFemenino" class="radio form-check-label">Femenino</label>
-
                         <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput form-check-input">
                         <label for="idMasculino" class="radio form-check-label">Masculino</label>
                     </div>
                 </div>
             </div>
             <br>
-            <div class="datosContacto seccion">
+            <div class="seccion">
                 <h6>Datos de Contacto</h6>
-                <div class="cuartoGrupo art row">
+                <div class="row">
                     <div class="col-6">
                         <label for="idCelular">Celular</label>
                         <div class="input-group mb-3">
@@ -142,18 +125,16 @@ include("./controller/config/conexion.php");
                             <input type="text" name="nameCelular" id="idCelular" placeholder="987654321" class="form-control" maxlength="9">
                         </div>
                     </div>
-                    <div class="correo col-6">
+                    <div class="col-6">
                         <label for="idCorreo">Correo Electrónico</label>
                         <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                     </div>
                 </div>
             </div>
             <br>
-
-            <div class="documentacion seccion">
+            <div class="seccion">
                 <h6>Documentación</h6>
-
-                <div class="afp row art"> <!-- AFP -->
+                <div class="row"> <!-- AFP -->
                     <div class=" col-md-3">
                         <?php include("./controller/consulta_select/select_afp.php"); ?>
                     </div>
@@ -166,8 +147,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-
-                <div class="prevision row art"> <!-- PREVISION -->
+                <div class="row"> <!-- PREVISION -->
                     <div class=" col-md-3">
                         <?php include("./controller/consulta_select/select_prevision.php"); ?>
                     </div>
@@ -180,13 +160,11 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-
-                <div class="prevision row art"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
+                <div class="row"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                     <div class="col-md-3">
-                        <label for="idDecreto">(*) Decreto</label>
+                        <label for="idDecreto"><span>*</span> Decreto</label>
                         <input type="text" name="nameDecreto" id="idDecreto" class="form-control" maxlength="30">
                     </div>
-
                     <div class="col-md-9">
                         <label for="idDocContratoInput">Contrato</label>
                         <div class="input-group">
@@ -196,8 +174,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-
-                <div class="nacimiento art">
+                <div>
                     <label for="idNACinput">Certificado de Nacimiento</label>
                     <div class="input-group ">
                         <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
@@ -205,7 +182,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div class="antecedentes art">
+                <div>
                     <label for="idANTECEinput">Certificado de Antecedentes</label>
                     <div class="input-group ">
                         <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
@@ -213,7 +190,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div class="cedula art">
+                <div>
                     <label for="idCedulainput">Fotocopia Cédula de Identidad</label>
                     <div class="input-group ">
                         <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
@@ -221,14 +198,14 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div class="curriculum art">
+                <div>
                     <label for="idCVinput">Curriculum Vitae</label>
                     <div class="input-group ">
                         <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
-                <div class="examenM art" id="examenMedico">
+                <div id="examenMedico">
                     <br>
                     <label for="idExamenMinput">Examen Médico Unico Nacional</label>
                     <div class="input-group ">
@@ -237,7 +214,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div class="estudios art">
+                <div>
                     <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
                     <div class="input-group ">
                         <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
@@ -245,7 +222,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div class="decJurada art">
+                <div>
                     <label for="idDJuradainput">Declaración Jurada</label>
                     <div class="input-group ">
                         <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
@@ -253,7 +230,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div class="saludCompatible art">
+                <div>
                     <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
                     <div class="input-group ">
                         <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
@@ -261,7 +238,7 @@ include("./controller/config/conexion.php");
                     </div>
                 </div>
                 <br>
-                <div id="servicioMilitarHombre art" class="servicioMilitarHombre">
+                <div id="servicioMilitarHombre art">
                     <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
                     <div class="input-group">
                         <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">

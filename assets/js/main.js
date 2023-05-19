@@ -39,30 +39,33 @@ $("#documentosObligatorios").on("submit", function (event) {
     processData: false
   }).done(function (data) {
     //   $( this ).addClass( "done" );
-    console.log(data)
+    //console.log(data)
+    $('body' ).append( data );
   });
 
 });
 
 // FUNCION QUE VERIFICA SI EL RUT A REGISTRAR YA ESTA INGRESADO
+$(document).ready(function () {
+  $('#idRutInput').on('blur', function () {
+    var rut = $(this).val();
 
-$(document).ready(function () {//FUNCIONA UNA VEZ EL DOCUMENTO ESTE CARGADO
-  $('#idRutInput').on('blur', function () {  //TOMA EL VALOR DEL ID idRutInput UNA VEZ SE PIERDA EL FOCO
-    var rut = $(this).val(); // Obtiene el valor del campo de entrada de RUT
-
-    if (rut.trim() !== '') { // PARA QUE ACTUE SOLO SI NO ESTA VACIO
-      $.ajax({ // SOLICITUD AJAX A check_rut.php
-        url: './controller/check_rut.php',
-        type: 'POST',
-        data: { rut: rut }, // SE ENVIA EL VALOR DEL RUT A check.php POR POST
-        success: function (response) { // FUNCION DE EXITO SI CORRESPONDE
-          $('#rut-validation').html(response); // MUESTRA SI ES VALIDO O NO SEGUN LARESPUESTA DE LA CONSULTA DE PHP 
-        }
-      });
+    if (rut.trim() !== '') {
+      if (rut.length === 10 || rut.length === 9) { // Agrega esta condición para validar la longitud del RUT
+        $.ajax({
+          url: './controller/check_rut.php',
+          type: 'POST',
+          data: { rut: rut },
+          success: function (response) {
+            $('#rut-validation').html(response);
+          }
+        });
+      } else {
+        $('#rut-validation').html('El RUT debe ir sin puntos y con guión'); 
+      }
     }
   });
 });
-
 
 
 
@@ -78,6 +81,7 @@ function clearFileInput(inputId) {
 const lugarSelect = document.getElementById('idSelectLugar');
 const sectorSelect = document.getElementById('idSelectSector');
 
+if(lugarSelect){
 // LISTENER AL CAMBIO DEL SELECT LUGAR
 lugarSelect.addEventListener('change', function () {
   const lugarId = lugarSelect.value;
@@ -112,36 +116,35 @@ lugarSelect.addEventListener('change', function () {
   } else {
     // SI ES DISTINTO
     sectorSelect.innerHTML = `
-        <option value="No aplica">No aplica</option>
+        <option value="No aplica">No Aplica</option>
       `;
   }
 });
+}
 
+$(document).ready(function() {
+  $("#documentosApelacion").on("submit", function(event) {
+    event.preventDefault();
+    console.log("holaaaas");
 
-$("#documentosApelacion").on("submit", function (event) {
-  event.preventDefault();
+    if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
+      // Si no se ha seleccionado ninguna opción
+      alert('Debe indicar si apeló o no.');
+      return;
+    }
 
-  if (!document.querySelector('#idNoApelo').checked && !document.querySelector('#iSiApelo').checked) {
-    //SI ESTAN VACIOS ENVIA ALERTA
-    alert('Debe indicar si apelo o no')
-    return
-  }
+    let formData = new FormData(this);
+    console.log(formData);
 
-  let formData = new FormData(this);
-
-
-  formData.append('rutCapacitacion', $('#idRutCap').val()); // Agrega el valor del input de tipo texto
-  console.log(formData);
-
-  $.ajax({
-    url: "./controller/addCapacitacion.php",
-    method: "POST",
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false
-  }).done(function (data) {
-    //   $( this ).addClass( "done" );
-    console.log(data)
+    $.ajax({
+      url: "./controller/addCalificacion.php",
+      method: "POST",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false
+    }).done(function(data) {
+      console.log(data);
+    });
   });
 });

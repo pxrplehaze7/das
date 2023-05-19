@@ -14,6 +14,10 @@ $sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
 $decreto     = $_POST['nameDecreto'];
 // $obsP       = $_POST['nameObserv'];
+$host = $_SERVER['HTTP_HOST'];
+
+// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
+$ruta = 'pdfs_personal/';
 
 // SE ASIGNA EL VALOR DEL SELECT CATEGORIA A LA VARIABLE
 $categoriaP = $_POST['nameSelectCat'];
@@ -78,28 +82,11 @@ $pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatib
 $pdfContrato  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
 
 // OBTIENE EL NOMBRE EL HOST
-$host = $_SERVER['HTTP_HOST'];
 
-// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
-$ruta = 'pdfs_personal/';
 
 // CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
 if (!file_exists($ruta . $rutPersona)) {
   mkdir($ruta . $rutPersona, 0777, true);
-
-  // SUBCARPETAS CREADAS PARA ALMACENAR DOCUMENTOS
-  mkdir($ruta . $rutPersona . '/AFP/', 0777, true);
-  mkdir($ruta . $rutPersona . '/C_NACIMIENTO/', 0777, true);
-  mkdir($ruta . $rutPersona . '/S_MILITAR/', 0777, true);
-  mkdir($ruta . $rutPersona . '/C_ANTECEDENTES/', 0777, true);
-  mkdir($ruta . $rutPersona . '/COPIA_CEDULA/', 0777, true);
-  mkdir($ruta . $rutPersona . '/C_VITAE/', 0777, true);
-  mkdir($ruta . $rutPersona . '/EXAMEN_MEDICO_U/', 0777, true);
-  mkdir($ruta . $rutPersona . '/C_PREVISION/', 0777, true);
-  mkdir($ruta . $rutPersona . '/C_ESTUDIOS/', 0777, true);
-  mkdir($ruta . $rutPersona . '/DEC_JURADA/', 0777, true);
-  mkdir($ruta . $rutPersona . '/C_SALUD_COMPATIBLE/', 0777, true);
-  mkdir($ruta . $rutPersona . '/CONTRATO/', 0777, true);
 }
 
 
@@ -123,18 +110,18 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfAFP)) {
-    //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_afpFINAL = $ruta . $rutPersona . '/AFP/' . $pdfAFP;
-    //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
+    // CREA LA RUTA FINAL DEL ARCHIVO 
+    $ruta_afpFINAL = $ruta . $rutPersona . '/' . $pdfAFP;
+    // EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameAFPdoc']['tmp_name'], $ruta_afpFINAL);
-    //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
+    // SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
     $ruta_afpFINAL = 'http://' . $host . '/das/controller/' . $ruta_afpFINAL;
   }
 
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfNacimiento)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_nacFINAL = $ruta . $rutPersona . '/C_NACIMIENTO/' . $pdfNacimiento;
+    $ruta_nacFINAL = $ruta . $rutPersona . '/' . $pdfNacimiento;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameNACdoc']['tmp_name'], $ruta_nacFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -144,7 +131,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfMilitar)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_militarFINAL = $ruta . $rutPersona . '/S_MILITAR/' . $pdfMilitar;
+    $ruta_militarFINAL = $ruta . $rutPersona . '/' . $pdfMilitar;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameMilitarDoc']['tmp_name'], $ruta_militarFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -154,7 +141,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfAntecedentes)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_AntecedentesFINAL = $ruta . $rutPersona . '/C_ANTECEDENTES/' . $pdfAntecedentes;
+    $ruta_AntecedentesFINAL = $ruta . $rutPersona . '/' . $pdfAntecedentes;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameANTECEdoc']['tmp_name'], $ruta_AntecedentesFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -165,7 +152,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfCedula)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_CedulaFINAL       = $ruta . $rutPersona . '/COPIA_CEDULA/' . $pdfCedula;
+    $ruta_CedulaFINAL       = $ruta . $rutPersona . '/' . $pdfCedula;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameCeduladoc']['tmp_name'], $ruta_CedulaFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -176,7 +163,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfCurriculum)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_CurriculumFINAL   = $ruta . $rutPersona . '/C_VITAE/' . $pdfCurriculum;
+    $ruta_CurriculumFINAL   = $ruta . $rutPersona . '/' . $pdfCurriculum;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameCVdoc']['tmp_name'], $ruta_CurriculumFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -186,7 +173,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfExamenM)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_ExamenMFINAL      = $ruta . $rutPersona . '/EXAMEN_MEDICO_U/' . $pdfExamenM;
+    $ruta_ExamenMFINAL      = $ruta . $rutPersona . '/' . $pdfExamenM;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameExaMdoc']['tmp_name'], $ruta_ExamenMFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -196,7 +183,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfPrevision)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_PrevisionFINAL    = $ruta . $rutPersona . '/C_PREVISION/' . $pdfPrevision;
+    $ruta_PrevisionFINAL    = $ruta . $rutPersona . '/' . $pdfPrevision;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['namePREVdoc']['tmp_name'], $ruta_PrevisionFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -206,7 +193,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfEstudios)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_EstudiosFINAL     = $ruta . $rutPersona . '/C_ESTUDIOS/' . $pdfEstudios;
+    $ruta_EstudiosFINAL     = $ruta . $rutPersona . '/' . $pdfEstudios;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameEstudiodoc']['tmp_name'], $ruta_EstudiosFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -216,7 +203,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfDJurada)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_DJuradaFINAL      = $ruta . $rutPersona . '/DEC_JURADA/' . $pdfDJurada;
+    $ruta_DJuradaFINAL      = $ruta . $rutPersona . '/' . $pdfDJurada;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameDJuradadoc']['tmp_name'], $ruta_DJuradaFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -226,7 +213,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfSaludCompat)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_SaludCompatFINAL  = $ruta . $rutPersona . '/C_SALUD_COMPATIBLE/' . $pdfSaludCompat;
+    $ruta_SaludCompatFINAL  = $ruta . $rutPersona . '/' . $pdfSaludCompat;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameSCompatibledoc']['tmp_name'], $ruta_SaludCompatFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -236,7 +223,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfContrato)) {
     //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_ContratoFINAL  = $ruta . $rutPersona . '/CONTRATO/' . $pdfContrato;
+    $ruta_ContratoFINAL  = $ruta . $rutPersona . '/' . $pdfContrato;
     //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
     move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
     //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
@@ -251,19 +238,48 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   // Observ,'$obsP' eliminadas
 
   //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
-  if (mysqli_query($conn, $sqlTrabajador)) {
-    // echo "Archivos guardados correctamente en la ruta";
+
+
+  try {
+    $resultado = mysqli_query($conn, $sqlTrabajador);
+
+    if (!$resultado) {
+      throw new Exception(mysqli_error($conn));
+    } else {
+      echo "<script> Swal.fire({
+        icon: 'success',
+        title: 'Guardado Correctamente',
+        showConfirmButton: false,
+        timer: 3000
+      });</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script> Swal.fire({
+      icon: 'error',
+      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
+      showConfirmButton: false,
+      timer: 3000
+    });</script>";
+    // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
+    if (file_exists($ruta . $rutPersona)) {
+      $files = glob($ruta . $rutPersona . '/*'); // Obtener todos los archivos dentro de la carpeta
+      foreach ($files as $file) {
+        if (is_file($file)) {
+          unlink($file); // Eliminar cada archivo
+        }
+      }
+      rmdir($ruta . $rutPersona); // Eliminar la carpeta vacía
+
+    }
 
     echo "<script> Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Guardado Correctamente',
+      icon: 'error',
+      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
       showConfirmButton: false,
-      timer: 1500
+      timer: 3000
     });</script>";
-  } else {
-    echo "Error al guardar los archivos: " . mysqli_error($conn);
   }
 }
+
 // SE CIERRA LA CONEXION A LA BASE DE DATOS
 mysqli_close($conn);

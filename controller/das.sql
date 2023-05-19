@@ -58,7 +58,7 @@ CREATE TABLE `das`.`trabajador` (
     `PaternoTra` VARCHAR(100) NOT NULL,
     `MaternoTra` VARCHAR(100) NULL,
     `Rut` VARCHAR(10) NOT NULL,
-    `Decreto` INT(30) NOT NULL,
+    `Decreto` VARCHAR(30) NOT NULL,
     `Genero` VARCHAR(10) NOT NULL,
     `Medico` VARCHAR(2) NULL,
     `Profesion` VARCHAR(300) NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE `das`.`trabajador` (
 CREATE TABLE `das`.`calificaciones` (
     `IDCalif` INT NOT NULL AUTO_INCREMENT,
     `IDTra` INT NOT NULL,
-    `fecha` INT NOT NULL,  
+    `fecha` VARCHAR(9) NOT NULL,  
     `apelo` VARCHAR(2) NOT NULL,
     `RutaCalificacion` VARCHAR(400) NULL,
     `RutaApelacion` VARCHAR(400) NULL,

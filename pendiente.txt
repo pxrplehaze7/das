@@ -1,10 +1,4 @@
 
-arreglar la base de datos
-
-
-al buscar en el nav, que envie al perfil del trabajador, si no encuentra, mostrar alerta.
-
-
 
 el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
 
@@ -20,10 +14,9 @@ hacer que pida menos documentos si es honorario
 solucionar que en mostrar la categoria no se lee completa
 
 
-
-
-
-
+no me muestra el error al insertar y ver como probar forzando error
 cambiar cursor en menu
 
+hacer que cuando diga que no apelo, se desabilite el input de apelacion
 
+arreglar boton flotante

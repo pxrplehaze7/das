@@ -5,16 +5,14 @@ include("./controller/config/conexion.php");
 if (isset($_POST['nameRutCalifica'])) {
     $rut = $_POST['nameRutCalifica'];
 
-    $sqlTra = "SELECT idTra FROM `trabajador`
+    $datosCali = "SELECT idTra, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
     WHERE Rut='$rut' LIMIT 1";
 
-$resultadoDatosTra = mysqli_query($conn, $sqlTra);
+    $datosCali = mysqli_query($conn, $datosCali);
+    list($idTrabajador, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
 
-
-//consultar nombres y rut de trabajador para despues mostrar y guardar
+    //consultar nombres y rut de trabajador para despues mostrar y guardar
 }
-
-
 
 ?>
 <!DOCTYPE html>
@@ -32,7 +30,7 @@ $resultadoDatosTra = mysqli_query($conn, $sqlTra);
     <!-- cdn iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- estilo de registro -->
-    <link href="./assets/css/registroPersonal.css" rel="stylesheet">
+    <link href="./assets/css/styles.css" rel="stylesheet">
     <!-- estilo menu -->
     <link href="./assets/css/menu.css" rel="stylesheet">
 
@@ -45,44 +43,63 @@ $resultadoDatosTra = mysqli_query($conn, $sqlTra);
     </header>
     <div class="container-md">
 
-        <form id="documentosApelacion" enctype="multipart/form-data" method="POST">
+        <form id="documentosApelacion" enctype="multi/form-data" method="POST">
 
-            <h2>Calificaciones</h2>
+            <h1>Calificaciones</h1>
             <br>
             <div class="datosPersonales seccion">
-                <h6><?php echo $nombre ?></h6>
-                <div class="primerGrupo art row ">
+                <h6>Datos Personales</h6>
+                <div class="primerGrupo row ">
                     <div class="rut-ver col-md">
                         <label>Rut</label>
-                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" readonly>
+                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut?>" class="form-control" readonly>
                         <br>
                     </div>
-                    <div class=" col-md">
-                        <label for="idTrabCa">(*) ID Trabajador</label>
-                        <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" readonly>
+
+                    <div class="nombre col-md">
+                        <label> Nombres</label>
+                        <input type="text" name="namePersonaCa" value="<?php echo $nombre?>" id="idPersonaCa" class="form-control" readonly>
+                        <br>
+                    </div>
+                    <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador?>" class="form-control" hidden>
+                </div>
+
+
+                <div class="segundoGrupo row">
+                    <div class="paterno col-md">
+                        <label> Apellido Paterno</label>
+                        <input type="text" name="namePaternoCa" value="<?php echo $paterno?>" id="idAppatCa" class="form-control" readonly>
+                        <br>
+                    </div>
+
+                    <div class="materno col-md">
+                        <label>Apellido Materno</label>
+                        <input type="text" name="nameMaternoCa" value="<?php echo $materno?>" id="idApmatCa" class="form-control" readonly>
                         <br>
                     </div>
                 </div>
 
-                <div class="row art">
+
+
+                <div class="row">
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col">
-                                <label for="idInicio">(*) Desde</label>
-                                <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" required>
+                                <label for="idInicio"><span>*</span> Desde</label>
+                                <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" maxlength="4" placeholder="2023" required>
                             </div>
 
                             <div class="col">
-                                <label for="idFin">(*) Hasta</label>
-                                <input type="text" name="nameFin" id="idFin" class="form-control input-small" required>
+                                <label for="idFin"><span>*</span> Hasta</label>
+                                <input type="text" name="nameFin" id="idFin" class="form-control input-small" maxlength="4" placeholder="2023" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="idCalifInput">Calificación</label>
+                        <label for="idCalifInput"><span>*</span> Calificación</label>
                         <div class="input-group">
-                            <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf">
+                            <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCalifInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
@@ -90,7 +107,7 @@ $resultadoDatosTra = mysqli_query($conn, $sqlTra);
                 <br>
                 <div class="radioCentro row">
                     <center>
-                        <label>¿Realizo una Apelación?</label>
+                        <label><span>*</span> ¿Realizo una Apelación?</label>
                     </center>
                     <div class="opciones">
                         <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radioInput form-check-input">
@@ -102,7 +119,7 @@ $resultadoDatosTra = mysqli_query($conn, $sqlTra);
                 </div>
 
                 <div id="adjuntaApelacion">
-                    <label for="idApelacionDoc">Apelación</label>
+                    <label for="idApelacionDoc"><span>*</span> Apelación</label>
                     <div class="input-group">
                         <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idApelacionDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
