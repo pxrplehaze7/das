@@ -71,7 +71,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $sqlCalificacion = " INSERT INTO calificaciones (IDTra, fecha, apelo, RutaApelacion, RutaCalificacion) 
     VALUES ('$idTrabajador','$fecha','$apelo','$ruta_ApelaFINAL', '$ruta_CalifFINAL')";
 
-
     if (mysqli_query($conn, $sqlCalificacion)) {
         echo "Archivos guardados correctamente en la ruta";
     } 

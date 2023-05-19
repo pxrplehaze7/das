@@ -1,59 +1,58 @@
 .navbar-expand-lg {
-    font-size: 17px;
-    background-color: #ffffff;
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-  .dropdown-menu {
-    background-color: rgb(240, 236, 230);
-  }
-  
-  .nav-link {
-    color: rgb(243, 111, 3);
-    font-weight: bold;
-  }
-  
-  .nav-link:hover {
-    color: rgb(144, 65, 0);
-    font-weight: bold;
-  }
-  .btn-buscar {
-    background-color: #f36f03;
-    color: rgb(255, 255, 255);
-    font-weight: bold;
-    border-radius: 30px;
-    width: 160px;
-  }
-  
-  .btn-buscar:hover{
-    background-color: #ff821b;
-    color: white;
-  }
-  .me-2 {
-    border-color: #e9ecef;
-    border-radius: 30px;
-  }
-  
-  .d-flex{
+  font-size: 17px;
+  background-color: #ffffff;
+  padding-top: 0;
   padding-bottom: 0;
-  }
+}
+.dropdown-menu {
+  background-color: rgb(240, 236, 230);
+}
 
-  .nav-item a{
-    cursor: pointer;
-  }
+.nav-link {
+  color: rgb(243, 111, 3);
+  font-weight: bold;
+}
 
-  .navbar-brand img{
-    cursor: pointer;
-  }
+.nav-link:hover {
+  color: rgb(144, 65, 0);
+  font-weight: bold;
+}
+.btn-buscar {
+  background-color: #f36f03;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  border-radius: 30px;
+  width: 160px;
+}
 
-  @media screen and (max-width: 991px) {
-    .container-fluid{
-      padding-bottom: 15px;
-      }
+.btn-buscar:hover{
+  background-color: #ff821b;
+  color: white;
+}
+.me-2 {
+  border-color: #e9ecef;
+  border-radius: 30px;
+}
 
-      .navbar-brand img{
-        display: none;
-      }
-    
-  }
+.d-flex{
+padding-bottom: 0;
+}
+
+.nav-item a{
+  cursor: pointer;
+}
+
+.navbar-brand img{
+  cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+  .container-fluid{
+    padding-bottom: 15px;
+    }
+
+    .navbar-brand img{
+      display: none;
+    }
   
+}

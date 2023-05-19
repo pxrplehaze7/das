@@ -1,4 +1,4 @@
- <?php
+<?php
     $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
     $resultadoLugar = mysqli_query($conn, $sqlLugar);
     echo "<label for='idSelectLugar'><span>*</span> Lugar </label>"; //Label 

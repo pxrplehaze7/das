@@ -1,4 +1,3 @@
-
 <?php
 include("./controller/config/conexion.php");
 
@@ -73,3 +72,4 @@ if (isset($_POST['nameBuscaRut'])) {
     </div>
   </div>
 </nav>
+

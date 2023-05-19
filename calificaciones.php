@@ -1,153 +1,84 @@
 <?php
+// CONEXION A LA BASE DE DATOS
+include("./config/conexion.php");
 
-include("./controller/config/conexion.php");
+//SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
+$idTrabajador = $_POST['nameTrabCa'];
+$desde        = $_POST['nameInicio'];
+$hasta        = $_POST['nameFin'];
 
-if (isset($_POST['nameRutCalifica'])) {
-    $rut = $_POST['nameRutCalifica'];
+$apelo        = $_POST['nameApeloRes'];
+$rut          = $_POST['nameRutCa'];
 
-    $datosCali = "SELECT idTra, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
-    WHERE Rut='$rut' LIMIT 1";
 
-    $datosCali = mysqli_query($conn, $datosCali);
-    list($idTrabajador, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
+// OBTIENE EL NOMBRE EL HOST
+$host = $_SERVER['HTTP_HOST'];
 
-    //consultar nombres y rut de trabajador para despues mostrar y guardar
+// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
+$ruta = 'pdfs_personal/';
+
+$desde = mysqli_real_escape_string($conn, $desde);
+$hasta = mysqli_real_escape_string($conn, $hasta);
+$apelo = mysqli_real_escape_string($conn, $apelo);
+
+$fecha        = $desde . '-' . $hasta;
+$fecha = mysqli_real_escape_string($conn, $fecha);
+
+$pdfcalificacion = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCalifdoc']['name']);
+$pdfapelo        = str_replace(array(' ', '(', ')'), '_', $_FILES['nameApelacionDoc']['name']);
+
+// Generar nombres únicos para los archivos
+$pdfcalificacion = uniqid() . '_' . $pdfcalificacion;
+$pdfapelo = uniqid() . '_' . $pdfapelo;
+
+
+if (!file_exists($ruta . $rut)) {
+    mkdir($ruta . $rut, 0777, true);
+}
+$rutaCalificaciones = $ruta . $rut . '/CALIFICACIONES/';
+if (!file_exists($rutaCalificaciones)) {
+    mkdir($rutaCalificaciones, 0777, true);
+}
+$rutasubCalificaciones = $rutaCalificaciones . 'CALIFICACIONES/';
+$rutaApelaciones = $rutaCalificaciones . 'APELACIONES/';
+
+if (!file_exists($rutasubCalificaciones)) {
+    mkdir($rutasubCalificaciones, 0777, true);
+}
+if (!file_exists($rutaApelaciones)) {
+    mkdir($rutaApelaciones, 0777, true);
 }
 
+// REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
+if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rut'")) > 0) {
+    $ruta_CalifFINAL          = NULL;
+    $ruta_ApelaFINAL          = NULL;
+
+    if (!empty($pdfcalificacion)) {
+
+        $ruta_CalifFINAL = $rutasubCalificaciones . $pdfcalificacion;
+        move_uploaded_file($_FILES['nameCalifdoc']['tmp_name'], $ruta_CalifFINAL);
+        $ruta_CalifFINAL = 'http://' . $host . '/das/controller/' . $ruta_CalifFINAL;
+    }
+
+    if (!empty($pdfapelo)) {
+        $ruta_ApelaFINAL = $rutaApelaciones . $pdfapelo;
+        move_uploaded_file($_FILES['nameApelacionDoc']['tmp_name'], $ruta_ApelaFINAL);
+        $ruta_ApelaFINAL = 'http://' . $host . '/das/controller/' . $ruta_ApelaFINAL;
+    }
+
+    // SE INSERTAN DATOS A LA BASE DE DATOS
+    $sqlCalificacion = " INSERT INTO calificaciones (IDTra, fecha, apelo, RutaApelacion, RutaCalificacion) 
+    VALUES ('$idTrabajador','$fecha','$apelo','$ruta_ApelaFINAL', '$ruta_CalifFINAL')";
+
+
+    if (mysqli_query($conn, $sqlCalificacion)) {
+        echo "Archivos guardados correctamente en la ruta";
+    } 
+    else {
+        echo "Error al guardar los archivos: " . mysqli_error($conn);
+    }
+} else {
+    echo "RUT NO EXISTE";
+}
 ?>
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Personal</title>
-    <!-- cdn jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <!-- cdn css bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <!-- cdn iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- estilo de registro -->
-    <link href="./assets/css/styles.css" rel="stylesheet">
-    <!-- estilo menu -->
-    <link href="./assets/css/menu.css" rel="stylesheet">
-
-
-</head>
-
-<body>
-    <header>
-        <?php include("./controller/navbar.php") ?>
-    </header>
-    <div class="container-md">
-
-        <form id="documentosApelacion" enctype="multi/form-data" method="POST">
-
-            <h1>Calificaciones</h1>
-            <br>
-            <div class="datosPersonales seccion">
-                <h6>Datos Personales</h6>
-                <div class="primerGrupo row ">
-                    <div class="rut-ver col-md">
-                        <label>Rut</label>
-                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut?>" class="form-control" readonly>
-                        <br>
-                    </div>
-
-                    <div class="nombre col-md">
-                        <label> Nombres</label>
-                        <input type="text" name="namePersonaCa" value="<?php echo $nombre?>" id="idPersonaCa" class="form-control" readonly>
-                        <br>
-                    </div>
-                    <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador?>" class="form-control" hidden>
-                </div>
-
-
-                <div class="segundoGrupo row">
-                    <div class="paterno col-md">
-                        <label> Apellido Paterno</label>
-                        <input type="text" name="namePaternoCa" value="<?php echo $paterno?>" id="idAppatCa" class="form-control" readonly>
-                        <br>
-                    </div>
-
-                    <div class="materno col-md">
-                        <label>Apellido Materno</label>
-                        <input type="text" name="nameMaternoCa" value="<?php echo $materno?>" id="idApmatCa" class="form-control" readonly>
-                        <br>
-                    </div>
-                </div>
-
-
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col">
-                                <label for="idInicio"><span>*</span> Desde</label>
-                                <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" maxlength="4" placeholder="2023" required>
-                            </div>
-
-                            <div class="col">
-                                <label for="idFin"><span>*</span> Hasta</label>
-                                <input type="text" name="nameFin" id="idFin" class="form-control input-small" maxlength="4" placeholder="2023" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="idCalifInput"><span>*</span> Calificación</label>
-                        <div class="input-group">
-                            <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
-                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCalifInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="radioCentro row">
-                    <center>
-                        <label><span>*</span> ¿Realizo una Apelación?</label>
-                    </center>
-                    <div class="opciones">
-                        <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radioInput form-check-input">
-                        <label for="idSiApelo" class="radio form-check-label">Sí</label>
-
-                        <input type="radio" name="nameApeloRes" id="idNoApelo" value="No" required class="radioInput form-check-input">
-                        <label for="idNoApelo" class="radio form-check-label">No</label>
-                    </div>
-                </div>
-
-                <div id="adjuntaApelacion">
-                    <label for="idApelacionDoc"><span>*</span> Apelación</label>
-                    <div class="input-group">
-                        <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idApelacionDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="boton">
-                <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
-            </div>
-
-        </form>
-    </div>
-
-
-
-
-
-
-
-    <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/doc_exclusivos.js"></script>
-    <!-- cdn js de boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-
-</body>
-
-</html>

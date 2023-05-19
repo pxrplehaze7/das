@@ -1,4 +1,3 @@
-
 <?php
 $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
 $resultadoCategoria = mysqli_query($conn, $sqlCategoria);
@@ -11,3 +10,4 @@ while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
 echo "</select>";
 // Cierre de la conexión
 ?>
+

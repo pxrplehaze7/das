@@ -1,22 +1,10 @@
-
-
 el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
-
-
-
 hacer que se limpien los campos al enviar el form
-
 crear alerta de usuario registrado y error
-
-
 solucionar que no se creen carpetas si no se sube el archivo
 hacer que pida menos documentos si es honorario
 solucionar que en mostrar la categoria no se lee completa
-
-
 no me muestra el error al insertar y ver como probar forzando error
 cambiar cursor en menu
-
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
-
 arreglar boton flotante

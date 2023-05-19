@@ -245,3 +245,4 @@ INSERT INTO
     `categoria`(`IDCat`, `NombreCat`)
 VALUES
     (6, 'f) Auxiliares de servicios de Salud.');
+

@@ -1,4 +1,3 @@
-
 <?php
     $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
     $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);

@@ -1,6 +1,3 @@
-
-
-
 // jquery
 $("#documentosObligatorios").on("submit", function (event) {
   console.log("ola");

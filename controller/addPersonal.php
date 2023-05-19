@@ -283,3 +283,4 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 // SE CIERRA LA CONEXION A LA BASE DE DATOS
 mysqli_close($conn);
+

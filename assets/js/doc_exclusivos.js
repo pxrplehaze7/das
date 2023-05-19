@@ -1,4 +1,3 @@
-
 //Muestra o mantiene oculto el input tipo file,
 //si es hombre, debe subir el Certificado de Servicio militar
 $(document).ready(function () {
@@ -74,6 +73,5 @@ $(document).ready(function () {
     }
   });
 });
-
 
 }
