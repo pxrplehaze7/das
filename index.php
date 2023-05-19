@@ -49,32 +49,3 @@
 
 <?php
 
-$rutPersona = $_POST['nameRut'];
-// OBTIENE EL NOMBRE EL HOST
-$host = $_SERVER['HTTP_HOST'];
-
-// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
-$ruta = 'pdfs_personal/';
-
-// CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
-if (!file_exists($ruta . $rutPersona)) {
-    mkdir($ruta . $rutPersona, 0777, true);
-
-    mkdir($ruta . $rutPersona . '/C_PREVISION/', 0777, true);
-}
-// REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
-if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
-    echo "El rut ya existe, no se han subido archivos.";
-  } else {
-
-      //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
-  if (!empty($pdfPrevision)) {
-    //CREA LA RUTA FINAL DEL ARCHIVO 
-    $ruta_PrevisionFINAL    = $ruta . $rutPersona . '/C_PREVISION/' . $pdfPrevision;
-    //EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
-    move_uploaded_file($_FILES['namePREVdoc']['tmp_name'], $ruta_PrevisionFINAL);
-    //SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
-    $ruta_PrevisionFINAL    = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
-  }
-
-  $sqlTrabajador = " INSERT INTO trabajador (IDPrev, Rut, RutaPrev) VALUES ($prevP,'$rutPersona','$ruta_PrevisionFINAL')";

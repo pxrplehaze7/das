@@ -8,7 +8,7 @@ $desde        = $_POST['nameInicio'];
 $hasta        = $_POST['nameFin'];
 
 $apelo        = $_POST['nameApeloRes'];
-$rut          = $_POST['rutCapacitacion'];
+$rut          = $_POST['nameRutCa'];
 
 $desde = mysqli_real_escape_string($conn, $desde);
 $hasta = mysqli_real_escape_string($conn, $hasta);
@@ -36,6 +36,7 @@ if (!file_exists($ruta . $rut . $rutaCalificaciones)) {
     mkdir($ruta . $rut . $rutaCalificaciones . '/APELACIONES/', 0777, true);
     mkdir($ruta . $rut . $rutaCalificaciones . '/CALIFICACIONES/', 0777, true);
 }
+
 
 // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rut'")) > 0) {

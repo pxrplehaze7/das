@@ -39,7 +39,8 @@ $("#documentosObligatorios").on("submit", function (event) {
     processData: false
   }).done(function (data) {
     //   $( this ).addClass( "done" );
-    console.log(data)
+    //console.log(data)
+    $('body' ).append( data );
   });
 
 });
@@ -78,6 +79,7 @@ function clearFileInput(inputId) {
 const lugarSelect = document.getElementById('idSelectLugar');
 const sectorSelect = document.getElementById('idSelectSector');
 
+if(lugarSelect){
 // LISTENER AL CAMBIO DEL SELECT LUGAR
 lugarSelect.addEventListener('change', function () {
   const lugarId = lugarSelect.value;
@@ -116,10 +118,11 @@ lugarSelect.addEventListener('change', function () {
       `;
   }
 });
-
+}
 
 $("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
+  console.log("holaaaas")
 
   if (!document.querySelector('#idNoApelo').checked && !document.querySelector('#iSiApelo').checked) {
     //SI ESTAN VACIOS ENVIA ALERTA
@@ -130,11 +133,11 @@ $("#documentosApelacion").on("submit", function (event) {
   let formData = new FormData(this);
 
 
-  formData.append('rutCapacitacion', $('#idRutCap').val()); // Agrega el valor del input de tipo texto
+  //formData.append('rutCa', $('#idRutCap').val()); // Agrega el valor del input de tipo texto
   console.log(formData);
 
   $.ajax({
-    url: "./controller/addCapacitacion.php",
+    url: "./controller/addCalificacion.php",
     method: "POST",
     data: formData,
     cache: false,

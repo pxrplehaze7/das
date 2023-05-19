@@ -40,8 +40,12 @@ $(document).ready(function () {
   });
 });
 
-//Si se selecciona la primera categoria, pregunta si es medico
+
+
 var selectCat = document.getElementById("idSelectCat");
+if(selectCat){
+//Si se selecciona la primera categoria, pregunta si es medico
+
 var preguntaMedico = document.getElementById("idPreguntaCat1");
 
 selectCat.addEventListener("change", function () {
@@ -70,3 +74,6 @@ $(document).ready(function () {
     }
   });
 });
+
+
+}

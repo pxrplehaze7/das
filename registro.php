@@ -20,6 +20,8 @@ include("./controller/config/conexion.php");
     <link href="./assets/css/registroPersonal.css" rel="stylesheet">
     <!-- estilo menu -->
     <link href="./assets/css/menu.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 
 
 </head>

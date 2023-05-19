@@ -251,19 +251,51 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   // Observ,'$obsP' eliminadas
 
   //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
-  if (mysqli_query($conn, $sqlTrabajador)) {
+
+
+  try {
+    $resultado = mysqli_query($conn, $sqlTrabajador);
+
+    if (!$resultado) {
+        throw new Exception(mysqli_error($conn));
+    }else{
+      echo "<script> Swal.fire({
+        icon: 'success',
+        title: 'Guardado Correctamente',
+        showConfirmButton: false,
+        timer: 3000
+      });</script>";
+    }
+  } catch (Exception $e) {
+    echo "<script> Swal.fire({
+      icon: `error`,
+      title: `Error al guardar los archivos:" . $e->getMessage()."`,
+      showConfirmButton: false,
+      timer: 3000
+    });</script>";
+  }
+
+
+
+
+  /* if (mysqli_query($conn, $sqlTrabajador)) {
     // echo "Archivos guardados correctamente en la ruta";
 
     echo "<script> Swal.fire({
-      position: 'top-end',
       icon: 'success',
       title: 'Guardado Correctamente',
       showConfirmButton: false,
       timer: 1500
     });</script>";
   } else {
-    echo "Error al guardar los archivos: " . mysqli_error($conn);
-  }
+    //echo "Error al guardar los archivos: " . mysqli_error($conn);
+    echo "<script> Swal.fire({
+      icon: 'error',
+      title: 'Error al guardar los archivos:" . mysqli_error($conn)."',
+      showConfirmButton: false,
+      timer: 1500
+    });</script>";
+  } */
 }
 // SE CIERRA LA CONEXION A LA BASE DE DATOS
 mysqli_close($conn);

@@ -5,11 +5,11 @@ include("./controller/config/conexion.php");
 if (isset($_POST['nameRutCalifica'])) {
     $rut = $_POST['nameRutCalifica'];
 
-    $sqlTra = "SELECT idTra FROM `trabajador`
+    $sqlTra = "SELECT idTra, concat(nombreTra, ' ',PaternoTra , ' ' , MaternoTra) as nombre  FROM `trabajador`
     WHERE Rut='$rut' LIMIT 1";
 
 $resultadoDatosTra = mysqli_query($conn, $sqlTra);
-
+list($idTrabajador,$nombre) = mysqli_fetch_row($resultadoDatosTra);
 
 //consultar nombres y rut de trabajador para despues mostrar y guardar
 }
