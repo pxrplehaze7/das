@@ -126,7 +126,7 @@ $(document).ready(function() {
 
     if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
       // Si no se ha seleccionado ninguna opción
-      alert('Debe indicar si apeló o no.');
+      alert('Debe indicar si apelo o no.');
       return;
     }
 

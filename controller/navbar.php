@@ -3,10 +3,10 @@ include("./controller/config/conexion.php");
 
 // Obtener el rut enviado por POST
 if (isset($_POST['nameBuscaRut'])) {
-    $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
+  $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
 
-    // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-    $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, IDTra, NombreTra, PaternoTra, MaternoTra, Sector, Decreto, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM
+  // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
+  $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, IDTra, NombreTra, PaternoTra, MaternoTra, Sector, Decreto, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
                   INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
@@ -15,17 +15,17 @@ if (isset($_POST['nameBuscaRut'])) {
                   INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
                   WHERE Rut='$rut' LIMIT 1";
 
-    $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
+  $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
 
-    // Verificar si se encontró una persona en la base de datos con el valor de $rut
-    if (mysqli_num_rows($resultadoDatosTra) == 1) {
-        // Si se encuentra una persona, se asigna el resultado a $persona
-        $persona = mysqli_fetch_assoc($resultadoDatosTra);
+  // Verificar si se encontró una persona en la base de datos con el valor de $rut
+  if (mysqli_num_rows($resultadoDatosTra) == 1) {
+    // Si se encuentra una persona, se asigna el resultado a $persona
+    $persona = mysqli_fetch_assoc($resultadoDatosTra);
 
-        // Cerrar la conexión a la base de datos  
-        // mysqli_close($conn);
-    } else {
-      echo "<script>
+    // Cerrar la conexión a la base de datos  
+    // mysqli_close($conn);
+  } else {
+    echo "<script>
       Swal.fire({
         title: 'Usuario no encontrado',
         text: '¿Desea registrar?',
@@ -43,9 +43,18 @@ if (isset($_POST['nameBuscaRut'])) {
         }
       });
     </script>";
-      
-    }
+  }
+
+
+//   $sqlLista = "SELECT * FROM calificaciones cali 
+// JOIN trabajador trab ON (cali.IDTra = trab.IDTra)";
+
+// $resLista = mysqli_query($conn, $sqlLista);
 }
+
+
+
+
 ?>
 
 
@@ -72,4 +81,3 @@ if (isset($_POST['nameBuscaRut'])) {
     </div>
   </div>
 </nav>
-
