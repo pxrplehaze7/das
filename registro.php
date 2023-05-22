@@ -34,13 +34,13 @@
                 <h6>Datos Personales</h6>
                 <div class="row ">
                     <div class="col-md">
-                        <label for="idRutInput"><span>*</span> Rut</label>
+                        <label for="idRutInput"><span style="color: red;">*</span> Rut</label>
                         <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
                     <div class="col-md">
-                        <label for="idPersona"><span>*</span> Nombres</label>
+                        <label for="idPersona"><span style="color: red;">*</span> Nombres</label>
                         <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
                         <br>
                     </div>
@@ -48,7 +48,7 @@
 
                 <div class="row">
                     <div class="col-md">
-                        <label for="idAppat"><span>*</span> Apellido Paterno</label>
+                        <label for="idAppat"><span style="color: red;">*</span> Apellido Paterno</label>
                         <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
                         <br>
                     </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
                         <center>
-                            <label><span>*</span> ¿Es médico?</label>
+                            <label><span style="color: red;">*</span> ¿Es médico?</label>
                         </center>
                         <div class="opciones">
                             <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput  form-check-input">
@@ -97,14 +97,14 @@
                         </div>
                     </div>
                     <div class="">
-                        <label for="idProfesion"><span>*</span> Profesión</label>
+                        <label for="idProfesion"><span style="color: red;">*</span> Profesión</label>
                         <input type="text" name="nameProfesion" id="idProfesion" class="form-control" require>
                     </div>
                 </div>
                 <br>
                 <div class="radioCentro row">
                     <center>
-                        <label><span>*</span> Seleccione Género</label>
+                        <label><span style="color: red;">*</span> Seleccione Género</label>
                     </center>
                     <div class="opciones">
                         <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input">
@@ -162,7 +162,7 @@
                 <br>
                 <div class="row"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                     <div class="col-md-3">
-                        <label for="idDecreto"><span>*</span> Decreto</label>
+                        <label for="idDecreto"><span style="color: red;">*</span> Decreto</label>
                         <input type="text" name="nameDecreto" id="idDecreto" class="form-control" maxlength="30">
                     </div>
                     <div class="col-md-9">

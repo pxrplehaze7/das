@@ -15,12 +15,15 @@ if (isset($_POST['nameBuscaRut'])) {
                   INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
                   WHERE Rut='$rut' LIMIT 1";
 
+
+
   $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
 
   // Verificar si se encontró una persona en la base de datos con el valor de $rut
   if (mysqli_num_rows($resultadoDatosTra) == 1) {
     // Si se encuentra una persona, se asigna el resultado a $persona
     $persona = mysqli_fetch_assoc($resultadoDatosTra);
+    $idtra = $persona['IDTra'];
 
     // Cerrar la conexión a la base de datos  
     // mysqli_close($conn);

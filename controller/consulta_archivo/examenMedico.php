@@ -11,7 +11,7 @@ if (!empty($persona['RutaExaM'])) {
             <div class="container">
                 <div class="row doc flex-wrap">
                     <div class="col-md-6 titulo d-flex align-items-center">
-                        <a>Examen Único Nacional de Conocimientos de Medicina</a>
+                        <a class="a">Examen Único Nacional de Conocimientos de Medicina</a>
                     </div>
                     <div class="col-md-6 contenedor-botones">
                         <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaExaM'] . '\', \'_blank\')">Visualizar <i class="fa-solid fa-expand"></i></button>
@@ -26,7 +26,7 @@ if (!empty($persona['RutaExaM'])) {
                 <div class="container">
                     <div class="row doc flex-wrap">
                         <div class="col-md-6 titulo d-flex align-items-center">
-                            <a>Examen Único Nacional de Conocimientos de Medicina</a>
+                            <a class="a">Examen Único Nacional de Conocimientos de Medicina</a>
                         </div>
 
                         <div class="col-md-6 contenedor-botones">

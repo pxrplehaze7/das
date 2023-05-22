@@ -8,3 +8,43 @@ no me muestra el error al insertar y ver como probar forzando error
 cambiar cursor en menu
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
 arreglar boton flotante
+
+
+
+
+
+
+
+
+
+
+
+      <?php if ($id_rol_usuario_actual == 1) { ?>
+
+                                    <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-info editbtn" onclick="busca_user(<?php echo $mostrar['id_user'] ?>)" data-toggle="modal" data-target="#editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
+
+                                    <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-danger editbtn" data-toggle="modal" data-target="#deleteUsuario<?php echo $mostrar['id_user'] ?>"><i class="fa-solid fa-trash"></i></button>
+
+                                        <!-- DELETE Modal-->
+                                        <div class="modal fade" id="deleteUsuario<?php echo $mostrar['id_user'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Registro</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">¿Esta seguro?</div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                        <button class="btn btn-primary" type="submit" data-dismiss="modal" name="eliminarUser" onclick="delete_user(<?php echo $mostrar['id_user'] ?>)">Confirmar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </td>
+
+                                <?php } ?>

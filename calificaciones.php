@@ -85,19 +85,19 @@ if (isset($_POST['nameRutCalifica'])) {
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col">
-                                <label for="idInicio"><span>*</span> Desde</label>
+                                <label for="idInicio"><span style="color: red;">*</span> Desde</label>
                                 <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" maxlength="4" placeholder="2023" required>
                             </div>
 
                             <div class="col">
-                                <label for="idFin"><span>*</span> Hasta</label>
+                                <label for="idFin"><span style="color: red;">*</span> Hasta</label>
                                 <input type="text" name="nameFin" id="idFin" class="form-control input-small" maxlength="4" placeholder="2023" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="idCalifInput"><span>*</span> Calificación</label>
+                        <label for="idCalifInput"><span style="color: red;">*</span> Calificación</label>
                         <div class="input-group">
                             <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCalifInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
@@ -107,7 +107,7 @@ if (isset($_POST['nameRutCalifica'])) {
                 <br>
                 <div class="radioCentro row">
                     <center>
-                        <label><span>*</span> ¿Realizo una Apelación?</label>
+                        <label><span style="color: red;">*</span> ¿Realizo una Apelación?</label>
                     </center>
                     <div class="opciones">
                         <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radioInput form-check-input">
@@ -119,7 +119,7 @@ if (isset($_POST['nameRutCalifica'])) {
                 </div>
 
                 <div id="adjuntaApelacion">
-                    <label for="idApelacionDoc"><span>*</span> Apelación</label>
+                    <label for="idApelacionDoc"><span style="color: red;">*</span> Apelación</label>
                     <div class="input-group">
                         <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idApelacionDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>

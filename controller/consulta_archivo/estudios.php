@@ -5,7 +5,7 @@ if (!empty($persona['RutaEstudio'])) {
             <div class="container">
                 <div class="row doc flex-wrap">
                     <div class="col-md-6 titulo d-flex align-items-center">
-                        <a>Certificado de Estudios o Título Profesional</a>
+                        <a class="a">Certificado de Estudios o Título Profesional</a>
                     </div>
                     <div class="col-md-6 contenedor-botones">
                         <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaEstudio'] . '\', \'_blank\')">Visualizar <i class="fa-solid fa-expand"></i></button>
@@ -20,7 +20,7 @@ if (!empty($persona['RutaEstudio'])) {
                 <div class="container">
                     <div class="row doc flex-wrap">
                         <div class="col-md-6 titulo d-flex align-items-center">
-                            <a>Certificado de Estudios o Título Profesional</a>
+                            <a class="a">Certificado de Estudios o Título Profesional</a>
                         </div>
 
                         <div class="col-md-6 contenedor-botones">

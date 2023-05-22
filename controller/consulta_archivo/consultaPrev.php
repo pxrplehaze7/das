@@ -5,7 +5,7 @@ if (!empty($persona['RutaPrev'])) {
             <div class="container">
                 <div class="row doc flex-wrap">
                     <div class="col-md-6 titulo d-flex align-items-center">
-                        <a>Certificado Previsional Servicios de Salud</a>
+                        <a class="a">Certificado Previsional Servicios de Salud</a>
                     </div>
                     <div class="col-md-6 contenedor-botones">
                         <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaPrev'] . '\', \'_blank\')">Visualizar <i class="fa-solid fa-expand"></i></button>
@@ -20,7 +20,7 @@ if (!empty($persona['RutaPrev'])) {
                 <div class="container">
                     <div class="row doc flex-wrap">
                         <div class="col-md-6 titulo d-flex align-items-center">
-                            <a>Certificado Previsional Servicios de Salud</a>
+                            <a class="a">Certificado Previsional Servicios de Salud</a>
                         </div>
 
                         <div class="col-md-6 contenedor-botones">

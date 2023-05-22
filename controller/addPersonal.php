@@ -79,7 +79,7 @@ $pdfPrevision    = str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']
 $pdfEstudios     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']);
 $pdfDJurada      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']);
 $pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']);
-$pdfContrato  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
+$pdfContrato     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
 
 // OBTIENE EL NOMBRE EL HOST
 
@@ -232,7 +232,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 
   // SE INSERTAN DATOS A LA BASE DE DATOS
-  $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato) VALUES ($categoriaP,$contratoP,$afpP,$prevP,$lugarP,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL',' $ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL')";
+  $sqlTrabajador = " INSERT INTO trabajador (IDCat, IDCon, IDAFP, IDPrev, IDLugar, NombreTra, PaternoTra, MaternoTra, Rut, Decreto, Genero, Medico, Profesion, Sector, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur, RutaSerM, RutaSCom, RutaExaM, RutaContrato) VALUES ($categoriaP,$contratoP,$afpP,$prevP,$lugarP,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$sector','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL')";
 
 
   // Observ,'$obsP' eliminadas
