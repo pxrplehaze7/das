@@ -85,7 +85,7 @@ if (isset($_POST['nameRutCalifica'])) {
 
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="row">
                             <div class="col">
                                 <label for="idInicio"><span style="color: red;">*</span> Desde</label>
@@ -99,7 +99,7 @@ if (isset($_POST['nameRutCalifica'])) {
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <label for="idCalifInput"><span style="color: red;">*</span> Calificación</label>
                         <div class="input-group">
                             <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>

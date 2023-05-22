@@ -5,7 +5,7 @@ $("#documentosObligatorios").on("submit", function (event) {
   event.preventDefault();
 
 
-  //SELECCIONA EL ELEMENTO  DEL HTML CON EL ID idSelectCat Y LO ASIGNA A LA VARIABLE selectCat
+  //SELECCIONA EL ELEMENTO  DEL HTML CON EL tCon Y LO ASIGNA A LA VARIABLE selectCat
   let selectCat = document.querySelector('#idSelectCat');
   if (selectCat.value == 1) {
     //SI EL VALOR ES IGUAL A 1 REVISA SI LOS INPUT RADIO ESTAN VACIOS
@@ -15,6 +15,7 @@ $("#documentosObligatorios").on("submit", function (event) {
       return
     }
   }
+
   var radios = document.querySelectorAll('input[type="radio"]');
 
 
@@ -145,3 +146,5 @@ $(document).ready(function() {
     });
   });
 });
+
+

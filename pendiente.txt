@@ -3,20 +3,23 @@ hacer que se limpien los campos al enviar el form
 crear alerta de usuario registrado y error
 solucionar que no se creen carpetas si no se sube el archivo
 hacer que pida menos documentos si es honorario
-solucionar que en mostrar la categoria no se lee completa
+
 no me muestra el error al insertar y ver como probar forzando error
-cambiar cursor en menu
+
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
-arreglar boton flotante
+
 mostrar alerta al agregar calificacion, y al confirmar registro
 se me crean rutas en calificaciones apesar de no haber nada
 
+establecer un año minimo para calificaciones
 
+agregar:
+Certificado de inscripción en el Registro Nacional de Prestadores Individuales
+los medicos y ademas el eunacom
+agregar en la base de datos ese cambio
 
-
-
-
-
+agregar a la base de datos si cumple o no con toda la documentacion dependiendo de si es mujer, medico o honorario 
+arreglar una sub tabla para sector
 
 
       <?php if ($id_rol_usuario_actual == 1) { ?>
@@ -43,6 +46,7 @@ se me crean rutas en calificaciones apesar de no haber nada
                                                 </div>
                                             </div>
                                         </div>
+
 
 
                                     </td>

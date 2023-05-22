@@ -30,6 +30,10 @@
     <?php if (isset($persona)) { ?>
         <div class="container-md">
             <h1>Información Personal</h1>
+            <form action="editar_registro.php" method="POST">
+                <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+                <button class="btn " type="submit">Editar Registro <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+            </form>
             <br>
             <div class="seccion">
                 <div class="row ">
@@ -159,7 +163,7 @@
                 <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
             </div>
 
-<br>
+            <br>
             <div class="observaciones seccion">
                 <h6>Observaciones</h6>
                 <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
@@ -168,12 +172,12 @@
 
 
             <div class="seccion">
-               
+
                 <h6>Calificaciones</h6>
                 <form action="calificaciones.php" method="POST">
-                        <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
-                        <button class="btn btn-calificacion" type="submit">Agregar Calificaciones <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
-                    </form>
+                    <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
+                    <button class="btn btn-calificacion" type="submit">Agregar Calificaciones <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                </form>
                 <table id="myTable" class="display table table-striped table-light table-bordered">
                     <thead>
                         <tr>

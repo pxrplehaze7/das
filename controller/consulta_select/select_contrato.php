@@ -1,7 +1,7 @@
 <?php
     $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
     $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
-    echo "<label for='idSelectCon'><span>*</span> Tipo de Contrato </label>"; //Label 
+    echo "<label for='idSelectCon'><span style='color: red;'>*</span> Tipo de Contrato </label>"; //Label 
     echo "<select name='nameSelectCon' id='idSelectCon' class='form-select'> required";
     echo '<option value="" hidden> Selecciona un Contrato</option>'; // Opción por defecto en blanco
 
