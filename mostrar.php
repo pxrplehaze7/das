@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Trabajador</title>
 
-
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- cdn iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -36,10 +34,6 @@
             <div class="seccion">
                 <div class="row ">
                     <h6>Datos Personales</h6>
-                    <form action="calificaciones.php" method="POST">
-                        <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
-                        <button class="btn btn-calificacion" type="submit">Calificaciones <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
-                    </form>
                     <div class="col-md">
                         <label>Rut</label>
                         <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
@@ -78,10 +72,12 @@
                 <div class="row">
                     <div class="col-md">
                         <label>Categoria </label>
-                        <input value="<?php echo $persona['NombreCat'] ?>" class="form-control" readonly>
-                        <br>
+                        <textarea class="form-control" rows="2" readonly style="resize: none;"><?php echo $persona['NombreCat'] ?></textarea>
                     </div>
                 </div>
+
+                <br>
+
                 <div class="row">
                     <div class="col-md">
                         <label>Lugar de Trabajo</label>
@@ -163,7 +159,7 @@
                 <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
             </div>
 
-
+<br>
             <div class="observaciones seccion">
                 <h6>Observaciones</h6>
                 <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
@@ -172,8 +168,12 @@
 
 
             <div class="seccion">
+               
                 <h6>Calificaciones</h6>
-
+                <form action="calificaciones.php" method="POST">
+                        <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
+                        <button class="btn btn-calificacion" type="submit">Agregar Calificaciones <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                    </form>
                 <table id="myTable" class="display table table-striped table-light table-bordered">
                     <thead>
                         <tr>

@@ -9,7 +9,7 @@ cambiar cursor en menu
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
 arreglar boton flotante
 mostrar alerta al agregar calificacion, y al confirmar registro
-
+se me crean rutas en calificaciones apesar de no haber nada
 
 
 

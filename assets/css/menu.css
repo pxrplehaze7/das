@@ -1,6 +1,5 @@
 .navbar-expand-lg {
   font-size: 17px;
-  background-color: #ffffff;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -9,20 +8,22 @@
 }
 
 .nav-link {
-  color: rgb(243, 111, 3);
-  font-weight: bold;
+  color: rgb(255, 255, 255);
+
+}
+
+.container-fluid{
+  background-color: #5c5c5c;
 }
 
 .nav-link:hover {
-  color: rgb(144, 65, 0);
-  font-weight: bold;
+  color: #ff821b;
 }
 .btn-buscar {
   background-color: #f36f03;
   color: rgb(255, 255, 255);
-  font-weight: bold;
   border-radius: 30px;
-  width: 160px;
+  width: 43px;
 }
 
 .btn-buscar:hover{
@@ -32,6 +33,8 @@
 .me-2 {
   border-color: #e9ecef;
   border-radius: 30px;
+  padding-right: 0;
+  width: 123px;
 }
 
 .d-flex{

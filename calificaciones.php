@@ -33,6 +33,9 @@ if (isset($_POST['nameRutCalifica'])) {
     <link href="./assets/css/styles.css" rel="stylesheet">
     <!-- estilo menu -->
     <link href="./assets/css/menu.css" rel="stylesheet">
+    <!-- SweetAlert -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 
 
 </head>
@@ -52,29 +55,29 @@ if (isset($_POST['nameRutCalifica'])) {
                 <div class="primerGrupo row ">
                     <div class="rut-ver col-md">
                         <label>Rut</label>
-                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut?>" class="form-control" readonly>
+                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" readonly>
                         <br>
                     </div>
 
                     <div class="nombre col-md">
                         <label> Nombres</label>
-                        <input type="text" name="namePersonaCa" value="<?php echo $nombre?>" id="idPersonaCa" class="form-control" readonly>
+                        <input type="text" name="namePersonaCa" value="<?php echo $nombre ?>" id="idPersonaCa" class="form-control" readonly>
                         <br>
                     </div>
-                    <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador?>" class="form-control" hidden>
+                    <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" hidden>
                 </div>
 
 
                 <div class="segundoGrupo row">
                     <div class="paterno col-md">
                         <label> Apellido Paterno</label>
-                        <input type="text" name="namePaternoCa" value="<?php echo $paterno?>" id="idAppatCa" class="form-control" readonly>
+                        <input type="text" name="namePaternoCa" value="<?php echo $paterno ?>" id="idAppatCa" class="form-control" readonly>
                         <br>
                     </div>
 
                     <div class="materno col-md">
                         <label>Apellido Materno</label>
-                        <input type="text" name="nameMaternoCa" value="<?php echo $materno?>" id="idApmatCa" class="form-control" readonly>
+                        <input type="text" name="nameMaternoCa" value="<?php echo $materno ?>" id="idApmatCa" class="form-control" readonly>
                         <br>
                     </div>
                 </div>
@@ -86,12 +89,12 @@ if (isset($_POST['nameRutCalifica'])) {
                         <div class="row">
                             <div class="col">
                                 <label for="idInicio"><span style="color: red;">*</span> Desde</label>
-                                <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" maxlength="4" placeholder="2023" required>
+                                <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" minlength="4" maxlength="4" placeholder="2023" required>
                             </div>
 
                             <div class="col">
                                 <label for="idFin"><span style="color: red;">*</span> Hasta</label>
-                                <input type="text" name="nameFin" id="idFin" class="form-control input-small" maxlength="4" placeholder="2023" required>
+                                <input type="text" name="nameFin" id="idFin" class="form-control input-small" minlength="4" maxlength="4" placeholder="2023" required>
                             </div>
                         </div>
                     </div>
@@ -135,9 +138,6 @@ if (isset($_POST['nameRutCalifica'])) {
 
         </form>
     </div>
-
-
-
 
 
 

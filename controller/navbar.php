@@ -50,14 +50,10 @@ if (isset($_POST['nameBuscaRut'])) {
 
 }
 
-
-
-
 ?>
 
 
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="home.php"><img src="./assets/img/logo.png" width="30px" alt="Descripción de la imagen"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,12 +65,23 @@ if (isset($_POST['nameBuscaRut'])) {
           <a class="nav-link" href="home.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="registro.php">Registrar</a>
+          <a class="nav-link" href="registro.php">Registro</a>
         </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Registro
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> -->
       </ul>
       <form class="d-flex" role="search" action="mostrar.php" method="POST">
         <input class="form-control me-2" name="nameBuscaRut" type="search" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10">
-        <button class="btn btn-buscar" type="submit">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="btn btn-buscar" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
     </div>
   </div>

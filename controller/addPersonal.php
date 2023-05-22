@@ -61,7 +61,7 @@ $categoriaP = mysqli_real_escape_string($conn, $categoriaP);
 $profesionP = mysqli_real_escape_string($conn, $profesionP);
 $lugarP     = mysqli_real_escape_string($conn, $lugarP);
 $sector     = mysqli_real_escape_string($conn, $sector);
-// $obsP       = mysqli_real_escape_string($conn, $obsP);
+$obsP       = mysqli_real_escape_string($conn, $obsP);
 $decreto    = mysqli_real_escape_string($conn, $decreto);
 $CelularP   = str_replace(" ", "", $CelularP); // ELIMINA ESPACIOS DE LA CADENA
 $correoP    = str_replace(" ", "", $correoP); // ELIMINA ESPACIOS DE LA CADENA
@@ -80,8 +80,6 @@ $pdfEstudios     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodo
 $pdfDJurada      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']);
 $pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']);
 $pdfContrato     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
-
-// OBTIENE EL NOMBRE EL HOST
 
 
 // CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA

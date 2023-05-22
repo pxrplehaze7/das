@@ -42,6 +42,7 @@ h1 {
   font-weight: bold;
   font-size: 35px;
   text-shadow: 2px 3px 0px #454545;
+  margin-top: 100px;
 }
 
 /* SECCIONES COMO DATOS PERSONALES, CONTACTO */
@@ -61,9 +62,8 @@ h6 {
   text-align: center;
   padding-bottom: 20px;
   font-size: 30px;
-  color: #f36f03;
+  color: #5c5c5c;
   font-weight: bold;
-  text-shadow: 2px 3px 0px #4545455b;
 }
 
 /* LABEL DE LOS INPUT */
@@ -224,9 +224,9 @@ input[type="text"],
   border-top-right-radius: 30px;
   border-bottom-right-radius: 30px;
   width: 130px;
-  background-color: #79cb41b8;
+  background-color: #a1a1a1;
   color: black;
-  border-color: #79cb41b8;
+  border-color: #a1a1a1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,16 +238,16 @@ input[type="text"],
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   width: 130px;
-  background-color: #79cb41b8;
+  background-color: #a1a1a1;
   color: black;
-  border-color: #79cb41b8;
+  border-color: #a1a1a1;
 }
 
 .boton-ver:hover,
 .boton-descargar:hover {
-  background-color: #99e564b8;
+  background-color: #ff821b;
   color: black;
-  border-color: #99e564b8;
+  border-color: #ff821b;
 }
 
 h4 {
@@ -283,10 +283,7 @@ h4 {
   font-weight: bold;
   font-size: 15px;
   border-radius: 30px;
-  position: fixed;
-  top: 92px;
-  right: 18px;
-  z-index: 9999;
+
 }
 
 

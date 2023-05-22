@@ -250,7 +250,7 @@
             <br>
             <div class="observaciones seccion">
                 <h6>Observaciones</h6>
-                <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"></textarea>
+                <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50" maxlength="1000"></textarea>
             </div>
             <br>
             <div class="boton">
