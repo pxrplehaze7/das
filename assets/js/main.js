@@ -122,13 +122,13 @@ lugarSelect.addEventListener('change', function () {
 $(document).ready(function() {
   $("#documentosApelacion").on("submit", function(event) {
     event.preventDefault();
-    console.log("holaaaas");
 
     if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
       // Si no se ha seleccionado ninguna opción
       alert('Debe indicar si apelo o no.');
       return;
     }
+
 
     let formData = new FormData(this);
     console.log(formData);

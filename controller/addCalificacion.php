@@ -6,7 +6,6 @@ include("./config/conexion.php");
 $idTrabajador = $_POST['nameTrabCa'];
 $desde        = $_POST['nameInicio'];
 $hasta        = $_POST['nameFin'];
-
 $apelo        = $_POST['nameApeloRes'];
 $rut          = $_POST['nameRutCa'];
 
@@ -21,7 +20,7 @@ $desde = mysqli_real_escape_string($conn, $desde);
 $hasta = mysqli_real_escape_string($conn, $hasta);
 $apelo = mysqli_real_escape_string($conn, $apelo);
 
-$fecha        = $desde . '-' . $hasta;
+$fecha        = $desde . ' - ' . $hasta;
 $fecha = mysqli_real_escape_string($conn, $fecha);
 
 $pdfcalificacion = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCalifdoc']['name']);

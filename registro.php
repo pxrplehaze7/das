@@ -248,11 +248,11 @@
                 <br>
             </div>
             <br>
-            <!-- <div class="observaciones seccion">
+            <div class="observaciones seccion">
                 <h6>Observaciones</h6>
-                <textarea id="idObserv" name="nameObserv" class="form-control" rows="4" cols="50"></textarea>
+                <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"></textarea>
             </div>
-            <br> -->
+            <br>
             <div class="boton">
                 <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
             </div>

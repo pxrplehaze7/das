@@ -164,39 +164,70 @@
             </div>
 
 
+            <div class="observaciones seccion">
+                <h6>Observaciones</h6>
+                <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
+            </div>
+            <br>
+
+
             <div class="seccion">
-    <table id="myTable" class="display table table-striped table-primary table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Fecha</th>
-                <th>Calificación</th>
-                <th>Apelo</th>
-                <th>Apelación</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $sqlCalificacion = "SELECT * 
+                <h6>Calificaciones</h6>
+
+                <table id="myTable" class="display table table-striped table-light table-bordered">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Calificación</th>
+                            <th class="text-center">Apelo</th>
+                            <th class="text-center">Apelación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sqlCalificacion = "SELECT * 
                                 FROM calificaciones cal
                                 INNER JOIN trabajador tra ON (tra.IDTra = cal.IDTra)
                                 WHERE $idtra = cal.IDTra ";
 
-            $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
+                        $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
 
-            while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
-                echo "<tr>";
-                echo "<td>" . $mostrar['IDCalif'] . "</td>";
-                echo "<td>" . $mostrar['fecha'] . "</td>";
-                echo "<td>" . $mostrar['apelo'] . "</td>";
-                echo "<td>" . $mostrar['RutaCalificacion'] . "</td>";
-                echo "<td>" . $mostrar['RutaApelacion'] . "</td>";
-                echo "</tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-</div>
+                        while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
+                            echo "<tr>";
+                            echo "<td class='align-middle text-center'>" . $mostrar['IDCalif'] . "</td>";
+                            echo "<td class='align-middle text-center'>" . $mostrar['fecha'] . "</td>";
+
+                            echo "<td class='align-middle text-center'>";
+                            if (!empty($mostrar['RutaCalificacion'])) {
+                                echo '
+                     
+                                <center>
+                                    <div class="col-md-6 contenedor-botones">
+                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $mostrar['RutaCalificacion'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                    <a href="' . $mostrar['RutaCalificacion'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                </div>
+                                </center>';
+                            }
+                            echo '</td>';
+                            echo "<td class='align-middle text-center'>" . $mostrar['apelo'] . "</td>";
+
+                            echo "<td class='centrado'>";
+                            if (!empty($mostrar['RutaApelacion'])) {
+                                echo '
+                                <center>
+                                 <div class="col-md-6 contenedor-botones">
+                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $mostrar['RutaApelacion'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                    <a href="' . $mostrar['RutaApelacion'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                </div>
+                                </center>';
+                            }
+                            echo '</td>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
 
 
 
@@ -210,34 +241,34 @@
         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
         <script>
-    $(document).ready(function() {
-        $('#myTable').DataTable({
-            language: {
-                "sEmptyTable":     "No se encontraron datos disponibles en la tabla",
-                "sInfo":           "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando 0 a 0 de 0 registros",
-                "sInfoFiltered":   "(filtrado de _MAX_ registros en total)",
-                "sInfoPostFix":    "",
-                "sInfoThousands":  ",",
-                "sLengthMenu":     "Mostrar _MENU_ registros",
-                "sLoadingRecords": "Cargando...",
-                "sProcessing":     "Procesando...",
-                "sSearch":         "Buscar:",
-                "sZeroRecords":    "No se encontraron registros coincidentes",
-                "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending":  ": activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": activar para ordenar la columna de manera descendente"
-                }
-            }
-        });
-    });
-</script>
+            $(document).ready(function() {
+                $('#myTable').DataTable({
+                    language: {
+                        "sEmptyTable": "No se encontraron datos disponibles en la tabla",
+                        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
+                        "sInfoPostFix": "",
+                        "sInfoThousands": ",",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sLoadingRecords": "Cargando...",
+                        "sProcessing": "Procesando...",
+                        "sSearch": "Buscar:",
+                        "sZeroRecords": "No se encontraron registros coincidentes",
+                        "oPaginate": {
+                            "sFirst": "Primero",
+                            "sLast": "Último",
+                            "sNext": "Siguiente",
+                            "sPrevious": "Anterior"
+                        },
+                        "oAria": {
+                            "sSortAscending": ": activar para ordenar la columna de manera ascendente",
+                            "sSortDescending": ": activar para ordenar la columna de manera descendente"
+                        }
+                    }
+                });
+            });
+        </script>
 
 </body>
 

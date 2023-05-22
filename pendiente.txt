@@ -8,7 +8,7 @@ no me muestra el error al insertar y ver como probar forzando error
 cambiar cursor en menu
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
 arreglar boton flotante
-
+mostrar alerta al agregar calificacion, y al confirmar registro
 
 
 
