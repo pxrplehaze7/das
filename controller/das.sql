@@ -44,8 +44,13 @@ CREATE TABLE `das`.`lugar` (
     PRIMARY KEY (`IDLugar`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-
-
+CREATE TABLE `das`.`sector` (
+    `IDSector` INT NOT NULL,
+    `IDLugar` INT NOT NULL,
+    `NombreSector` VARCHAR(50) NOT NULL,
+    PRIMARY KEY (`IDSector`),
+    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 CREATE TABLE `das`.`trabajador` (
     `IDTra` INT NOT NULL AUTO_INCREMENT,
@@ -54,6 +59,7 @@ CREATE TABLE `das`.`trabajador` (
     `IDAFP` INT NOT NULL,
     `IDPrev` INT NOT NULL,
     `IDLugar` INT NOT NULL,
+    `IDSector` INT NOT NULL,
     `NombreTra` VARCHAR(200) NOT NULL,
     `PaternoTra` VARCHAR(100) NOT NULL,
     `MaternoTra` VARCHAR(100) NULL,
@@ -62,7 +68,6 @@ CREATE TABLE `das`.`trabajador` (
     `Genero` VARCHAR(10) NOT NULL,
     `Medico` VARCHAR(2) NULL,
     `Profesion` VARCHAR(300) NOT NULL,
-    `Sector` VARCHAR(100) NULL,
     `CelularTra` VARCHAR (9) NULL,
     `CorreoTra` VARCHAR(100) NULL,
     `RutaPrev` VARCHAR(400) NULL,
@@ -89,12 +94,10 @@ CREATE TABLE `das`.`trabajador` (
     UNIQUE (`Rut`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-
-
 CREATE TABLE `das`.`calificaciones` (
     `IDCalif` INT NOT NULL AUTO_INCREMENT,
     `IDTra` INT NOT NULL,
-    `fecha` VARCHAR(9) NOT NULL,  
+    `fecha` VARCHAR(9) NOT NULL,
     `apelo` VARCHAR(2) NOT NULL,
     `RutaCalificacion` VARCHAR(400) NULL,
     `RutaApelacion` VARCHAR(400) NULL,
@@ -162,9 +165,6 @@ INSERT INTO
 VALUES
     (4, 'Indefinido');
 
-
-
-
 INSERT INTO
     `lugar`(`IDLugar`, `NombreLug`)
 VALUES
@@ -195,10 +195,66 @@ INSERT INTO
 VALUES
     (6, 'SAR Chiguayante');
 
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (1, 1, 'No Aplica');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (2, 1, 'Droguería');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (3, 2, 'No Aplica');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (4, 2, 'Óptica Municipal');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (5, 2, 'Ruka Antü');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (6, 3, 'No Aplica');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (7, 4, 'No Aplica');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (8, 4, 'Laboratorio Dental');
+
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (9, 5, 'No Aplica');
 
 
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (10, 5, 'Farmacia Municipal');
 
+INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (11, 5, 'Casa de Salud Mental');
 
+    INSERT INTO
+    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
+VALUES
+    (12, 6, 'No Aplica');
 
 INSERT INTO
     `prevision`(`IDPrev`, `NombrePrev`)
@@ -247,4 +303,3 @@ INSERT INTO
     `categoria`(`IDCat`, `NombreCat`)
 VALUES
     (6, 'f) Auxiliares de servicios de Salud.');
-

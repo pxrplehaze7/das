@@ -97,7 +97,6 @@ if (isset($_POST['nameRutEditar'])) {
 
             <br>
             <div class="seccion">
-
                 <h6>Datos Personales</h6>
                 <div class="row ">
                     <div class="col-md">
@@ -131,10 +130,8 @@ if (isset($_POST['nameRutEditar'])) {
 
 
 
-
-
-
                 <div class="art">
+
                     <div class="row">
                         <div class="col-md-6"> <!-- TIPO DE CONTRATO -->
                             <?php
@@ -174,6 +171,8 @@ if (isset($_POST['nameRutEditar'])) {
                     </div>
 
 
+
+
                     <div id="idPreguntaCat1" class="row radioCentro">
                         <center>
                             <label><span style="color: red;">*</span> ¿Es médico?</label>
@@ -187,6 +186,7 @@ if (isset($_POST['nameRutEditar'])) {
                         </div>
                         <br>
                     </div>
+
 
 
 
@@ -229,20 +229,13 @@ if (isset($_POST['nameRutEditar'])) {
                         </div>
                     </div>
 
-
-
-
-
                     <div>
                         <label for="idProfesion"><span style="color: red;">*</span> Profesión</label>
                         <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $profesion ?>" class="form-control" require>
                     </div>
+
+
                 </div>
-
-
-
-
-
 
                 <br>
                 <div class="radioCentro row">
@@ -255,9 +248,7 @@ if (isset($_POST['nameRutEditar'])) {
                         <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput form-check-input <?php if ($genero == 'Masculino') echo "checked"; ?>">
                         <label for="idMasculino" class="radio form-check-label">Masculino</label>
                     </div>
-
                 </div>
-
 
 
 
@@ -281,11 +272,6 @@ if (isset($_POST['nameRutEditar'])) {
                 </div>
             </div>
             <br>
-
-
-
-
-
 
 
 
@@ -320,14 +306,12 @@ if (isset($_POST['nameRutEditar'])) {
                         </div>
                     </div>
                 </div>
+
+
+
+
+
                 <br>
-
-
-
-
-
-
-
                 <div class="row"> <!-- PREVISION -->
 
                     <div class="col-md-3">
@@ -377,147 +361,138 @@ if (isset($_POST['nameRutEditar'])) {
                 </div>
                 <br>
 
-
-
-
-
-
-aquiiiiiii
-
-
-                <div>
-                    <?php
-                    if (!empty($persona['RutaNac'])) { ?>
-                        <div class="documento">
-                            <center>
-                                <div class=" titulo">
-                                    <a class="a">Certificado de Nacimiento</a>
-                                </div>
-                            </center>
-                            <div class="container">
-                                <div class="row doc flex-wrap">
-                                    <div class="col-md-3 contenedor-botones">
-                                        <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                        <a href="<?php echo $persona['RutaNac']; ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    <?php  } else { ?>
-                        <div class="">
-                            <center>
-                                <div class=" titulo">
-                                    <a class="a">Certificado de Nacimiento</a>
-                                </div>
-                            </center>
-                            <div class="container">
-                                <div class="row doc flex-wrap">
-                                    <div class="col-md-3 contenedor-botones">
-                                        <button disabled class="btn btn-primary pendiente w-100">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php } ?>
+                <div class="documentacion seccion">
+                    <h6>Documentación</h6>
 
                     <br>
+                    <div class="declaracion">
+                        <?php include('./controller/consulta_archivo/declaracionJ.php') ?>
+                        <br>
+                        <label for="idDJuradainput">Declaración Jurada</label>
+                        <div class="input-group ">
+                            <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
+                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
 
-                    <label for="idNACinput">Certificado de Nacimiento</label>
-                    <div class="input-group ">
-                        <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
                 <br>
-                <div>
-                    <label for="idANTECEinput">Certificado de Antecedentes</label>
-                    <div class="input-group ">
-                        <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/certificadoNac.php') ?>
                 <br>
-                <div>
-                    <label for="idCedulainput">Fotocopia Cédula de Identidad</label>
-                    <div class="input-group ">
-                        <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/antecedentes.php') ?>
                 <br>
-                <div>
-                    <label for="idCVinput">Curriculum Vitae</label>
-                    <div class="input-group ">
-                        <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <div id="examenMedico">
-                    <br>
-                    <label for="idExamenMinput">Examen Médico Unico Nacional</label>
-                    <div class="input-group ">
-                        <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
                 <br>
-                <div>
-                    <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
-                    <div class="input-group ">
-                        <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/curriculum.php') ?>
                 <br>
-                <div>
-                    <label for="idDJuradainput">Declaración Jurada</label>
-                    <div class="input-group ">
-                        <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/estudios.php') ?>
                 <br>
-                <div>
-                    <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
-                    <div class="input-group ">
-                        <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/saludCompatible.php') ?>
                 <br>
-                <div id="servicioMilitarHombre">
-                    <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
-                    <div class="input-group">
-                        <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+                <?php include('./controller/consulta_archivo/examenMedico.php') ?>
                 <br>
+                <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
+            </div>
+
+
+
+
+
+
+
+
+
+            <div>
+                <label for="idNACinput">Certificado de Nacimiento</label>
+                <div class="input-group ">
+                    <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
             </div>
             <br>
-            <div class="observaciones seccion">
-                <h6>Observaciones</h6>
-                <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" maxlength="1000"><?php echo $observ ?></textarea>
+            <div>
+                <label for="idANTECEinput">Certificado de Antecedentes</label>
+                <div class="input-group ">
+                    <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
             </div>
             <br>
-            <div class="boton">
-                <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+            <div>
+                <label for="idCedulainput">Fotocopia Cédula de Identidad</label>
+                <div class="input-group ">
+                    <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
             </div>
-        </form>
+            <br>
+            <div>
+                <label for="idCVinput">Curriculum Vitae</label>
+                <div class="input-group ">
+                    <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div id="examenMedico">
+                <br>
+                <label for="idExamenMinput">Examen Médico Unico Nacional</label>
+                <div class="input-group ">
+                    <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <div id="inscripcionMedico">
+                <br>
+                <label for="idInscripinput">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</label>
+                <div class="input-group ">
+                    <input type="file" id="idInscripinput" name="nameInscripdoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
+                <div class="input-group ">
+                    <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="idDJuradainput">Declaración Jurada</label>
+                <div class="input-group ">
+                    <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
+                <div class="input-group ">
+                    <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <br>
+            <div id="servicioMilitarHombre">
+                <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+            <br>
+    </div>
+    <br>
+    <div class="observaciones seccion">
+        <h6>Observaciones</h6>
+        <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50" maxlength="1000"></textarea>
+    </div>
+    <br>
+    <div class="boton">
+        <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+    </div>
+    </form>
     </div>
 
     <script src="./assets/js/main.js"></script>

@@ -22,7 +22,7 @@ if (isset($_POST['nameRutCalifica'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Personal</title>
+    <title>Añadir Calificación</title>
     <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- cdn css bootstrap -->
@@ -47,8 +47,10 @@ if (isset($_POST['nameRutCalifica'])) {
     <div class="container-md">
 
         <form id="documentosApelacion" enctype="multi/form-data" method="POST">
+            <div class="title">
+                <h1>Calificaciones</h1>
+            </div>
 
-            <h1>Calificaciones</h1>
             <br>
             <div class="datosPersonales seccion">
                 <h6>Datos Personales</h6>

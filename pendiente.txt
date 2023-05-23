@@ -1,7 +1,7 @@
 el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
 hacer que se limpien los campos al enviar el form
 crear alerta de usuario registrado y error
-solucionar que no se creen carpetas si no se sube el archivo
+
 hacer que pida menos documentos si es honorario
 
 no me muestra el error al insertar y ver como probar forzando error
@@ -9,17 +9,14 @@ no me muestra el error al insertar y ver como probar forzando error
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
 
 mostrar alerta al agregar calificacion, y al confirmar registro
-se me crean rutas en calificaciones apesar de no haber nada
 
 establecer un año minimo para calificaciones
 
-agregar:
-Certificado de inscripción en el Registro Nacional de Prestadores Individuales
-los medicos y ademas el eunacom
-agregar en la base de datos ese cambio
+arreglar todo lo de honorario para que no muestre lo innecesario
 
-agregar a la base de datos si cumple o no con toda la documentacion dependiendo de si es mujer, medico o honorario 
 arreglar una sub tabla para sector
+
+hacer que se muestre para los medicos lo de la inscripcion
 
 
       <?php if ($id_rol_usuario_actual == 1) { ?>

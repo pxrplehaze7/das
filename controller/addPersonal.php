@@ -48,10 +48,8 @@ if ($_POST['nameSelectLugar'] != "") {
 }
 
 
-
 $afpP       = $_POST['nameSelectAFP'] != "" ? $_POST['nameSelectAFP'] : NULL;
 $prevP       = $_POST['nameSelectPrev'] != "" ? $_POST['nameSelectPrev'] : NULL;
-
 
 
 $correoP = str_replace(' ', '', $correoP);
@@ -193,40 +191,32 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $ruta_InscripcionFINAL  = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;
   }
 
-// //SI ES HOMBRE Y NO ES HONORARIO NI MEDICO
-//   if ($generoP == "Masculino" && $contratoP !=3 && !empty($pdfAFP) && !empty($pdfNacimiento) && !empty($pdfMilitar) && !empty($pdfAntecedentes) && !empty($pdfCedula) && !empty($pdfCurriculum) && !empty($pdfPrevision) && !empty($pdfEstudios) && !empty($pdfDJurada) && !empty($pdfSaludCompat) && !empty($pdfContrato)) {
-//     $cumple = true; 
-//   }
-
-// //SI ES HOMBRE, MEDICO Y NO ES HONORARIO probando
-// if ($generoP == "Masculino" && $medicoOno == "Si" && $contratoP !=3 && !empty($pdfAFP) && !empty($pdfNacimiento) && !empty($pdfMilitar) && !empty($pdfAntecedentes) && !empty($pdfCedula) && !empty($pdfCurriculum) && !empty($pdfPrevision) && !empty($pdfEstudios) && !empty($pdfDJurada) && !empty($pdfSaludCompat) && !empty($pdfContrato) && !empty($pdfExamenM) && !empty($pdfInscripcion)) {
-//   $cumple = true; 
-// }
-
-// //SI ES MUJER, MEDICO Y NO ES HONORARIO
-// if ($generoP == "Femenino" && $medicoOno == "Si" && $contratoP !=3 && !empty($pdfAFP) && !empty($pdfNacimiento) && !empty($pdfAntecedentes) && !empty($pdfCedula) && !empty($pdfCurriculum) && !empty($pdfPrevision) && !empty($pdfEstudios) && !empty($pdfDJurada) && !empty($pdfSaludCompat) && !empty($pdfContrato) && !empty($pdfExamenM) && !empty($pdfInscripcion)) {
-//   $cumple = true; 
-// }
-
-// //SI ES MUJER, NO ES MEDICO NI HONORARIO
-// if ($generoP == "Femenino" && $medicoOno == "Si" && $contratoP !=3 && !empty($pdfAFP) && !empty($pdfNacimiento) && !empty($pdfMilitar) && !empty($pdfAntecedentes) && !empty($pdfCedula) && !empty($pdfCurriculum) && !empty($pdfPrevision) && !empty($pdfEstudios) && !empty($pdfDJurada) && !empty($pdfSaludCompat) && !empty($pdfContrato)) {
-//   $cumple = true; 
-// }
 
 
-// //SI ES HOMBRE O MUJER Y ES HONORARIO Y MEDICO
-// if ($generoP == "Masculino" || $generoP == "Femenino" && $medicoOno == "Si" && $contratoP =3 && !empty($pdfAntecedentes) && !empty($pdfCedula) && !empty($pdfCurriculum) && !empty($pdfEstudios) && !empty($pdfContrato) && !empty($pdfExamenM) && !empty($pdfInscripcion)) {
-//   $cumple = true; 
-// }
 
-//SI ES HOMBRE O MUJER Y ES HONORARIO PERO NO MEDICO
-if (($generoP == "Masculino" || $generoP == "Femenino") && $medicoOno == "No" && $contratoP == 3 && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_ContratoFINAL)) {
-  $cumple = true; 
-} else {
-  $cumple = false;
-}
-
-
+  if (
+    // SI ES HOMBRE O MUJER Y ES HONORARIO Y MEDICO
+    (($generoP == "Masculino" || $generoP == "Femenino") && $medicoOno == "Si" && $contratoP == 3 && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_ContratoFINAL) && !empty($ruta_ExamenMFINAL) && !empty($ruta_InscripcionFINAL))
+    ||
+    // SI ES HOMBRE O MUJER Y ES HONORARIO PERO NO MEDICO
+    (($generoP == "Masculino" || $generoP == "Femenino") && $medicoOno == "No" && $contratoP == 3 && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_ContratoFINAL))
+    ||
+    // SI ES HOMBRE Y NO ES HONORARIO NI MEDICO
+    ($generoP == "Masculino" && $contratoP != 3 && $medicoOno == "No" && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_militarFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL))
+    ||
+    // SI ES HOMBRE, MEDICO Y NO ES HONORARIO
+    ($generoP == "Masculino" && $medicoOno == "Si" && $contratoP != 3 && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_militarFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL) && !empty($ruta_ExamenMFINAL) && !empty($ruta_InscripcionFINAL))
+    ||
+    // SI ES MUJER, MEDICO Y NO ES HONORARIO
+    ($generoP == "Femenino" && $medicoOno == "Si" && $contratoP != 3 && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL) && !empty($ruta_ExamenMFINAL) && !empty($ruta_InscripcionFINAL))
+    ||
+    // SI ES MUJER, NO ES MEDICO NI HONORARIO
+    ($generoP == "Femenino" && $medicoOno == "No" && $contratoP != 3 && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL))
+  ) {
+    $cumple = true;
+  } else {
+    $cumple = false;
+  }
 
 
   // SE INSERTAN DATOS A LA BASE DE DATOS

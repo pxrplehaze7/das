@@ -31,3 +31,4 @@ if (!empty($persona['RutaNac'])) {
                 </div>
             </div>';
 }
+?>

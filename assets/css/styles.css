@@ -29,11 +29,9 @@ body {
   padding-right: 30px;
   border-radius: 50px;
   margin-top: 30px;
+  padding-bottom: 35px;
 }
 
-form {
-  padding-bottom: 30px;
-}
 
 /* EL TITULO DE LA PAGINA */
 h1 {
@@ -42,7 +40,9 @@ h1 {
   font-weight: bold;
   font-size: 35px;
   text-shadow: 2px 3px 0px #454545;
-  margin-top: 100px;
+  margin-top: 60px;
+  padding-left: 7px;
+  padding-right: 7px;
 }
 
 /* SECCIONES COMO DATOS PERSONALES, CONTACTO */
@@ -297,6 +297,17 @@ h4 {
 .swal2-container {
   z-index: 9999;
 }
+
+.title{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 i{
+  font-size: 45px;
+}
+
 
 
 @media screen and (max-width: 1200px) {

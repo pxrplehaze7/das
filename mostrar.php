@@ -28,27 +28,27 @@
         <?php include("./controller/navbar.php") ?>
     </header>
     <?php if (isset($persona)) { ?>
-        <div class="container-md">
-            <h1>Información Personal</h1>
-            <form action="editar_registro.php" method="POST">
-                <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
-                <button class="btn " type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                    </svg></button>
-            </form>
 
-            <!-- <form action="editar_registro.php" method="POST">
-                <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
-                <button class="btn " type="submit">Editar Registro <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
-            </form> -->
+        <div class="container-md">
+
+            <form action="editar_registro.php" method="POST">
+                <div class="row d-flex justify-content-center align-items-center principal">
+                    <div class="title">
+                        <h1>Información Personal</h1>
+                        <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+                        <button class="btn btn-editar" type="submit">
+                            <h1><i class="fa-solid fa-pen-to-square"></i></h1>
+                        </button>
+                    </div>
+                </div>
+            </form>
 
 
             <br>
             <div class="seccion">
                 <div class="row ">
                     <h6>Datos Personales</h6>
-                    <div class="col-md"> n
+                    <div class="col-md">
                         <label>Rut</label>
                         <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
                         <br>
@@ -184,10 +184,14 @@
             <div class="seccion">
 
                 <h6>Calificaciones</h6>
-                <form action="calificaciones.php" method="POST">
-                    <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
-                    <button class="btn btn-calificacion" type="submit">Agregar Calificaciones <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
-                </form>
+                <div class="addCalificacion">
+                    <form action="calificaciones.php" method="POST">
+                        <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
+                        <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                    </form>
+                </div>
+
+
                 <table id="myTable" class="display table table-striped table-light table-bordered">
                     <thead>
                         <tr>
