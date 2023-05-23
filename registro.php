@@ -213,6 +213,14 @@
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
+                <div id="inscripcionMedico">
+                <br>
+                    <label for="idInscripinput">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</label>
+                    <div class="input-group ">
+                        <input type="file" id="idInscripinput" name="nameInscripdoc" class="form-control" accept=".pdf">
+                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
                 <br>
                 <div>
                     <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>

@@ -59,7 +59,7 @@ if (selectCat) {
   $(document).ready(function () {
     // Oculta el campo al cargar la página
     $("#examenMedico").hide();
-
+    $("#inscripcionMedico").hide();
     // Agrega un evento change a los inputs de tipo radio
     $('input[name="nameMedico"]').change(function () {
       // Obtiene el valor del input de tipo radio seleccionado
@@ -68,8 +68,10 @@ if (selectCat) {
       // Muestra u oculta el campo según el valor del input de tipo radio
       if (valor == "Si") {
         $("#examenMedico").show();
+        $("#inscripcionMedico").show();
       } else {
         $("#examenMedico").hide();
+        $("#inscripcionMedico").hide();
       }
     });
   });
