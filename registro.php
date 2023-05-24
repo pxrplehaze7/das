@@ -1,4 +1,6 @@
-<?php include("./controller/config/conexion.php"); ?>
+<?php include("./controller/config/conexion.php"); 
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -31,7 +33,7 @@
             <div class="title">
                 <h1>Registro de Trabajadores</h1>
             </div>
-            
+
             <br>
             <div class="seccion">
                 <h6>Datos Personales</h6>
@@ -89,13 +91,23 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6"> <!-- LUGAR -->
-                            <?php include("./controller/consulta_select/select_lugar.php"); ?>
+                            <label for="idSelectLugar"><span style="color: red;">*</span> Lugar</label>
+                            <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
+                                <option value="" hidden>Selecciona un Lugar</option>
+                                <?php
+                                $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
+                                $resultadoLugar = mysqli_query($conn, $sqlLugar);
+                                while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
+                                    echo "<option value='" . $fila['IDLugar'] . "'>" . $fila['NombreLug'] . "</option>";
+                                }
+                                ?>
+                            </select>
                             <br>
                         </div>
                         <div class="col-md-6">
-                            <label for="idSelectSector">Sector:</label>
-                            <select class="form-select" id="idSelectSector" name="nameSelectSector">
-                                <option value="No aplica">No Aplica</option>
+                            <label for="idSelectSector"><span style="color: red;">*</span> Sector</label>
+                            <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
+                                <option value="" hidden>Selecciona un Sector</option>
                             </select>
                         </div>
                     </div>
@@ -217,7 +229,7 @@
                     </div>
                 </div>
                 <div id="inscripcionMedico">
-                <br>
+                    <br>
                     <label for="idInscripinput">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</label>
                     <div class="input-group ">
                         <input type="file" id="idInscripinput" name="nameInscripdoc" class="form-control" accept=".pdf">
@@ -276,4 +288,5 @@
     <!-- cdn js de boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
+
 </html>

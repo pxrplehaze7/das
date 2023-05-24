@@ -38,7 +38,7 @@ $("#documentosObligatorios").on("submit", function (event) {
   }).done(function (data) {
     //   $( this ).addClass( "done" );
     //console.log(data)
-    $('body' ).append( data );
+    $('body').append(data);
   });
 
 });
@@ -59,7 +59,7 @@ $(document).ready(function () {
           }
         });
       } else {
-        $('#rut-validation').html('El RUT debe ir sin puntos y con guión'); 
+        $('#rut-validation').html('El RUT debe ir sin puntos y con guión');
       }
     }
   });
@@ -76,52 +76,88 @@ function clearFileInput(inputId) {
 
 
 
-const lugarSelect = document.getElementById('idSelectLugar');
-const sectorSelect = document.getElementById('idSelectSector');
+// const lugarSelect = document.getElementById('idSelectLugar');
+// const sectorSelect = document.getElementById('idSelectSector');
 
-if(lugarSelect){
-// LISTENER AL CAMBIO DEL SELECT LUGAR
-lugarSelect.addEventListener('change', function () {
-  const lugarId = lugarSelect.value;
-  //OBTIENE EL VALOR DEL SELECT Y SE ASIGNA A CONST
+// if (lugarSelect) {
+//   // LISTENER AL CAMBIO DEL SELECT LUGAR
+//   lugarSelect.addEventListener('change', function () {
+//     const lugarId = lugarSelect.value;
+//     //OBTIENE EL VALOR DEL SELECT Y SE ASIGNA A CONST
 
-  if (lugarId === '2') {
-    // SI LA OPCION SELECCIONADA TIENE ID 2 ESTABLECE ESTAS OPCIONES
-    sectorSelect.innerHTML = `
-        <option value="No aplica">No Aplica</option>
-        <option value="Óptica Municipal">Óptica Municipal</option>
-        <option value="Centro de Salud Integral Ruka Antu">Centro de Salud Integral Ruka Antu</option>
-      `;
-  } else if (lugarId === '4') {
-    // SI LA OPCION SELECCIONADA TIENE ID 4 ESTABLECE ESTAS OPCIONES
-    sectorSelect.innerHTML = `
-         <option value="No aplica">No Aplica</option>
-         <option value="Laboratorio Dental">Laboratorio Dental</option>
-      `;
-    } else if (lugarId === '1') {
-      // SI LA OPCION SELECCIONADA TIENE ID 1 ESTABLECE ESTAS OPCIONES
-      sectorSelect.innerHTML = `
-           <option value="No aplica">No Aplica</option>
-           <option value="Droguería">Droguería</option>
-        `;
-      } else if (lugarId === '5') {
-        // SI LA OPCION SELECCIONADA TIENE ID 5 ESTABLECE ESTAS OPCIONES
-        sectorSelect.innerHTML = `
-             <option value="No aplica">No Aplica</option>
-             <option value="Farmacia Municipal">Farmacia Municipal</option>
-             <option value="Casa de Salud Mental">Casa de Salud Mental</option>
-          `;
-  } else {
-    // SI ES DISTINTO
-    sectorSelect.innerHTML = `
-        <option value="No aplica">No Aplica</option>
-      `;
-  }
-});
+//     if (lugarId === '2') {
+//       // SI LA OPCION SELECCIONADA TIENE ID 2 ESTABLECE ESTAS OPCIONES
+//       sectorSelect.innerHTML = `
+//         <option value="No aplica">No Aplica</option>
+//         <option value="Óptica Municipal">Óptica Municipal</option>
+//         <option value="Centro de Salud Integral Ruka Antu">Centro de Salud Integral Ruka Antu</option>
+//       `;
+//     } else if (lugarId === '4') {
+//       // SI LA OPCION SELECCIONADA TIENE ID 4 ESTABLECE ESTAS OPCIONES
+//       sectorSelect.innerHTML = `
+//          <option value="No aplica">No Aplica</option>
+//          <option value="Laboratorio Dental">Laboratorio Dental</option>
+//       `;
+//     } else if (lugarId === '1') {
+//       // SI LA OPCION SELECCIONADA TIENE ID 1 ESTABLECE ESTAS OPCIONES
+//       sectorSelect.innerHTML = `
+//            <option value="No aplica">No Aplica</option>
+//            <option value="Droguería">Droguería</option>
+//         `;
+//     } else if (lugarId === '5') {
+//       // SI LA OPCION SELECCIONADA TIENE ID 5 ESTABLECE ESTAS OPCIONES
+//       sectorSelect.innerHTML = `
+//              <option value="No aplica">No Aplica</option>
+//              <option value="Farmacia Municipal">Farmacia Municipal</option>
+//              <option value="Casa de Salud Mental">Casa de Salud Mental</option>
+//           `;
+//     } else {
+//       // SI ES DISTINTO
+//       sectorSelect.innerHTML = `
+//         <option value="No aplica">No Aplica</option>
+//       `;
+//     }
+//   });
+// }
+
+
+
+function cargarSectores() {
+    const lugarSeleccionado = document.getElementById("idSelectLugar").value;
+    console.log("ola");
+
+    $.ajax({
+      
+      url: './controller/lugar_sector.php',
+        method: "POST",
+        data: { lugarSeleccionado: lugarSeleccionado },
+        dataType: 'json',
+        success: function(respuesta) {
+            let largo = respuesta.length;
+            $("#idSelectSector").empty();
+
+            $("#idSelectSector").append("<option hidden='hidden' disabled selected>--- Seleccione ---</option>")
+            for (let i = 0; i < largo; i++) {
+                let idSector = respuesta[i]['IDSector'];
+                let nombreSector = respuesta[i]['NombreSector'];
+
+                $("#idSelectSector").append("<option value='" + idSector + "'>" + nombreSector + "</option>");
+            }
+        },
+        error: function(error){
+          console.error("EL ERRORCITO",error.responseText)
+        }
+    });
+    console.log("adios");
 }
 
-$(document).ready(function() {
-  $("#documentosApelacion").on("submit", function(event) {
+
+
+
+
+
+$(document).ready(function () {
+  $("#documentosApelacion").on("submit", function (event) {
     event.preventDefault();
 
     if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
@@ -141,7 +177,7 @@ $(document).ready(function() {
       cache: false,
       contentType: false,
       processData: false
-    }).done(function(data) {
+    }).done(function (data) {
       console.log(data);
     });
   });
