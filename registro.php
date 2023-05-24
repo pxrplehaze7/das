@@ -1,4 +1,4 @@
-<?php include("./controller/config/conexion.php"); 
+<?php include("./controller/config/conexion.php");
 
 ?>
 <!DOCTYPE html>
@@ -40,13 +40,13 @@
                 <div class="row ">
                     <div class="col-md">
                         <label for="idRutInput"><span style="color: red;">*</span> Rut</label>
-                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
+                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" oninput="validarRutFormato(this)" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
                     <div class="col-md">
                         <label for="idPersona"><span style="color: red;">*</span> Nombres</label>
-                        <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" required>
+                        <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" oninput="validarTexto(this)" required>
                         <br>
                     </div>
                 </div>
@@ -54,12 +54,12 @@
                 <div class="row">
                     <div class="col-md">
                         <label for="idAppat"><span style="color: red;">*</span> Apellido Paterno</label>
-                        <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" required>
+                        <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)" required>
                         <br>
                     </div>
                     <div class="col-md">
                         <label for="idApmat">Apellido Materno</label>
-                        <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control">
+                        <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)">
                         <br>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                         <label for="idCelular">Celular</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">+56</span>
-                            <input type="text" name="nameCelular" id="idCelular" placeholder="987654321" class="form-control" maxlength="9">
+                            <input type="text" name="nameCelular" id="idCelular" placeholder="987654321" class="form-control" maxlength="9" oninput="validarCelular(this)">
                         </div>
                     </div>
                     <div class="col-6">
@@ -149,7 +149,7 @@
             <br>
             <div class="seccion">
                 <h6>Documentación</h6>
-                <div class="row"> <!-- AFP -->
+                <div class="row" id="afp"> <!-- AFP -->
                     <div class=" col-md-3">
                         <?php include("./controller/consulta_select/select_afp.php"); ?>
                     </div>
@@ -160,9 +160,10 @@
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
+                    <br>
                 </div>
-                <br>
-                <div class="row"> <!-- PREVISION -->
+
+                <div class="row" id="prevision"> <!-- PREVISION -->
                     <div class=" col-md-3">
                         <?php include("./controller/consulta_select/select_prevision.php"); ?>
                     </div>
@@ -173,8 +174,9 @@
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
+                    <br>
                 </div>
-                <br>
+
                 <div class="row"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                     <div class="col-md-3">
                         <label for="idDecreto"><span style="color: red;">*</span> Decreto</label>
@@ -187,88 +189,97 @@
                             <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDocContratoInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
+                    <br>
                 </div>
-                <br>
-                <div>
+
+                <div id="nacimiento">
                     <label for="idNACinput">Certificado de Nacimiento</label>
                     <div class="input-group ">
                         <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
+
                 <div>
                     <label for="idANTECEinput">Certificado de Antecedentes</label>
                     <div class="input-group ">
                         <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
+
                 <div>
                     <label for="idCedulainput">Fotocopia Cédula de Identidad</label>
                     <div class="input-group ">
                         <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
-                <div>
+
+                <div id="cv">
                     <label for="idCVinput">Curriculum Vitae</label>
                     <div class="input-group ">
                         <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
                 <div id="examenMedico">
-                    <br>
                     <label for="idExamenMinput">Examen Médico Unico Nacional</label>
                     <div class="input-group ">
                         <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
                 <div id="inscripcionMedico">
-                    <br>
                     <label for="idInscripinput">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</label>
                     <div class="input-group ">
                         <input type="file" id="idInscripinput" name="nameInscripdoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
+
                 <div>
                     <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
                     <div class="input-group ">
                         <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
-                <div>
+
+                <div id="declaraciondoc">
                     <label for="idDJuradainput">Declaración Jurada</label>
                     <div class="input-group ">
                         <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
-                <div>
+
+                <div id="saludcomdoc">
                     <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
                     <div class="input-group ">
                         <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
+
                 <div id="servicioMilitarHombre">
                     <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
                     <div class="input-group">
                         <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
                         <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
                     </div>
+                    <br>
                 </div>
-                <br>
+
             </div>
             <br>
             <div class="observaciones seccion">
@@ -284,7 +295,7 @@
 
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
-
+    <script src="./assets/js/validaciones_input.js"></script>
     <!-- cdn js de boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>

@@ -14,10 +14,14 @@ establecer un año minimo para calificaciones
 
 arreglar todo lo de honorario para que no muestre lo innecesario
 
-arreglar una sub tabla para sector
+validar campos, que esten en orden
 
-hacer que se muestre para los medicos lo de la inscripcion
+validar que rut exista
+estado civil?
+hacer que, si por ejemplo no posee afp, que no aparezca como documento pendiente
+probar que en nombre no se ingresen numeros 
 
+hacer que se ingresen pdf con el siguiente nombre: fecha - pdfAFP por ejemplo
 
       <?php if ($id_rol_usuario_actual == 1) { ?>
 
@@ -49,3 +53,4 @@ hacer que se muestre para los medicos lo de la inscripcion
                                     </td>
 
                                 <?php } ?>
+

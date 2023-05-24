@@ -100,7 +100,7 @@
                     </div>
                     <div class="sector-ver col-md">
                         <label>Sector</label>
-                        <input value="<?php echo $persona['Sector'] ?>" class="form-control" readonly>
+                        <input value="<?php echo $persona['NombreSector'] ?>" class="form-control" readonly>
                         <br>
                     </div>
                 </div>
@@ -169,6 +169,7 @@
                 <?php include('./controller/consulta_archivo/consultaPrev.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/examenMedico.php') ?>
+                <?php include('./controller/consulta_archivo/inscripcion.php') ?>
                 <br>
                 <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
             </div>

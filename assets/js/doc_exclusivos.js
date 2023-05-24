@@ -78,28 +78,3 @@ if (selectCat) {
 
 }
 
-
-// //SELECCIONA EL ELEMENTO  DEL HTML CON EL ID idSelectCat Y LO ASIGNA A LA VARIABLE selectCat
-// let selectContrato = document.querySelector('#idSelectCon');
-// if (selectContrato.value == 3) {
-
-
-//   $(document).ready(function () {
-//     // Oculta el campo al cargar la página
-//     $("#examenMedico").hide();
-
-//     // Agrega un evento change a los inputs de tipo radio
-//     $('input[name="nameMedico"]').change(function () {
-//       // Obtiene el valor del input de tipo radio seleccionado
-//       var valor = $(this).val();
-
-//       // Muestra u oculta el campo según el valor del input de tipo radio
-//       if (valor == "Si") {
-//         $("#examenMedico").show();
-//       } else {
-//         $("#examenMedico").hide();
-//       }
-//     });
-//   });
-
-// }

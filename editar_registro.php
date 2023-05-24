@@ -5,15 +5,17 @@ include("./controller/config/conexion.php");
 if (isset($_POST['nameRutEditar'])) {
     $rut = $_POST['nameRutEditar']; //se asigna el valor del input rut a $rut
 
-    // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, lug.IDLugar, IDTra, NombreTra, PaternoTra, MaternoTra, Sector, Decreto, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, Observ, RutaInscripcion
-                  FROM trabajador tra
-                  INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
-                  INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
-                  INNER JOIN afp afp        ON (afp.IDAFP   = tra.IDAFP)
-                  INNER JOIN lugar lug      ON (lug.IDLugar = tra.IDLugar)
-                  INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
-                  WHERE Rut='$rut' LIMIT 1";
+    // Realiza la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
+    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, lug.IDLugar, sec.IDSector, IDTra, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur, RutaSerM, RutaSCom, RutaExaM, Observ, RutaInscripcion
+    FROM trabajador tra
+    INNER JOIN categoria cat ON (cat.IDCat = tra.IDCat)
+    INNER JOIN contrato con ON (con.IDCon = tra.IDCon)
+    INNER JOIN afp afp ON (afp.IDAFP = tra.IDAFP)
+    INNER JOIN lugar lug ON (lug.IDLugar = tra.IDLugar)
+    INNER JOIN sector sec ON (sec.IDSector = tra.IDSector)
+    INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
+    WHERE Rut='$rut' LIMIT 1";
+
 
 
 
@@ -23,38 +25,6 @@ if (isset($_POST['nameRutEditar'])) {
     if (mysqli_num_rows($resultDatosEditar) == 1) {
         // Si se encuentra una persona, se asigna el resultado a $persona
         $persona = mysqli_fetch_assoc($resultDatosEditar);
-        $idtra = $persona['IDTra'];
-        $categoria = $persona['IDCat'];
-        $contrato = $persona['IDCon'];
-        $afp = $persona['IDAFP'];
-        $prevision = $persona['IDPrev'];
-        $lugar = $persona['IDLugar'];
-        $nombre = $persona['NombreTra'];
-        $paterno = $persona['PaternoTra'];
-        $materno = $persona['MaternoTra'];
-        $celular = $persona['CelularTra'];
-        $correo = $persona['CorreoTra'];
-        $rut = $persona['Rut'];
-        $decreto = $persona['Decreto'];
-        $genero = $persona['Genero'];
-        $medico = $persona['Medico'];
-        $profesion = $persona['Profesion'];
-        $medico = $persona['Medico'];
-        $sector = $persona['Sector'];
-        $previsionDoc = $persona['RutaPrev'];
-        $cvDoc = $persona['RutaCV'];
-        $afpDoc = $persona['RutaAFP'];
-        $nacDoc = $persona['RutaNac'];
-        $antecDoc = $persona['RutaAntec'];
-        $cedulaDoc = $persona['RutaCedula'];
-        $estudioDoc = $persona['RutaEstudio'];
-        $juradaDoc = $persona['RutaDJur'];
-        $servicioMDoc = $persona['RutaSerM'];
-        $saludCDoc = $persona['RutaSCom'];
-        $examenMDoc = $persona['RutaExaM'];
-        $contratoDoc = $persona['RutaContrato'];
-        $inscripcionDoc = $persona['RutaInscripcion'];
-        $observ = $persona['Observ'];
     }
 } ?>
 <?php include("./controller/config/conexion.php"); ?>
@@ -87,7 +57,7 @@ if (isset($_POST['nameRutEditar'])) {
     </header>
 
 
-    <div class="container-md">
+    <div class="container-lg">
 
         <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
             <div class="title">
@@ -96,7 +66,7 @@ if (isset($_POST['nameRutEditar'])) {
 
 
             <br>
-            <div class="seccion">
+            <div class="seccion-editar">
 
                 <h6>Datos Personales</h6>
                 <div class="row ">
@@ -108,31 +78,23 @@ if (isset($_POST['nameRutEditar'])) {
                     </div>
                     <div class="col-md">
                         <label for="idPersona"><span style="color: red;">*</span> Nombres</label>
-                        <input type="text" name="namePersona" id="idPersona" value="<?php echo $nombre ?>" class="form-control" required>
+                        <input type="text" name="namePersona" id="idPersona" value="<?php echo $persona['NombreTra'] ?>" class="form-control" required>
                         <br>
                     </div>
                 </div>
-
-
-
 
                 <div class="row">
                     <div class="col-md">
                         <label for="idAppat"><span style="color: red;">*</span> Apellido Paterno</label>
-                        <input type="text" name="namePaterno" id="idAppat" value="<?php echo $paterno ?>" class="form-control" required>
+                        <input type="text" name="namePaterno" id="idAppat" value="<?php echo $persona['PaternoTra'] ?>" class="form-control" required>
                         <br>
                     </div>
                     <div class="col-md">
                         <label for="idApmat">Apellido Materno</label>
-                        <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $materno ?>" class="form-control">
+                        <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $persona['MaternoTra'] ?>" class="form-control">
                         <br>
                     </div>
                 </div>
-
-
-
-
-
 
                 <div class="art">
                     <div class="row">
@@ -146,14 +108,14 @@ if (isset($_POST['nameRutEditar'])) {
                             echo '<option value="" hidden>Selecciona un Contrato</option>'; // Opción por defecto en blanco
 
                             while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
-                                $selected = ($fila['IDCon'] == $contrato) ? 'selected' : '';
+                                $selected = ($fila['IDCon'] == $persona['IDCon']) ? 'selected' : '';
                                 echo "<option value='" . $fila['IDCon'] . "' " . $selected . ">" . $fila['NombreCon'] . "</option>";
                             }
                             echo "</select>";
                             ?>
-
                             <br>
                         </div>
+
                         <div class="col-md-6"> <!-- CATEGORIA -->
                             <?php
                             $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
@@ -162,87 +124,67 @@ if (isset($_POST['nameRutEditar'])) {
                             echo "<select name='nameSelectCat' id='idSelectCat' class='form-select'> required";
                             echo '<option hidden value=""> Selecciona una Categoría</option>'; // Opción por defecto en blan
                             while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
-                                $selected = ($fila['IDCat'] == $categoria) ? 'selected' : '';
+                                $selected = ($fila['IDCat'] == $persona['IDCat']) ? 'selected' : '';
                                 echo "<option value='" . $fila['IDCat'] . "' " . $selected . ">" . $fila['NombreCat'] . "</option>";
                             }
                             echo "</select>";
-                            // Cierre de la conexión
                             ?>
                             <br>
                         </div>
                         <br>
                     </div>
-
 
                     <div id="idPreguntaCat1" class="row radioCentro">
                         <center>
                             <label><span style="color: red;">*</span> ¿Es médico?</label>
                         </center>
                         <div class="opciones">
-                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput form-check-input" <?php if ($medico == 'Si') echo "checked"; ?>>
+                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput form-check-input" <?php if ($persona['Medico'] == 'Si') echo "checked"; ?>>
                             <label for="idSiMedico" class="radio label form-check-label">Sí</label>
                             <br>
-                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput form-check-input" <?php if ($medico == 'No') echo "checked"; ?>>
+                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput form-check-input" <?php if ($persona['Medico'] == 'No') echo "checked"; ?>>
                             <label for="idNoMedico" class="radio label form-check-label">No</label>
                         </div>
                         <br>
                     </div>
-
-
-
+                    <br>
                     <div class="row">
                         <div class="col-md-6"> <!-- LUGAR -->
-                            <?php
-                            $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
-                            $resultadoLugar = mysqli_query($conn, $sqlLugar);
-                            echo "<label for='idSelectLugar'><span style='color: red;'>*</span> Lugar </label>"; //Label 
-                            echo "<select name='nameSelectLugar' id='idSelectLugar' class='form-select' required>";
-                            echo '<option value="" hidden> Selecciona un Lugar</option>'; // Opción por defecto en blan
-                            while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
-                                $selected = ($fila['IDLugar'] == $lugar) ? 'selected' : '';
-                                echo "<option value='" . $fila['IDLugar'] . "' " . $selected . ">" . $fila['NombreLug'] . "</option>";
-                            }
-                            echo "</select>";
-                            ?>
-
+                            <label for="idSelectLugar"><span style="color: red;">*</span> Lugar</label>
+                            <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
+                                <option value="" hidden>Selecciona un Lugar</option>
+                                <?php
+                                $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
+                                $resultadoLugar = mysqli_query($conn, $sqlLugar);
+                                while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
+                                    $selected = ($fila['IDLugar'] == $persona['IDLugar']) ? "selected" : "";
+                                    echo "<option value='" . $fila['IDLugar'] . "' $selected>" . $fila['NombreLug'] . "</option>";
+                                }
+                                ?>
+                            </select>
                             <br>
                         </div>
                         <div class="col-md-6">
-                            <label for="idSelectSector">Sector:</label>
-                            <select class="form-select" id="idSelectSector" name="nameSelectSector">
-                                <option value="No Aplicaaa">No Aplica</option>
+                            <label for="idSelectSector"><span style="color: red;">*</span> Sector</label>
+                            <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
+                                <option value="" hidden>Selecciona un Sector</option>
                                 <?php
-                                $sqlSector = "SELECT DISTINCT sector FROM trabajador";
+                                $sqlSector = "SELECT IDSector, NombreSector FROM sector";
                                 $resultadoSector = mysqli_query($conn, $sqlSector);
-
                                 while ($fila = mysqli_fetch_assoc($resultadoSector)) {
-                                    if ($fila['sector'] == $persona['Sector']) {
-                                        $selected = 'selected';
-                                    } else {
-                                        $selected = '';
-                                    }
-
-                                    echo "<option value='" . $fila['sector'] . "' " . $selected . ">" . $fila['sector'] . "</option>";
+                                    $selected = ($fila['IDSector'] == $persona['IDSector']) ? "selected" : "";
+                                    echo "<option value='" . $fila['IDSector'] . "' $selected>" . $fila['NombreSector'] . "</option>";
                                 }
                                 ?>
                             </select>
                         </div>
                     </div>
 
-
-
-
-
                     <div>
                         <label for="idProfesion"><span style="color: red;">*</span> Profesión</label>
-                        <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $profesion ?>" class="form-control" require>
+                        <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $persona['Profesion'] ?>" class="form-control" require>
                     </div>
                 </div>
-
-
-
-
-
 
                 <br>
                 <div class="radioCentro row">
@@ -250,274 +192,453 @@ if (isset($_POST['nameRutEditar'])) {
                         <label><span style="color: red;">*</span> Seleccione Género</label>
                     </center>
                     <div class="opciones">
-                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input" <?php if ($genero == 'Femenino') echo "checked"; ?>>
+                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input" <?php if ($persona['Genero'] == 'Femenino') echo "checked"; ?>>
                         <label for="idFemenino" class="radio form-check-label">Femenino</label>
-                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput form-check-input <?php if ($genero == 'Masculino') echo "checked"; ?>">
+                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput form-check-input <?php if ($persona['Genero'] == 'Masculino') echo "checked"; ?>">
                         <label for="idMasculino" class="radio form-check-label">Masculino</label>
                     </div>
-
                 </div>
-
-
-
-
-
             </div>
             <br>
-            <div class="seccion">
+            <div class="seccion-editar">
                 <h6>Datos de Contacto</h6>
                 <div class="row">
                     <div class="col-6">
                         <label for="idCelular">Celular</label>
                         <div class="input-group mb-3">
                             <span class="input-group-text">+56</span>
-                            <input type="text" name="nameCelular" id="idCelular" value="<?php echo $celular ?>" class="form-control" maxlength="9">
+                            <input type="text" name="nameCelular" id="idCelular" value="<?php echo $persona['CelularTra'] ?>" class="form-control" maxlength="9">
                         </div>
                     </div>
                     <div class="col-6">
                         <label for="idCorreo">Correo Electrónico</label>
-                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $correo ?>" class="form-control" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $persona['CorreoTra'] ?>" class="form-control" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                     </div>
                 </div>
             </div>
             <br>
 
-
-
-
-
-
-
-
-
-
-            <div class="seccion">
+            <div class="seccion-editar">
                 <h6>Documentación</h6>
-                <div class="row"> <!-- AFP -->
-                    <div class=" col-md-3">
-                        <?php
-                        $sqlAFP = "SELECT IDAFP, NombreAFP FROM afp";
-                        $resultadoAFP = mysqli_query($conn, $sqlAFP);
 
-                        echo "<label for='idSelectAFP'>AFP </label>"; //Label 
-                        echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
-                        echo '<option value=1 hidden> Selecciona una AFP</option>'; // Opción por defecto en blanco
-
-                        while ($fila = mysqli_fetch_assoc($resultadoAFP)) {
-                            $selected = ($fila['IDAFP'] == $afp) ? 'selected' : '';
-                            echo "<option value='" . $fila['IDAFP'] . "' " . $selected . ">" . $fila['NombreAFP'] . "</option>";
-                        }
-                        echo "</select>";
-
-                        ?>
-                    </div>
-
-                    <div class="col-md-9">
-                        <label for="idAFPinput">Certificado de Afiliación</label>
-                        <div class="input-group">
-                            <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
-                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                <div class="doc-editar"><!-- AFP -->
+                    <center><label for="afp">Certificado de Afiliación AFP</label></center>
+                    <div class="row" id="afp"> <!-- AFP -->
+                        <div class="col-md-3">
+                            <label>AFP</label>
+                            <?php
+                            $sqlAFP = "SELECT IDAFP, NombreAFP FROM afp";
+                            $resultadoAFP = mysqli_query($conn, $sqlAFP);
+                            echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
+                            echo '<option value=1 hidden> Selecciona</option>'; // Opción por defecto en blanco
+                            while ($fila = mysqli_fetch_assoc($resultadoAFP)) {
+                                $selected = ($fila['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
+                                echo "<option value='" . $fila['IDAFP'] . "' " . $selected . ">" . $fila['NombreAFP'] . "</option>";
+                            }
+                            echo "</select>";
+                            ?>
                         </div>
-                    </div>
-                </div>
-                <br>
 
-
-
-
-
-
-
-                <div class="row"> <!-- PREVISION -->
-
-                    <div class="col-md-3">
-                        <?php
-                        $sqlPrevision = "SELECT IDPrev, NombrePrev FROM prevision";
-                        $resultadoPrevision = mysqli_query($conn, $sqlPrevision);
-
-                        echo "<label for='idSelectPrev'>Previsión </label>"; // Label
-                        echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>"; // Atributo required dentro del select
-                        echo '<option value="" hidden>Selecciona una Previsión</option>'; // Opción por defecto en blanco
-
-                        while ($fila = mysqli_fetch_assoc($resultadoPrevision)) {
-                            $selected = ($fila['IDPrev'] == $prevision) ? 'selected' : '';
-                            echo "<option value='" . $fila['IDPrev'] . "' " . $selected . ">" . $fila['NombrePrev'] . "</option>";
-                        }
-                        echo "</select>";
-                        ?>
-                    </div>
-
-                    <div class="col-md-9">
-                        <label for="idPREVinput">Certificado de Afiliación</label>
-                        <div class="input-group">
-                            <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
-                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                        <div class="col-md-3">
+                            <?php
+                            if (!empty($persona['RutaAFP'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaAFP'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaAFP'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class=" contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
                         </div>
-                    </div>
-                </div>
-                <br>
-
-
-
-
-
-
-                <div class="row"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
-                    <div class="col-md-3">
-                        <label for="idDecreto"><span style="color: red;">*</span> Decreto</label>
-                        <input type="text" name="nameDecreto" id="idDecreto" value="<?php echo $decreto ?>" class="form-control" maxlength="30">
-                    </div>
-                    <div class="col-md-9">
-                        <label for="idDocContratoInput">Contrato</label>
-                        <div class="input-group">
-                            <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
-                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDocContratoInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <br>
-
-
-
-
-
-
-aquiiiiiii
-
-
-                <div>
-                    <?php
-                    if (!empty($persona['RutaNac'])) { ?>
-                        <div class="documento">
-                            <center>
-                                <div class=" titulo">
-                                    <a class="a">Certificado de Nacimiento</a>
-                                </div>
-                            </center>
-                            <div class="container">
-                                <div class="row doc flex-wrap">
-                                    <div class="col-md-3 contenedor-botones">
-                                        <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                        <a href="<?php echo $persona['RutaNac']; ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </div>
-
-                                </div>
-
+                        <div class="col-md-6">
+                            <center><label for="idAFPinput">Actualizar</label></center>
+                            <div class="input-group">
+                                <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
-                    <?php  } else { ?>
-                        <div class="">
-                            <center>
-                                <div class=" titulo">
-                                    <a class="a">Certificado de Nacimiento</a>
-                                </div>
-                            </center>
-                            <div class="container">
-                                <div class="row doc flex-wrap">
-                                    <div class="col-md-3 contenedor-botones">
-                                        <button disabled class="btn btn-primary pendiente w-100">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <div class="input-group">
-                                            <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
+
+
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="doc-editar"><!-- PREVISION -->
+                    <center><label for="prevision">Certificado de Afiliación a Previsión</label></center>
+                    <div class="row" id="prevision"> <!-- PREVISION -->
+                        <div class="col-md-3">
+                            <label>Previsión</label>
+                            <?php
+                            $sqlPrevision = "SELECT IDPrev, NombrePrev FROM prevision";
+                            $resultadoPrevision = mysqli_query($conn, $sqlPrevision);
+                            echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
+                            echo '<option value="" hidden> Selecciona</option>'; // Opción por defecto en blanco
+
+                            while ($fila = mysqli_fetch_assoc($resultadoPrevision)) {
+                                $selected = ($fila['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
+                                echo "<option value='" . $fila['IDPrev'] . "' " . $selected . ">" . $fila['NombrePrev'] . "</option>";
+                            }
+                            echo "</select>";
+                            ?>
+                        </div>
+
+                        <div class="col-md-3">
+                            <?php
+                            if (!empty($persona['RutaPrev'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaPrev'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaPrev'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class=" contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <center><label for="idPREVinput">Actualizar</label></center>
+                            <div class="input-group">
+                                <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
-                    <?php } ?>
 
-                    <br>
 
-                    <label for="idNACinput">Certificado de Nacimiento</label>
-                    <div class="input-group ">
-                        <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="doc-editar"><!-- DECRETO Y CONTRATO -->
+                    <center><label>N° Decreto y Contrato</label></center>
+                    <div class="row" id="decreto">
+                        <div class="col-md-3">
+                            <label>Decreto</label>
+                            <input type="text" name="nameDecreto" id="idDecreto" value="<?php echo $persona['Decreto'] ?>" class="form-control" maxlength="30">
+                        </div>
+
+                        <div class="col-md-3">
+                            <?php
+                            if (!empty($persona['RutaContrato'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaContrato'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaContrato'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '<label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group">
+                                <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDocContratoInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="doc-editar"><!-- NACIMIENTO -->
+                    <center><label for="nacimiento"> Certificado de Nacimiento</label></center>
+                    <div class="row" id="nacimiento">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaNac'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaNac'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaNac'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+
+                                <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="doc-editar"><!-- ANTECEDENTES -->
+                    <center><label for="antecedentes"> Certificado de Antecedentes</label></center>
+                    <div class="row" id="antecedentes">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaAntec'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaAntec'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaAntec'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+                                <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <br>
-                <div>
-                    <label for="idANTECEinput">Certificado de Antecedentes</label>
-                    <div class="input-group ">
-                        <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+
+
+
+                <div class="doc-editar"><!-- CEDULA -->
+                    <center><label for="cedula"> Fotocopia Cédula de Identidad </label></center>
+                    <div class="row" id="cedula">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaCedula'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaCedula'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaCedula'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+                                <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <br>
-                <div>
-                    <label for="idCedulainput">Fotocopia Cédula de Identidad</label>
-                    <div class="input-group ">
-                        <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+
+                <div class="doc-editar"><!-- CEDULA -->
+                    <center><label for="cv"> Curriculum Vitae </label></center>
+                    <div class="row" id="cv">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaCV'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaCV'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaCV'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+                                <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <br>
-                <div>
-                    <label for="idCVinput">Curriculum Vitae</label>
-                    <div class="input-group ">
-                        <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+
+                <div class="doc-editar"><!-- ESTUDIOS -->
+                    <center><label for="estudios"> Certificado de Estudios o Título Profesional </label></center>
+                    <div class="row" id="estudios">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaEstudio'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaEstudio'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaEstudio'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+                                <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="examenMedico">
-                    <br>
-                    <label for="idExamenMinput">Examen Médico Unico Nacional</label>
-                    <div class="input-group ">
-                        <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
+
                 <br>
-                <div>
-                    <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
-                    <div class="input-group ">
-                        <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+
+                <div class="doc-editar"><!-- DECLARACION -->
+                    <center><label for="declaracion"> Declaración Jurada </label></center>
+                    <div class="row" id="declaracion">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaDJur'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaDJur'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaDJur'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+                                <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <br>
-                <div>
-                    <label for="idDJuradainput">Declaración Jurada</label>
-                    <div class="input-group ">
-                        <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+
+                <div class="doc-editar"><!-- SALUD COMPATIBLE -->
+                    <center><label for="saludCompat"> Certificado de Salud Compatible </label></center>
+                    <div class="row" id="saludCompat">
+
+                        <div class="col-md-6">
+                            <?php
+                            if (!empty($persona['RutaSCom'])) {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button class="btn btn-primary w-100 boton-ver" onclick="window.open(\'' . $persona['RutaSCom'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="' . $persona['RutaSCom'] . '" download class="btn btn-primary w-100 boton-descargar"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>';
+                            } else {
+                                echo '
+                                <label>Documento</label>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente">Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>';
+                            } ?>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Actualizar</label>
+                            <div class="input-group ">
+                                <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
+                                <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+            </div><!--fin seccion editar-->
+
+
+            <div id="examenMedico">
                 <br>
-                <div>
-                    <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
-                    <div class="input-group ">
-                        <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
+                <label for="idExamenMinput">Examen Médico Unico Nacional</label>
+                <div class="input-group ">
+                    <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
                 </div>
-                <br>
-                <div id="servicioMilitarHombre">
-                    <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
-                    <div class="input-group">
-                        <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
-                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
-                    </div>
-                </div>
-                <br>
             </div>
             <br>
-            <div class="observaciones seccion">
-                <h6>Observaciones</h6>
-                <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" maxlength="1000"><?php echo $observ ?></textarea>
+
+
+            <br>
+
+            <br>
+            <div>
+                <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
+                <div class="input-group ">
+                    <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
             </div>
             <br>
-            <div class="boton">
-                <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+            <div id="servicioMilitarHombre">
+                <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
+                <div class="input-group">
+                    <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
+                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                </div>
             </div>
-        </form>
+            <br>
+    </div>
+    <br>
+    <div class="observaciones seccion-editar">
+        <h6>Observaciones</h6>
+        <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" maxlength="1000"><?php echo $observ ?></textarea>
+    </div>
+    <br>
+    <div class="boton">
+        <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+    </div>
+    </form>
     </div>
 
     <script src="./assets/js/main.js"></script>
