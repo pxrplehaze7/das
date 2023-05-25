@@ -1,33 +1,18 @@
-
 <?php
 if (!empty($persona['RutaDJur'])) {
-    echo '
-        <div class="documento">
-            <div class="container">
-                <div class="row doc flex-wrap">
-                    <div class="col-md-6 titulo d-flex align-items-center">
-                        <a class="a">Declaración Jurada</a>
-                    </div>
-                    <div class="col-md-6 contenedor-botones">
-                        <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $persona['RutaDJur'] . '\', \'_blank\')">Visualizar <i class="fa-solid fa-expand"></i></button>
-                        <a href="' . $persona['RutaDJur'] . '" download class="btn btn-primary boton-descargar w-100">Descargar <i class="fa-sharp fa-solid fa-download"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>';
+?>
+    <div class="contenedor-botones">
+        <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaDJur']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+        <a href="<?php echo $persona['RutaDJur']; ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+    </div>
+<?php
 } else {
-    echo '
-            <div class="documento">
-                <div class="container">
-                    <div class="row doc flex-wrap">
-                        <div class="col-md-6 titulo d-flex align-items-center">
-                            <a class="a">Declaración Jurada</a>
-                        </div>
+?>
 
-                        <div class="col-md-6 contenedor-botones">
-                        <button disabled class="btn btn-primary pendiente w-100">Documento Pendiente <i class="fa-sharp fa-solid fa-clock"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>';
+    <div class="contenedor-botones">
+        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+    </div>
+
+<?php
 }
+?>

@@ -16,12 +16,25 @@ arreglar todo lo de honorario para que no muestre lo innecesario
 
 validar campos, que esten en orden
 
+solucionar que si es categoria a, que muestre los radio desi esmedico o no
+
+https://github.com/startbootstrap/startbootstrap-sb-admin
+
+cambiar el menu y a la derecha agregar la edicion de perfil como en el sb admin 2
+
+
+el certificado de inscripcionn se le pide a categoria a b y c, pero que no sean administrav¿tivos, asi que hay que preguntar si es prestador de salud o no
+
+hacer que pregunte si es prestador de servicios desalud  primero, luego si es medico o no
+
+debe presentar certificado de inscripcion?
+
+eunacom solo a medicos, asi que preguntar si es medico solo en categoria a 
 validar que rut exista
 estado civil?
-hacer que, si por ejemplo no posee afp, que no aparezca como documento pendiente
-probar que en nombre no se ingresen numeros 
 
-hacer que se ingresen pdf con el siguiente nombre: fecha - pdfAFP por ejemplo
+
+
 
       <?php if ($id_rol_usuario_actual == 1) { ?>
 

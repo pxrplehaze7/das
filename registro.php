@@ -22,6 +22,10 @@
     <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -77,24 +81,43 @@
                         </div>
                         <br>
                     </div>
-                    <div id="idPreguntaCat1" style="display:none;" class="row radioCentro">
+
+
+                    <div id="idPreguntaCat1" style="display:none;" class="radioCentro row">
                         <center>
                             <label><span style="color: red;">*</span> ¿Es médico?</label>
+
+                            <div class="radio-inputs">
+                                <label>
+                                    <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input">
+                                <span class=" radio-tile">
+                                    <span class="radio-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                        </svg>
+                                    </span>
+                                    <span class="radio-label">Sí</span>
+                                    </span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radio-input">
+                                    <span class="radio-tile">
+                                        <span class="radio-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+                                            </svg>
+                                        </span>
+                                        <span class="radio-label">No</span>
+                                    </span>
+                                </label>
+                            </div>
                         </center>
-                        <div class="opciones">
-                            <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radioInput  form-check-input">
-                            <label for="idSiMedico" class="radio label form-check-label">Sí</label>
-                            <br>
-                            <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radioInput form-check-input">
-                            <label for="idNoMedico" class="radio label form-check-label">No</label>
-                        </div>
-                        <br>
                     </div>
                     <div class="row">
                         <div class="col-md-6"> <!-- LUGAR -->
                             <label for="idSelectLugar"><span style="color: red;">*</span> Lugar</label>
                             <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
-                                <option value="" hidden>Selecciona un Lugar</option>
+                                <option value="" hidden> Selecciona</option>
                                 <?php
                                 $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
                                 $resultadoLugar = mysqli_query($conn, $sqlLugar);
@@ -108,7 +131,7 @@
                         <div class="col-md-6">
                             <label for="idSelectSector"><span style="color: red;">*</span> Sector</label>
                             <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
-                                <option value="" hidden>Selecciona un Sector</option>
+                                <option value="" hidden> Selecciona</option>
                             </select>
                         </div>
                     </div>
@@ -121,14 +144,34 @@
                 <div class="radioCentro row">
                     <center>
                         <label><span style="color: red;">*</span> Seleccione Género</label>
+
+                        <div class="radio-inputs">
+                            <label>
+                                <input class="radio-input" type="radio" name="nameGenero" id="idFemenino" value="Femenino" required">
+                                <span class="radio-tile">
+                                    <span class="radio-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                            <path d="M80 176a112 112 0 1 1 224 0A112 112 0 1 1 80 176zM224 349.1c81.9-15 144-86.8 144-173.1C368 78.8 289.2 0 192 0S16 78.8 16 176c0 86.3 62.1 158.1 144 173.1V384H128c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v32c0 17.7 14.3 32 32 32s32-14.3 32-32V448h32c17.7 0 32-14.3 32-32s-14.3-32-32-32H224V349.1z" />
+                                        </svg>
+                                    </span>
+                                    <span class="radio-label">Femenino</span>
+                                </span>
+                            </label>
+                            <label>
+                                <input class="radio-input" type="radio" name="nameGenero" id="idMasculino" value="Masculino" required>
+                                <span class="radio-tile">
+                                    <span class="radio-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path d="M289.8 46.8c3.7-9 12.5-14.8 22.2-14.8H424c13.3 0 24 10.7 24 24V168c0 9.7-5.8 18.5-14.8 22.2s-19.3 1.7-26.2-5.2l-33.4-33.4L321 204.2c19.5 28.4 31 62.7 31 99.8c0 97.2-78.8 176-176 176S0 401.2 0 304s78.8-176 176-176c37 0 71.4 11.4 99.8 31l52.6-52.6L295 73c-6.9-6.9-8.9-17.2-5.2-26.2zM400 80l0 0h0v0zM176 416a112 112 0 1 0 0-224 112 112 0 1 0 0 224z" />
+                                        </svg>
+                                    </span>
+                                    <span class="radio-label">Masculino</span>
+                                </span>
+                            </label>
+                        </div>
                     </center>
-                    <div class="opciones">
-                        <input type="radio" name="nameGenero" id="idFemenino" value="Femenino" required class="radioInput form-check-input">
-                        <label for="idFemenino" class="radio form-check-label">Femenino</label>
-                        <input type="radio" name="nameGenero" id="idMasculino" value="Masculino" required class="radioInput form-check-input">
-                        <label for="idMasculino" class="radio form-check-label">Masculino</label>
-                    </div>
                 </div>
+
             </div>
             <br>
             <div class="seccion">

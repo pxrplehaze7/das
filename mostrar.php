@@ -116,20 +116,7 @@
                         <br>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md">
-                        <label>AFP</label>
-                        <input value="<?php echo $persona['NombreAFP'] ?>" class="form-control" readonly>
-                        <br>
-                    </div>
-                    <div class="col-md">
-                        <label>Previsión de Salud</label>
-                        <input value="<?php echo $persona['NombrePrev'] ?>" class="form-control" readonly>
-                        <br>
-                    </div>
-                </div>
 
-                <br>
                 <div class="row">
                     <div class="col-md">
                         <label>Celular </label>
@@ -147,32 +134,118 @@
             <br>
             <div class="documentacion seccion">
                 <h6>Documentación</h6>
-                <br>
-                <?php include('./controller/consulta_archivo/contrato.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/declaracionJ.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/certificadoNac.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/antecedentes.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/curriculum.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/estudios.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/saludCompatible.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/afp.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/consultaPrev.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/examenMedico.php') ?>
-                <?php include('./controller/consulta_archivo/inscripcion.php') ?>
-                <br>
-                <?php include('./controller/consulta_archivo/servicioMilitar.php') ?>
+
+
+
+                <table id="docs" class="display table table-striped table-light table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Documento</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>N° de Decreto (<strong><?php echo $persona['Decreto'] ?></strong>)</td>
+                            <td><?php include('./controller/consulta_archivo/contrato.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Declaración Jurada</td>
+                            <td><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Certificado de Nacimiento</td>
+                            <td><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Certificado de Antecedentes</td>
+                            <td><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Fotocopia de Cédula de Identidad</td>
+                            <td><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Curriculum Vitae</td>
+                            <td><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Certificado de Estudios o Título Profesional</td>
+                            <td><?php include('./controller/consulta_archivo/estudios.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Certificado de Salud Compatible</td>
+                            <td><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
+                        </tr>
+                        <tr>
+                            <td>Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
+                            <td><?php if ($persona['IDAFP'] != 1) {
+                                    include('./controller/consulta_archivo/afp.php');
+                                } ?></td>
+                        </tr>
+                        <tr>
+                            <td>Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
+                            <td><?php if ($persona['IDPrev'] != 1) {
+                                    include('./controller/consulta_archivo/prevision.php');
+                                } ?></td>
+                        </tr>
+
+
+
+                        <!-- revisar si se lo piden solo a los medicos honorarios -->
+                        <?php if ($persona['Medico'] == 'Si') { ?>
+                            <tr>
+                                <td>Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
+                                <td><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                            </tr> <?php }
+                                    ?>
+
+
+
+
+                        <?php if ($persona['Medico'] == 'Si') { ?>
+                            <tr>
+                                <td>Examen Único Nacional de Conocimientos de Medicina</td>
+                                <td><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                            </tr> <?php }
+                                    ?>
+
+                        <?php if ($persona['Genero'] == 'Masculino') { ?>
+                            <tr>
+                                <td>Certificado de Servicio Militar al Día</td>
+                                <td><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
+                            </tr> <?php }
+                                    ?>
+
+                    </tbody>
+                </table>
+
+
+
+
+
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <br>
             <div class="observaciones seccion">
@@ -288,6 +361,35 @@
                 });
             });
         </script>
+
+        <script>
+            $(document).ready(function() {
+                $('#docs').DataTable({
+                    language: {
+                        "sEmptyTable": "No se encontraron datos disponibles en la tabla",
+                        "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                        "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
+                        "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
+                        "sInfoPostFix": "",
+                        "sInfoThousands": ",",
+                        "sLengthMenu": "Mostrar _MENU_ registros",
+                        "sLoadingRecords": "Cargando...",
+                        "sProcessing": "Procesando...",
+                        "sSearch": "Buscar:",
+                        "sZeroRecords": "No se encontraron registros coincidentes"
+                    },
+                    dom: 'frt',
+                    pagingType: 'numbers',
+                    order: [],
+                    columnDefs: [{
+                        targets: '_all',
+                        orderable: false
+                    }]
+                });
+            });
+        </script>
+
+
 
 </body>
 
