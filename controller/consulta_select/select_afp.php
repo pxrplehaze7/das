@@ -3,7 +3,7 @@
  $resultadoAFP = mysqli_query($conn, $sqlAFP);
 
  echo "<label for='idSelectAFP'>AFP </label>"; //Label 
- echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select'> required";
+ echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
  echo '<option value=1 hidden> Selecciona una AFP</option>'; // Opción por defecto en blanco
 
  while ($fila = mysqli_fetch_assoc($resultadoAFP)) {

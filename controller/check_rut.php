@@ -11,7 +11,7 @@ if ($result->num_rows > 0) {
   echo "<p style='color: red;padding-left: 9px;padding-top: 5px;'>ESTE RUT YA ESTÁ REGISTRADO</p>";
 } else {
   // El RUT no está registrado, devolver respuesta indicando que es válido
-  echo "<p style='color: green;padding-left: 9px;padding-top: 5px;'>ESTE RUT ES VÁLIDO</p>";
+  echo "VALIDO";
 }
 $conn->close();
 ?>

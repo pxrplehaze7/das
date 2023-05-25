@@ -43,27 +43,6 @@ $("#documentosObligatorios").on("submit", function (event) {
 
 });
 
-// FUNCION QUE VERIFICA SI EL RUT A REGISTRAR YA ESTA INGRESADO
-$(document).ready(function () {
-  $('#idRutInput').on('blur', function () {
-    var rut = $(this).val();
-
-    if (rut.trim() !== '') {
-      if (rut.length === 10 || rut.length === 9) { // Agrega esta condición para validar la longitud del RUT
-        $.ajax({
-          url: './controller/check_rut.php',
-          type: 'POST',
-          data: { rut: rut },
-          success: function (response) {
-            $('#rut-validation').html(response);
-          }
-        });
-      } else {
-        $('#rut-validation').html('El RUT debe ir sin puntos y con guión');
-      }
-    }
-  });
-});
 
 
 

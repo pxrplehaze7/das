@@ -40,10 +40,11 @@
                 <div class="row ">
                     <div class="col-md">
                         <label for="idRutInput"><span style="color: red;">*</span> Rut</label>
-                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" oninput="validarRutFormato(this)" required>
+                        <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
                         <div id="rut-validation"></div>
                         <br>
                     </div>
+
                     <div class="col-md">
                         <label for="idPersona"><span style="color: red;">*</span> Nombres</label>
                         <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" oninput="validarTexto(this)" required>
@@ -113,7 +114,7 @@
                     </div>
                     <div class="">
                         <label for="idProfesion"><span style="color: red;">*</span> Profesión</label>
-                        <input type="text" name="nameProfesion" id="idProfesion" class="form-control" require>
+                        <input type="text" name="nameProfesion" id="idProfesion" class="form-control" required>
                     </div>
                 </div>
                 <br>
@@ -180,7 +181,7 @@
                 <div class="row"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                     <div class="col-md-3">
                         <label for="idDecreto"><span style="color: red;">*</span> Decreto</label>
-                        <input type="text" name="nameDecreto" id="idDecreto" class="form-control" maxlength="30">
+                        <input type="text" name="nameDecreto" id="idDecreto" class="form-control" maxlength="30" required>
                     </div>
                     <div class="col-md-9">
                         <label for="idDocContratoInput">Contrato</label>
