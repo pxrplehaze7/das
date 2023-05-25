@@ -8,6 +8,7 @@ $desde        = $_POST['nameInicio'];
 $hasta        = $_POST['nameFin'];
 $apelo        = $_POST['nameApeloRes'];
 $rut          = $_POST['nameRutCa'];
+$fechaActual = date('d-m-Y');
 
 // OBTIENE EL NOMBRE EL HOST
 $host = $_SERVER['HTTP_HOST'];
@@ -25,9 +26,6 @@ $fecha = mysqli_real_escape_string($conn, $fecha);
 $pdfcalificacion = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCalifdoc']['name']);
 $pdfapelo        = str_replace(array(' ', '(', ')'), '_', $_FILES['nameApelacionDoc']['name']);
 
-// Generar nombres únicos para los archivos
-$pdfcalificacion = uniqid() . '_' . $pdfcalificacion;
-$pdfapelo = uniqid() . '_' . $pdfapelo;
 
 if (!file_exists($ruta . $rut)) {
     mkdir($ruta . $rut, 0777, true);
@@ -52,16 +50,19 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $ruta_ApelaFINAL = NULL;
 
     if (!empty($_FILES['nameCalifdoc']['tmp_name'])) {
-        $ruta_CalifFINAL = $rutasubCalificaciones . $pdfcalificacion;
-        move_uploaded_file($_FILES['nameCalifdoc']['tmp_name'], $ruta_CalifFINAL);
-        $ruta_CalifFINAL = 'http://' . $host . '/das/controller/' . $ruta_CalifFINAL;
+    $nombreCalificacion = 'CALIFICACION_' . $fecha . '_' . $fechaActual . '_' . $pdfcalificacion;
+    $ruta_CalifFINAL = $rutasubCalificaciones . $nombreCalificacion;
+    move_uploaded_file($_FILES['nameCalifdoc']['tmp_name'], $ruta_CalifFINAL);
+    $ruta_CalifFINAL = 'http://' . $host . '/das/controller/' . $ruta_CalifFINAL;
     }
 
     if (!empty($_FILES['nameApelacionDoc']['tmp_name'])) {
-        $ruta_ApelaFINAL = $rutaApelaciones . $pdfapelo;
+        $nombreApelacion = 'APELACION_' . $fecha . '_' . $fechaActual . '_' . $pdfapelo;
+        $ruta_ApelaFINAL = $rutaApelaciones . $nombreApelacion;
         move_uploaded_file($_FILES['nameApelacionDoc']['tmp_name'], $ruta_ApelaFINAL);
         $ruta_ApelaFINAL = 'http://' . $host . '/das/controller/' . $ruta_ApelaFINAL;
     }
+    
 
     // SE INSERTAN DATOS A LA BASE DE DATOS
     $sqlCalificacion = "INSERT INTO calificaciones (IDTra, fecha, apelo, RutaApelacion, RutaCalificacion) 
@@ -75,4 +76,3 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 } else {
     echo "RUT NO EXISTE";
 }
-?>
