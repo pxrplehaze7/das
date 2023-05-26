@@ -26,8 +26,6 @@
     <div id="layoutSidenav">
         <?php require("./components/navbar.php") ?>
         <?php require("./components/sidebar.html") ?>
-
-
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
@@ -81,6 +79,43 @@
                                 </div>
 
 
+
+
+                                <div id="idInscripcion"  class="radioCentro row">
+                                    <center>
+                                        <label><span style="color: #f36f03;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
+
+                                        <div class="radio-inputs">
+                                            <label>
+                                                <input type="radio" name="nameInscrip" id="idSiInscrip" value=1 class="radio-input">
+                                                <span class=" radio-tile">
+                                                    <span class="radio-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
+                                                        </svg>
+                                                    </span>
+                                                    <span class="radio-label">Sí</span>
+                                                </span>
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="nameInscrip" id="idNoInscrip" value=0 class="radio-input">
+                                                <span class="radio-tile">
+                                                    <span class="radio-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                                            <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+                                                        </svg>
+                                                    </span>
+                                                    <span class="radio-label">No</span>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </center>
+                                </div>
+
+
+
+
+
                                 <div id="idPreguntaCat1" style="display:none;" class="radioCentro row">
                                     <center>
                                         <label><span style="color: #f36f03;">*</span> ¿Es médico?</label>
@@ -111,6 +146,8 @@
                                         </div>
                                     </center>
                                 </div>
+
+
                                 <div class="row">
                                     <div class="col-md-6"> <!-- LUGAR -->
                                         <label for="idSelectLugar"><span style="color: #f36f03;">*</span> Lugar</label>
@@ -334,10 +371,6 @@
                         </div>
                     </form>
                 </div>
-
-
-
-
             </main>
         </div>
     </div>
@@ -348,8 +381,7 @@
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
 
-    <!-- cdn js de boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

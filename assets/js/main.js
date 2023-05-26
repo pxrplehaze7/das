@@ -1,9 +1,7 @@
 // jquery
 $("#documentosObligatorios").on("submit", function (event) {
-  console.log("ola");
   // alert( "Handler for `submit` called." );
   event.preventDefault();
-
 
   //SELECCIONA EL ELEMENTO  DEL HTML CON EL tCon Y LO ASIGNA A LA VARIABLE selectCat
   let selectCat = document.querySelector('#idSelectCat');
@@ -19,12 +17,9 @@ $("#documentosObligatorios").on("submit", function (event) {
   var radios = document.querySelectorAll('input[type="radio"]');
 
 
-
   let formData = new FormData(this);
 
   formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
-
-
 
   console.log(formData);
 
@@ -38,6 +33,26 @@ $("#documentosObligatorios").on("submit", function (event) {
   }).done(function (data) {
     //   $( this ).addClass( "done" );
     //console.log(data)
+    $('body').append(data);
+  });
+
+});
+
+
+// jquery
+$("#edicion_pdfs").on("submit", function (event) {
+  // alert( "Handler for `submit` called." );
+  event.preventDefault();
+
+  $.ajax({
+    url: "./controller/edit_files.php",
+    method: "POST",
+    data: formData,
+    cache: false,
+    contentType: false,
+    processData: false
+  }).done(function (data) {
+
     $('body').append(data);
   });
 

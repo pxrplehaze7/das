@@ -44,7 +44,6 @@
                                         <h1 class="edit-icon mt-4"><i class="fa-solid fa-pen-to-square"></i></h1>
                                     </button>
                                 </div>
-
                             </div>
                         </form>
 
@@ -137,119 +136,93 @@
                             </div>
                         </div>
                         <br>
+
+
+
+
                         <div class="documentacion seccion">
                             <h6>Documentación</h6>
-
-
 
                             <table id="docs" class="display table table-striped table-light table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Documento</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>N° de Decreto (<strong><?php echo $persona['Decreto'] ?></strong>)</td>
-                                        <td><?php include('./controller/consulta_archivo/contrato.php') ?></td>
+                                        <td class="align-middle custom-height">N° de Decreto (<strong><?php echo $persona['Decreto'] ?></strong>)</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/contrato.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Declaración Jurada</td>
-                                        <td><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
+                                        <td class="align-middle custom-height">Declaración Jurada</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Certificado de Nacimiento</td>
-                                        <td><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
+                                        <td class="align-middle custom-height">Certificado de Nacimiento</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Certificado de Antecedentes</td>
-                                        <td><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
+                                        <td class="align-middle custom-height">Certificado de Antecedentes</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Fotocopia de Cédula de Identidad</td>
-                                        <td><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
+                                        <td class="align-middle custom-height">Fotocopia de Cédula de Identidad</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Curriculum Vitae</td>
-                                        <td><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
+                                        <td class="align-middle custom-height">Curriculum Vitae</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Certificado de Estudios o Título Profesional</td>
-                                        <td><?php include('./controller/consulta_archivo/estudios.php') ?></td>
+                                        <td class="align-middle custom-height">Certificado de Estudios o Título Profesional</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Certificado de Salud Compatible</td>
-                                        <td><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
+                                        <td class="align-middle custom-height">Certificado de Salud Compatible</td>
+                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
-                                        <td><?php if ($persona['IDAFP'] != 1) {
-                                                include('./controller/consulta_archivo/afp.php');
-                                            } ?></td>
+                                        <td class="align-middle custom-height">Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
+                                        <td class="align-middle custom-height"><?php if ($persona['IDAFP'] != 1) {
+                                                                                    include('./controller/consulta_archivo/afp.php');
+                                                                                } ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
-                                        <td><?php if ($persona['IDPrev'] != 1) {
-                                                include('./controller/consulta_archivo/prevision.php');
-                                            } ?></td>
+                                        <td class="align-middle custom-height">Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
+                                        <td class="align-middle custom-height"><?php if ($persona['IDPrev'] != 1) {
+                                                                                    include('./controller/consulta_archivo/prevision.php');
+                                                                                } ?></td>
                                     </tr>
 
 
-
-                                    <!-- revisar si se lo piden solo a los medicos honorarios -->
-                                    <?php if ($persona['Medico'] == 'Si') { ?>
+                                    <?php if ($persona['Inscripcion'] == 1) { ?>
                                         <tr>
-                                            <td>Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
-                                            <td><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                                            <td class="align-middle custom-height">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
+                                            <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
                                         </tr> <?php }
                                                 ?>
 
 
-
-
                                     <?php if ($persona['Medico'] == 'Si') { ?>
                                         <tr>
-                                            <td>Examen Único Nacional de Conocimientos de Medicina</td>
-                                            <td><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                                            <td class="align-middle custom-height">Examen Único Nacional de Conocimientos de Medicina</td>
+                                            <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
                                         </tr> <?php }
                                                 ?>
 
                                     <?php if ($persona['Genero'] == 'Masculino') { ?>
                                         <tr>
-                                            <td>Certificado de Servicio Militar al Día</td>
-                                            <td><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
+                                            <td class="align-middle custom-height">Certificado de Servicio Militar al Día</td>
+                                            <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
                                         </tr> <?php }
                                                 ?>
 
                                 </tbody>
                             </table>
 
-
-
-
-
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         <br>
@@ -327,8 +300,8 @@
                         </div>
 
 
-
-                    <?php } ?>
+                    </div>
+                <?php } ?>
             </main>
         </div>
     </div>
@@ -339,66 +312,12 @@
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
     <!-- cdn js de boostrap -->
+
+    <!-- cdn js de boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                language: {
-                    "sEmptyTable": "No se encontraron datos disponibles en la tabla",
-                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-                    "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ",",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sLoadingRecords": "Cargando...",
-                    "sProcessing": "Procesando...",
-                    "sSearch": "Buscar:",
-                    "sZeroRecords": "No se encontraron registros coincidentes",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": activar para ordenar la columna de manera descendente"
-                    }
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#docs').DataTable({
-                language: {
-                    "sEmptyTable": "No se encontraron datos disponibles en la tabla",
-                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-                    "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ",",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sLoadingRecords": "Cargando...",
-                    "sProcessing": "Procesando...",
-                    "sSearch": "Buscar:",
-                    "sZeroRecords": "No se encontraron registros coincidentes"
-                },
-                dom: 'frt',
-                pagingType: 'numbers',
-                order: [],
-                columnDefs: [{
-                    targets: '_all',
-                    orderable: false
-                }]
-            });
-        });
-    </script>
 </body>
 
 </html>

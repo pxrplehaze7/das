@@ -18,10 +18,7 @@ validar campos, que esten en orden
 
 solucionar que si es categoria a, que muestre los radio desi esmedico o no
 
-https://github.com/startbootstrap/startbootstrap-sb-admin
-
-cambiar el menu y a la derecha agregar la edicion de perfil como en el sb admin 2
-
+arreglar que los que tengan si a inscripcion muestren y agregar a tabla
 
 el certificado de inscripcionn se le pide a categoria a b y c, pero que no sean administrav¿tivos, asi que hay que preguntar si es prestador de salud o no
 
@@ -33,6 +30,7 @@ eunacom solo a medicos, asi que preguntar si es medico solo en categoria a
 validar que rut exista
 estado civil?
 
+buscar por decreto en lista total de trabajadores
 
 
 

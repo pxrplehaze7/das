@@ -9,3 +9,4 @@ while ($fila = mysqli_fetch_assoc($resultadoPrevision)) {
     echo "<option value='" . $fila['IDPrev'] . "'>" . $fila['NombrePrev'] . "</option>";
 }
 echo "</select>";
+?>
