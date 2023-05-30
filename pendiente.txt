@@ -10,11 +10,9 @@ hacer que cuando diga que no apelo, se desabilite el input de apelacion
 
 mostrar alerta al agregar calificacion, y al confirmar registro
 
-establecer un año minimo para calificaciones
 
 arreglar todo lo de honorario para que no muestre lo innecesario
 
-validar campos, que esten en orden
 
 solucionar que si es categoria a, que muestre los radio desi esmedico o no
 
@@ -26,8 +24,7 @@ hacer que pregunte si es prestador de servicios desalud  primero, luego si es me
 
 debe presentar certificado de inscripcion?
 
-eunacom solo a medicos, asi que preguntar si es medico solo en categoria a 
-validar que rut exista
+
 estado civil?
 
 buscar por decreto en lista total de trabajadores

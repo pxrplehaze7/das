@@ -20,11 +20,13 @@
 
     <!-- ICONOS -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+   
 </head>
 
 <body class="sb-nav-fixed">
+    <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
-        <?php require("./components/navbar.php") ?>
+
         <?php require("./components/sidebar.html") ?>
         <div id="layoutSidenav_content">
             <main>
@@ -81,7 +83,7 @@
 
 
 
-                                <div id="idInscripcion"  class="radioCentro row">
+                                <div id="idInscripcion" class="radioCentro row">
                                     <center>
                                         <label><span style="color: #f36f03;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
 
@@ -367,7 +369,7 @@
                         </div>
                         <br>
                         <div class="boton">
-                            <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+                            <button class="btn btn-enviar" id="btnRegistrar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
                         </div>
                     </form>
                 </div>
@@ -382,6 +384,9 @@
     <script src="./assets/js/validaciones_input.js"></script>
 
 
+
 </body>
+
+
 
 </html>

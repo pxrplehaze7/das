@@ -14,7 +14,18 @@ $("#documentosObligatorios").on("submit", function (event) {
     }
   }
 
-  var radios = document.querySelectorAll('input[type="radio"]');
+
+  //Para que no quede ningun radio marcado por defecto
+  window.addEventListener("load", function () {
+    // Obtener todos los elementos de tipo radio
+    var radios = document.querySelectorAll('input[type="radio"]');
+
+    // Deseleccionar todos los elementos de tipo radio
+    radios.forEach(function (radio) {
+      radio.checked = false;
+    });
+  });
+
 
 
   let formData = new FormData(this);
@@ -39,24 +50,42 @@ $("#documentosObligatorios").on("submit", function (event) {
 });
 
 
-// jquery
-$("#edicion_pdfs").on("submit", function (event) {
-  // alert( "Handler for `submit` called." );
-  event.preventDefault();
+// // jquery
+// $("#edicion_pdfs").on("submit", function (event) {
+//   // alert( "Handler for `submit` called." );
+//   event.preventDefault();
 
-  $.ajax({
-    url: "./controller/edit_files.php",
-    method: "POST",
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false
-  }).done(function (data) {
+//   $.ajax({
+//     url: "./controller/edit_files.php",
+//     method: "POST",
+//     data: formData,
+//     cache: false,
+//     contentType: false,
+//     processData: false
+//   }).done(function (data) {
 
-    $('body').append(data);
+//     $('body').append(data);
+//   });
+
+// });
+
+
+// Espera a que el documento esté cargado
+document.addEventListener('DOMContentLoaded', function () {
+  // Obtén todos los campos de entrada requeridos
+  var requiredInputs = document.querySelectorAll('input[required]');
+
+  // Verifica si hay campos de entrada requeridos no válidos
+  var firstInvalidInput = Array.from(requiredInputs).find(function (input) {
+    return !input.validity.valid;
   });
 
+  // Enfoca el primer campo de entrada no válido
+  if (firstInvalidInput) {
+    firstInvalidInput.focus();
+  }
 });
+
 
 
 

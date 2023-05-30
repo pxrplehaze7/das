@@ -100,26 +100,37 @@ p {
   justify-content: center;
 }
 
-.btn-buscar,
+
 .btn-limpiar,
 .btn-enviar {
-  background-color: #f36f03 !important;
-  border-color: #f36f03 !important;
+  background-color: #212529 !important;
+  border-color: #212529 !important;
   color: #ffffff !important;
 }
 
-.btn-buscar:hover,
+
 .btn-limpiar:hover,
 .btn-enviar:hover {
   background-color: #d66203 !important ;
   border-color: #d66203 !important;
 }
 
-.btn-buscar:active,
+
 .btn-limpiar:active,
 .btn-enviar:active {
   background-color: #b85300 !important ;
   border-color: #b85300 !important;
+}
+
+.btn-buscar{
+  background-color:#463bfa !important;
+  border-color: #463bfa !important;
+}
+.btn-buscar:hover{
+  background-color:#3b33dc !important;
+}
+.btn-bucar:active{
+  background-color:#2b25a5 !important;
 }
 
 /* INICIO BOTON ENVIAR FORMULARIO*/
@@ -245,84 +256,93 @@ p {
   padding-bottom: 11px;
 }
 
-
-
 .contenedor-botones {
-    display: flex;
-    justify-content: center;
-    padding-right: 0;
-  }
-  
-  .boton-descargar {
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    border-top-right-radius: 30px !important;
-    border-bottom-right-radius: 30px !important;
-    width: 130px !important;
-    background-color: #00b03b !important;
-    color: black !important;
-    border-color: #00b03b !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-  
-  .boton-ver {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    border-top-left-radius: 30px !important;
-    border-bottom-left-radius: 30px !important;
-    width: 130px !important;
-    background-color: #00b03b !important;
-    color: black !important;
-    border-color: #00b03b !important;
-  }
-  
-  .boton-ver:hover,
-  .boton-descargar:hover {
-    background-color: #029f36 !important ;
-    color: black !important;
-    border-color: #029f36 !important ;
-  }
-
-    
-  .boton-ver:active,
-  .boton-descargar:active {
-    background-color: #008f30 !important ;
-    color: black !important;
-    border-color: #008f30 !important ;
-  }
-
-  .pendiente:disabled {
-    background-color: #ffc107 !important;
-    border-radius: 30px !important;
-    border-color: #ffc107 !important;
-    color: black !important;
-    cursor: default !important;
-    opacity: 1 !important; /* Restaura la opacidad normal */
-  }
-  .title {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .title h1 {
-    flex-grow: 1;
-    text-align: center;
-  }
-  
-  .title button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-  }
-  
-  
-  .custom-height {
-    height: 37px !important;
+  display: flex;
+  justify-content: center;
+  padding-right: 0;
 }
 
-.bg-warning{
+.boton-descargar {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  width: 130px !important;
+  background-color: #00c4a0 !important;
+  color: black !important;
+  border-color: #00c4a0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.boton-ver {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  width: 130px !important;
+  background-color: #00c4a0 !important;
+  color: black !important;
+  border-color: #00c4a0 !important;
+}
+
+.boton-ver:hover,
+.boton-descargar:hover {
+  background-color: #02a385 !important ;
+  color: black !important;
+  border-color: #02a385 !important ;
+}
+
+.btn-descarga-edit {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.boton-ver:active,
+.boton-descargar:active {
+  background-color: #039479 !important ;
+  color: black !important;
+  border-color: #02a385 !important ;
+}
+
+.pendiente:disabled {
+  background-color: #f3ab00 !important;
+  border-color: #f3ab00 !important;
+  color: black !important;
+  cursor: default !important;
+  opacity: 1 !important; /* Restaura la opacidad normal */
+}
+.boton-eliminar {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  background-color: #c40055 !important;
+  border-color: #c40055 !important;
+}
+.boton-eliminar:hover {
+  background-color: #a70048 !important;
+}
+.boton-eliminar:active {
+  background-color: #920140 !important;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.title h1 {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.title button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.custom-height {
+  height: 37px !important;
+}
+
+.bg-warning {
   background-color: #f36f03 !important;
 }

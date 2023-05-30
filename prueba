@@ -318,20 +318,35 @@ if (isset($_POST['nameRutEditar'])) {
                                     <thead>
                                         <tr>
                                             <th class="col-md-5">Nombre</th>
-                                            <th class="col-md-2">Documento</th>
+                                            <th class="col-md-1">Documento</th>
                                             <th class="col-md-5">Cambiar o Subir</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+                                        <tr>
+                                            <td class="align-middle">
+                                                <div class="row">
+                                                    <div class="col-md-6">N° de Decreto</div>
+                                                    <div class="col-md-6"><input value="<?php echo $persona['Decreto'] ?>" class="form-control"></div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle"><?php include('./controller/consulta_archivo/contrato.php') ?></td>
+                                            <td>a</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="align-middle">Declaración Jurada</td>
+                                            <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
+                                            <td>a</td>
+                                        </tr>
                                         <tr>
                                             <td class="align-middle">Certificado de Nacimiento</td>
                                             <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
                                             <td>
                                                 <div class="input-group ">
                                                     <input type="file" id="idNACinputEDIT" name="nameNACdocEDIT" class="form-control" accept=".pdf">
-                                                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fa-solid fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -341,13 +356,100 @@ if (isset($_POST['nameRutEditar'])) {
                                             <td>
                                                 <div class="input-group ">
                                                     <input type="file" id="idANTECEinputEDIT" name="nameANTECEdocEDIT" class="form-control" accept=".pdf">
-                                                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinputEDIT')"><i class="fa-solid fa-trash"></i></button>
                                                 </div>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">Fotocopia de Cédula de Identidad</td>
+                                            <td class="align-middle"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
+                                            <td>a</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">Curriculum Vitae</td>
+                                            <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
+                                            <td>a</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">Certificado de Estudios o Título Profesional</td>
+                                            <td class="align-middle"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
+                                            <td>a</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="align-middle">Certificado de Salud Compatible</td>
+                                            <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
+                                            <td>a</td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td class="align-middle">
+                                                <div class="row">
+                                                    <div class="col-md-6">Certificado de Afiliacion a AFP</div>
+                                                    <div class="col-md-6"> <?php
+                                                                            $sqleditafp = "SELECT IDAFP, NombreAFP FROM afp";
+                                                                            $resultadoeditafp = mysqli_query($conn, $sqleditafp);
+                                                                            echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
+                                                                            while ($fila = mysqli_fetch_assoc($resultadoeditafp)) {
+                                                                                $selected = ($fila['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
+                                                                                echo "<option value='" . $fila['IDAFP'] . "' " . $selected . ">" . $fila['NombreAFP'] . "</option>";
+                                                                            }
+                                                                            echo "</select>";
+                                                                            ?></div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle"><?php if ($persona['IDAFP'] != 1) {
+                                                                            include('./controller/consulta_archivo/afp.php');
+                                                                        } ?></td>
+                                            <td>a</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="align-middle">
+                                                <div class="row">
+                                                    <div class="col-md-6">Certificado de Afiliacion Previsional</div>
+                                                    <div class="col-md-6"> <?php
+                                                                            $sqleditprev = "SELECT IDPrev, NombrePrev FROM prevision";
+                                                                            $resultadoeditprev = mysqli_query($conn, $sqleditprev);
+                                                                            echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
+                                                                            while ($fila = mysqli_fetch_assoc($resultadoeditprev)) {
+                                                                                $selected = ($fila['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
+                                                                                echo "<option value='" . $fila['IDPrev'] . "' " . $selected . ">" . $fila['NombrePrev'] . "</option>";
+                                                                            }
+                                                                            echo "</select>";
+                                                                            ?></div>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle"><?php if ($persona['IDPrev'] != 1) {
+                                                                            include('./controller/consulta_archivo/prevision.php');
+                                                                        } ?></td>
+                                            <td>a</td>
                                         </tr>
 
 
 
+                                        <?php if ($persona['Inscripcion'] == 1) { ?>
+                                            <tr>
+                                                <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                                                <td>a</td>
+                                            </tr> <?php } ?>
+
+
+                                        <?php if ($persona['Medico'] == 'Si') { ?>
+                                            <tr>
+                                                <td class="align-middle">Examen Único Nacional de Conocimientos de Medicina</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                                                <td>a</td>
+                                            </tr> <?php } ?>
+
+                                        <?php if ($persona['Genero'] == 'Masculino') { ?>
+                                            <tr>
+                                                <td class="align-middle">Certificado de Servicio Militar al Día</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
+                                                <td>a</td>
+                                            </tr> <?php } ?>
 
                                     </tbody>
                                 </table>
