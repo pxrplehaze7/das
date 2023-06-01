@@ -39,9 +39,9 @@ $total_t = $row[0];
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <!-- <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> -->
-    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"> 
-    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css"> 
-    
+    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -88,69 +88,68 @@ $total_t = $row[0];
                             </div>
                         </div>
                     </div>
-            
+
                     <br>
-             
-                        <div class="">
-                            <div class="card mb-4">
-                                <div class="card-header"style="text-align: center; font-size:25px">
-                                    Lista completa de trabajadores
-                                </div>
-                                <div class="card-body">
+
+                    <div class="">
+                        <div class="card mb-4">
+                            <div class="card-header" style="text-align: center; font-size:25px">
+                                Lista completa de trabajadores
+                            </div>
+                            <div class="card-body">
 
 
-                                    <table id="total" class="table table-striped table-bordered" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Rut</th>
-                                                <th>Nombre</th>
-                                                <th>Apellidos</th>
-                                                <th>Decreto</th>
-                                                <th>Profesion</th>
-                                                <th>Lugar</th>
-                                                <th>Sector</th>
-                                                <th>Celular</th>
-                                                <th>Correo</th>
-                                                <th>Cumple</th>
-                                            </tr>
-                                        </thead>
+                                <table id="total" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Rut</th>
+                                            <th>Decreto</th>
+                                            <th>Nombre</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Apellido Materno</th>
+                                            <th>Profesion</th>
+                                            <th>Lugar</th>
+                                            <th>Sector</th>
+                                            <th>Cumple</th>
+                                        </tr>
+                                    </thead>
 
-                                        <tbody>
-                                            <?php $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra ,t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
+                                    <tbody>
+                                        <?php $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra ,t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
                                             FROM trabajador t 
                                             INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
                                             INNER JOIN sector s ON (s.IDSector = t.IDSector)";
 
-                                            $resultadoTotal = mysqli_query($conn, $sqlTodos);
-                                            while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
-                                                <tr>
-                                                    <td><?php echo $ptotal['Rut'] ?></td>
-                                                    <td><?php echo $ptotal['NombreTra'] ?></td>
-                                                    <td><?php echo $ptotal['PaternoTra'] . ' ' . $ptotal['MaternoTra'] ?></td>
-                                                    <td><?php echo $ptotal['Decreto'] ?></td>
-                                                    <td><?php echo $ptotal['Profesion'] ?></td>
-                                                    <td><?php echo $ptotal['NombreLug'] ?></td>
-                                                    <td><?php echo $ptotal['NombreSector'] ?></td>
-                                                    <td><?php echo $ptotal['CelularTra'] ?></td>
-                                                    <td><?php echo $ptotal['CorreoTra'] ?></td>
-                                                    <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;color:white;font-weight:bold;<?php } else { ?>background-color: #c40055;color:white;font-weight:bold;<?php } ?>">
-                                                        <?php if ($ptotal['Cumple'] == 1) { ?>
-                                                            <span class="sic">Si cumple</span>
-                                                        <?php } else { ?>
-                                                            <span class="noc">No cumple</span>
-                                                        <?php } ?>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        $resultadoTotal = mysqli_query($conn, $sqlTodos);
+                                        while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
+                                            <tr>
+                                                <td><?php echo $ptotal['Rut'] ?></td>
+                                                <td><?php echo $ptotal['Decreto'] ?></td>
+                                                <td><?php echo $ptotal['NombreTra'] ?></td>
+                                                <td><?php echo $ptotal['PaternoTra'] ?></td>
+                                                <td><?php echo $ptotal['MaternoTra'] ?></td>
+                                                <td><?php echo $ptotal['Profesion'] ?></td>
+                                                <td><?php echo $ptotal['NombreLug'] ?></td>
+                                                <td><?php echo $ptotal['NombreSector'] ?></td>
+
+                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;color:white;font-weight:bold;<?php } else { ?>background-color: #c40055;color:white;font-weight:bold;<?php } ?>">
+                                                    <?php if ($ptotal['Cumple'] == 1) { ?>
+                                                        <span class="sic">Si cumple</span>
+                                                    <?php } else { ?>
+                                                        <span class="noc">No cumple</span>
+                                                    <?php } ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                    </div>
 
-                       
 
-                  
+
+
 
 
 

@@ -29,6 +29,7 @@ estado civil?
 
 buscar por decreto en lista total de trabajadores
 
+arreglar para buscarpor cumpleo no cumple
 
 
       <?php if ($id_rol_usuario_actual == 1) { ?>
