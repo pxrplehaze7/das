@@ -50,26 +50,6 @@ $("#documentosObligatorios").on("submit", function (event) {
 });
 
 
-// // jquery
-// $("#edicion_pdfs").on("submit", function (event) {
-//   // alert( "Handler for `submit` called." );
-//   event.preventDefault();
-
-//   $.ajax({
-//     url: "./controller/edit_files.php",
-//     method: "POST",
-//     data: formData,
-//     cache: false,
-//     contentType: false,
-//     processData: false
-//   }).done(function (data) {
-
-//     $('body').append(data);
-//   });
-
-// });
-
-
 // Espera a que el documento esté cargado
 document.addEventListener('DOMContentLoaded', function () {
   // Obtén todos los campos de entrada requeridos
@@ -95,6 +75,20 @@ function clearFileInput(inputId) {
   var fileInput = document.getElementById(inputId);
   fileInput.value = "";
 }
+
+function deleteFile(campo, rut) {
+  $.ajax({
+    url: './controller/eliminaRuta.php',
+    type: 'POST',
+    data: { campo: campo, rut: rut },
+    success: function (respuesta) {
+      location.reload();
+    },
+  
+  });
+}
+
+
 
 
 //FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
@@ -132,10 +126,9 @@ $(document).ready(function () {
 
     if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
       // Si no se ha seleccionado ninguna opción
-      alert('Debe indicar si apelo o no.');
+      alert('Debe indicar si apeló o no.');
       return;
     }
-
 
     let formData = new FormData(this);
     console.log(formData);
@@ -153,4 +146,24 @@ $(document).ready(function () {
   });
 });
 
+$(document).ready(function () {
+  $("#edicion_pdfs").on("submit", function (event) {
+    event.preventDefault();
 
+    let formData = new FormData(this);
+    formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
+
+    console.log(formData);
+
+    $.ajax({
+      url: "./controller/editDocs.php",
+      method: "POST",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false
+    }).done(function (data) {
+      $('body').append(data);
+    });
+  });
+});

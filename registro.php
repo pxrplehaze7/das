@@ -41,14 +41,14 @@
                             <h6>Datos Personales</h6>
                             <div class="row ">
                                 <div class="col-md">
-                                    <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
+                                    <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
                                     <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
                                     <div id="rut-validation"></div>
                                     <br>
                                 </div>
 
                                 <div class="col-md">
-                                    <label for="idPersona"><span style="color: #f36f03;">*</span> Nombres</label>
+                                    <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
                                     <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" oninput="validarTexto(this)" required>
                                     <br>
                                 </div>
@@ -56,7 +56,7 @@
 
                             <div class="row">
                                 <div class="col-md">
-                                    <label for="idAppat"><span style="color: #f36f03;">*</span> Apellido Paterno</label>
+                                    <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
                                     <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)" required>
                                     <br>
                                 </div>
@@ -85,7 +85,7 @@
 
                                 <div id="idInscripcion" class="radioCentro row">
                                     <center>
-                                        <label><span style="color: #f36f03;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
+                                        <label><span style="color: #c40055;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
 
                                         <div class="radio-inputs">
                                             <label>
@@ -120,7 +120,7 @@
 
                                 <div id="idPreguntaCat1" style="display:none;" class="radioCentro row">
                                     <center>
-                                        <label><span style="color: #f36f03;">*</span> ¿Es médico?</label>
+                                        <label><span style="color: #c40055;">*</span> ¿Es médico?</label>
 
                                         <div class="radio-inputs">
                                             <label>
@@ -152,7 +152,7 @@
 
                                 <div class="row">
                                     <div class="col-md-6"> <!-- LUGAR -->
-                                        <label for="idSelectLugar"><span style="color: #f36f03;">*</span> Lugar</label>
+                                        <label for="idSelectLugar"><span style="color: #c40055;">*</span> Lugar</label>
                                         <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
                                             <option value="" hidden> Selecciona</option>
                                             <?php
@@ -166,21 +166,21 @@
                                         <br>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="idSelectSector"><span style="color: #f36f03;">*</span> Sector</label>
+                                        <label for="idSelectSector"><span style="color: #c40055;">*</span> Sector</label>
                                         <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
                                             <option value="" hidden> Selecciona</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="">
-                                    <label for="idProfesion"><span style="color: #f36f03;">*</span> Profesión</label>
+                                    <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                     <input type="text" name="nameProfesion" id="idProfesion" class="form-control" required>
                                 </div>
                             </div>
                             <br>
                             <div class="radioCentro row">
                                 <center>
-                                    <label><span style="color: #f36f03;">*</span> Seleccione Género</label>
+                                    <label><span style="color: #c40055;">*</span> Seleccione Género</label>
 
                                     <div class="radio-inputs">
                                         <label>
@@ -260,7 +260,7 @@
                             <br>
                             <div class="row document"> <!-- DECRETO Y ARCHIVO DE CONTRATO -->
                                 <div class="col-md-3">
-                                    <label for="idDecreto"><span style="color: #f36f03;">*</span> Decreto</label>
+                                    <label for="idDecreto"><span style="color: #c40055;">*</span> Decreto</label>
                                     <input type="text" name="nameDecreto" id="idDecreto" class="form-control" maxlength="30" required>
                                 </div>
                                 <div class="col-md-9">

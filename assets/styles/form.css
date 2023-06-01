@@ -111,15 +111,15 @@ p {
 
 .btn-limpiar:hover,
 .btn-enviar:hover {
-  background-color: #d66203 !important ;
-  border-color: #d66203 !important;
+  background-color: #2b2670 !important ;
+  border-color: #2b2670 !important;
 }
 
 
 .btn-limpiar:active,
 .btn-enviar:active {
-  background-color: #b85300 !important ;
-  border-color: #b85300 !important;
+  background-color: #322c83 !important ;
+  border-color: #322c83 !important;
 }
 
 .btn-buscar{
@@ -155,28 +155,28 @@ p {
 }
 
 .radio-input:checked + .radio-tile {
-  border-color: #f36f03;
+  border-color: #463bfa;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  color: #f36f03;
+  color: #463bfa;
 }
 
 .radio-input:checked + .radio-tile:before {
   transform: scale(1);
   opacity: 1;
-  background-color: #f36f03;
-  border-color: #f36f03;
+  background-color: #463bfa;
+  border-color: #463bfa;
 }
 
 .radio-input:checked + .radio-tile .radio-icon svg {
-  fill: #f36f03;
+  fill: #463bfa;
 }
 
 .radio-input:checked + .radio-tile .radio-label {
-  color: #f36f03;
+  color: #463bfa;
 }
 
 .radio-input:focus + .radio-tile {
-  border-color: #f36f03;
+  border-color: #463bfa;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
 }
 
@@ -218,7 +218,7 @@ p {
 }
 
 .radio-tile:hover {
-  border-color: #f36f03;
+  border-color: #463bfa;
 }
 
 .radio-tile:hover:before {
@@ -265,6 +265,8 @@ p {
 .boton-descargar {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   width: 130px !important;
   background-color: #00c4a0 !important;
   color: black !important;
@@ -337,12 +339,49 @@ p {
   position: absolute;
   right: 0;
   bottom: 0;
+  border: none;
+  color: #212529;
 }
+
+.title button::before {
+border: #6b66bc;
+}
+.title button:hover {
+  color: #463bfa;
+  }
 
 .custom-height {
   height: 37px !important;
 }
 
 .bg-warning {
-  background-color: #f36f03 !important;
+  background-color: #463bfa !important;
 }
+
+
+.dataTables_paginate .pagination .page-item.active .page-link {
+
+  background-color: #463bfa; 
+  border-color: #463bfa;
+  color: #FFFFFF; 
+}
+
+#total_info,
+#total_paginate {
+margin: 0;
+
+margin-top: 10px;
+}
+ ul.pagination {
+  margin:0 !important;}
+
+  th{
+    background-color: #463bfa !important;
+    color: white;
+  }
+
+  .numero{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }

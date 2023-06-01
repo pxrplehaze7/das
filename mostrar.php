@@ -21,7 +21,8 @@
     <!-- ICONOS -->
 
     <!-- datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -143,7 +144,7 @@
                         <div class="documentacion seccion">
                             <h6>Documentación</h6>
 
-                            <table id="docs" class="display table table-striped table-light table-bordered" style="width:100%">
+                            <table id="docs" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -228,8 +229,13 @@
                         <br>
                         <div class="observaciones seccion">
                             <h6>Observaciones</h6>
-                            <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
+                            <?php if (empty($persona['Observ'])) : ?>
+                                <textarea class="form-control" rows="5" cols="50" readonly>Sin observaciones</textarea>
+                            <?php else : ?>
+                                <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
+                            <?php endif; ?>
                         </div>
+
                         <br>
 
 
@@ -244,7 +250,7 @@
                             </div>
 
 
-                            <table id="myTable" class="display table table-striped table-light table-bordered">
+                            <table id="myTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th class="text-center">ID</th>
@@ -273,7 +279,7 @@
                                             echo '
                      
                                 <center>
-                                    <div class="col-md-6 contenedor-botones">
+                                    <div class="contenedor-botones">
                                     <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $mostrar['RutaCalificacion'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
                                     <a href="' . $mostrar['RutaCalificacion'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                 </div>
@@ -286,7 +292,7 @@
                                         if (!empty($mostrar['RutaApelacion'])) {
                                             echo '
                                 <center>
-                                 <div class="col-md-6 contenedor-botones">
+                                 <div class="contenedor-botones">
                                     <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $mostrar['RutaApelacion'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
                                     <a href="' . $mostrar['RutaApelacion'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                 </div>
@@ -311,11 +317,13 @@
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
+    <script src="./assets/js/tablas.js"></script>
     <!-- cdn js de boostrap -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
 </body>
 

@@ -49,7 +49,8 @@ if (isset($_POST['nameRutEditar'])) {
     <!-- ICONOS -->
 
     <!-- datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -76,13 +77,13 @@ if (isset($_POST['nameRutEditar'])) {
                                 <h6>Datos Personales</h6>
                                 <div class="row ">
                                     <div class="col-md">
-                                        <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
+                                        <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
                                         <input type="text" name="RutInput" id="idRutInput" value="<?php echo $rut ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                                         <div id="rut-validation"></div>
                                         <br>
                                     </div>
                                     <div class="col-md">
-                                        <label for="idPersona"><span style="color: #f36f03;">*</span> Nombres</label>
+                                        <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
                                         <input type="text" name="namePersona" id="idPersona" value="<?php echo $persona['NombreTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
                                         <br>
                                     </div>
@@ -90,7 +91,7 @@ if (isset($_POST['nameRutEditar'])) {
 
                                 <div class="row">
                                     <div class="col-md">
-                                        <label for="idAppat"><span style="color: #f36f03;">*</span> Apellido Paterno</label>
+                                        <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
                                         <input type="text" name="namePaterno" id="idAppat" value="<?php echo $persona['PaternoTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
                                         <br>
                                     </div>
@@ -108,7 +109,7 @@ if (isset($_POST['nameRutEditar'])) {
                                             $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
                                             $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
 
-                                            echo "<label for='idSelectCon'><span style='color: #f36f03;'>*</span> Tipo de Contrato </label>"; //Label 
+                                            echo "<label for='idSelectCon'><span style='color: #c40055;'>*</span> Tipo de Contrato </label>"; //Label 
                                             echo "<select name='nameSelectCon' id='idSelectCon' class='form-select' required>";
                                             echo '<option value="" hidden>Selecciona un Contrato</option>'; // Opción por defecto en blanco
 
@@ -125,7 +126,7 @@ if (isset($_POST['nameRutEditar'])) {
                                             <?php
                                             $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
                                             $resultadoCategoria = mysqli_query($conn, $sqlCategoria);
-                                            echo "<label for='idSelectCat'><span style='color: #f36f03;'>*</span> Categoría </label>"; //Label 
+                                            echo "<label for='idSelectCat'><span style='color: #c40055;'>*</span> Categoría </label>"; //Label 
                                             echo "<select name='nameSelectCat' id='idSelectCat' class='form-select' required> ";
                                             echo '<option hidden value=""> Selecciona una Categoría</option>'; // Opción por defecto en blan
                                             while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
@@ -142,7 +143,7 @@ if (isset($_POST['nameRutEditar'])) {
 
                                     <div id="idInscripcion" class="radioCentro row">
                                         <center>
-                                            <label><span style="color: #f36f03;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
+                                            <label><span style="color: #c40055;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
 
                                             <div class="radio-inputs">
                                                 <label>
@@ -174,7 +175,7 @@ if (isset($_POST['nameRutEditar'])) {
                                     <?php if ($persona['IDCat'] == 1) { ?>
                                         <div id="idPreguntaCat1" class="radioCentro row">
                                             <center>
-                                                <label><span style="color: #f36f03;">*</span> ¿Es médico?</label>
+                                                <label><span style="color: #c40055;">*</span> ¿Es médico?</label>
                                                 <div class="radio-inputs">
                                                     <label>
                                                         <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input" <?php if ($persona['Medico'] == 'Si') echo "checked"; ?>>
@@ -206,7 +207,7 @@ if (isset($_POST['nameRutEditar'])) {
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6"> <!-- LUGAR -->
-                                            <label for="idSelectLugar"><span style="color: #f36f03;">*</span> Lugar</label>
+                                            <label for="idSelectLugar"><span style="color: #c40055;">*</span> Lugar</label>
                                             <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
                                                 <option value="" hidden>Selecciona un Lugar</option>
                                                 <?php
@@ -221,7 +222,7 @@ if (isset($_POST['nameRutEditar'])) {
                                             <br>
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="idSelectSector"><span style="color: #f36f03;">*</span> Sector</label>
+                                            <label for="idSelectSector"><span style="color: #c40055;">*</span> Sector</label>
                                             <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
                                                 <option value="" hidden>Selecciona un Sector</option>
                                                 <?php
@@ -237,7 +238,7 @@ if (isset($_POST['nameRutEditar'])) {
                                     </div>
 
                                     <div>
-                                        <label for="idProfesion"><span style="color: #f36f03;">*</span> Profesión</label>
+                                        <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                         <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $persona['Profesion'] ?>" class="form-control" require>
                                     </div>
                                 </div>
@@ -248,7 +249,7 @@ if (isset($_POST['nameRutEditar'])) {
 
                                 <div class="radioCentro row">
                                     <center>
-                                        <label><span style="color: #f36f03;">*</span> Seleccione Género</label>
+                                        <label><span style="color: #c40055;">*</span> Seleccione Género</label>
 
                                         <div class="radio-inputs">
                                             <label>
@@ -310,53 +311,54 @@ if (isset($_POST['nameRutEditar'])) {
                         </form>
 
                         <br>
+                        <div id="c_docs">
+                            <form method="POST" enctype="multipart/form-data" id="edicion_pdfs">
+                                <div class="documentacion seccion">
+                                    <h6>Documentación</h6>
+                                    <table id="docsEDIT" class="table table-striped table-bordered" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th class="col-md-5">Nombre</th>
+                                                <th class="col-md-2">Documento</th>
+                                                <th class="col-md-5">Cambiar o Subir</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                        <form method="POST" action="editar_pdfs.php" enctype="multipart/form-data" id="edicion_pdfs">
-                            <div class="documentacion seccion">
-                                <h6>Documentación</h6>
-                                <table id="docs" class="display table table-striped table-light table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th class="col-md-5">Nombre</th>
-                                            <th class="col-md-2">Documento</th>
-                                            <th class="col-md-5">Cambiar o Subir</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr>
-                                            <td class="align-middle">Certificado de Nacimiento</td>
-                                            <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
-                                            <td>
-                                                <div class="input-group ">
-                                                    <input type="file" id="idNACinputEDIT" name="nameNACdocEDIT" class="form-control" accept=".pdf">
-                                                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="align-middle">Certificado de Antecedentes</td>
-                                            <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
-                                            <td>
-                                                <div class="input-group ">
-                                                    <input type="file" id="idANTECEinputEDIT" name="nameANTECEdocEDIT" class="form-control" accept=".pdf">
-                                                    <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
+                                            <tr>
+                                                <td class="align-middle">Certificado de Nacimiento</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idNACinputEDIT" name="nameNACdocEDIT" class="form-control" accept=".pdf">
+                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="align-middle">Certificado de Antecedentes</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idANTECEinputEDIT" name="nameANTECEdocEDIT" class="form-control" accept=".pdf">
+                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
 
 
-                                    </tbody>
-                                </table>
-                                <br>
-                                <div class="boton">
-                                    <button class="btn btn-enviar" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <div class="boton">
+                                        <button class="btn btn-enviar" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
 
                     </div>
 
@@ -375,8 +377,9 @@ if (isset($_POST['nameRutEditar'])) {
     <script src="./assets/js/tablas.js"></script>
     <!-- cdn js de boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
 
 </body>
