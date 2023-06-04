@@ -99,6 +99,28 @@ $total_t = $row[0];
                             </div>
                             <div class="card-body">
 
+                                <!-- <label for="a">APLICA</label>
+                                <select name="" class="form-control filtro" id="a">
+                                    <option value="0">SELECCIONE</option>
+                                    <option>SI</option>
+                                    <option>NO</option>
+                                </select>
+
+                                <label for="a">APLICA</label>
+                                <select name="" class="form-control filtro" id="a">
+                                    <option value="0">SELECCIONE</option>
+                                    <option>SI</option>
+                                    <option>NO</option>
+                                </select>
+
+                                <label for="a">APLICA</label>
+                                <select name="" class="form-control filtro" id="a">
+                                    <option value="0">SELECCIONE</option>
+                                    <option>SI</option>
+                                    <option>NO</option>
+                                </select>
+                            <HR> -->
+
 
                                 <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
@@ -115,7 +137,7 @@ $total_t = $row[0];
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+                                    <tbody id="trabajadores_tbody">
                                         <?php
                                         $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra ,t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
         FROM trabajador t 

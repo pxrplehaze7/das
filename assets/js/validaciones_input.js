@@ -17,11 +17,13 @@ function validarCelular(input) {
 
 
 //PERMITE SOLO EL INGRESO DE NUMEROS, k O k y -
-document.getElementById("idRutInput").addEventListener("input", function () {
-  var inputValue = this.value;
-  var validValue = inputValue.replace(/[^0-9kK-]/g, "");
-  this.value = validValue;
-});
+if(document.getElementById("idRutInput")){
+  document.getElementById("idRutInput").addEventListener("input", function () {
+    var inputValue = this.value;
+    var validValue = inputValue.replace(/[^0-9kK-]/g, "");
+    this.value = validValue;
+  });
+}
 
 
 //REVISA SI YA ESTA REGISTRADO EN LA BASE DE DATOS

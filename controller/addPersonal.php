@@ -91,7 +91,13 @@ if (!file_exists($ruta . $rutPersona)) {
 
 // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
-  echo "El rut ya existe, no se han subido archivos.";
+  echo "<script> Swal.fire({
+    icon: 'error',
+    title: 'El rut ya existe, no se han subido archivos.',
+    showConfirmButton: false,
+    timer: 3000
+  });</script>";
+  exit();
 } else {
   //SI EL RUT NO EXISTE, SE ASIGNA NULL A LA RUTA FINAL
   $ruta_afpFINAL          = NULL;
@@ -252,7 +258,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 
   // SE INSERTAN DATOS A LA BASE DE DATOS
-  $sqlTrabajador = " INSERT INTO trabajador (IDCat,IDCon,IDAFP,IDPrev,IDLugar,IDSector,NombreTra,PaternoTra,MaternoTra,Rut,Decreto,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,RutaContrato,Observ,RutaInscripcion,Cumple,Inscripcion) VALUES ($categoriaP,$contratoP,$afpP,$prevP,$lugarP,$sector,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
+  $sqlTrabajador = " INSERT INTO trabajador (IDCat,IDCon,IDAFP,IDPrev,IDLugar,IDSector,NombreTra,PaternoTra,MaternoTra,Rut,Decreto,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,RutaContrato,Observ,RutaInscripcion,Cumple,Inscripcion)
+   VALUES ($categoriaP,$contratoP,$afpP,$prevP,$lugarP,$sector,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
 
 
   //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
@@ -261,6 +268,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   try {
     $resultado = mysqli_query($conn, $sqlTrabajador);
 
+    // echo "error";
     if (!$resultado) {
       throw new Exception(mysqli_error($conn));
     } else {
@@ -272,12 +280,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       });</script>";
     }
   } catch (Exception $e) {
-    echo "<script> Swal.fire({
-      icon: 'error',
-      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
-      showConfirmButton: false,
-      timer: 3000
-    });</script>";
+    
     // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
     if (file_exists($ruta . $rutPersona)) {
       $files = glob($ruta . $rutPersona . '/*'); // Obtener todos los archivos dentro de la carpeta
@@ -287,15 +290,17 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
         }
       }
       rmdir($ruta . $rutPersona); // Eliminar la carpeta vacía
-
     }
 
-    echo "<script> Swal.fire({
+    echo "<script> 
+    Swal.fire({
       icon: 'error',
-      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
+      title: `Error al guardar los archivos: " . $e->getMessage() . "`,
       showConfirmButton: false,
-      timer: 3000
-    });</script>";
+      timer: 3600
+    });
+    </script>";
+   
   }
 }
 
