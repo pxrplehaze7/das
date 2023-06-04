@@ -1,12 +1,12 @@
 <?php
 include("./controller/config/conexion.php");
 
-$cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 1;";
+$cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 'Si Cumple';";
 $sqlCumplen = mysqli_query($conn, $cumplen);
 $row = mysqli_fetch_row($sqlCumplen);
 $total_c = $row[0];
 
-$NOcumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 0;";
+$NOcumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 'No Cumple';";
 $sqlNOCumplen = mysqli_query($conn, $NOcumplen);
 $row = mysqli_fetch_row($sqlNOCumplen);
 $total_nc = $row[0];
@@ -41,6 +41,7 @@ $total_t = $row[0];
     <!-- <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> -->
     <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
 
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -99,7 +100,7 @@ $total_t = $row[0];
                             <div class="card-body">
 
 
-                                <table id="total" class="table table-striped table-bordered" style="width:100%">
+                                <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
                                             <th>Rut</th>
@@ -115,10 +116,11 @@ $total_t = $row[0];
                                     </thead>
 
                                     <tbody>
-                                        <?php $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra ,t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
-                                            FROM trabajador t 
-                                            INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
-                                            INNER JOIN sector s ON (s.IDSector = t.IDSector)";
+                                        <?php
+                                        $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra ,t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
+        FROM trabajador t 
+        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
+        INNER JOIN sector s ON (s.IDSector = t.IDSector)";
 
                                         $resultadoTotal = mysqli_query($conn, $sqlTodos);
                                         while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
@@ -131,17 +133,13 @@ $total_t = $row[0];
                                                 <td><?php echo $ptotal['Profesion'] ?></td>
                                                 <td><?php echo $ptotal['NombreLug'] ?></td>
                                                 <td><?php echo $ptotal['NombreSector'] ?></td>
-
-                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;color:white;font-weight:bold;<?php } else { ?>background-color: #c40055;color:white;font-weight:bold;<?php } ?>">
-                                                    <?php if ($ptotal['Cumple'] == 1) { ?>
-                                                        <span class="sic">Si cumple</span>
-                                                    <?php } else { ?>
-                                                        <span class="noc">No cumple</span>
-                                                    <?php } ?>
+                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 'Si Cumple') { ?>background-color: #00c4a0;color:white;font-weight:bold;<?php } else { ?>background-color: #c40055;color:white;font-weight:bold;<?php } ?>">
+                                                    <?php echo $ptotal['Cumple']; ?>
                                                 </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -167,6 +165,8 @@ $total_t = $row[0];
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
 </body>
 
 </html>

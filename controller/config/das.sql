@@ -85,7 +85,7 @@ CREATE TABLE `das`.`trabajador` (
     `RutaContrato` VARCHAR(400) NULL,
     `RutaInscripcion` VARCHAR(400) NULL,
     `Observ` VARCHAR(1000) NULL,
-    `Cumple` BOOLEAN NOT NULL,
+    `Cumple` VARCHAR(9) NOT NULL,
     PRIMARY KEY (`IDTra`),
     FOREIGN KEY (`IDCat`) REFERENCES categoria (`IDCat`),
     FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`),

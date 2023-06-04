@@ -15,6 +15,8 @@ $profesionP = $_POST['nameProfesion'];
 $decreto     = $_POST['nameDecreto'];
 $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
+$afpP       = $_POST['nameSelectAFP'];
+$prevP       = $_POST['nameSelectPrev'];
 $cumple = FALSE;
 $host = $_SERVER['HTTP_HOST'];
 $fechaActual = date('d-m-Y');
@@ -49,8 +51,7 @@ if ($_POST['nameSelectLugar'] != "") {
   $lugarP = NULL;
 }
 
-$afpP       = $_POST['nameSelectAFP'] != "" ? $_POST['nameSelectAFP'] : NULL;
-$prevP       = $_POST['nameSelectPrev'] != "" ? $_POST['nameSelectPrev'] : NULL;
+
 
 
 $nombreP    = mysqli_real_escape_string($conn, $nombreP);
@@ -244,9 +245,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // SI ES MUJER, NO ES MEDICO NI HONORARIO Y SUBE INSCRIPCION
     ($generoP == "Femenino" && $medicoOno == "No" && $contratoP != 3 && $inscripcionOno == 1 && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL) && !empty($ruta_InscripcionFINAL))
   ) {
-    $cumple = true;
+    $cumple = "Si Cumple";
   } else {
-    $cumple = false;
+    $cumple = "No Cumple";
   }
 
 

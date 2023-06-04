@@ -79,6 +79,8 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('#total').DataTable({
+        responsive: true,
+        searching: true,
         language: {
             "sEmptyTable": "No se encontraron datos disponibles en la tabla",
             "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
@@ -102,6 +104,8 @@ $(document).ready(function() {
                 "sSortDescending": ": activar para ordenar la columna de manera descendente"
             }
         }
-
+        
     });
 });
+
+

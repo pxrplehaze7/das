@@ -241,6 +241,42 @@ if (isset($_POST['nameRutEditar'])) {
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                         <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $persona['Profesion'] ?>" class="form-control" require>
                                     </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-6"> <!-- AFP -->
+                                            <?php
+                                            $sqlafp = "SELECT IDAFP, NombreAFP FROM afp";
+                                            $resultadoafp = mysqli_query($conn, $sqlafp);
+
+                                            echo "<label for='idSelectAFP'>AFP </label>"; //Label 
+                                            echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
+                                            while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
+                                                $selected = ($fila2['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
+                                                echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+
+
+                                            <br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <?php
+                                            $sqlprev = "SELECT IDPrev, NombrePrev FROM prevision";
+                                            $resultadoprev = mysqli_query($conn, $sqlprev);
+                                            echo "<label for='idSelectCat'>Previsión </label>"; //Label 
+                                            echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
+                                            while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
+                                                $selected3 = ($fila3['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
+                                                echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
 
                                 <br>
@@ -324,6 +360,25 @@ if (isset($_POST['nameRutEditar'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <tr>
+                                                <td class="align-middle">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-md-7 align-middle">
+                                                            Nº de Decreto
+                                                        </div>
+                                                        <div class="col-md-5 align-middle">
+                                                            <input type="text" name="nameDecreto" id="idDecreto" value="<?php echo $persona['Decreto'] ?>" class="form-control" maxlength="30" required>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/contrato.php') ?></td>
+                                                <td>
+                                                    <div class="input-group">
+                                                        <input type="file" id="idDocContratoInputEDIT" name="nameDocContratoInputEDIT" class="form-control" accept=".pdf">
+                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDocContratoInputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
                                             <tr>
                                                 <td class="align-middle">Certificado de Nacimiento</td>
@@ -346,6 +401,111 @@ if (isset($_POST['nameRutEditar'])) {
                                                 </td>
                                             </tr>
 
+
+                                            <tr>
+                                                <td class="align-middle">Fotocopia Cédula de Identidad</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idCedulainputEDIT" name="nameCeduladocEDIT" class="form-control" accept=".pdf">
+                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="align-middle">Declaración Jurada</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idDJuradainputEDIT" name="nameDJuradadocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Curriculum Vitae</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idCVinputEDIT" name="nameCVdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Certificado de Estudios o Título Profesional</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idEstudioinputEDIT" name="nameEstudiodocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" class="form-control" id="idMilitarDocEDIT" name="nameMilitarDocEDIT" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDocEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Examen Médico Unico Nacional</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idExamenMinputEDIT" name="nameExaMdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Certificado de Salud Compatible</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idSCompatibleinputEDIT" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idInscripinputEDIT" name="nameInscripdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="align-middle"> Certificado de Afiliación AFP
+                                                </td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/afp.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idAFPinputEDIT" name="nameAFPdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td class="align-middle">Certificado de Afiliación Previsión   
+                                                </td>
+                                                <td class="align-middle"><?php include('./controller/consulta_archivo/prevision.php') ?></td>
+                                                <td>
+                                                    <div class="input-group ">
+                                                        <input type="file" id="idPREVinputEDIT" name="namePREVdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
 
 
 

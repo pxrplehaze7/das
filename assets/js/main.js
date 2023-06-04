@@ -90,12 +90,10 @@ function deleteFile(campo, rut) {
 
 
 
-
-//FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
+// FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
 function cargarSectores() {
   const lugarSeleccionado = document.getElementById("idSelectLugar").value;
   $.ajax({
-
     url: './controller/lugar_sector.php',
     method: "POST",
     data: { lugarSeleccionado: lugarSeleccionado },
@@ -104,7 +102,6 @@ function cargarSectores() {
       let largo = respuesta.length;
       $("#idSelectSector").empty();
 
-      $("#idSelectSector").append("<option hidden='hidden' disabled selected>Seleccione</option>")
       for (let i = 0; i < largo; i++) {
         let idSector = respuesta[i]['IDSector'];
         let nombreSector = respuesta[i]['NombreSector'];
@@ -113,10 +110,11 @@ function cargarSectores() {
       }
     },
     error: function (error) {
-      console.error("ERROR", error.responseText)
+      console.error("ERROR", error.responseText);
     }
   });
 }
+
 
 
 

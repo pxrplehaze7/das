@@ -11,6 +11,8 @@ $generoP    = $_POST['nameGenero'];
 $sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
 $inscripcionOno = $_POST['nameInscrip'];
+$afpP       = $_POST['nameSelectAFP'];
+$prevP       = $_POST['nameSelectPrev'];
 
 $categoriaP = $_POST['nameSelectCat'];
 if ($categoriaP == 1) {
@@ -43,6 +45,8 @@ $sql = "UPDATE trabajador SET
         IDCon = $contratoP,
         IDLugar = $lugarP,
         IDSector = $sector,
+        IDAFP = $afpP,
+        IDPrev = $prevP,
         Rut = '$rutInput',
         NombreTra = '$nombreP',
         PaternoTra = '$paternoP',

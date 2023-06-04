@@ -264,8 +264,8 @@ p {
 
 .boton-descargar {
 
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
+
+  border-radius: 0 !important;
   width: 130px !important;
   background-color: #00c4a0 !important;
   color: black !important;
@@ -383,4 +383,8 @@ margin-top: 10px;
     font-size: 30px;
     font-weight: bold;
     text-align: center;
+  }
+
+  .align-middle {
+    vertical-align: middle !important;
   }

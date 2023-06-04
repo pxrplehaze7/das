@@ -18,11 +18,13 @@ solucionar que si es categoria a, que muestre los radio desi esmedico o no
 
 arreglar que los que tengan si a inscripcion muestren y agregar a tabla
 
-el certificado de inscripcionn se le pide a categoria a b y c, pero que no sean administrav¿tivos, asi que hay que preguntar si es prestador de salud o no
+ARREGLAR QUE CUANDO ACTUALIZO CONTACTO O PERSONAL, ME ENVIA A OTRO ARCHIVO
 
-hacer que pregunte si es prestador de servicios desalud  primero, luego si es medico o no
+VER DE QUE MANERA MOSTRAR LA TABLA PARA QUE FILTRE SEGUN SECTOR Y BIEN
 
 debe presentar certificado de inscripcion?
+
+FALTA AGREGAR PARA GUARDAR EL DECRETO EN EDITAR
 
 
 estado civil?
