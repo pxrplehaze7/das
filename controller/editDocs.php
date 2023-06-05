@@ -221,14 +221,15 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
         // SI ES MUJER, NO ES MEDICO NI HONORARIO Y SUBE INSCRIPCION
         ($generoP == "Femenino" && $medicoOno == "No" && $contratoP != 3 && $inscripcionOno == 1 && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL) && !empty($ruta_InscripcionFINAL))
     ) {
-        $cumple = "Si Cumple";
+        $cumple = 1;
     } else {
-        $cumple = "No Cumple";
+        $cumple = 0;
     }
 
 
     // SE INSERTAN DATOS A LA BASE DE DATOS
     $sqlTraEdit = " UPDATE trabajador SET 
+    Decreto = '$decreto',
     RutaNac = '$ruta_nacFINAL',
     RutaAntec = '$ruta_AntecedentesFINAL',
 
@@ -248,50 +249,52 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     WHERE Rut = '$rutPersona'";
 
 
+try {
+    $resultado = mysqli_query($conn, $sqlTraEdit);
 
-
-    try {
-        $resultado = mysqli_query($conn, $sqlTraEdit);
-
-        if (!$resultado) {
-            throw new Exception(mysqli_error($conn));
-        } else {
-            echo "<script> Swal.fire({
+    // echo "error";
+    if (!$resultado) {
+      throw new Exception(mysqli_error($conn));
+    } else {
+      echo "<script> Swal.fire({
         icon: 'success',
         title: 'Guardado Correctamente',
         showConfirmButton: false,
         timer: 3000
       });</script>";
-        }
-    } catch (Exception $e) {
-        echo "<script> Swal.fire({
-      icon: 'error',
-      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
-      showConfirmButton: false,
-      timer: 3000
-    });</script>";
-        // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
-        if (file_exists($ruta . $rutPersona)) {
-            $files = glob($ruta . $rutPersona . '/*'); // Obtener todos los archivos dentro de la carpeta
-            foreach ($files as $file) {
-                if (is_file($file)) {
-                    unlink($file); // Eliminar cada archivo
-                }
-            }
-            rmdir($ruta . $rutPersona); // Eliminar la carpeta vacía
 
-        }
-
-        echo "<script> Swal.fire({
-      icon: 'error',
-      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
-      showConfirmButton: false,
-      timer: 3000
-    });</script>";
+      echo "<script>
+      var inputs = document.querySelectorAll('input');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+      }
+    </script>";
+    
     }
-} else {
-    echo "El rut no existe, no se han subido archivos.";
+  } catch (Exception $e) {
+
+    // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
+    if (file_exists($ruta . $rutPersona)) {
+      $files = glob($ruta . $rutPersona . '/*'); // Obtener todos los archivos dentro de la carpeta
+      foreach ($files as $file) {
+        if (is_file($file)) {
+          unlink($file); // Eliminar cada archivo
+        }
+      }
+      rmdir($ruta . $rutPersona); // Eliminar la carpeta vacía
+    }
+
+    echo "<script> 
+    Swal.fire({
+      icon: 'error',
+      title: `Error al guardar los archivos: " . $e->getMessage() . "`,
+      showConfirmButton: false,
+      timer: 3600
+    });
+    </script>";
+  }
 }
 
 // SE CIERRA LA CONEXION A LA BASE DE DATOS
 mysqli_close($conn);
+

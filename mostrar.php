@@ -371,7 +371,7 @@
                                                 if (!empty($persona['RutaSerM'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSerM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaSerM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>            
+                                                        <a href="<?php echo $persona['RutaSerM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -407,15 +407,16 @@
                             <div class="addCalificacion">
                                 <form action="calificaciones.php" method="POST">
                                     <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
-                                    <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                    <button class="btn btn-calificacion" type="submit">Añadir Calificaciones <i class="fa-solid fa-circle-plus"></i></button>
                                 </form>
                             </div>
+
+
 
 
                             <table id="myTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">ID</th>
                                         <th class="text-center">Fecha</th>
                                         <th class="text-center">Calificación</th>
                                         <th class="text-center">Apelo</th>
@@ -433,7 +434,6 @@
 
                                     while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
                                         echo "<tr>";
-                                        echo "<td class='align-middle text-center'>" . $mostrar['IDCalif'] . "</td>";
                                         echo "<td class='align-middle text-center'>" . $mostrar['fecha'] . "</td>";
 
                                         echo "<td class='align-middle text-center'>";

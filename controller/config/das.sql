@@ -85,7 +85,7 @@ CREATE TABLE `das`.`trabajador` (
     `RutaContrato` VARCHAR(400) NULL,
     `RutaInscripcion` VARCHAR(400) NULL,
     `Observ` VARCHAR(1000) NULL,
-    `Cumple` VARCHAR(9) NOT NULL,
+    `Cumple` BOOLEAN NOT NULL,
     PRIMARY KEY (`IDTra`),
     FOREIGN KEY (`IDCat`) REFERENCES categoria (`IDCat`),
     FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`),
@@ -179,7 +179,7 @@ VALUES
 INSERT INTO
     `lugar`(`IDLugar`, `NombreLug`)
 VALUES
-    (3, 'CESFAM/SAPU La leonera');
+    (3, 'CESFAM/SAPU La Leonera');
 
 INSERT INTO
     `lugar`(`IDLugar`, `NombreLug`)
@@ -199,7 +199,7 @@ VALUES
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
 VALUES
-    (1, 1, 'No Aplica');
+    (1, 1, 'Dirección de Administración de Salud');
 
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
@@ -209,7 +209,7 @@ VALUES
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
 VALUES
-    (3, 2, 'No Aplica');
+    (3, 2, 'CESFAM Dra. Eloisa Diaz');
 
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
@@ -224,12 +224,12 @@ VALUES
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
 VALUES
-    (6, 3, 'No Aplica');
+    (6, 3, 'CESFAM/SAPU La Leonera');
 
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
 VALUES
-    (7, 4, 'No Aplica');
+    (7, 4, 'CESFAM Valle la Piedra');
 
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
@@ -239,7 +239,7 @@ VALUES
 INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
 VALUES
-    (9, 5, 'No Aplica');
+    (9, 5, 'CESFAM Chiguayante');
 
 
 INSERT INTO
@@ -255,7 +255,7 @@ VALUES
     INSERT INTO
     `sector`(`IDSector`, `IDLugar`, `NombreSector`)
 VALUES
-    (12, 6, 'No Aplica');
+    (12, 6, 'SAR Chiguayante');
 
 INSERT INTO
     `prevision`(`IDPrev`, `NombrePrev`)

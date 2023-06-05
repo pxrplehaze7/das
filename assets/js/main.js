@@ -14,6 +14,13 @@ $("#documentosObligatorios").on("submit", function (event) {
     }
   }
 
+  if (!$('#idSiInscrip').is(":checked") && !$('#idNoInscrip').is(":checked")) {
+    // Si no se ha seleccionado ninguna opción
+    alert('Debe indicar si debe presentar el Certificado');
+    return;
+  }
+
+
   Swal.fire({
     title: '¿Realmente desea registrar trabajador?',
     showDenyButton: true,
@@ -57,13 +64,11 @@ $("#documentosObligatorios").on("submit", function (event) {
   })
 
 
-
-
 });
 
 //Para que no quede ningun radio marcado por defecto
 window.addEventListener("load", function () {
-  if(document.URL.includes("/registro.php")){
+  if (document.URL.includes("/registro.php")) {
     console.info("LIMPIANDO RADIOS :d")
     // Obtener todos los elementos de tipo radio
     var radios = document.querySelectorAll('input[type="radio"]');
@@ -73,7 +78,7 @@ window.addEventListener("load", function () {
       radio.checked = false;
     });
   }
-  
+
 });
 
 
@@ -94,9 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
-
-
 // FUNCION PARA LIMPIAR EL INPUT FILE
 function clearFileInput(inputId) {
   var fileInput = document.getElementById(inputId);
@@ -114,8 +116,6 @@ function deleteFile(campo, rut) {
 
   });
 }
-
-
 
 // FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
 function cargarSectores() {
@@ -142,85 +142,143 @@ function cargarSectores() {
   });
 }
 
-
-
-
-// $(document).ready(function () {
 $("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
     // Si no se ha seleccionado ninguna opción
-    alert('Debe indicar si apeló o no.');
+    alert('Debe indicar si apelo o no.');
     return;
   }
 
-  let formData = new FormData(this);
-  console.log(formData);
+  Swal.fire({
+    title: '¿Está seguro de añadir calificación?',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: 'Si',
+    denyButtonText: 'No',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
 
-  $.ajax({
-    url: "./controller/addCalificacion.php",
-    method: "POST",
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false
-  }).done(function (data) {
-    console.log(data);
+      $.ajax({
+        url: "./controller/addCalificacion.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+      })
+        .done(function (respuesta) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Calificación guardada exitosamente',
+            showConfirmButton: false,
+            timer: 3000
+          });
+
+          // Limpia los campos
+          clearFileInput('idCalifInput');
+          clearFileInput('idApelacionDoc');
+          $('#idInicio').val('');
+          $('#idFin').val('');
+          $('.radio-input').prop('checked', false);
+          $('#idApelacionDoc').val('');
+
+
+        })
+        .fail(function (respuesta) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al guardar los archivos: ' + respuesta.responseText,
+            showConfirmButton: false,
+            timer: 3600
+          });
+        })
+        .always(function (respuesta) {
+          console.info("DATA:", respuesta);
+        });
+    }
   });
 });
-// });
 
-// $(document).ready(function () {
+
 $("#edicion_pdfs").on("submit", function (event) {
   event.preventDefault();
 
-  let formData = new FormData(this);
-  formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
 
-  console.log(formData);
+  Swal.fire({
+    title: '¿Desea actualizar los documentos?',
+    showDenyButton: true,
+    showCancelButton: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
 
-  $.ajax({
-    url: "./controller/editDocs.php",
-    method: "POST",
-    data: formData,
-    cache: false,
-    contentType: false,
-    processData: false
-  }).done(function (data) {
-    $('body').append(data);
-  });
+      formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
+
+      $.ajax({
+        url: "./controller/editDocs.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+
+        .done(
+          function (respuesta) {
+            $('body').append(respuesta);
+          }
+        )//fin del done
+        .fail(
+          function (respuesta) {
+            $('body').append(respuesta);
+          }
+        )//fin del fail
+        .always(
+          (respuesta) => {
+            console.info("DATA:", respuesta)
+          }
+        )//fin del always
+    }
+  })
 });
-// });
-
-
-
 
 
 
 
 // $(".filtro").on("change",function(){
-//   // $("#idBoton").on("click",function(){
+$("#btn-filtro").on("click", function () {
 
-//   let datos = {
-//     cumple : $("#idSelectCumple").val() ,
-//     lugar : $("#idSelectLugar").val() ,
-//     sector : $("#idSelectSector").val() ,
-//   }
+  let datos = {
+    cumple: $("#idSelectCumple").val(),
+    lugar: $("#idSelectLugar").val(),
+    sector: $("#idSelectSector").val(),
+  }
 
-//   $.ajax({
-//       url: "./controller/cargaTabla.php",
-//       method: "POST",
-//       data: datos,
-//       cache: false,
-//       contentType: false,
-//       processData: false
-//     }).done(function (data) {
-//       $('#trabajadores_tbody').html(data);
-//     });
+  $.ajax({
+    url: "./controller/cargaTabla.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false
+  }).done(function (data) {
+    $('#trabajadores_tbody').html(data);
+  });
 
-    
-// });
+
+});
+
 
 
 

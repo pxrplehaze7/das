@@ -38,18 +38,22 @@ $total_t = $row[0];
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-    <!-- <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"> -->
-    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
 
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+
 </head>
 
 <body class="sb-nav-fixed">
+    <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
-        <?php require("./components/navbar.php"); ?>
+
         <?php require("./components/sidebar.html"); ?>
 
         <div id="layoutSidenav_content">
@@ -58,173 +62,69 @@ $total_t = $row[0];
                     <h1 class="mt-4">Registros</h1>
                     <ol class="breadcrumb mb-4"></ol>
                     <div class="row">
-
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="card text-white mb-4" style="background-color:#463bfa;">
                                 <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                    <div class="card-body">Cantidad de Personal Registrado</div>
+                                    <div class="card-body">Personal Registrado</div>
                                     <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
                                 </div>
                                 <div class="card-body numero"><?php echo $total_t; ?></div>
                             </div>
                         </div>
-
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="card text-white mb-4" style="background-color:#00c4a0;">
                                 <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                    <div class="card-body">Personal con Documentación al Día</div>
+                                    <div class="card-body">Documentación al Día</div>
                                     <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
                                 </div>
                                 <div class="card-body numero"><?php echo $total_c; ?></div>
                             </div>
                         </div>
-
-                        <div class="col-md-4">
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                             <div class="card text-white mb-4" style="background-color:#f3ab00">
                                 <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                    <div class="card-body">Personal con Documentación Pendiente</div>
+                                    <div class="card-body">Documentación Pendiente</div>
                                     <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
                                 </div>
-                                <div class="card-body numero"><?php echo $total_nc; ?></div>
+                                <div class="card-body numero" style="max-height: 150px; overflow-y: auto;"><?php echo $total_nc; ?></div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                     <br>
-
-                    <div class="">
-                        <div class="card mb-4">
-                            <div class="card-header" style="text-align: center; font-size:25px">
-                                Lista completa de trabajadores
-                            </div>
-                            <div class="card-body">
-
-                                <!-- <label for="a">APLICA</label>
-                                <select name="" class="form-control filtro" id="a">
-                                    <option value="0">SELECCIONE</option>
-                                    <option>SI</option>
-                                    <option>NO</option>
-                                </select>
-
-                                
-
-                                <label for="a">APLICA</label>
-                                <select name="" class="form-control filtro" id="a">
-                                    <option value="0">SELECCIONE</option>
-                                    <option>SI</option>
-                                    <option>NO</option>
-                                </select>
-
-                                <label for="a">APLICA</label>
-                                <select name="" class="form-control filtro" id="a">
-                                    <option value="0">SELECCIONE</option>
-                                    <option>SI</option>
-                                    <option>NO</option>
-                                </select>
-                            <HR> -->
-
-                                <div class="row">
-                                    <div class="col-md-4"> <!-- LUGAR -->
-                                        <label for="idSelectLugar">Lugar</label>
-                                        <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectores()">
-                                            <option value="0" hidden> Selecciona</option>
-                                            <?php
-                                            $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
-                                            $resultadoLugar = mysqli_query($conn, $sqlLugar);
-                                            while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
-                                                echo "<option value='" . $fila['IDLugar'] . "'>" . $fila['NombreLug'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="idSelectSector">Sector</label>
-                                        <select name="nameSelectSector" id="idSelectSector" class="form-select filtro" required>
-                                            <option value="0" hidden> Selecciona</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label for="idSelectCumple">Estado</label>
-                                        <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
-                                            <option value="0"> Selecciona</option>
-                                            <option value="Si Cumple">Si Cumple</option>
-                                            <option value="No Cumple">No Cumple</option>
-                                        </select>
-                                        <br>
-                                    </div>
-
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-area me-1"></i>
+                                    Area Chart Example
                                 </div>
-
-
-                                <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
-                                    <thead>
-                                        <tr>
-                                            <th>Rut</th>
-                                            <th>Decreto</th>
-                                            <th>Nombre</th>
-                                            <th>Apellido Paterno</th>
-                                            <th>Apellido Materno</th>
-                                            <th>Profesion</th>
-                                            <th>Lugar</th>
-                                            <th>Sector</th>
-                                            <th>Cumple</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody id="trabajadores_tbody">
-                                        <?php
-                                        $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra ,t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
-        FROM trabajador t 
-        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
-        INNER JOIN sector s ON (s.IDSector = t.IDSector)";
-
-                                        $resultadoTotal = mysqli_query($conn, $sqlTodos);
-                                        while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
-                                            <tr>
-                                                <td><?php echo $ptotal['Rut'] ?></td>
-                                                <td><?php echo $ptotal['Decreto'] ?></td>
-                                                <td><?php echo $ptotal['NombreTra'] ?></td>
-                                                <td><?php echo $ptotal['PaternoTra'] ?></td>
-                                                <td><?php echo $ptotal['MaternoTra'] ?></td>
-                                                <td><?php echo $ptotal['Profesion'] ?></td>
-                                                <td><?php echo $ptotal['NombreLug'] ?></td>
-                                                <td><?php echo $ptotal['NombreSector'] ?></td>
-                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 'Si Cumple') { ?>background-color: #00c4a0;color:white;font-weight:bold;<?php } else { ?>background-color: #c40055;color:white;font-weight:bold;<?php } ?>">
-                                                    <?php echo $ptotal['Cumple']; ?>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-
-                                </table>
+                                <div class="card-body"><canvas id="myChart" width="100%" height="40"></canvas></div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="fas fa-chart-bar me-1"></i>
+                                    Bar Chart Example
+                                </div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
             </main>
+
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/tablas.js"></script>
     <script src="./assets/js/chart_pieTotal.js"></script>
     <script src="./assets/js/chart_pieDesglose.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
+
+
 </body>
 
 </html>

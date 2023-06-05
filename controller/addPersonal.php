@@ -251,9 +251,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // SI ES MUJER, NO ES MEDICO NI HONORARIO Y SUBE INSCRIPCION
     ($generoP == "Femenino" && $medicoOno == "No" && $contratoP != 3 && $inscripcionOno == 1 && !empty($ruta_afpFINAL) && !empty($ruta_nacFINAL) && !empty($ruta_AntecedentesFINAL) && !empty($ruta_CedulaFINAL) && !empty($ruta_CurriculumFINAL) && !empty($ruta_PrevisionFINAL) && !empty($ruta_EstudiosFINAL) && !empty($ruta_DJuradaFINAL) && !empty($ruta_SaludCompatFINAL) && !empty($ruta_ContratoFINAL) && !empty($ruta_InscripcionFINAL))
   ) {
-    $cumple = "Si Cumple";
+    $cumple = 1;
   } else {
-    $cumple = "No Cumple";
+    $cumple = 0;
   }
 
 
@@ -278,9 +278,17 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
         showConfirmButton: false,
         timer: 3000
       });</script>";
+
+      echo "<script>
+      var inputs = document.querySelectorAll('input');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+      }
+    </script>";
+    
     }
   } catch (Exception $e) {
-    
+
     // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
     if (file_exists($ruta . $rutPersona)) {
       $files = glob($ruta . $rutPersona . '/*'); // Obtener todos los archivos dentro de la carpeta
@@ -300,7 +308,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       timer: 3600
     });
     </script>";
-   
   }
 }
 
