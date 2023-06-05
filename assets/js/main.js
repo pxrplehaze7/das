@@ -203,11 +203,9 @@ $("#edicion_pdfs").on("submit", function (event) {
 //   // $("#idBoton").on("click",function(){
 
 //   let datos = {
-//     aplica : $("#a").val() ,
-//     lugar : $("#b").val() ,
-//     lugar : $("#b").val() ,
-//     lugar : $("#b").val() ,
-//     lugar : $("#b").val() ,
+//     cumple : $("#idSelectCumple").val() ,
+//     lugar : $("#idSelectLugar").val() ,
+//     sector : $("#idSelectSector").val() ,
 //   }
 
 //   $.ajax({

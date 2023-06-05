@@ -154,54 +154,192 @@
                                 <tbody>
                                     <tr>
                                         <td class="align-middle custom-height">N° de Decreto (<strong><?php echo $persona['Decreto'] ?></strong>)</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/contrato.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaContrato'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary w-100 boton-ver" onclick="window.open('<?php echo $persona['RutaContrato']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaContrato'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+
+                                            <?php } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary w-100 pendiente"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Declaración Jurada</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaDJur'])) {
+                                            ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaDJur']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaDJur'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+
+                                            <?php
+                                            }
+                                            ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Nacimiento</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaNac'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaNac'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php
+                                            } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Antecedentes</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaAntec'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaAntec']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaAntec'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Fotocopia de Cédula de Identidad</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaCedula'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaCedula']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaCedula'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php   } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Curriculum Vitae</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaCV'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaCV']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaCV'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Estudios o Título Profesional</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaEstudio'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaEstudio']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaEstudio'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Salud Compatible</td>
-                                        <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
+                                        <td class="align-middle custom-height">
+                                            <?php
+                                            if (!empty($persona['RutaSCom'])) { ?>
+                                                <div class="contenedor-botones">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $persona['RutaSCom'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                </div>
+                                            <?php } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                <?php } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
                                         <td class="align-middle custom-height"><?php if ($persona['IDAFP'] != 1) {
-                                                                                    include('./controller/consulta_archivo/afp.php');
-                                                                                } ?></td>
+
+                                                                                    if (!empty($persona['RutaAFP'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaAFP']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaAFP'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                            <?php }
+                                                                                } ?>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
                                         <td class="align-middle custom-height"><?php if ($persona['IDPrev'] != 1) {
-                                                                                    include('./controller/consulta_archivo/prevision.php');
-                                                                                } ?></td>
+
+                                                                                    if (!empty($persona['RutaPrev'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaPrev']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaPrev'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+
+                                            <?php }
+                                                                                } ?>
+                                        </td>
                                     </tr>
 
 
                                     <?php if ($persona['Inscripcion'] == 1) { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
-                                            <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                                            <td class="align-middle custom-height">
+                                                <?php
+                                                if (!empty($persona['RutaInscripcion'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaInscripcion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaInscripcion'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                                <?php } ?>
+                                            </td>
                                         </tr> <?php }
                                                 ?>
 
@@ -209,14 +347,38 @@
                                     <?php if ($persona['Medico'] == 'Si') { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Examen Único Nacional de Conocimientos de Medicina</td>
-                                            <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                                            <td class="align-middle custom-height">
+                                                <?php
+                                                if (!empty($persona['RutaExaM'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaExaM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaExaM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                                <?php } ?>
+                                            </td>
                                         </tr> <?php }
                                                 ?>
 
                                     <?php if ($persona['Genero'] == 'Masculino') { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de Servicio Militar al Día</td>
-                                            <td class="align-middle custom-height"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
+                                            <td class="align-middle custom-height">
+                                                <?php
+                                                if (!empty($persona['RutaSerM'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSerM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaSerM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>            
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                                <?php } ?>
+                                            </td>
                                         </tr> <?php }
                                                 ?>
 

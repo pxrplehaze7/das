@@ -5,28 +5,28 @@
 
 $sql = "SELECT AKLJSDLA FROM trabajador WHERE ";
 
-if($_POST['aplica'] != "0" ){
-    $sql .= " cumple = '".$_POST['aplica']."'   ";
+if($_POST['cumple'] != "0" ){
+    $sql .= " cumple = '".$_POST['cumple']."'   ";
 
     if($_POST['lugar'] != "0"){
         $sql .= " AND lugar = ".$_POST['lugar']." ";
     }
 
-    if($_POST['SECTOR'] != "0"){
-        $sql .= " AND SECTOR = ".$_POST['SECTOR']." ";
+    if($_POST['sector'] != "0"){
+        $sql .= " AND sector = ".$_POST['sector']." ";
     }
 
 
 }elseif($_POST['lugar'] != "0"){
     $sql .= " lugar = ".$_POST['lugar']." ";
 
-    if($_POST['SECTOR'] != "0"){
-        $sql .= " AND SECTOR = ".$_POST['SECTOR']." ";
+    if($_POST['sector'] != "0"){
+        $sql .= " AND sector = ".$_POST['sector']." ";
     }
 
     
-}elseif($_POST['SECTOR'] != "0"){
-    $sql .= " SECTOR = ".$_POST['SECTOR']." ";
+}elseif($_POST['sector'] != "0"){
+    $sql .= " sector = ".$_POST['sector']." ";
 
 
 }

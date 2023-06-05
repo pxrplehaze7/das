@@ -106,6 +106,8 @@ $total_t = $row[0];
                                     <option>NO</option>
                                 </select>
 
+                                
+
                                 <label for="a">APLICA</label>
                                 <select name="" class="form-control filtro" id="a">
                                     <option value="0">SELECCIONE</option>
@@ -120,6 +122,40 @@ $total_t = $row[0];
                                     <option>NO</option>
                                 </select>
                             <HR> -->
+
+                                <div class="row">
+                                    <div class="col-md-4"> <!-- LUGAR -->
+                                        <label for="idSelectLugar">Lugar</label>
+                                        <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectores()">
+                                            <option value="0" hidden> Selecciona</option>
+                                            <?php
+                                            $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
+                                            $resultadoLugar = mysqli_query($conn, $sqlLugar);
+                                            while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
+                                                echo "<option value='" . $fila['IDLugar'] . "'>" . $fila['NombreLug'] . "</option>";
+                                            }
+                                            ?>
+                                        </select>
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="idSelectSector">Sector</label>
+                                        <select name="nameSelectSector" id="idSelectSector" class="form-select filtro" required>
+                                            <option value="0" hidden> Selecciona</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label for="idSelectCumple">Estado</label>
+                                        <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
+                                            <option value="0"> Selecciona</option>
+                                            <option value="Si Cumple">Si Cumple</option>
+                                            <option value="No Cumple">No Cumple</option>
+                                        </select>
+                                        <br>
+                                    </div>
+
+                                </div>
 
 
                                 <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
