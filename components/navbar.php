@@ -35,10 +35,12 @@ if (isset($_POST['nameBuscaRut'])) {
         text: '¿Desea registrar?',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#00c4a0',
+        cancelButtonColor: '#ba0051',
         confirmButtonText: 'Sí',
+        allowOutsideClick: false,
         cancelButtonText: 'No'
+
       }).then((result) => {
         if (result.isConfirmed) {
           window.location.href = 'registro.php';
@@ -57,33 +59,33 @@ if (isset($_POST['nameBuscaRut'])) {
   <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
   <!-- Navbar Search-->
   <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="mostrar.php" method="POST" id="searchForm">
-  <div class="input-group">
-    <input class="form-control" type="text" name="nameBuscaRut" id="nameBuscaRut" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-    <button class="btn btn-primary btn-buscar" id="btnNavbarSearch" type="submit" disabled><i class="fas fa-search"></i></button>
-  </div>
-</form>
+    <div class="input-group">
+      <input class="form-control" type="text" name="nameBuscaRut" id="nameBuscaRut" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+      <button class="btn btn-primary btn-buscar" id="btnNavbarSearch" type="submit" disabled><i class="fas fa-search"></i></button>
+    </div>
+  </form>
 
-<script>
-  document.getElementById("searchForm").addEventListener("submit", function(e) {
-    var input = document.getElementById("nameBuscaRut").value.trim();
-    
-    if (input.length < 9) {
-      e.preventDefault(); // Evita que el formulario se envíe si no se cumplen los requisitos
-      alert("El campo debe tener al menos 9 caracteres.");
-    }
-  });
-  
-  document.getElementById("nameBuscaRut").addEventListener("input", function() {
-    var input = this.value.trim();
-    var btnBuscar = document.getElementById("btnNavbarSearch");
-    
-    if (input.length >= 9) {
-      btnBuscar.removeAttribute("disabled");
-    } else {
-      btnBuscar.setAttribute("disabled", "disabled");
-    }
-  });
-</script>
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(e) {
+      var input = document.getElementById("nameBuscaRut").value.trim();
+
+      if (input.length < 9) {
+        e.preventDefault(); // Evita que el formulario se envíe si no se cumplen los requisitos
+        alert("El campo debe tener al menos 9 caracteres.");
+      }
+    });
+
+    document.getElementById("nameBuscaRut").addEventListener("input", function() {
+      var input = this.value.trim();
+      var btnBuscar = document.getElementById("btnNavbarSearch");
+
+      if (input.length >= 9) {
+        btnBuscar.removeAttribute("disabled");
+      } else {
+        btnBuscar.setAttribute("disabled", "disabled");
+      }
+    });
+  </script>
 
   <!-- Navbar-->
   <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">

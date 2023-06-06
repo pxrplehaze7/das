@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Inicio</title>
+    <title>Lista de Registros</title>
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -28,29 +28,22 @@
     <!-- <script src="./assets/js/jspdf.umd.min.js"></script> -->
 
 
-
 </head>
 
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
-
         <?php require("./components/sidebar.html"); ?>
-
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-
                     <div class="title">
                         <h1 class="mt-4">Lista de Trabajadores Registrados</h1>
                     </div>
                     <br>
                     <div class="">
                         <div class="card mb-4">
-
                             <div class="card-body">
-
-
 
                                 <label for="">Filtrar Búsqueda:</label>
                                 <br>
@@ -90,7 +83,6 @@
                                             <button id="limpia-filtro" class="btn btn-enviar limpia-filtro">Limpiar</button>
                                         </div>
                                     </div>
-
                                 </div>
                                 <br>
                                 <hr>
@@ -131,12 +123,9 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </main>
         </div>
@@ -152,16 +141,11 @@
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
 
-
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
-
-
-
 </body>
-
 </html>

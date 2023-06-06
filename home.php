@@ -16,6 +16,10 @@ $sqlT = mysqli_query($conn, $totalTRA);
 $row = mysqli_fetch_row($sqlT);
 $total_t = $row[0];
 
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +101,7 @@ $total_t = $row[0];
                     </div>
 
                     <div class="row">
-                        <div class="col-xl-5">
+                        <!-- <div class="col-xl-5">
                             <div class=" card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
@@ -105,7 +109,7 @@ $total_t = $row[0];
                                 </div>
                                 <div class="card-body"><canvas id="myChart" width="100%"></canvas></div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-xl-7">
                             <div class="card mb-4">
                                 <div class="card-header">

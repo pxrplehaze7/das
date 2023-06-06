@@ -360,7 +360,6 @@
                                 </div>
                                 <br>
                             </div>
-
                         </div>
                         <br>
                         <div class="observaciones seccion">
@@ -368,9 +367,28 @@
                             <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50" maxlength="1000"></textarea>
                         </div>
                         <br>
-                        <div class="boton">
+
+
+                        <!-- `          <div class="boton">
                             <button class="btn btn-enviar" id="btnRegistrar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+                        </div>` -->
+                        <div class="boton-registrar">
+                            <button id="btnRegistrar" type="submit">
+                                <div class="svg-wrapper-1">
+                                    <div class="svg-wrapper">
+                                        <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <span>Registrar</span>
+                            </button>
                         </div>
+
+
+
+
                     </form>
                 </div>
             </main>

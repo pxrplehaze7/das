@@ -24,6 +24,9 @@ ver como hacer focus a los radio porque no me deja
 
 card pendiente se ve mas grande
 
+ver como hacer que elsector prueba quedar vacio al buscar
+hacer que consulte por cada lugar para calcular elporcentaje
+
       <?php if ($id_rol_usuario_actual == 1) { ?>
 
                                     <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-info editbtn" onclick="busca_user(<?php echo $mostrar['id_user'] ?>)" data-toggle="modal" data-target="#editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
