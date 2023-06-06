@@ -26,34 +26,48 @@ if(document.getElementById("idRutInput")){
 }
 
 
-//REVISA SI YA ESTA REGISTRADO EN LA BASE DE DATOS
+
+
 $(document).ready(function () {
   $('#idRutInput').on('blur', function () {
     var rut = $(this).val();
-
     if (rut.trim() !== '') {
-      if (rut.length === 10 || rut.length === 9) {
-        if (Fn.validaRut(rut)) {
-          $.ajax({
-            url: './controller/check_rut.php',
-            type: 'POST',
-            data: { rut: rut },
-            success: function (response) {
-              if (response === 'VALIDO') {
-                $('#rut-validation').html(' El RUT es válido y no está registrado');
-              } else {
-                $('#rut-validation').html(response);
-              }
-            }
-          });
-        } else {
-          $('#rut-validation').html(' El RUT no es válido');
-        }
-      } else {
-        $('#rut-validation').html(' El RUT debe tener 9 o 10 dígitos');
-      }
+      validarRut(rut);
     }
   });
+
+  // Verificar si el campo de entrada está vacío antes de enviar el formulario
+  $('#documentosObligatorios').on('submit', function () {
+    var rut = $('#idRutInput').val();
+    if (rut.trim() === '') {
+      $('#rut-validation').html(''); // Eliminar el mensaje de validación si el campo está vacío
+    } else {
+      validarRut(rut);
+    }
+  });
+
+  function validarRut(rut) {
+    if (rut.length === 10 || rut.length === 9) {
+      if (Fn.validaRut(rut)) {
+        $.ajax({
+          url: './controller/check_rut.php',
+          type: 'POST',
+          data: { rut: rut },
+          success: function (response) {
+            if (response === 'VALIDO') {
+              $('#rut-validation').html('El RUT es válido y no está registrado');
+            } else {
+              $('#rut-validation').html(response);
+            }
+          }
+        });
+      } else {
+        $('#rut-validation').html('El RUT no es válido');
+      }
+    } else {
+      $('#rut-validation').html('El RUT debe tener 9 o 10 dígitos');
+    }
+  }
 });
 
 

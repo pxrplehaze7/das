@@ -315,7 +315,7 @@ if (isset($_POST['nameRutEditar'])) {
                                 </div>
                                 <br>
                                 <div class="boton">
-                                    <button class="btn btn-enviar" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                                    <button class="btn btn-enviar" id="btn-editP" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -341,7 +341,7 @@ if (isset($_POST['nameRutEditar'])) {
                                 </div>
                                 <br>
                                 <div class="boton">
-                                    <button class="btn btn-enviar" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                                    <button class="btn btn-enviar" id="btn-editC" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
                                 </div>
                             </div>
                         </form>

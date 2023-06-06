@@ -8,29 +8,22 @@ no me muestra el error al insertar y ver como probar forzando error
 
 hacer que cuando diga que no apelo, se desabilite el input de apelacion
 
-
 arreglar todo lo de honorario para que no muestre lo innecesario
-
 
 arreglar que los que tengan si a inscripcion muestren y agregar a tabla
 
 ARREGLAR QUE CUANDO ACTUALIZO CONTACTO O PERSONAL, ME ENVIA A OTRO ARCHIVO
 
-VER DE QUE MANERA MOSTRAR LA TABLA PARA QUE FILTRE SEGUN SECTOR Y BIEN
-
-buscar por decreto en lista total de trabajadores
-
-arreglar para buscarpor cumpleo no cumple
 
 hacer que para que no haya paginacion, muestre todos los registros de una vez
 
 hacer que cuando se registre, se limpie el formulario y no muestre como si se estuviera validando algun rut
 
-hacer que cuando clickeen fuera de la alerta, se cancele
-
-alerta se ve chueca
+arreglar que cuando busco segun los select, se cambia a ingles y desaparecen los botones al limpiar
+ver como hacer focus a los radio porque no me deja
 
 card pendiente se ve mas grande
+
       <?php if ($id_rol_usuario_actual == 1) { ?>
 
                                     <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-info editbtn" onclick="busca_user(<?php echo $mostrar['id_user'] ?>)" data-toggle="modal" data-target="#editar"><i class="fa-solid fa-pen-to-square"></i></button></td>

@@ -25,7 +25,7 @@
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-    <script src="./assets/js/jspdf.umd.min.js"></script>
+    <!-- <script src="./assets/js/jspdf.umd.min.js"></script> -->
 
 
 
@@ -50,36 +50,12 @@
 
                             <div class="card-body">
 
-                                <!-- <label for="a">APLICA</label>
-                                <select name="" class="form-control filtro" id="a">
-                                    <option value="0">SELECCIONE</option>
-                                    <option>SI</option>
-                                    <option>NO</option>
-                                </select>
-
-                                
-
-                                <label for="a">APLICA</label>
-                                <select name="" class="form-control filtro" id="a">
-                                    <option value="0">SELECCIONE</option>
-                                    <option>SI</option>
-                                    <option>NO</option>
-                                </select>
-
-                                <label for="a">APLICA</label>
-                                <select name="" class="form-control filtro" id="a">
-                                    <option value="0">SELECCIONE</option>
-                                    <option>SI</option>
-                                    <option>NO</option>
-                                </select>
-                            <HR> -->
-
 
 
                                 <label for="">Filtrar Búsqueda:</label>
                                 <br>
                                 <div class="row">
-                                    <div class="col-md-4"> <!-- LUGAR -->
+                                    <div class="col-md-3"> <!-- LUGAR -->
                                         <label for="idSelectLugar">Lugar</label>
                                         <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectores()">
                                             <option value="0" hidden> Selecciona</option>
@@ -91,34 +67,34 @@
                                             }
                                             ?>
                                         </select>
-
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <label for="idSelectSector">Sector</label>
                                         <select name="nameSelectSector" id="idSelectSector" class="form-select filtro" required>
                                             <option value="0" hidden> Selecciona</option>
                                         </select>
                                     </div>
-
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <label for="idSelectCumple">Estado</label>
                                         <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
                                             <option value=""> Selecciona</option>
                                             <option value="1">Si Cumple</option>
                                             <option value="0">No Cumple</option>
                                         </select>
-
                                     </div>
-
-                                    <div class="col-md-2 mt-auto text-center">
-                                        <button id="btn-filtro" class="btn btn-enviar">Buscar</button>
+                                    <div class="col-md-3 row">
+                                        <div class="col mt-auto text-center">
+                                            <button id="btn-filtro" class="btn btn-enviar">Buscar</button>
+                                        </div>
+                                        <div class="col mt-auto text-center">
+                                            <button id="limpia-filtro" class="btn btn-enviar limpia-filtro">Limpiar</button>
+                                        </div>
                                     </div>
 
                                 </div>
+                                <br>
                                 <hr>
                                 <br>
-
-
 
                                 <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>

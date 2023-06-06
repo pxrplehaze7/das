@@ -1,39 +1,46 @@
-
-
 <?php
 include("./config/conexion.php");
 
-$sqlF = "SELECT Rut, Decreto, NombreTra, PaternoTra, MaternoTra, Profesion, IDLugar, IDSector, Cumple FROM trabajador WHERE ";
+$sqlF = "SELECT t.Rut, t.Decreto, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Profesion, l.NombreLug, s.NombreSector, t.Cumple 
+         FROM trabajador t
+         INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
+         INNER JOIN sector s ON (s.IDSector = t.IDSector)";
 
-if($_POST['cumple'] != "" ){
-    $sqlF .= " Cumple = ".$_POST['cumple']."   ";
+if ($_POST['cumple'] != "" || $_POST['lugar'] != "0" || $_POST['sector'] != "0") {
+    $sqlF .= " WHERE";
 
-    if($_POST['lugar'] != "0"){
-        $sqlF .= " AND IDLugar = ".$_POST['lugar']." ";
+    if ($_POST['cumple'] != "") {
+        $sqlF .= " t.Cumple = '" . $_POST['cumple'] . "' ";
+
+        if ($_POST['lugar'] != "0") {
+            $sqlF .= " AND t.IDLugar = '" . $_POST['lugar'] . "' ";
+        }
+
+        if ($_POST['sector'] != "0") {
+            $sqlF .= " AND t.IDSector = '" . $_POST['sector'] . "' ";
+        }
+    } elseif ($_POST['lugar'] != "0") {
+        $sqlF .= " t.IDLugar = '" . $_POST['lugar'] . "' ";
+
+        if ($_POST['sector'] != "0") {
+            $sqlF .= " AND t.IDSector = '" . $_POST['sector'] . "' ";
+        }
+    } elseif ($_POST['sector'] != "0") {
+        $sqlF .= " t.IDSector = '" . $_POST['sector'] . "' ";
     }
-
-    if($_POST['sector'] != "0"){
-        $sqlF .= " AND IDSector = ".$_POST['sector']." ";
-    }
-
-
-}elseif($_POST['lugar'] != "0"){
-    $sqlF .= " IDLugar = ".$_POST['lugar']." ";
-
-    if($_POST['sector'] != "0"){
-        $sqlF .= " AND IDSector = ".$_POST['sector']." ";
-    }
-
-    
-}elseif($_POST['sector'] != "0"){
-    $sqlF .= " IDSector = ".$_POST['sector']." ";
-
-
 }
 
 $resultadoF = mysqli_query($conn, $sqlF);
-//EJECUTAR LA QUERY
-while ($ptotal = mysqli_fetch_assoc($resultadoF)) { ?>
+
+// Verificar si se produjo un error en la consulta
+if (!$resultadoF) {
+    echo "Error en la consulta: " . mysqli_error($conn);
+    exit;
+}
+
+// EJECUTAR LA QUERY
+while ($ptotal = mysqli_fetch_assoc($resultadoF)) {
+    ?>
     <tr>
         <td><?php echo $ptotal['Rut']; ?></td>
         <td><?php echo $ptotal['Decreto']; ?></td>
@@ -46,5 +53,3 @@ while ($ptotal = mysqli_fetch_assoc($resultadoF)) { ?>
         </td>
     </tr>
 <?php } ?>
-
-

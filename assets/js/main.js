@@ -1,6 +1,5 @@
 // jquery
 $("#documentosObligatorios").on("submit", function (event) {
-  // alert( "Handler for `submit` called." );
   event.preventDefault();
 
   //SELECCIONA EL ELEMENTO  DEL HTML CON EL tCon Y LO ASIGNA A LA VARIABLE selectCat
@@ -9,15 +8,34 @@ $("#documentosObligatorios").on("submit", function (event) {
     //SI EL VALOR ES IGUAL A 1 REVISA SI LOS INPUT RADIO ESTAN VACIOS
     if (!document.querySelector('#idSiMedico').checked && !document.querySelector('#idNoMedico').checked) {
       //SI ESTAN VACIOS ENVIA ALERTA
-      alert('Debe indicar si es medico o no')
+      Swal.fire('Debe indicar si es medico o no');
+      // alert('Debe indicar si es medico o no')
       return
     }
   }
 
   if (!$('#idSiInscrip').is(":checked") && !$('#idNoInscrip').is(":checked")) {
-    // Si no se ha seleccionado ninguna opción
-    alert('Debe indicar si debe presentar el Certificado');
+    //ALERTA SI NO SE HA SELECCIONADO NINGUN RADIO
+    // alert('Debe indicar si debe presentar el Certificado');
+    Swal.fire('Debe indicar si debe presentar el Certificado');
+    $('#idSiInscrip').focus();
+    $('#idNoInscrip').focus();
     return;
+  }
+
+  var celularInput = document.getElementById("idCelular");
+  var celularValue = celularInput.value.trim();
+
+  if (celularValue.length !== 9) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Advertencia',
+      text: 'El número de teléfono debe tener 9 dígitos',
+      didRender: () => {
+        celularInput.focus(); // Establece el foco en el campo de teléfono
+      }
+    });
+    return; // Detiene la ejecución del código
   }
 
 
@@ -25,8 +43,11 @@ $("#documentosObligatorios").on("submit", function (event) {
     title: '¿Realmente desea registrar trabajador?',
     showDenyButton: true,
     showCancelButton: false,
-    confirmButtonText: 'SÍ',
-    denyButtonText: `NO`,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
   }).then((result) => {
     if (result.isDenied) {
       return;
@@ -69,7 +90,6 @@ $("#documentosObligatorios").on("submit", function (event) {
 //Para que no quede ningun radio marcado por defecto
 window.addEventListener("load", function () {
   if (document.URL.includes("/registro.php")) {
-    console.info("LIMPIANDO RADIOS :d")
     // Obtener todos los elementos de tipo radio
     var radios = document.querySelectorAll('input[type="radio"]');
 
@@ -147,7 +167,8 @@ $("#documentosApelacion").on("submit", function (event) {
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
     // Si no se ha seleccionado ninguna opción
-    alert('Debe indicar si apelo o no.');
+    Swal.fire('Debe indicar si apelo o no');
+    // alert('Debe indicar si apelo o no.');
     return;
   }
 
@@ -155,8 +176,11 @@ $("#documentosApelacion").on("submit", function (event) {
     title: '¿Está seguro de añadir calificación?',
     showDenyButton: true,
     showCancelButton: false,
+    allowOutsideClick: false,
     confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
     denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
   }).then((result) => {
     if (result.isDenied) {
       return;
@@ -206,13 +230,11 @@ $("#documentosApelacion").on("submit", function (event) {
 
 
 $("#edicion_pdfs").on("submit", function (event) {
-  event.preventDefault();
-
-
   Swal.fire({
     title: '¿Desea actualizar los documentos?',
     showDenyButton: true,
     showCancelButton: false,
+    allowOutsideClick: false,
     confirmButtonText: 'Si',
     confirmButtonColor: '#00c4a0',
     denyButtonText: 'No',
@@ -253,10 +275,6 @@ $("#edicion_pdfs").on("submit", function (event) {
   })
 });
 
-
-
-
-// $(".filtro").on("change",function(){
 $("#btn-filtro").on("click", function () {
 
   let datos = {
@@ -264,7 +282,7 @@ $("#btn-filtro").on("click", function () {
     lugar: $("#idSelectLugar").val(),
     sector: $("#idSelectSector").val(),
   }
-console.log(datos);
+  console.log(datos);
   $.ajax({
     url: "./controller/cargaTabla.php",
     method: "POST",
@@ -273,8 +291,128 @@ console.log(datos);
     $('#trabajadores_tbody').html(data);
   });
 
-
 });
+
+
+
+
+$("#btn-filtro").on("click", function () {
+  let datos = {
+    cumple: $("#idSelectCumple").val(),
+    lugar: $("#idSelectLugar").val(),
+    sector: $("#idSelectSector").val(),
+  }
+  console.log(datos);
+
+  $.ajax({
+    url: "./controller/cargaTabla.php",
+    method: "POST",
+    data: datos,
+  })
+    .done(function (data) {
+      $('#trabajadores_tbody').html(data);
+
+      // Actualizar los datos de la tabla
+      var table = $('#total').DataTable();
+      table.clear().rows.add($('#total tbody tr')).draw();
+    });
+});
+
+
+
+$("#limpia-filtro").on("click", function () {
+  // Restablecer los valores de los select a su opción predeterminada
+  $("#idSelectLugar").val(0);
+  $("#idSelectSector").val(0);
+  $("#idSelectCumple").val("");
+
+// Restablecer el valor predeterminado del select de sector
+  $("#idSelectSector").html("<option value='0' hidden> Selecciona</option>");
+
+  // Recargar la tabla con todos los registros
+  $.ajax({
+    url: "./controller/cargaTabla.php",
+    method: "POST",
+    data: { cumple: "", lugar: 0, sector: 0 },
+  })
+    .done(function (data) {
+      $('#trabajadores_tbody').html(data);
+
+      // Actualizar los datos de la tabla
+      var table = $('#total').DataTable();
+      table.clear().rows.add($('#total tbody tr')).draw();
+    });
+});
+
+
+
+
+
+
+
+$("#editInfoContacto").on("submit", function (event) {
+  event.preventDefault(); // Evita el envío del formulario por defecto
+
+  var celularInput = document.getElementById("idCelular");
+  var celularValue = celularInput.value.trim();
+
+  if (celularValue.length !== 9) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Advertencia',
+      text: 'El número de teléfono debe tener 9 dígitos',
+      didOpen: () => {
+        celularInput.focus(); // Resalta el campo de teléfono
+      }
+    });
+    return; // Detiene la ejecución del código
+  }
+
+  var formData = new FormData(this);
+
+  formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
+
+  Swal.fire({
+    title: '¿Desea actualizar la información de contacto?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Sí',
+    confirmButtonColor: '#00c4a0',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "./controller/editContacto.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      }).done(function (response) {
+        response = JSON.parse(response);
+        if (response.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Información actualizada correctamente',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información',
+            text: response.message
+          });
+        }
+      }).fail(function (response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al actualizar la información',
+          text: response.responseText
+        });
+      });
+    }
+  });
+});
+
 
 
 

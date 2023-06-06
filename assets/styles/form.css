@@ -375,8 +375,9 @@ margin-top: 10px;
   margin:0 !important;}
 
   th{
-    background-color: #463bfa !important;
+    background-color: #212529 !important;
     color: white;
+    font-weight: 400 !important;
   }
 
   .numero{
@@ -413,9 +414,24 @@ margin-top: 10px;
     flex-direction: column !important;
     justify-content: space-between !important;
     height: 100% !important;
+    margin-bottom: 10px !important;
   }
   
   .card-body {
     flex-grow: 1 !important;
   }
   
+
+.btn-dpdf{
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+}
+
+.btn-dexcel{
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+}
+
+.tarjeta{
+  margin-bottom: 20px !important;
+}

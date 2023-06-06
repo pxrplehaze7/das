@@ -1,12 +1,12 @@
 <?php
 include("./controller/config/conexion.php");
 
-$cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 'Si Cumple';";
+$cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = TRUE;";
 $sqlCumplen = mysqli_query($conn, $cumplen);
 $row = mysqli_fetch_row($sqlCumplen);
 $total_c = $row[0];
 
-$NOcumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 'No Cumple';";
+$NOcumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = FALSE;";
 $sqlNOCumplen = mysqli_query($conn, $NOcumplen);
 $row = mysqli_fetch_row($sqlNOCumplen);
 $total_nc = $row[0];
@@ -62,7 +62,7 @@ $total_t = $row[0];
                     <h1 class="mt-4">Registros</h1>
                     <ol class="breadcrumb mb-4"></ol>
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
                             <div class="card text-white mb-4" style="background-color:#463bfa;">
                                 <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
                                     <div class="card-body">Personal Registrado</div>
@@ -71,7 +71,8 @@ $total_t = $row[0];
                                 <div class="card-body numero"><?php echo $total_t; ?></div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
                             <div class="card text-white mb-4" style="background-color:#00c4a0;">
                                 <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
                                     <div class="card-body">Documentación al Día</div>
@@ -79,8 +80,11 @@ $total_t = $row[0];
                                 </div>
                                 <div class="card-body numero"><?php echo $total_c; ?></div>
                             </div>
+
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+
+
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
                             <div class="card text-white mb-4" style="background-color:#f3ab00">
                                 <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
                                     <div class="card-body">Documentación Pendiente</div>
@@ -91,24 +95,24 @@ $total_t = $row[0];
                         </div>
 
                     </div>
-                    <br>
+
                     <div class="row">
-                        <div class="col-xl-6">
-                            <div class="card mb-4">
+                        <div class="col-xl-5">
+                            <div class=" card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
                                     Area Chart Example
                                 </div>
-                                <div class="card-body"><canvas id="myChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body"><canvas id="myChart" width="100%"></canvas></div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
+                        <div class="col-xl-7">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
                                     Bar Chart Example
                                 </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                <div class="card-body"><canvas id="myBarChart" width="100%"></canvas></div>
                             </div>
                         </div>
                     </div>
@@ -122,7 +126,7 @@ $total_t = $row[0];
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/chart_pieTotal.js"></script>
-    <script src="./assets/js/chart_pieDesglose.js"></script>
+    <script src="./assets/js/chart_bar.js"></script>
 
 
 </body>

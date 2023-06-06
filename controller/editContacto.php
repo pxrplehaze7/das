@@ -16,9 +16,19 @@ $sql = "UPDATE trabajador SET
 
 // Ejecutar consulta SQL
 if (mysqli_query($conn, $sql)) {
-    echo "Información actualizada correctamente.";
+    // La actualización fue exitosa
+    $response = array(
+        'success' => true,
+        'message' => 'Información actualizada correctamente.'
+    );
+    echo json_encode($response);
 } else {
-    echo "Error al actualizar la información: " . mysqli_error($conn);
+    // Error al actualizar
+    $response = array(
+        'success' => false,
+        'message' => 'Error al actualizar la información: ' . mysqli_error($conn)
+    );
+    echo json_encode($response);
 }
 
 // Cerrar conexión
