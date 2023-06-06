@@ -33,9 +33,8 @@
                 <div class="container-md">
                     <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
                         <div class="title">
-                            <h1 class="mt-4">Registro</h1>
+                            <h1 class="mt-4">Registro de Trabajador</h1>
                         </div>
-
                         <br>
                         <div class="seccion">
                             <h6>Datos Personales</h6>

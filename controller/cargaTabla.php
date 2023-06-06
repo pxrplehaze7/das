@@ -5,32 +5,33 @@ include("./config/conexion.php");
 
 $sqlF = "SELECT Rut, Decreto, NombreTra, PaternoTra, MaternoTra, Profesion, IDLugar, IDSector, Cumple FROM trabajador WHERE ";
 
-if($_POST['cumple'] != "0" ){
-    $sqlF .= " cumple = '".$_POST['cumple']."'   ";
+if($_POST['cumple'] != "" ){
+    $sqlF .= " Cumple = ".$_POST['cumple']."   ";
 
     if($_POST['lugar'] != "0"){
-        $sqlF .= " AND lugar = ".$_POST['lugar']." ";
+        $sqlF .= " AND IDLugar = ".$_POST['lugar']." ";
     }
 
     if($_POST['sector'] != "0"){
-        $sqlF .= " AND sector = ".$_POST['sector']." ";
+        $sqlF .= " AND IDSector = ".$_POST['sector']." ";
     }
 
 
 }elseif($_POST['lugar'] != "0"){
-    $sqlF .= " lugar = ".$_POST['lugar']." ";
+    $sqlF .= " IDLugar = ".$_POST['lugar']." ";
 
     if($_POST['sector'] != "0"){
-        $sqlF .= " AND sector = ".$_POST['sector']." ";
+        $sqlF .= " AND IDSector = ".$_POST['sector']." ";
     }
 
     
 }elseif($_POST['sector'] != "0"){
-    $sqlF .= " sector = ".$_POST['sector']." ";
+    $sqlF .= " IDSector = ".$_POST['sector']." ";
 
 
 }
 
+$resultadoF = mysqli_query($conn, $sqlF);
 //EJECUTAR LA QUERY
 while ($ptotal = mysqli_fetch_assoc($resultadoF)) { ?>
     <tr>

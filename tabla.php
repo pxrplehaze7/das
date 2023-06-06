@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,26 +23,31 @@
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+    <script src="./assets/js/jspdf.umd.min.js"></script>
+
+
 
 </head>
 
 <body class="sb-nav-fixed">
+    <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
-        <?php require("./components/navbar.php"); ?>
+
         <?php require("./components/sidebar.html"); ?>
 
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
 
-
+                    <div class="title">
+                        <h1 class="mt-4">Lista de Trabajadores Registrados</h1>
+                    </div>
+                    <br>
                     <div class="">
                         <div class="card mb-4">
-                            <div class="card-header" style="text-align: center; font-size:25px">
-                                Lista completa de trabajadores
-                            </div>
+
                             <div class="card-body">
 
                                 <!-- <label for="a">APLICA</label>
@@ -99,9 +103,9 @@
                                     <div class="col-md-2">
                                         <label for="idSelectCumple">Estado</label>
                                         <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
-                                            <option value="0"> Selecciona</option>
-                                            <option value="Si Cumple">Si Cumple</option>
-                                            <option value="No Cumple">No Cumple</option>
+                                            <option value=""> Selecciona</option>
+                                            <option value="1">Si Cumple</option>
+                                            <option value="0">No Cumple</option>
                                         </select>
 
                                     </div>
@@ -131,9 +135,9 @@
                                     <tbody id="trabajadores_tbody">
                                         <?php
                                         $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
-    FROM trabajador t 
-    INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
-    INNER JOIN sector s ON (s.IDSector = t.IDSector)";
+                                        FROM trabajador t 
+                                        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
+                                        INNER JOIN sector s ON (s.IDSector = t.IDSector)";
 
                                         $resultadoTotal = mysqli_query($conn, $sqlTodos);
                                         while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>

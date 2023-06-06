@@ -264,14 +264,11 @@ $("#btn-filtro").on("click", function () {
     lugar: $("#idSelectLugar").val(),
     sector: $("#idSelectSector").val(),
   }
-
+console.log(datos);
   $.ajax({
     url: "./controller/cargaTabla.php",
     method: "POST",
     data: datos,
-    cache: false,
-    contentType: false,
-    processData: false
   }).done(function (data) {
     $('#trabajadores_tbody').html(data);
   });
