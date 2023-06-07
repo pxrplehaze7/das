@@ -169,45 +169,50 @@
                                             <?php } ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="align-middle custom-height">Declaración Jurada</td>
-                                        <td class="align-middle custom-height">
-                                            <?php
-                                            if (!empty($persona['RutaDJur'])) {
-                                            ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaDJur']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaDJur'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                </div>
+                                    <?php if ($persona['IDCon'] != 3) { ?>
+                                        <tr>
+                                            <td class="align-middle custom-height">Declaración Jurada</td>
+                                            <td class="align-middle custom-height">
+                                                <?php
+                                                if (!empty($persona['RutaDJur'])) {
+                                                ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaDJur']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaDJur'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php
+                                                } else {
+                                                ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
 
-                                            <?php
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Nacimiento</td>
-                                        <td class="align-middle custom-height">
-                                            <?php
-                                            if (!empty($persona['RutaNac'])) { ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaNac'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php
-                                            } else { ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                </div>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                    ?>
+                                    <?php if ($persona['IDCon'] != 3) { ?>
+                                        <tr>
+                                            <td class="align-middle custom-height">Certificado de Nacimiento</td>
+                                            <td class="align-middle custom-height">
+                                                <?php
+                                                if (!empty($persona['RutaNac'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaNac'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php
+                                                } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                                <?php } ?>
+                                            </td>
+                                        </tr><?php }
+                                                ?>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Antecedentes</td>
                                         <td class="align-middle custom-height">
@@ -272,24 +277,27 @@
                                             <?php } ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Salud Compatible</td>
-                                        <td class="align-middle custom-height">
-                                            <?php
-                                            if (!empty($persona['RutaSCom'])) { ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaSCom'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                <?php } ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
-                                        <td class="align-middle custom-height"><?php if ($persona['IDAFP'] != 1) {
+                                    <?php if ($persona['IDCon'] != 3) { ?>
+                                        <tr>
+                                            <td class="align-middle custom-height">Certificado de Salud Compatible</td>
+                                            <td class="align-middle custom-height">
+                                                <?php
+                                                if (!empty($persona['RutaSCom'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $persona['RutaSCom'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    <?php } ?>
+                                            </td>
+                                        </tr><?php }
+                                                ?>
+                                    <?php if ($persona['IDCon'] != 3) { ?>
+                                        <tr>
+                                            <td class="align-middle custom-height">Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
+                                            <td class="align-middle custom-height"><?php
 
                                                                                     if (!empty($persona['RutaAFP'])) { ?>
                                                     <div class="contenedor-botones">
@@ -300,13 +308,14 @@
                                                     <div class="contenedor-botones">
                                                         <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                     </div>
-                                            <?php }
-                                                                                } ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
-                                        <td class="align-middle custom-height"><?php if ($persona['IDPrev'] != 1) {
+                                                <?php }  ?>
+                                            </td>
+                                        </tr><?php }
+                                                ?>
+                                    <?php if ($persona['IDCon'] != 3) { ?>
+                                        <tr>
+                                            <td class="align-middle custom-height">Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
+                                            <td class="align-middle custom-height"><?php
 
                                                                                     if (!empty($persona['RutaPrev'])) { ?>
                                                     <div class="contenedor-botones">
@@ -318,10 +327,11 @@
                                                         <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                     </div>
 
-                                            <?php }
-                                                                                } ?>
-                                        </td>
-                                    </tr>
+                                                <?php }
+                                                ?>
+                                            </td>
+                                        </tr><?php }
+                                                ?>
 
 
                                     <?php if ($persona['Inscripcion'] == 1) { ?>
@@ -363,7 +373,7 @@
                                         </tr> <?php }
                                                 ?>
 
-                                    <?php if ($persona['Genero'] == 'Masculino') { ?>
+                                    <?php if ($persona['Genero'] == 'Masculino' && $persona['IDCon'] != 3) { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de Servicio Militar al Día</td>
                                             <td class="align-middle custom-height">

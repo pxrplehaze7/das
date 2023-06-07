@@ -6,7 +6,7 @@ if (isset($_POST['nameBuscaRut'])) {
   $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
 
   // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-  $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, tra.IDAFP, tra.IDPrev, IDTra, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
+  $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, tra.IDAFP, tra.IDPrev, IDTra , tra.IDCon, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
                   INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)

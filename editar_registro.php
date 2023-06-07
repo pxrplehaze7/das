@@ -380,16 +380,21 @@ if (isset($_POST['nameRutEditar'])) {
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td class="align-middle">Certificado de Nacimiento</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idNACinputEDIT" name="nameNACdocEDIT" class="form-control" accept=".pdf">
-                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+
+                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                                <tr>
+                                                    <td class="align-middle">Certificado de Nacimiento</td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idNACinputEDIT" name="nameNACdocEDIT" class="form-control" accept=".pdf">
+                                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
+
+
                                             <tr>
                                                 <td class="align-middle">Certificado de Antecedentes</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
@@ -413,16 +418,17 @@ if (isset($_POST['nameRutEditar'])) {
                                                 </td>
                                             </tr>
 
-
-                                            <tr>
-                                                <td class="align-middle">Declaración Jurada</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idDJuradainputEDIT" name="nameDJuradadocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                                <tr>
+                                                    <td class="align-middle">Declaración Jurada</td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idDJuradainputEDIT" name="nameDJuradadocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
 
                                             <tr>
                                                 <td class="align-middle">Curriculum Vitae</td>
@@ -444,68 +450,82 @@ if (isset($_POST['nameRutEditar'])) {
                                                 </td>
                                             </tr>
 
-                                            <tr>
-                                                <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" class="form-control" id="idMilitarDocEDIT" name="nameMilitarDocEDIT" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDocEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
 
-                                            <tr>
-                                                <td class="align-middle">Examen Médico Unico Nacional</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idExamenMinputEDIT" name="nameExaMdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php if ($persona['Genero'] == 'Masculino' && $persona['IDCon'] != 3) { ?>
+                                                <tr>
+                                                    <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" class="form-control" id="idMilitarDocEDIT" name="nameMilitarDocEDIT" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDocEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
 
-                                            <tr>
-                                                <td class="align-middle">Certificado de Salud Compatible</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idSCompatibleinputEDIT" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idInscripinputEDIT" name="nameInscripdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="align-middle"> Certificado de Afiliación AFP
-                                                </td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/afp.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idAFPinputEDIT" name="nameAFPdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php if ($persona['Medico'] == 'Si') { ?>
+                                                <tr>
+                                                    <td class="align-middle">Examen Único Nacional de Conocimientos de Medicina</td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idExamenMinputEDIT" name="nameExaMdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
 
 
-                                            <tr>
-                                                <td class="align-middle">Certificado de Afiliación Previsión   
-                                                </td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/prevision.php') ?></td>
-                                                <td>
-                                                    <div class="input-group ">
-                                                        <input type="file" id="idPREVinputEDIT" name="namePREVdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinputEDIT')"><i class="fas fa-broom"></i></button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                                <tr>
+                                                    <td class="align-middle">Certificado de Salud Compatible</td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idSCompatibleinputEDIT" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
+
+                                            <?php if ($persona['Inscripcion'] == 1) { ?>
+                                                <tr>
+                                                    <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idInscripinputEDIT" name="nameInscripdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
+
+
+                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                                <tr>
+                                                    <td class="align-middle"> Certificado de Afiliación AFP
+                                                    </td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/afp.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idAFPinputEDIT" name="nameAFPdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
+
+                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                                <tr>
+                                                    <td class="align-middle">Certificado de Afiliación Previsión
+                                                    </td>
+                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/prevision.php') ?></td>
+                                                    <td>
+                                                        <div class="input-group ">
+                                                            <input type="file" id="idPREVinputEDIT" name="namePREVdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr><?php }
+                                                        ?>
 
 
 

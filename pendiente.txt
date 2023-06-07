@@ -1,6 +1,10 @@
-el contrato de honorario sube decreto y contrato, cedula, titulo y antecedentes.
+
 hacer que se limpien los campos al enviar el form
-crear alerta de usuario registrado y error
+
+
+honorario debe tener:
+cv, cedula, inscripcion, titulo, eunacom si es medico y quizas el de antecedentes
+
 
 hacer que pida menos documentos si es honorario
 
@@ -14,15 +18,16 @@ arreglar que los que tengan si a inscripcion muestren y agregar a tabla
 
 ARREGLAR QUE CUANDO ACTUALIZO CONTACTO O PERSONAL, ME ENVIA A OTRO ARCHIVO
 
+CUANDO VALIDO EL NUMERO ME LO TOMA COMO OBLIGATORIO
+
+hacer que cuando sea contrato honorario en editar, oculte afp
 
 hacer que para que no haya paginacion, muestre todos los registros de una vez
 
 hacer que cuando se registre, se limpie el formulario y no muestre como si se estuviera validando algun rut
 
-arreglar que cuando busco segun los select, se cambia a ingles y desaparecen los botones al limpiar
-ver como hacer focus a los radio porque no me deja
 
-card pendiente se ve mas grande
+ver como hacer focus a los radio porque no me deja
 
 ver como hacer que elsector prueba quedar vacio al buscar
 hacer que consulte por cada lugar para calcular elporcentaje
