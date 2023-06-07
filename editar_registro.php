@@ -257,7 +257,6 @@ if (isset($_POST['nameRutEditar'])) {
                                             echo "</select>";
                                             ?>
 
-
                                             <br>
                                         </div>
                                         <div class="col-md-6">
@@ -274,8 +273,6 @@ if (isset($_POST['nameRutEditar'])) {
                                             ?>
                                         </div>
                                     </div>
-
-
 
                                 </div>
 
@@ -315,7 +312,12 @@ if (isset($_POST['nameRutEditar'])) {
                                 </div>
                                 <br>
                                 <div class="boton">
-                                    <button class="btn btn-enviar" id="btn-editP" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                                    <button class="Btn" id="btn-editP" type="submit">Actualizar
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -341,7 +343,12 @@ if (isset($_POST['nameRutEditar'])) {
                                 </div>
                                 <br>
                                 <div class="boton">
-                                    <button class="btn btn-enviar" id="btn-editC" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                                    <button class="Btn" id="btn-editC" type="submit">Actualizar
+                                        <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -375,7 +382,11 @@ if (isset($_POST['nameRutEditar'])) {
                                                 <td>
                                                     <div class="input-group">
                                                         <input type="file" id="idDocContratoInputEDIT" name="nameDocContratoInputEDIT" class="form-control" accept=".pdf">
-                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDocContratoInputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        <button class="button" type="button" onclick="clearFileInput('idDocContratoInputEDIT')" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -388,12 +399,14 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td>
                                                         <div class="input-group ">
                                                             <input type="file" id="idNACinputEDIT" name="nameNACdocEDIT" class="form-control" accept=".pdf">
-                                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idNACinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <button class="button" type="button" onclick="clearFileInput('idNACinputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
-
+                                                </tr><?php } ?>
 
                                             <tr>
                                                 <td class="align-middle">Certificado de Antecedentes</td>
@@ -401,7 +414,11 @@ if (isset($_POST['nameRutEditar'])) {
                                                 <td>
                                                     <div class="input-group ">
                                                         <input type="file" id="idANTECEinputEDIT" name="nameANTECEdocEDIT" class="form-control" accept=".pdf">
-                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idANTECEinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        <button class="button" type="button" onclick="clearFileInput('idANTECEinputEDIT')" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -413,7 +430,11 @@ if (isset($_POST['nameRutEditar'])) {
                                                 <td>
                                                     <div class="input-group ">
                                                         <input type="file" id="idCedulainputEDIT" name="nameCeduladocEDIT" class="form-control" accept=".pdf">
-                                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCedulainputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        <button class="button" type="button" onclick="clearFileInput('idCedulainputEDIT')" style="width: 40px !important;" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -424,18 +445,28 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" id="idDJuradainputEDIT" name="nameDJuradadocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idDJuradainputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" id="idDJuradainputEDIT" name="nameDJuradadocEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idDJuradainputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
+
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
+                                                </tr><?php } ?>
 
                                             <tr>
                                                 <td class="align-middle">Curriculum Vitae</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
                                                 <td>
                                                     <div class="input-group ">
-                                                        <input type="file" id="idCVinputEDIT" name="nameCVdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCVinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        <input type="file" id="idCVinputEDIT" name="nameCVdocEDIT" class="form-control" accept=".pdf">
+                                                        <button class="button" type="button" onclick="clearFileInput('idCVinputEDIT')" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -445,7 +476,12 @@ if (isset($_POST['nameRutEditar'])) {
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
                                                 <td>
                                                     <div class="input-group ">
-                                                        <input type="file" id="idEstudioinputEDIT" name="nameEstudiodocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idEstudioinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                        <input type="file" id="idEstudioinputEDIT" name="nameEstudiodocEDIT" class="form-control" accept=".pdf">
+                                                        <button class="button" type="button" onclick="clearFileInput('idEstudioinputEDIT')" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -457,11 +493,15 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" class="form-control" id="idMilitarDocEDIT" name="nameMilitarDocEDIT" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idMilitarDocEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" class="form-control" id="idMilitarDocEDIT" name="nameMilitarDocEDIT" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idMilitarDocEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
+                                                </tr><?php } ?>
 
                                             <?php if ($persona['Medico'] == 'Si') { ?>
                                                 <tr>
@@ -469,11 +509,15 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" id="idExamenMinputEDIT" name="nameExaMdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idExamenMinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" id="idExamenMinputEDIT" name="nameExaMdocEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idExamenMinputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
+                                                </tr><?php } ?>
 
 
                                             <?php if ($persona['IDCon'] != 3) { ?>
@@ -482,11 +526,15 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" id="idSCompatibleinputEDIT" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idSCompatibleinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" id="idSCompatibleinputEDIT" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idSCompatibleinputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
+                                                </tr><?php } ?>
 
                                             <?php if ($persona['Inscripcion'] == 1) { ?>
                                                 <tr>
@@ -494,11 +542,15 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" id="idInscripinputEDIT" name="nameInscripdocEDIT" class="form-control" accept=".pdf"><button class="btn btn-limpiar" type="button" onclick="clearFileInput('idInscripinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" id="idInscripinputEDIT" name="nameInscripdocEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idInscripinputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
+                                                </tr><?php } ?>
 
 
                                             <?php if ($persona['IDCon'] != 3) { ?>
@@ -508,11 +560,16 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/afp.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" id="idAFPinputEDIT" name="nameAFPdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idAFPinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" id="idAFPinputEDIT" name="nameAFPdocEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idAFPinputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
+
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
+                                                </tr><?php } ?>
 
                                             <?php if ($persona['IDCon'] != 3) { ?>
                                                 <tr>
@@ -521,19 +578,29 @@ if (isset($_POST['nameRutEditar'])) {
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/prevision.php') ?></td>
                                                     <td>
                                                         <div class="input-group ">
-                                                            <input type="file" id="idPREVinputEDIT" name="namePREVdocEDIT" class="form-control" accept=".pdf"> <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idPREVinputEDIT')"><i class="fas fa-broom"></i></button>
+                                                            <input type="file" id="idPREVinputEDIT" name="namePREVdocEDIT" class="form-control" accept=".pdf">
+
+                                                            <button class="button" type="button" onclick="clearFileInput('idPREVinputEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
+
                                                         </div>
                                                     </td>
-                                                </tr><?php }
-                                                        ?>
-
+                                                </tr><?php } ?>
 
 
                                         </tbody>
                                     </table>
                                     <br>
                                     <div class="boton">
-                                        <button class="btn btn-enviar" type="submit">Actualizar <i class="fa-solid fa-arrows-rotate"></i></button>
+                                        <button class="Btn" id="btnEditaDoc" type="submit">Actualizar
+                                            <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
                             </form>

@@ -2,11 +2,9 @@
 hacer que se limpien los campos al enviar el form
 
 
-honorario debe tener:
-cv, cedula, inscripcion, titulo, eunacom si es medico y quizas el de antecedentes
 
 
-hacer que pida menos documentos si es honorario
+hacer que pida menos documentos si es HONORARIO
 
 no me muestra el error al insertar y ver como probar forzando error
 
@@ -14,11 +12,6 @@ hacer que cuando diga que no apelo, se desabilite el input de apelacion
 
 arreglar todo lo de honorario para que no muestre lo innecesario
 
-arreglar que los que tengan si a inscripcion muestren y agregar a tabla
-
-ARREGLAR QUE CUANDO ACTUALIZO CONTACTO O PERSONAL, ME ENVIA A OTRO ARCHIVO
-
-CUANDO VALIDO EL NUMERO ME LO TOMA COMO OBLIGATORIO
 
 hacer que cuando sea contrato honorario en editar, oculte afp
 
@@ -26,10 +19,15 @@ hacer que para que no haya paginacion, muestre todos los registros de una vez
 
 hacer que cuando se registre, se limpie el formulario y no muestre como si se estuviera validando algun rut
 
+al eliminar archivo, preguntar y hacer focus a esa zona
+
+ver como actualizar al editar sin alerta de reenvio
 
 ver como hacer focus a los radio porque no me deja
 
-ver como hacer que elsector prueba quedar vacio al buscar
+
+ver que hacer cuando quieren ver los contratos anteriores
+
 hacer que consulte por cada lugar para calcular elporcentaje
 
       <?php if ($id_rol_usuario_actual == 1) { ?>

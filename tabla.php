@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-md-3"> <!-- LUGAR -->
                                         <label for="idSelectLugar">Lugar</label>
-                                        <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectores()">
+                                        <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectoresTABLA()">
                                             <option value="0" hidden> Selecciona</option>
                                             <?php
                                             $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
@@ -64,7 +64,7 @@
                                     <div class="col-md-3">
                                         <label for="idSelectSector">Sector</label>
                                         <select name="nameSelectSector" id="idSelectSector" class="form-select filtro" required>
-                                            <option value="0" hidden> Selecciona</option>
+                                            <option value="0"> Selecciona</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">

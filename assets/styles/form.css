@@ -101,26 +101,6 @@ p {
 }
 
 
-.btn-limpiar,
-.btn-enviar {
-  background-color: #212529 !important;
-  border-color: #212529 !important;
-  color: #ffffff !important;
-}
-
-
-.btn-limpiar:hover,
-.btn-enviar:hover {
-  background-color: #2b2670 !important ;
-  border-color: #2b2670 !important;
-}
-
-
-.btn-limpiar:active,
-.btn-enviar:active {
-  background-color: #322c83 !important ;
-  border-color: #322c83 !important;
-}
 
 .btn-buscar{
   background-color:#463bfa !important;
@@ -436,10 +416,12 @@ margin-top: 10px;
   margin-bottom: 20px !important;
 }
 
+.boton-registrar{
+  display: flex;
+  justify-content: center;
+}
 
-
-/* 
-button {
+button.boton-registrarB {
   font-family: inherit !important;
   font-size: 20px !important;
   background: #212529 !important;
@@ -454,31 +436,31 @@ button {
   transition: all 0.2s !important;
 }
 
-button span {
+button.boton-registrarB span {
   display: block;
   margin-left: 0.3em;
   transition: all 0.3s ease-in-out;
 }
 
-button svg {
+button.boton-registrarB svg {
   display: block;
   transform-origin: center center;
   transition: transform 0.3s ease-in-out;
 }
 
-button:hover .svg-wrapper {
+button.boton-registrarB:hover .svg-wrapper {
   animation: fly-1 0.6s ease-in-out infinite alternate;
 }
 
-button:hover svg {
-  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+button.boton-registrarB:hover svg {
+  transform: translateX(2em) rotate(45deg) scale(1.1);
 }
 
-button:hover span {
+button.boton-registrarB:hover span {
   transform: translateX(5em);
 }
 
-button:active {
+button.boton-registrarB:active {
   transform: scale(0.95);
 }
 
@@ -490,4 +472,117 @@ button:active {
   to {
     transform: translateY(-0.1em);
   }
-} */
+}
+
+
+
+.button {
+  width: 102px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #212529;
+  border-radius: 6px;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition-duration: .2s;
+}
+
+.bell {
+  width: 20px;
+}
+
+.bell path {
+  fill: rgb(255, 255, 255);
+}
+
+.button:hover {
+background-color: #2b2670 !important ;
+  border-color: #2b2670 !important;
+}
+
+
+.button:active {
+  transform: scale(0.97);
+  transition-duration: .2s; 
+  background-color: #322c83 !important ;
+  border-color: #322c83 !important;
+}
+
+.button:hover .bell {
+  animation: bellRing 0.9s both;
+}
+
+@keyframes bellRing {
+  0%,
+  100% {
+    transform-origin: top;
+  }
+  15% {
+    transform: rotateZ(10deg);
+  }
+  30% {
+    transform: rotateZ(-10deg);
+  }
+  45% {
+    transform: rotateZ(5deg);
+  }
+  60% {
+    transform: rotateZ(-5deg);
+  }
+  75% {
+    transform: rotateZ(2deg);
+  }
+}
+
+
+
+.Btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 150px;
+  height: 40px;
+  border: none;
+  padding: 0px 20px;
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  transition-duration: .3s;
+}
+
+.svg {
+  width: 25px;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  fill: white;
+  transition-duration: .3s;
+}
+
+.Btn:hover {
+  color: transparent;
+  background-color: #2b2670 !important ;
+  border-color: #2b2670 !important;
+}
+
+.Btn:hover svg {
+  right: 41%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition-duration: .3s;
+}
+
+.Btn:active {
+  background-color: #322c83 !important ;
+  border-color: #322c83 !important;
+
+}

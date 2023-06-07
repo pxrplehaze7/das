@@ -1,22 +1,15 @@
-// jquery
-$("#documentosObligatorios").on("submit", function (event) {
+$("#documentosObligatorios").on("submit", function(event) {
   event.preventDefault();
 
-  //SELECCIONA EL ELEMENTO  DEL HTML CON EL tCon Y LO ASIGNA A LA VARIABLE selectCat
   let selectCat = document.querySelector('#idSelectCat');
   if (selectCat.value == 1) {
-    //SI EL VALOR ES IGUAL A 1 REVISA SI LOS INPUT RADIO ESTAN VACIOS
     if (!document.querySelector('#idSiMedico').checked && !document.querySelector('#idNoMedico').checked) {
-      //SI ESTAN VACIOS ENVIA ALERTA
-      Swal.fire('Debe indicar si es medico o no');
-      // alert('Debe indicar si es medico o no')
-      return
+      Swal.fire('Debe indicar si es médico o no');
+      return;
     }
   }
 
   if (!$('#idSiInscrip').is(":checked") && !$('#idNoInscrip').is(":checked")) {
-    //ALERTA SI NO SE HA SELECCIONADO NINGUN RADIO
-    // alert('Debe indicar si debe presentar el Certificado');
     Swal.fire('Debe indicar si debe presentar el Certificado');
     $('#idSiInscrip').focus();
     $('#idNoInscrip').focus();
@@ -26,18 +19,17 @@ $("#documentosObligatorios").on("submit", function (event) {
   var celularInput = document.getElementById("idCelular");
   var celularValue = celularInput.value.trim();
 
-  if (celularValue.length !== 9) {
+  if (celularValue !== '' && celularValue.length !== 9) {
     Swal.fire({
       icon: 'warning',
       title: 'Advertencia',
       text: 'El número de teléfono debe tener 9 dígitos',
       didRender: () => {
-        celularInput.focus(); // Establece el foco en el campo de teléfono
+        celularInput.focus();
       }
     });
-    return; // Detiene la ejecución del código
+    return;
   }
-
 
   Swal.fire({
     title: '¿Realmente desea registrar trabajador?',
@@ -54,7 +46,7 @@ $("#documentosObligatorios").on("submit", function (event) {
     } else {
       let formData = new FormData(this);
 
-      formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
+      formData.append('rut', $('#idRutInput').val());
 
       console.log("el formdata", formData);
 
@@ -65,27 +57,24 @@ $("#documentosObligatorios").on("submit", function (event) {
         cache: false,
         contentType: false,
         processData: false
-      })//fin del ajax
-        .done(
-          function (respuesta) {
-            $('body').append(respuesta);
-          }
-        )//fin del done
-        .fail(
-          function (respuesta) {
-            $('body').append(respuesta);
-          }
-        )//fin del fail
-        .always(
-          (respuesta) => {
-            console.info("DATA:", respuesta)
-          }
-        )//fin del always
+      })
+      .done(function(respuesta) {
+        $('body').append(respuesta);
+      })
+      .fail(function(respuesta) {
+        $('body').append(respuesta);
+      })
+      .always(function(respuesta) {
+        console.info("DATA:", respuesta)
+      });
     }
-  })
-
-
+  });
 });
+
+
+
+
+
 
 //Para que no quede ningun radio marcado por defecto
 window.addEventListener("load", function () {
@@ -131,7 +120,7 @@ function deleteFile(campo, rut) {
     type: 'POST',
     data: { campo: campo, rut: rut },
     success: function (respuesta) {
-      location.reload();
+
     },
 
   });
@@ -142,6 +131,33 @@ function cargarSectores() {
   const lugarSeleccionado = document.getElementById("idSelectLugar").value;
   $.ajax({
     url: './controller/lugar_sector.php',
+    method: "POST",
+    data: { lugarSeleccionado: lugarSeleccionado },
+    dataType: 'json',
+    success: function (respuesta) {
+      let largo = respuesta.length;
+      $("#idSelectSector").empty();
+
+      for (let i = 0; i < largo; i++) {
+        let idSector = respuesta[i]['IDSector'];
+        let nombreSector = respuesta[i]['NombreSector'];
+
+        $("#idSelectSector").append("<option value='" + idSector + "'>" + nombreSector + "</option>");
+      }
+    },
+    error: function (error) {
+      console.error("ERROR", error.responseText);
+    }
+  });
+}
+
+
+
+// FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
+function cargarSectoresTABLA() {
+  const lugarSeleccionado = document.getElementById("idSelectLugar").value;
+  $.ajax({
+    url: './controller/lugar_sectorTABLA.php',
     method: "POST",
     data: { lugarSeleccionado: lugarSeleccionado },
     dataType: 'json',
@@ -230,6 +246,7 @@ $("#documentosApelacion").on("submit", function (event) {
 
 
 $("#edicion_pdfs").on("submit", function (event) {
+  event.preventDefault();
   Swal.fire({
     title: '¿Desea actualizar los documentos?',
     showDenyButton: true,
@@ -259,6 +276,7 @@ $("#edicion_pdfs").on("submit", function (event) {
         .done(
           function (respuesta) {
             $('body').append(respuesta);
+
           }
         )//fin del done
         .fail(
@@ -347,28 +365,27 @@ $("#limpia-filtro").on("click", function () {
 
 
 
-
-$("#editInfoContacto").on("submit", function (event) {
+$("#editInfoContacto").on("submit", function(event) {
   event.preventDefault(); // Evita el envío del formulario por defecto
 
   var celularInput = document.getElementById("idCelular");
   var celularValue = celularInput.value.trim();
 
-  if (celularValue.length !== 9) {
+  if (celularValue !== '' && celularValue.length !== 9) {
     Swal.fire({
       icon: 'warning',
       title: 'Advertencia',
       text: 'El número de teléfono debe tener 9 dígitos',
       didOpen: () => {
-        celularInput.focus(); // Resalta el campo de teléfono
+        celularInput.focus();
       }
     });
-    return; // Detiene la ejecución del código
+    return;
   }
 
   var formData = new FormData(this);
 
-  formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
+  formData.append('rut', $('#idRutInput').val());
 
   Swal.fire({
     title: '¿Desea actualizar la información de contacto?',
@@ -377,6 +394,7 @@ $("#editInfoContacto").on("submit", function (event) {
     allowOutsideClick: false,
     confirmButtonText: 'Sí',
     confirmButtonColor: '#00c4a0',
+    denyButtonColor: '#ba0051'
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
@@ -386,7 +404,7 @@ $("#editInfoContacto").on("submit", function (event) {
         cache: false,
         contentType: false,
         processData: false
-      }).done(function (response) {
+      }).done(function(response) {
         response = JSON.parse(response);
         if (response.success) {
           Swal.fire({
@@ -400,7 +418,7 @@ $("#editInfoContacto").on("submit", function (event) {
             text: response.message
           });
         }
-      }).fail(function (response) {
+      }).fail(function(response) {
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la información',
@@ -412,4 +430,51 @@ $("#editInfoContacto").on("submit", function (event) {
 });
 
 
+$("#editInfoPersonal").on("submit", function(event) {
+  event.preventDefault(); // Evita el envío del formulario por defecto
 
+  var formData = new FormData(this);
+
+  formData.append('rut', $('#idRutInput').val());
+
+  Swal.fire({
+    title: '¿Desea actualizar la información personal?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Sí',
+    confirmButtonColor: '#00c4a0',
+    denyButtonColor: '#ba0051'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "./controller/editInfoP.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      }).done(function(response) {
+        response = JSON.parse(response);
+        if (response.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Información actualizada correctamente',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información',
+            text: response.message
+          });
+        }
+      }).fail(function(response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al actualizar la información',
+          text: response.responseText
+        });
+      });
+    }
+  });
+});

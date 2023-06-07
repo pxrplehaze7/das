@@ -68,19 +68,33 @@ $correoP    = str_replace(" ", "", $correoP); // ELIMINA ESPACIOS DE LA CADENA
 
 
 //ELIMINA LOS ESPACIOS EN EL NOMBRE DEL PDF Y LOS REEMPLAZA POR _ _
-$pdfAFP          = str_replace(array(' ', '(', ')'), '_', $_FILES['nameAFPdoc']['name']);
-$pdfNacimiento   = str_replace(array(' ', '(', ')'), '_', $_FILES['nameNACdoc']['name']);
-$pdfMilitar      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameMilitarDoc']['name']);
-$pdfAntecedentes = str_replace(array(' ', '(', ')'), '_', $_FILES['nameANTECEdoc']['name']);
-$pdfCedula       = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCeduladoc']['name']);
-$pdfCurriculum   = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCVdoc']['name']);
-$pdfExamenM      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameExaMdoc']['name']);
-$pdfPrevision    = str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']['name']);
-$pdfEstudios     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']);
-$pdfDJurada      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']);
-$pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']);
-$pdfContrato     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
-$pdfInscripcion  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameInscripdoc']['name']);
+// $pdfAFP          = str_replace(array(' ', '(', ')'), '_', $_FILES['nameAFPdoc']['name']);
+// $pdfNacimiento   = str_replace(array(' ', '(', ')'), '_', $_FILES['nameNACdoc']['name']);
+// $pdfMilitar      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameMilitarDoc']['name']);
+// $pdfAntecedentes = str_replace(array(' ', '(', ')'), '_', $_FILES['nameANTECEdoc']['name']);
+// $pdfCedula       = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCeduladoc']['name']);
+// $pdfCurriculum   = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCVdoc']['name']);
+// $pdfExamenM      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameExaMdoc']['name']);
+// $pdfPrevision    = str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']['name']);
+// $pdfEstudios     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']);
+// $pdfDJurada      = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']);
+// $pdfSaludCompat  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']);
+// $pdfContrato     = str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']);
+// $pdfInscripcion  = str_replace(array(' ', '(', ')'), '_', $_FILES['nameInscripdoc']['name']);
+
+$pdfNacimiento = (!empty($_FILES['nameNACdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameNACdoc']['name']) : '';
+$pdfAntecedentes = (!empty($_FILES['nameANTECEdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameANTECEdoc']['name']) : '';
+$pdfAFP = (!empty($_FILES['nameAFPdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameAFPdoc']['name']) : '';
+$pdfMilitar = (!empty($_FILES['nameMilitarDoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameMilitarDoc']['name']) : '';
+$pdfCedula = (!empty($_FILES['nameCeduladoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCeduladoc']['name']) : '';
+$pdfCurriculum = (!empty($_FILES['nameCVdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCVdoc']['name']) : '';
+$pdfExamenM = (!empty($_FILES['nameExaMdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameExaMdoc']['name']) : '';
+$pdfPrevision = (!empty($_FILES['namePREVdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']['name']) : '';
+$pdfEstudios = (!empty($_FILES['nameEstudiodoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']) : '';
+$pdfDJurada = (!empty($_FILES['nameDJuradadoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']) : '';
+$pdfSaludCompat = (!empty($_FILES['nameSCompatibledoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']) : '';
+$pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']) : '';
+$pdfInscripcion = (!empty($_FILES['nameInscripdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameInscripdoc']['name']) : '';
 
 
 // CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
