@@ -101,7 +101,6 @@ p {
 }
 
 
-
 .btn-buscar{
   background-color:#463bfa !important;
   border-color: #463bfa !important;
@@ -113,11 +112,6 @@ p {
   background-color:#2b25a5 !important;
 }
 
-/* INICIO BOTON ENVIAR FORMULARIO*/
-
-/* FIN BOTON ENVIAR FORMULARIO */
-
-/* INICIO CHECK CON DISEÑO */
 
 .radio-inputs {
   display: flex;
@@ -337,7 +331,6 @@ border: #6b66bc;
   background-color: #463bfa !important;
 }
 
-
 .dataTables_paginate .pagination .page-item.active .page-link {
 
   background-color: #463bfa; 
@@ -400,7 +393,6 @@ margin-top: 10px;
   .card-body {
     flex-grow: 1 !important;
   }
-  
 
 .btn-dpdf{
   background-color: #212529 !important;
@@ -475,7 +467,6 @@ button.boton-registrarB:active {
 }
 
 
-
 .button {
   width: 102px;
   display: flex;
@@ -539,7 +530,6 @@ background-color: #2b2670 !important ;
 }
 
 
-
 .Btn {
   position: relative;
   display: flex;
@@ -584,5 +574,20 @@ background-color: #2b2670 !important ;
 .Btn:active {
   background-color: #322c83 !important ;
   border-color: #322c83 !important;
+}
 
+.btn-enviar {
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+  color: #ffffff !important;
+}
+
+.btn-enviar:hover {
+  background-color: #2b2670 !important ;
+  border-color: #2b2670 !important;
+}
+
+.btn-enviar:active {
+  background-color: #322c83 !important ;
+  border-color: #322c83 !important;
 }

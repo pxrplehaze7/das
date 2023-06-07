@@ -16,16 +16,13 @@
     <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-
+    <!-- Datatable -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
-
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-    <!-- <script src="./assets/js/jspdf.umd.min.js"></script> -->
 
 
 </head>
@@ -77,10 +74,10 @@
                                     </div>
                                     <div class="col-md-3 row">
                                         <div class="col mt-auto text-center">
-                                            <button id="btn-filtro" class="btn btn-enviar">Buscar</button>
+                                            <button id="btn-filtro" class="btn btn-enviar">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
                                         </div>
                                         <div class="col mt-auto text-center">
-                                            <button id="limpia-filtro" class="btn btn-enviar limpia-filtro">Limpiar</button>
+                                            <button id="limpia-filtro" class="btn btn-enviar limpia-filtro">Limpiar <i class="fas fa-eraser"></i></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -148,4 +145,5 @@
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 </body>
+
 </html>

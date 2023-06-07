@@ -152,7 +152,6 @@ function cargarSectores() {
 }
 
 
-
 // FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
 function cargarSectoresTABLA() {
   const lugarSeleccionado = document.getElementById("idSelectLugar").value;
@@ -178,7 +177,13 @@ function cargarSectoresTABLA() {
   });
 }
 
-$("#documentosApelacion").on("submit", function (event) {
+$("#idNoApelo").change(function() {
+  if ($(this).is(":checked")) {
+    $("#idApelacionDoc").val("");
+  }
+});
+
+$("#documentosApelacion").on("submit", function(event) {
   event.preventDefault();
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
@@ -221,12 +226,14 @@ $("#documentosApelacion").on("submit", function (event) {
 
           // Limpia los campos
           clearFileInput('idCalifInput');
-          clearFileInput('idApelacionDoc');
           $('#idInicio').val('');
           $('#idFin').val('');
           $('.radio-input').prop('checked', false);
-          $('#idApelacionDoc').val('');
 
+          // Limpia el campo de entrada de archivo solo si se seleccionó "No" en el input radio
+          if ($('#idNoApelo').is(":checked")) {
+            $('#idApelacionDoc').val('');
+          }
 
         })
         .fail(function (respuesta) {
@@ -243,6 +250,7 @@ $("#documentosApelacion").on("submit", function (event) {
     }
   });
 });
+
 
 
 $("#edicion_pdfs").on("submit", function (event) {

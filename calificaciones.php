@@ -70,7 +70,6 @@ if (isset($_POST['nameRutCalifica'])) {
                                     <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" hidden>
                                 </div>
 
-
                                 <div class="segundoGrupo row">
                                     <div class="paterno col-md">
                                         <label> Apellido Paterno</label>
@@ -84,8 +83,6 @@ if (isset($_POST['nameRutCalifica'])) {
                                         <br>
                                     </div>
                                 </div>
-
-
 
                                 <div class="row">
                                     <div class="col-md-4">
@@ -106,13 +103,17 @@ if (isset($_POST['nameRutCalifica'])) {
                                         <label for="idCalifInput"><span style="color: red;">*</span> Calificación</label>
                                         <div class="input-group">
                                             <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
-                                            <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idCalifInput')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                                            <button class="button" type="button" onclick="clearFileInput('idCalifInput')">
+                                                Limpiar
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                </svg>
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
                                 <br>
-
-
 
 
                                 <div class="radioCentro row">
@@ -157,15 +158,33 @@ if (isset($_POST['nameRutCalifica'])) {
                                     <label for="idApelacionDoc"><span style="color: red;">*</span> Apelación</label>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
-                                        <button class="btn btn-limpiar" type="button" onclick="clearFileInput('idApelacionDoc')">Limpiar <i class="fa-solid fa-trash"></i></button>
+                                        <button class="button" type="button" onclick="clearFileInput('idApelacionDoc')">
+                                            Limpiar
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                            </svg>
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
 
                             <br>
 
-                            <div class="boton">
-                                <button class="btn btn-enviar" type="submit">Registrar <i class="fa-solid fa-floppy-disk"></i></button>
+
+
+                            <div class="boton-registrar">
+                                <button id="btnRegistrar" type="submit" class="boton-registrarB">
+                                    <div class="svg-wrapper-1">
+                                        <div class="svg-wrapper">
+                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <span>Agregar</span>
+                                </button>
                             </div>
 
                         </form>

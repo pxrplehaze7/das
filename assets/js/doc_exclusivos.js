@@ -28,6 +28,7 @@ function honorario() {
     nacDiv.hide();
     saludcDiv.hide();
     servicioMilitarDiv.hide();
+
   }
 }
 
@@ -49,6 +50,7 @@ $(document).ready(function () {
   //SE LLAMA A LA FUNCION PARA VOLVER A VER U OCULTAR
   honorario();
 });
+
 
 
 

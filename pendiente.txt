@@ -1,17 +1,13 @@
 
 hacer que se limpien los campos al enviar el form
 
-
-
-
 hacer que pida menos documentos si es HONORARIO
 
 no me muestra el error al insertar y ver como probar forzando error
 
-hacer que cuando diga que no apelo, se desabilite el input de apelacion
+hacer que cuando diga que no apelo, se limpie el input, lo mismo con honorarios y no medicos, y inscripcion
 
 arreglar todo lo de honorario para que no muestre lo innecesario
-
 
 hacer que cuando sea contrato honorario en editar, oculte afp
 
@@ -24,7 +20,6 @@ al eliminar archivo, preguntar y hacer focus a esa zona
 ver como actualizar al editar sin alerta de reenvio
 
 ver como hacer focus a los radio porque no me deja
-
 
 ver que hacer cuando quieren ver los contratos anteriores
 
