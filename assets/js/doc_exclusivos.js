@@ -1,26 +1,57 @@
-//Muestra o mantiene oculto el input tipo file,
-//si es hombre, debe subir el Certificado de Servicio militar
-$(document).ready(function () {
-  // Oculta el campo al cargar la página
-  $("#servicioMilitarHombre").hide();
 
-  // Agrega un evento change a los inputs de tipo radio
-  $('input[name="nameGenero"]').change(function () {
-    // Obtiene el valor del input de tipo radio seleccionado
-    var valor = $(this).val();
+function honorario() {
+  var selectContrato = $("#idSelectCon").val();
+  var generoRadio = $('input[name="nameGenero"]:checked').val();
+  var afpDiv = $("#afp");
+  var previsionDiv = $("#prevision");
+  var djurDiv = $("#declaraciondoc");
+  var nacDiv = $("#nacimiento");
+  var saludcDiv = $("#saludcomdoc");
+  var servicioMilitarDiv = $("#servicioMilitarHombre");
 
-    // Muestra u oculta el campo según el valor del input de tipo radio
-    if (valor == "Masculino") {
-      $("#servicioMilitarHombre").show();
+  if (selectContrato !== "3") {
+    afpDiv.show();
+    previsionDiv.show();
+    djurDiv.show();
+    nacDiv.show();
+    saludcDiv.show();
+
+    if (generoRadio === "Masculino") {
+      servicioMilitarDiv.show();
     } else {
-      $("#servicioMilitarHombre").hide();
+      servicioMilitarDiv.hide();
     }
+  } else {
+    afpDiv.hide();
+    previsionDiv.hide();
+    djurDiv.hide();
+    nacDiv.hide();
+    saludcDiv.hide();
+    servicioMilitarDiv.hide();
+  }
+}
+
+$(document).ready(function () {
+  // OCULTA EL INPUT FILE AL CARGAR LA PAGINA
+  $("#servicioMilitarHombre").hide();
+  // SE AGREGA EVENTO CHANGE
+  $('input[name="nameGenero"]').change(function () {
+    // LLAMA A LA FUNCION PARA ACTUALIZAR LA VISIBILIDAD DEL INPUT
+    honorario();
   });
+
+  // SE AGREGA EL EVENTO CHANGE AL SELECT DE CONTRATO
+  $("#idSelectCon").change(function () {
+    // LLAMA A LA FUNCION PARA ACTUALIZAR LA VISIBILIDAD DEL INPUT
+    honorario();
+  });
+
+  //SE LLAMA A LA FUNCION PARA VOLVER A VER U OCULTAR
+  honorario();
 });
 
 
-//Muestra o mantiene oculto el input tipo file,
-//si es hombre, debe subir el Certificado de Servicio militar
+
 $(document).ready(function () {
   // Oculta el campo al cargar la página
   $("#adjuntaApelacion").hide();

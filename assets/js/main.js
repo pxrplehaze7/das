@@ -348,8 +348,6 @@ $("#limpia-filtro").on("click", function () {
 
 
 
-
-
 $("#editInfoContacto").on("submit", function (event) {
   event.preventDefault(); // Evita el envío del formulario por defecto
 
@@ -414,20 +412,4 @@ $("#editInfoContacto").on("submit", function (event) {
 });
 
 
-
-
-
-
-// $("#b").on("change",function(){
-//   $.ajax({
-//     url: "./controller/cargaTabla.php",
-//     method: "POST",
-//     data: {lugar:$("#b").val() },
-//     cache: false,
-//     contentType: false,
-//     processData: false
-//   }).done(function (data) {
-//     $('body').append(data);
-//   });
-// });
 
