@@ -1,25 +1,6 @@
 <?php
 include("./controller/config/conexion.php");
-
-$cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = TRUE;";
-$sqlCumplen = mysqli_query($conn, $cumplen);
-$row = mysqli_fetch_row($sqlCumplen);
-$total_c = $row[0];
-
-$NOcumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = FALSE;";
-$sqlNOCumplen = mysqli_query($conn, $NOcumplen);
-$row = mysqli_fetch_row($sqlNOCumplen);
-$total_nc = $row[0];
-
-$totalTRA = "SELECT COUNT(*) FROM `trabajador`;";
-$sqlT = mysqli_query($conn, $totalTRA);
-$row = mysqli_fetch_row($sqlT);
-$total_t = $row[0];
-
-
-
-
-
+include("./controller/consulta_bar.php");
 ?>
 
 <!DOCTYPE html>
@@ -40,23 +21,19 @@ $total_t = $row[0];
     <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
-    <!-- <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Charts.js -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
 
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-
 </head>
 
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
-    <div id="layoutSidenav">
+    <d id="layoutSidenav">
 
         <?php require("./components/sidebar.html"); ?>
 
@@ -99,24 +76,25 @@ $total_t = $row[0];
                         </div>
 
                     </div>
-
                     <div class="row">
-                        <!-- <div class="col-xl-5">
+                        <div class="col-xl-5">
                             <div class=" card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    Area Chart Example
+                                    Porcentaje de Cumplimiento Total
                                 </div>
-                                <div class="card-body"><canvas id="myChart" width="100%"></canvas></div>
+                                <div class="card-body"><canvas id="myChart" width="80%"></canvas></div>
                             </div>
-                        </div> -->
+
+
+                        </div>
                         <div class="col-xl-7">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    Bar Chart Example
+                                    Porcentaje de Cumplimiento según Lugar
                                 </div>
-                                <div class="card-body"><canvas id="myBarChart" width="100%"></canvas></div>
+                                <div class="card-body"><canvas id="myChartBar" width="80%"></canvas></div>
                             </div>
                         </div>
                     </div>
@@ -124,9 +102,52 @@ $total_t = $row[0];
             </main>
 
         </div>
-    </div>
+    </d<iv>
+<script>
+    
+var ctx1 = document.getElementById("myChartBar").getContext('2d');
+var myChart = new Chart(ctx1, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Orange", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: 'Votes',
+            data: [1, 19, 5, 5, 4, 3],
+            backgroundColor: [
+                '#1abc9c',
+                '#e67e22',
+                'rgba(255, 206, 86, 02)',
+                'rgba(75, 192, 192, 02)',
+                'rgba(153, 102, 255, 2)',
+                'rgba(255, 159, 64, 2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
 
+
+
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/chart_pieTotal.js"></script>

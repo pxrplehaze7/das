@@ -1,6 +1,5 @@
 CREATE DATABASE das;
-
-use `das`;
+USE `das`;
 
 CREATE TABLE `das`.`usuario` (
     `IDUsuario` INT NOT NULL AUTO_INCREMENT,
@@ -26,9 +25,9 @@ CREATE TABLE `das`.`contrato` (
     PRIMARY KEY (`IDCon`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-CREATE TABLE `das`.`categoria`(
+CREATE TABLE `das`.`categoria` (
     `IDCat` INT NOT NULL,
-    `NombreCat` VARCHAR (250) NOT NULL,
+    `NombreCat` VARCHAR(250) NOT NULL,
     PRIMARY KEY (`IDcat`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
@@ -69,7 +68,7 @@ CREATE TABLE `das`.`trabajador` (
     `Medico` VARCHAR(2) NULL,
     `Inscripcion` BOOLEAN NOT NULL,
     `Profesion` VARCHAR(300) NOT NULL,
-    `CelularTra` VARCHAR (9) NULL,
+    `CelularTra` VARCHAR(9) NULL,
     `CorreoTra` VARCHAR(100) NULL,
     `RutaPrev` VARCHAR(400) NULL,
     `RutaCV` VARCHAR(400) NULL,
@@ -106,201 +105,49 @@ CREATE TABLE `das`.`calificaciones` (
     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (1, 'No posee');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (1, 'No posee');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (2, 'AFP Cuprum');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (3, 'AFP Habitat');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (4, 'AFP Modelo');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (5, 'AFP PlanVital');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (6, 'AFP Provida');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (7, 'AFP Uno');
+INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (8, 'AFP Capital');
 
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (2, 'AFP Cuprum');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (1, 'Reemplazo');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (2, 'Plazo Fijo');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (3, 'Honorarios');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (4, 'Indefinido');
 
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (3, 'AFP Habitat');
-
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (4, 'AFP Modelo');
-
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (5, 'AFP PlanVital');
-
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (6, 'AFP Provida');
-
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (7, 'AFP Uno');
-
-INSERT INTO
-    `afp`(`IDAFP`, `NombreAFP`)
-VALUES
-    (8, 'AFP Capital');
-
-INSERT INTO
-    `contrato`(`IDCon`, `NombreCon`)
-VALUES
-    (1, 'Reemplazo');
-
-INSERT INTO
-    `contrato`(`IDCon`, `NombreCon`)
-VALUES
-    (2, 'Plazo Fijo');
-
-INSERT INTO
-    `contrato`(`IDCon`, `NombreCon`)
-VALUES
-    (3, 'Honorarios');
-
-INSERT INTO
-    `contrato`(`IDCon`, `NombreCon`)
-VALUES
-    (4, 'Indefinido');
-
-INSERT INTO
-    `lugar`(`IDLugar`, `NombreLug`)
-VALUES
-    (1, 'Dirección de Administración de Salud');
-
-INSERT INTO
-    `lugar`(`IDLugar`, `NombreLug`)
-VALUES
-    (2, 'CESFAM Dra. Eloisa Diaz');
-
-INSERT INTO
-    `lugar`(`IDLugar`, `NombreLug`)
-VALUES
-    (3, 'CESFAM/SAPU La Leonera');
-
-INSERT INTO
-    `lugar`(`IDLugar`, `NombreLug`)
-VALUES
-    (4, 'CESFAM Valle la Piedra');
-
-INSERT INTO
-    `lugar`(`IDLugar`, `NombreLug`)
-VALUES
-    (5, 'CESFAM Chiguayante');
-
-INSERT INTO
-    `lugar`(`IDLugar`, `NombreLug`)
-VALUES
-    (6, 'SAR Chiguayante');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (1, 1, 'Dirección de Administración de Salud');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (2, 1, 'Droguería');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (3, 2, 'CESFAM Dra. Eloisa Diaz');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (4, 2, 'Óptica Municipal');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (5, 2, 'Ruka Antü');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (6, 3, 'CESFAM/SAPU La Leonera');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (7, 4, 'CESFAM Valle la Piedra');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (8, 4, 'Laboratorio Dental');
-
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (9, 5, 'CESFAM Chiguayante');
+INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (1, 'Dirección de Administración de Salud');
+INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (2, 'CESFAM Pinares');
+INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (3, 'CESFAM La Leonera');
+INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (4, 'CESFAM Valle la Piedra');
+INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (5, 'CESFAM Chiguayante');
 
 
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (10, 5, 'Farmacia Municipal');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (1, 1, 'Dirección de Administración de Salud');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (2, 1, 'Droguería Comunal');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (3, 2, 'CESFAM Pinares');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (4, 2, 'Centro Oftalmológico');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (5, 2, 'Ruka Antü');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (6, 3, 'CESFAM La Leonera');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (7, 3, 'SAPU La Leonera');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (8, 4, 'CESFAM Valle la Piedra');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (9, 4, 'Laboratorio Comunal Dental');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (10, 5, 'CESFAM Chiguayante');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (11, 5, 'Farmacia Municipal');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (12, 5, 'Centro de Salud Mental');
+INSERT INTO `sector`(`IDSector`, `IDLugar`, `NombreSector`) VALUES (13, 5, 'SAR Chiguayante');
 
-INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (11, 5, 'Casa de Salud Mental');
+INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (1, 'No posee');
+INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (2, 'FONASA');
+INSERT INTO `prevision`(`IDPrev`, `NombrePrev`) VALUES (3, 'ISAPRE');
 
-    INSERT INTO
-    `sector`(`IDSector`, `IDLugar`, `NombreSector`)
-VALUES
-    (12, 6, 'SAR Chiguayante');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (1, 'a) Médicos Cirujanos, Farmacéuticos, Químico-Farmacéuticos, Bioquímicos y Cirujano-Dentistas.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (2, 'b) Otros profesionales.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (3, 'c) Técnicos de nivel superior.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (4, 'd) Técnicos de Salud.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5, 'e) Administrativos de Salud.');
+INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6, 'f) Auxiliares de servicios de Salud.');
 
-INSERT INTO
-    `prevision`(`IDPrev`, `NombrePrev`)
-VALUES
-    (1, 'No posee');
-
-INSERT INTO
-    `prevision`(`IDPrev`, `NombrePrev`)
-VALUES
-    (2, 'FONASA');
-
-INSERT INTO
-    `prevision`(`IDPrev`, `NombrePrev`)
-VALUES
-    (3, 'ISAPRE');
-
-INSERT INTO
-    `categoria`(`IDCat`, `NombreCat`)
-VALUES
-    (
-        1,
-        'a) Médicos Cirujanos, Farmacéuticos, Químico-Farmacéuticos, Bioquímicos y Cirujano-Dentistas.'
-    );
-
-INSERT INTO
-    `categoria`(`IDCat`, `NombreCat`)
-VALUES
-    (2, 'b) Otros profesionales.');
-
-INSERT INTO
-    `categoria`(`IDCat`, `NombreCat`)
-VALUES
-    (3, 'c) Técnicos de nivel superior.');
-
-INSERT INTO
-    `categoria`(`IDCat`, `NombreCat`)
-VALUES
-    (4, 'd) Técnicos de Salud.');
-
-INSERT INTO
-    `categoria`(`IDCat`, `NombreCat`)
-VALUES
-    (5, 'e) Administrativos de Salud.');
-
-INSERT INTO
-    `categoria`(`IDCat`, `NombreCat`)
-VALUES
-    (6, 'f) Auxiliares de servicios de Salud.');

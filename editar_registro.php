@@ -110,7 +110,8 @@ if (isset($_POST['nameRutEditar'])) {
                                             $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
 
                                             echo "<label for='idSelectCon'><span style='color: #c40055;'>*</span> Tipo de Contrato </label>"; //Label 
-                                            echo "<select name='nameSelectCon' id='idSelectCon' class='form-select' required>";
+                                            echo "<select name='nameSelectCon' id='idSelectCon' class='form-select' required onchange='honorarioEdit()'>";
+
                                             echo '<option value="" hidden>Selecciona un Contrato</option>'; // Opción por defecto en blanco
 
                                             while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
@@ -242,38 +243,39 @@ if (isset($_POST['nameRutEditar'])) {
                                         <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $persona['Profesion'] ?>" class="form-control" require>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="col-md-6"> <!-- AFP -->
-                                            <?php
-                                            $sqlafp = "SELECT IDAFP, NombreAFP FROM afp";
-                                            $resultadoafp = mysqli_query($conn, $sqlafp);
+                                  
+                                        <div class="row" id="afpyprevdiv">
+                                            <div class="col-md-6"> <!-- AFP -->
+                                                <?php
+                                                $sqlafp = "SELECT IDAFP, NombreAFP FROM afp";
+                                                $resultadoafp = mysqli_query($conn, $sqlafp);
 
-                                            echo "<label for='idSelectAFP'>AFP </label>"; //Label 
-                                            echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
-                                            while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
-                                                $selected = ($fila2['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
-                                                echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
-                                            }
-                                            echo "</select>";
-                                            ?>
+                                                echo "<label for='idSelectAFP'>AFP </label>"; //Label 
+                                                echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
+                                                while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
+                                                    $selected = ($fila2['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
+                                                    echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                ?>
 
-                                            <br>
+                                                <br>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <?php
+                                                $sqlprev = "SELECT IDPrev, NombrePrev FROM prevision";
+                                                $resultadoprev = mysqli_query($conn, $sqlprev);
+                                                echo "<label for='idSelectCat'>Previsión </label>"; //Label 
+                                                echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
+                                                while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
+                                                    $selected3 = ($fila3['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
+                                                    echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
+                                                }
+                                                echo "</select>";
+                                                ?>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <?php
-                                            $sqlprev = "SELECT IDPrev, NombrePrev FROM prevision";
-                                            $resultadoprev = mysqli_query($conn, $sqlprev);
-                                            echo "<label for='idSelectCat'>Previsión </label>"; //Label 
-                                            echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
-                                            while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
-                                                $selected3 = ($fila3['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
-                                                echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
-                                            }
-                                            echo "</select>";
-                                            ?>
-                                        </div>
-                                    </div>
-
+                     
                                 </div>
 
                                 <br>

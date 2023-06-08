@@ -5,7 +5,7 @@ $campo = $_POST['campo'];
 $sqlRuta = "UPDATE trabajador SET $campo='' WHERE Rut='$rut'";
 $resultado = mysqli_query($conn, $sqlRuta);
 if ($resultado) {
-    echo "Éxito"; // Agregar esta línea para indicar éxito
+    echo "Exito"; // Agregar esta línea para indicar éxito
   } else {
     echo "Error al eliminar el archivo: " . mysqli_error($conn);
   }

@@ -1,15 +1,10 @@
 
 hacer que se limpien los campos al enviar el form
 
-hacer que pida menos documentos si es HONORARIO
+cuando edito el rut para cambiarlo, la validacion me aparece con que ya esta registrado ysi actualizo no me muestra la informaciondel perfil
 
 no me muestra el error al insertar y ver como probar forzando error
 
-hacer que cuando diga que no apelo, se limpie el input, lo mismo con honorarios y no medicos, y inscripcion
-
-arreglar todo lo de honorario para que no muestre lo innecesario
-
-hacer que cuando sea contrato honorario en editar, oculte afp
 
 hacer que para que no haya paginacion, muestre todos los registros de una vez
 
@@ -55,4 +50,44 @@ hacer que consulte por cada lugar para calcular elporcentaje
                                     </td>
 
                                 <?php } ?>
+
+
+
+//trabajadores que cumplen con documentacion y son de la das
+SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 1 AND `Cumple` = TRUE;
+
+total de trabajadores de la das
+SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=1;
+
+
+
+//trabajadores que cumplen con documentacion y son de cesfam pinares
+SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 2 AND `Cumple` = TRUE;
+
+total de trabajadores de cesfam pinares
+SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=2;
+
+
+
+//trabajadores que cumplen con documentacion y son de cesfam la leonera
+SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 3 AND `Cumple` = TRUE;
+
+total de trabajadores de cesfam la leonera
+SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=3;
+
+
+//trabajadores que cumplen con documentacion y son de valle la piedra
+SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 4 AND `Cumple` = TRUE;
+
+total de trabajadores de valle la piedra
+SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=4;
+
+
+
+//trabajadores que cumplen con documentacion y son de cesfam chiguayante
+SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 5 AND `Cumple` = TRUE;
+
+total de trabajadores de cesfam chiguayante
+SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=5;
+
 

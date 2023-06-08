@@ -486,3 +486,17 @@ $("#editInfoPersonal").on("submit", function(event) {
     }
   });
 });
+
+
+function honorarioEdit() {
+  var selectContrato = $("#idSelectCon").val();
+  var afpprevdiv = $("#afpyprevdiv");
+  var selectAFP = $("#idSelectAFP");
+  var selectPrev = $("#idSelectPrev");
+
+  if (selectContrato == "3") {
+    afpprevdiv.hide();
+    selectAFP.val('1');
+    selectPrev.val('1');
+  }
+}
