@@ -20,15 +20,21 @@ function honorario() {
       servicioMilitarDiv.show();
     } else {
       servicioMilitarDiv.hide();
+      clearFileInput('idMilitarDoc');
     }
   } else {
     afpDiv.hide();
+    clearFileInput('idAFPinput');
     previsionDiv.hide();
+    clearFileInput('idPREVinput');
     djurDiv.hide();
+    clearFileInput('idDJuradainput');
     nacDiv.hide();
+    clearFileInput('idNACinput');
     saludcDiv.hide();
+    clearFileInput('idSCompatibleinput');
     servicioMilitarDiv.hide();
-
+    clearFileInput('idMilitarDoc');
   }
 }
 
@@ -102,6 +108,7 @@ if (selectCat) {
         $("#examenMedico").show();
       } else {
         $("#examenMedico").hide();
+        clearFileInput('idExamenMinput');
       }
     });
   });
@@ -121,6 +128,7 @@ if (selectCat) {
         $("#inscripcionMedico").show();
       } else {
         $("#inscripcionMedico").hide();
+        clearFileInput('idInscripinput');
       }
     });
   });
