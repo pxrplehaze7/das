@@ -607,6 +607,7 @@ if (isset($_POST['nameRutEditar'])) {
                                 </div>
                             </form>
                         </div>
+                        
 
 
                     </div>
@@ -617,7 +618,15 @@ if (isset($_POST['nameRutEditar'])) {
             </main>
         </div>
     </div>
-
+<script>
+    // FUNCION PARA LIMPIAR EL INPUT FILE
+function clearFileInput(inputId) {
+  console.log("input del file",inputId);
+  var fileInput = document.getElementById(inputId);
+  fileInput.value = "";
+  
+}
+</script>
 
     <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->
     <script src="./assets/js/main.js"></script>

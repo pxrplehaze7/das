@@ -14,8 +14,10 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- cdn css bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
     <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
 
     <!-- ICONOS -->
@@ -78,8 +80,6 @@
                                     </div>
                                     <br>
                                 </div>
-
-
 
 
                                 <div id="idInscripcion" class="radioCentro row">
@@ -470,6 +470,15 @@
             </main>
         </div>
     </div>
+    <script>
+    // FUNCION PARA LIMPIAR EL INPUT FILE
+function clearFileInput(inputId) {
+  console.log("input del file",inputId);
+  var fileInput = document.getElementById(inputId);
+  fileInput.value = "";
+  
+}
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
     <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->

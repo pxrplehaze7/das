@@ -42,9 +42,9 @@
                         <div class="card mb-4">
                             <div class="card-body">
 
-                                <label for="">Filtrar Búsqueda:</label>
+                                <label for="filtrobuscar">Filtrar Búsqueda:</label>
                                 <br>
-                                <div class="row">
+                                <div class="row" id="filtrobuscar">
                                     <div class="col-md-3"> <!-- LUGAR -->
                                         <label for="idSelectLugar">Lugar</label>
                                         <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectoresTABLA()">
@@ -131,7 +131,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/tablas.js"></script>
+    <script src="./assets/js/tablaExport.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>

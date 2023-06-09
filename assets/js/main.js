@@ -60,6 +60,8 @@ $("#documentosObligatorios").on("submit", function(event) {
       })
       .done(function(respuesta) {
         $('body').append(respuesta);
+        document.getElementById("documentosObligatorios").reset();
+
       })
       .fail(function(respuesta) {
         $('body').append(respuesta);
@@ -108,25 +110,51 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// FUNCION PARA LIMPIAR EL INPUT FILE
-function clearFileInput(inputId) {
-  console.log("input del file",inputId);
-  var fileInput = document.getElementById(inputId);
-  fileInput.value = "";
-  
-}
-
 function deleteFile(campo, rut) {
-  $.ajax({
-    url: './controller/eliminaRuta.php',
-    type: 'POST',
-    data: { campo: campo, rut: rut },
-    success: function (respuesta) {
-
-    },
-
+  Swal.fire({
+    title: '¿Está seguro que desea eliminar el documento?',
+    icon: 'warning',
+    showCancelButton: true,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    cancelButtonText: 'No',
+    cancelButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: './controller/eliminaRuta.php',
+        type: 'POST',
+        data: { campo: campo, rut: rut },
+        success: function (respuesta) {
+          Swal.fire({
+            title: 'Documento eliminado exitosamente.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3600
+          });
+        },
+        error: function (xhr, status, error) {
+          Swal.fire({
+            title: 'Error al eliminar el documento: ' + error,
+            icon: 'error',
+          });
+        },
+      });
+    }
   });
 }
+
+
+
+
+
+
+
+
+
+
+
 
 // FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
 function cargarSectores() {

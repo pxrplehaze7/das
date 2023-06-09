@@ -34,7 +34,7 @@ $das_t = $row2[0];
 
 if ($das_t != 0) {
     $porcentajedas = ($das_c / $das_t) * 100;
-    $redondeadodas = number_format($porcentajedas, 1);
+    $redondeadodas = number_format($porcentajedas, 0);
 } else {
     $porcentajedas = 0;
     $redondeadodas = 0;
@@ -56,7 +56,7 @@ $pin_t = $row4[0];
 
 if ($pin_t != 0) {
     $porcentajepin = ($pin_c / $pin_t) * 100;
-    $redondeadopin = number_format($porcentajepin, 1);
+    $redondeadopin = number_format($porcentajepin, 0);
 } else {
     $porcentajepin = 0;
     $redondeadopin = 0;
@@ -79,7 +79,7 @@ $leo_t = $row6[0];
 
 if ($leo_t != 0) {
     $porcentajeleo = ($leo_c / $leo_t) * 100;
-    $redondeadoleo = number_format($porcentajeleo, 1);
+    $redondeadoleo = number_format($porcentajeleo, 0);
 } else {
     $porcentajeleo = 0;
     $redondeadoleo = 0;
@@ -100,7 +100,7 @@ $valle_t = $row8[0];
 
 if ($valle_t != 0) {
     $porcentajevalle = ($valle_c / $valle_t) * 100;
-    $redondeadovalle = number_format($porcentajevalle, 1);
+    $redondeadovalle = number_format($porcentajevalle, 0);
 } else {
     $porcentajevalle = 0;
     $redondeadovalle = 0;
@@ -120,7 +120,7 @@ $chigua_t = $row10[0];
 
 if ($chigua_t != 0) {
     $porcentajechi = ($chigua_c / $chigua_t) * 100;
-    $redondeadochi = number_format($porcentajechi, 1);
+    $redondeadochi = number_format($porcentajechi, 0);
 } else {
     $porcentajechi = 0;
     $redondeadochi = 0;

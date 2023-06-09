@@ -394,6 +394,23 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_SaludCompatFINAL) &&
       !empty($ruta_InscripcionFINAL)
     )
+    ||
+    // MUJER NO HONORARIO, NO ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
+    ($generoP == "Femenino" &&
+      $contratoP != 3 &&
+      $medicoOno == "No" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) 
+    )
   ) {
     $cumple = TRUE;
   } else {

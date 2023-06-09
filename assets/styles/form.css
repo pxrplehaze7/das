@@ -100,18 +100,16 @@ p {
   justify-content: center;
 }
 
-
-.btn-buscar{
-  background-color:#463bfa !important;
+.btn-buscar {
+  background-color: #463bfa !important;
   border-color: #463bfa !important;
 }
-.btn-buscar:hover{
-  background-color:#3b33dc !important;
+.btn-buscar:hover {
+  background-color: #3b33dc !important;
 }
-.btn-bucar:active{
-  background-color:#2b25a5 !important;
+.btn-bucar:active {
+  background-color: #2b25a5 !important;
 }
-
 
 .radio-inputs {
   display: flex;
@@ -237,8 +235,6 @@ p {
 }
 
 .boton-descargar {
-
-
   border-radius: 0 !important;
   width: 130px !important;
   background-color: #00c4a0 !important;
@@ -297,32 +293,6 @@ p {
   background-color: #920140 !important;
 }
 
-.title {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.title h1 {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.title button {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  border: none;
-  color: #212529;
-}
-
-.title button::before {
-border: #6b66bc;
-}
-.title button:hover {
-  color: #463bfa;
-  }
-
 .custom-height {
   height: 37px !important;
 }
@@ -332,83 +302,92 @@ border: #6b66bc;
 }
 
 .dataTables_paginate .pagination .page-item.active .page-link {
-
-  background-color: #463bfa; 
+  background-color: #463bfa;
   border-color: #463bfa;
-  color: #FFFFFF; 
+  color: #ffffff;
 }
 
 #total_info,
 #total_paginate {
-margin: 0;
+  margin: 0;
 
-margin-top: 10px;
+  margin-top: 10px;
 }
- ul.pagination {
-  margin:0 !important;}
+ul.pagination {
+  margin: 0 !important;
+}
 
-  th{
-    background-color: #212529 !important;
-    color: white;
-    font-weight: 400 !important;
-  }
+th {
+  background-color: #212529 !important;
+  color: white;
+  font-weight: 400 !important;
+}
 
-  .numero{
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-  }
+.numero {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
 
-  .align-middle {
-    vertical-align: middle !important;
-  }
+.align-middle {
+  vertical-align: middle !important;
+}
 
+.dataTables_filter {
+  float: right !important;
+}
 
-  .dataTables_filter {
-    float: right !important;
-  }
-  
-  .dataTables_length,
-  .dataTables_filter {
-    display: inline-block !important;
-    vertical-align: middle !important;
-    margin-top: 10px !important;
-  }
-  
-  .dt-buttons {
-    display: inline-block !important;
-    vertical-align: middle !important;
-    margin-top: 10px !important;
-    font-size: 15px !important;
-  } 
+.dataTables_length,
+.dataTables_filter {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-top: 10px !important;
+}
 
-  .card {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    height: 100% !important;
-    margin-bottom: 10px !important;
-  }
-  
-  .card-body {
-    flex-grow: 1 !important;
-  }
+.dt-buttons {
+  display: inline-block !important;
+  vertical-align: middle !important;
+  margin-top: 10px !important;
+  font-size: 15px !important;
+}
 
-.btn-dpdf{
+.card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+  margin-bottom: 10px !important;
+}
+
+.card-body {
+  flex-grow: 1 !important;
+}
+
+.btn-dpdf {
   background-color: #212529 !important;
   border-color: #212529 !important;
 }
 
-.btn-dexcel{
+.btn-dexcel {
   background-color: #212529 !important;
   border-color: #212529 !important;
 }
 
-.tarjeta{
+.dataTables_wrapper .btn-dexcel:hover {
+  background-color: #175734 !important;
+  border-color: #175734 !important;
+}
+
+.dataTables_wrapper .btn-dpdf:hover {
+  background-color: #aa0a00 !important;
+  border-color: #aa0a00 !important;
+}
+
+.tarjeta {
   margin-bottom: 20px !important;
 }
 
-.boton-registrar{
+.boton-registrar {
   display: flex;
   justify-content: center;
 }
@@ -466,7 +445,6 @@ button.boton-registrarB:active {
   }
 }
 
-
 .button {
   width: 102px;
   display: flex;
@@ -479,7 +457,7 @@ button.boton-registrarB:active {
   font-weight: 600;
   border: none;
   cursor: pointer;
-  transition-duration: .2s;
+  transition-duration: 0.2s;
 }
 
 .bell {
@@ -491,14 +469,13 @@ button.boton-registrarB:active {
 }
 
 .button:hover {
-background-color: #2b2670 !important ;
+  background-color: #2b2670 !important ;
   border-color: #2b2670 !important;
 }
 
-
 .button:active {
   transform: scale(0.97);
-  transition-duration: .2s; 
+  transition-duration: 0.2s;
   background-color: #322c83 !important ;
   border-color: #322c83 !important;
 }
@@ -529,7 +506,6 @@ background-color: #2b2670 !important ;
   }
 }
 
-
 .Btn {
   position: relative;
   display: flex;
@@ -545,7 +521,7 @@ background-color: #2b2670 !important ;
   font-weight: 500;
   cursor: pointer;
   border-radius: 10px;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .svg {
@@ -554,7 +530,7 @@ background-color: #2b2670 !important ;
   right: 0;
   margin-right: 20px;
   fill: white;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .Btn:hover {
@@ -568,7 +544,7 @@ background-color: #2b2670 !important ;
   margin: 0;
   padding: 0;
   border: none;
-  transition-duration: .3s;
+  transition-duration: 0.3s;
 }
 
 .Btn:active {
@@ -590,4 +566,80 @@ background-color: #2b2670 !important ;
 .btn-enviar:active {
   background-color: #322c83 !important ;
   border-color: #322c83 !important;
+}
+
+.grafico {
+  margin-bottom: 20px !important;
+}
+
+
+.btn-editar {
+  background-color: #212529 !important;
+  color: white !important;
+  margin-bottom: 8px;
+  margin-right: 11%;
+}
+
+
+.title {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+
+.title h1 {
+  flex-grow: 1;
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+.title button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border: none;
+  color: #212529;
+}
+
+
+.title button::before {
+  border: #6b66bc;
+}
+.title button:hover {
+  color: #463bfa;
+}
+
+
+
+.califica {
+
+    position: relative;
+    display: flex;
+    align-items: center;
+  
+}
+
+
+.califica h6 {
+  flex-grow: 1;
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+.califica button {
+  position: absolute;
+  margin-bottom: 23px;
+  right: 0;
+  bottom: 0;
+  border: none;
+  color: #212529;
+}
+
+
+.btn-calificacion {
+  background-color: #212529 !important;
+  color: white !important;
+  margin-bottom: 8px;
+  margin-right: 12px;
 }

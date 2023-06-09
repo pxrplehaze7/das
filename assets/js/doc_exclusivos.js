@@ -22,18 +22,22 @@ function honorario() {
       servicioMilitarDiv.hide();
     }
   } else {
-    afpDiv.hide();
+
+
+
     clearFileInput('idAFPinput');
-    previsionDiv.hide();
     clearFileInput('idPREVinput');
-    djurDiv.hide();
     clearFileInput('idDJuradainput');
-    nacDiv.hide();
     clearFileInput('idNACinput');
-    saludcDiv.hide();
     clearFileInput('idSCompatibleinput');
-    servicioMilitarDiv.hide();
     clearFileInput('idMilitarDoc');
+    afpDiv.hide();
+    previsionDiv.hide();
+    djurDiv.hide();
+    nacDiv.hide();
+    saludcDiv.hide();
+    servicioMilitarDiv.hide();
+
   }
 }
 

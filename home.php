@@ -79,7 +79,7 @@ include("./controller/consulta_bar.php");
 
                     </div>
                     <div class="row">
-                        <div class="col-xl-5">
+                        <div class="col-lg-4 col-md-6 grafico">
                             <div class=" card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
@@ -87,10 +87,8 @@ include("./controller/consulta_bar.php");
                                 </div>
                                 <div class="card-body"><canvas id="myChart" width="80%"></canvas></div>
                             </div>
-
-
                         </div>
-                        <div class="col-xl-7">
+                        <div class="col-lg-8 col-md-6 grafico">
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
@@ -110,20 +108,20 @@ include("./controller/consulta_bar.php");
         var myChart = new Chart(ctx1, {
             type: 'bar',
             data: {
-                labels: ['Das', 'CESFAM Pinares', 'CESFAM La Leonera', 'Valle La Piedra', 'CESFAM Chiguayante'],
+                labels: ['DAS', 'CESFAM Pinares', 'CESFAM La Leonera', 'CESFAM Valle La Piedra', 'CESFAM Chiguayante'],
                 datasets: [{
-            data: [<?php echo $redondeadodas ?>,
-                <?php echo $redondeadopin ?>,
-                <?php echo $redondeadoleo ?>,
-                <?php echo $redondeadovalle ?>,
-                <?php echo $redondeadochi ?>
-            ],
+                    data: [<?php echo $redondeadodas ?>,
+                        <?php echo $redondeadopin ?>,
+                        <?php echo $redondeadoleo ?>,
+                        <?php echo $redondeadovalle ?>,
+                        <?php echo $redondeadochi ?>
+                    ],
                     backgroundColor: [
-                        '#1abc9c',
-                        '#e67e22',
-                        'rgba(255, 206, 86, 02)',
-                        'rgba(75, 192, 192, 02)',
-                        'rgba(153, 102, 255, 2)'
+                        '#463bfa',
+                        '#463bfa',
+                        '#463bfa',
+                        '#463bfa',
+                        '#463bfa'
                     ],
                     borderColor: [
                         'rgba(255,99,132,1)',
@@ -136,37 +134,117 @@ include("./controller/consulta_bar.php");
                 }]
             },
             options: {
-        scales: {
-            y: {
-                beginAtZero: true,
-                max: 100,
-                ticks: {
-                    callback: function (value) {
-                        return value + '%';
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.dataset.label || '';
+
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    annotation: {
+                        annotations: [{
+                            type: 'text',
+                            fontColor: 'black',
+                            fontSize: 12,
+                            fontStyle: 'bold',
+                            x: function(context) {
+                                return context.chart.width - context.parsed.x - 20;
+                            },
+                            y: function(context) {
+                                return context.chart.height - context.parsed.y - 10;
+                            },
+                            text: function(context) {
+                                return context.parsed.y + '%';
+                            }
+                        }]
                     }
                 }
             }
-        },
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    afterLabel: function (tooltipItem) {
-                        return ' %';
-                    }
-                }
-            },
-            legend: {
-                display: false
-            }
-        }
-    }
-});
+        });
     </script>
+
+
+    <script>
+        const data2 = {
+            labels: [
+                'Al Día',
+                'Pendiente'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [<?php echo $total_c ?>, <?php echo $total_nc ?>],
+                backgroundColor: [
+                    '#00c4a0',
+                    '#f3ab00',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const config2 = {
+            type: 'pie',
+            data: data2,
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 30,
+                            font: {
+                                size: 14,
+                                fontStyle: "bold"
+                            }
+
+                        },
+                        onClick: () => {}
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                const label = context.label || '';
+                                const value = context.raw || '';
+                                const percentage = ((context.parsed / context.dataset.data.reduce((a, b) => a + b)) * 100).toFixed(0);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const ctx2 = document.getElementById('myChart').getContext('2d');
+        const myPieChart = new Chart(ctx2, config2);
+    </script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
-    <script src="./assets/js/chart_pieTotal.js"></script>
-    <script src="./assets/js/chart_bar.js"></script>
 
 
 </body>

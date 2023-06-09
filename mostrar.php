@@ -21,7 +21,6 @@
     <!-- ICONOS -->
 
     <!-- datatable -->
-    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -40,10 +39,9 @@
                             <div class="row d-flex justify-content-center align-items-center principal">
                                 <div class="title">
                                     <h1 class="mt-4">Información</h1>
+                                    <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
+                                    <input type="hidden" name="nameidtraedit" value="<?php echo $persona['IDTra'] ?>">
                                     <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
-                                    <button class="btn btn-editar" type="submit">
-                                        <h1 class="edit-icon mt-4"><i class="fa-solid fa-pen-to-square"></i></h1>
-                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -407,17 +405,16 @@
                                 <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
                             <?php endif; ?>
                         </div>
-
                         <br>
 
 
                         <div class="seccion">
 
-                            <h6>Calificaciones</h6>
-                            <div class="addCalificacion">
+                            <div class="row d-flex justify-content-center align-items-center califica">
+                                <h6>Calificaciones</h6>
                                 <form action="calificaciones.php" method="POST">
-                                    <input type="hidden" name="nameRutCalifica" value="<?php echo $persona['Rut'] ?>">
-                                    <button class="btn btn-calificacion" type="submit">Añadir Calificaciones <i class="fa-solid fa-circle-plus"></i></button>
+                                    <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                    <input type="hidden" name="nameidtracalif" value="<?php echo $persona['IDTra'] ?>">
                                 </form>
                             </div>
 

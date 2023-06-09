@@ -5,7 +5,6 @@ cuando edito el rut para cambiarlo, la validacion me aparece con que ya esta reg
 
 no me muestra el error al insertar y ver como probar forzando error
 
-
 hacer que para que no haya paginacion, muestre todos los registros de una vez
 
 hacer que cuando se registre, se limpie el formulario y no muestre como si se estuviera validando algun rut
@@ -18,8 +17,8 @@ ver como hacer focus a los radio porque no me deja
 
 ver que hacer cuando quieren ver los contratos anteriores
 
-hacer que consulte por cada lugar para calcular elporcentaje
-
+al editar rut, mejor usarel id del trabajador para que no de error al cambiar el rut y luego actualizar
+me falta hacer lo de editar calificaciones
       <?php if ($id_rol_usuario_actual == 1) { ?>
 
                                     <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-info editbtn" onclick="busca_user(<?php echo $mostrar['id_user'] ?>)" data-toggle="modal" data-target="#editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
@@ -52,42 +51,5 @@ hacer que consulte por cada lugar para calcular elporcentaje
                                 <?php } ?>
 
 
-
-//trabajadores que cumplen con documentacion y son de la das
-SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 1 AND `Cumple` = TRUE;
-
-total de trabajadores de la das
-SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=1;
-
-
-
-//trabajadores que cumplen con documentacion y son de cesfam pinares
-SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 2 AND `Cumple` = TRUE;
-
-total de trabajadores de cesfam pinares
-SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=2;
-
-
-
-//trabajadores que cumplen con documentacion y son de cesfam la leonera
-SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 3 AND `Cumple` = TRUE;
-
-total de trabajadores de cesfam la leonera
-SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=3;
-
-
-//trabajadores que cumplen con documentacion y son de valle la piedra
-SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 4 AND `Cumple` = TRUE;
-
-total de trabajadores de valle la piedra
-SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=4;
-
-
-
-//trabajadores que cumplen con documentacion y son de cesfam chiguayante
-SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 5 AND `Cumple` = TRUE;
-
-total de trabajadores de cesfam chiguayante
-SELECT COUNT(*)FROM `trabajador` WHERE `IDLugar`=5;
 
 
