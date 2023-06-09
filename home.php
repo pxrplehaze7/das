@@ -21,6 +21,7 @@ include("./controller/consulta_bar.php");
     <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Charts.js -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
@@ -33,14 +34,15 @@ include("./controller/consulta_bar.php");
 
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
-    <d id="layoutSidenav">
+    <div id="layoutSidenav">
 
         <?php require("./components/sidebar.html"); ?>
 
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <h1 class="mt-4">Registros</h1>
+                    <h1 class="mt-4">Registros
+                    </h1>
                     <ol class="breadcrumb mb-4"></ol>
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
@@ -102,52 +104,65 @@ include("./controller/consulta_bar.php");
             </main>
 
         </div>
-    </d<iv>
-<script>
-    
-var ctx1 = document.getElementById("myChartBar").getContext('2d');
-var myChart = new Chart(ctx1, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Orange", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: 'Votes',
-            data: [1, 19, 5, 5, 4, 3],
-            backgroundColor: [
-                '#1abc9c',
-                '#e67e22',
-                'rgba(255, 206, 86, 02)',
-                'rgba(75, 192, 192, 02)',
-                'rgba(153, 102, 255, 2)',
-                'rgba(255, 159, 64, 2)'
+    </div>
+    <script>
+        var ctx1 = document.getElementById("myChartBar").getContext('2d');
+        var myChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['Das', 'CESFAM Pinares', 'CESFAM La Leonera', 'Valle La Piedra', 'CESFAM Chiguayante'],
+                datasets: [{
+            data: [<?php echo $redondeadodas ?>,
+                <?php echo $redondeadopin ?>,
+                <?php echo $redondeadoleo ?>,
+                <?php echo $redondeadovalle ?>,
+                <?php echo $redondeadochi ?>
             ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
+                    backgroundColor: [
+                        '#1abc9c',
+                        '#e67e22',
+                        'rgba(255, 206, 86, 02)',
+                        'rgba(75, 192, 192, 02)',
+                        'rgba(153, 102, 255, 2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
         scales: {
-            yAxes: [{
+            y: {
+                beginAtZero: true,
+                max: 100,
                 ticks: {
-                    beginAtZero:true
+                    callback: function (value) {
+                        return value + '%';
+                    }
                 }
-            }]
+            }
+        },
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    afterLabel: function (tooltipItem) {
+                        return ' %';
+                    }
+                }
+            },
+            legend: {
+                display: false
+            }
         }
     }
 });
-
-
-
-</script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/chart_pieTotal.js"></script>

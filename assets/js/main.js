@@ -110,8 +110,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // FUNCION PARA LIMPIAR EL INPUT FILE
 function clearFileInput(inputId) {
+  console.log("input del file",inputId);
   var fileInput = document.getElementById(inputId);
   fileInput.value = "";
+  
 }
 
 function deleteFile(campo, rut) {

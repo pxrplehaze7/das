@@ -244,7 +244,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     )
     ||
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
-    ($generoP == "Masculino" || $generoP == "Femenino") &&
+    (($generoP == "Masculino" || $generoP == "Femenino") &&
     $contratoP == 3 &&
     $medicoOno == "No" &&
     $inscripcionOno == TRUE &&
@@ -252,17 +252,17 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     !empty($ruta_CedulaFINAL) &&
     !empty($ruta_InscripcionFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
-    !empty($ruta_AntecedentesFINAL)
+    !empty($ruta_AntecedentesFINAL))
     ||
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
-    ($generoP == "Masculino" || $generoP == "Femenino") &&
+    (($generoP == "Masculino" || $generoP == "Femenino") &&
     $contratoP == 3 &&
     $medicoOno == "No" &&
     $inscripcionOno == FALSE &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
-    !empty($ruta_AntecedentesFINAL)
+    !empty($ruta_AntecedentesFINAL))
     ||
     // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN
     ($generoP == "Masculino" &&

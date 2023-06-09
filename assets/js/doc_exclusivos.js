@@ -20,7 +20,6 @@ function honorario() {
       servicioMilitarDiv.show();
     } else {
       servicioMilitarDiv.hide();
-      clearFileInput('idMilitarDoc');
     }
   } else {
     afpDiv.hide();
