@@ -79,7 +79,6 @@ if (isset($_POST['nameRutEditar'])) {
                                     <div class="col-md">
                                         <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
                                         <input type="text" name="RutInput" id="idRutInput" value="<?php echo $rut ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
-                                        <div id="rut-validation"></div>
                                         <br>
                                     </div>
                                     <div class="col-md">

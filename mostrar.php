@@ -30,7 +30,6 @@
         <?php require("./components/navbar.php") ?>
         <?php require("./components/sidebar.html") ?>
 
-
         <div id="layoutSidenav_content">
             <main>
                 <?php if (isset($persona)) { ?>
@@ -45,7 +44,6 @@
                                 </div>
                             </div>
                         </form>
-
 
                         <br>
                         <div class="seccion">
@@ -135,8 +133,6 @@
                             </div>
                         </div>
                         <br>
-
-
 
 
                         <div class="documentacion seccion">
@@ -419,8 +415,6 @@
                             </div>
 
 
-
-
                             <table id="myTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
@@ -473,7 +467,6 @@
                                 </tbody>
                             </table>
                         </div>
-
 
                     </div>
                 <?php } ?>

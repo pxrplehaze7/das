@@ -61,10 +61,13 @@ $("#documentosObligatorios").on("submit", function(event) {
       .done(function(respuesta) {
         $('body').append(respuesta);
         document.getElementById("documentosObligatorios").reset();
+        $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
 
       })
       .fail(function(respuesta) {
         $('body').append(respuesta);
+        $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
+
       })
       .always(function(respuesta) {
         console.info("DATA:", respuesta)
@@ -466,6 +469,8 @@ $("#editInfoContacto").on("submit", function(event) {
     }
   });
 });
+
+
 
 
 $("#editInfoPersonal").on("submit", function(event) {
