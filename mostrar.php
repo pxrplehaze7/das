@@ -39,8 +39,8 @@
                                 <div class="title">
                                     <h1 class="mt-4">Información</h1>
                                     <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <input type="hidden" name="nameidtraedit" value="<?php echo $persona['IDTra'] ?>">
-                                    <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+                                    <input name="idTrabajador" value="<?php echo $idTrabajador; ?>" class="form-control" type="hidden">
+
                                 </div>
                             </div>
                         </form>

@@ -1,5 +1,4 @@
 
-hacer que se limpien los campos al enviar el form
 
 cuando edito el rut para cambiarlo, la validacion me aparece con que ya esta registrado ysi actualizo no me muestra la informaciondel perfil
 
@@ -19,6 +18,48 @@ ver que hacer cuando quieren ver los contratos anteriores
 
 al editar rut, mejor usarel id del trabajador para que no de error al cambiar el rut y luego actualizar
 me falta hacer lo de editar calificaciones
+
+
+
+tengo que crear un login, 
+agregar las validaciones de permisos de usuario
+
+crear usuarios
+permitir ver listado de usuarios
+permitir cambiar permisos, ver como cambiar la contraseña
+habra un administrador quepueda registrar al resto de los usuarios y modificar sus permisos, el resto no
+
+
+
+
+en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <?php if ($id_rol_usuario_actual == 1) { ?>
 
                                     <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-info editbtn" onclick="busca_user(<?php echo $mostrar['id_user'] ?>)" data-toggle="modal" data-target="#editar"><i class="fa-solid fa-pen-to-square"></i></button></td>

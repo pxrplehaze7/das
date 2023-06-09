@@ -426,7 +426,7 @@ $("#editInfoContacto").on("submit", function(event) {
 
   var formData = new FormData(this);
 
-  formData.append('rut', $('#idRutInput').val());
+  formData.append('idTrabajador', $('#idTrabajador').val());
 
   Swal.fire({
     title: '¿Desea actualizar la información de contacto?',
