@@ -1,7 +1,7 @@
 <?php
 include("../controller/config/conexion.php");
 
-$idTrabajador = $_POST['idTrabajador'];
+$rutInicial = $_POST['rutInicio'];
 $CelularP   = $_POST['nameCelular'];
 $correoP    = $_POST['nameCorreo'];
 
@@ -12,8 +12,7 @@ $correoP    = str_replace(" ", "", $correoP);
 $sql = "UPDATE trabajador SET 
         CelularTra = '$CelularP',
         CorreoTra = '$correoP'
-        WHERE IDTra = '$idTrabajador'";
-
+        WHERE Rut = '$rutInicial'";
 // Ejecutar consulta SQL
 if (mysqli_query($conn, $sql)) {
     // La actualización fue exitosa

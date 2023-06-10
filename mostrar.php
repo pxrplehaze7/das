@@ -39,8 +39,7 @@
                                 <div class="title">
                                     <h1 class="mt-4">Información</h1>
                                     <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <input name="idTrabajador" value="<?php echo $idTrabajador; ?>" class="form-control" type="hidden">
-
+                                    <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
                                 </div>
                             </div>
                         </form>
@@ -410,8 +409,7 @@
                                 <h6>Calificaciones</h6>
                                 <form action="calificaciones.php" method="POST">
                                     <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                    <input type="hidden" name="nameidtracalif" value="<?php echo $persona['IDTra'] ?>">
-                                </form>
+                                    <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">                                </form>
                             </div>
 
 
