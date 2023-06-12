@@ -113,47 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function deleteFile(campo, idtra) {
-  Swal.fire({
-    title: '¿Está seguro que desea eliminar el documento?',
-    icon: 'warning',
-    showCancelButton: true,
-    allowOutsideClick: false,
-    confirmButtonText: 'Si',
-    confirmButtonColor: '#00c4a0',
-    cancelButtonText: 'No',
-    cancelButtonColor: '#ba0051',
-  }).then((result) => {
-    if (result.isConfirmed) {
-      $.ajax({
-        url: './controller/eliminaRuta.php',
-        type: 'POST',
-        data: { campo: campo, idtra: idtra },
-        success: function (respuesta) {
-          Swal.fire({
-            title: 'Documento eliminado exitosamente.',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 3600
-          });
-        },
-        error: function (xhr, status, error) {
-          Swal.fire({
-            title: 'Error al eliminar el documento: ' + error,
-            icon: 'error',
-          });
-        },
-      });
-    }
-  });
-}
-
-
-
-
-
-
-
 
 
 
@@ -465,7 +424,10 @@ $("#editInfoContacto").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
+          }).then(function() {
+            location.reload(); // Actualiza la página
           });
+          
         } else {
           Swal.fire({
             icon: 'error',
@@ -517,6 +479,8 @@ $("#editInfoPersonal").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
+          }).then(function() {
+            location.reload(); // Actualiza la página
           });
         } else {
           Swal.fire({
@@ -549,3 +513,58 @@ function honorarioEdit() {
     selectPrev.val('1');
   }
 }
+
+
+
+
+
+$("#edicion_calif").on("submit", function (event) {
+  event.preventDefault(); // Evita el envío del formulario por defecto
+
+  var formData = new FormData(this);
+
+  formData.append('laid', $('#idtrabid').val());
+
+  Swal.fire({
+    title: '¿Desea actualizar las calificaciones?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Sí',
+    confirmButtonColor: '#00c4a0',
+    denyButtonColor: '#ba0051'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "./controller/editcalif.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      }).done(function (response) {
+        response = JSON.parse(response);
+        if (response.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Información actualizada correctamente',
+          }).then(function() {
+            location.reload(); // Actualiza la página
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información',
+            text: response.message
+          });
+        }
+      }).fail(function (response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al actualizar la información',
+          text: response.responseText
+        });
+      });
+    }
+  });
+});

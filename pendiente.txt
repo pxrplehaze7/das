@@ -10,7 +10,6 @@ hacer que cuando se registre, se limpie el formulario y no muestre como si se es
 
 al eliminar archivo, preguntar y hacer focus a esa zona
 
-ver como actualizar al editar sin alerta de reenvio
 
 ver como hacer focus a los radio porque no me deja
 
@@ -29,31 +28,17 @@ permitir ver listado de usuarios
 permitir cambiar permisos, ver como cambiar la contraseña
 habra un administrador quepueda registrar al resto de los usuarios y modificar sus permisos, el resto no
 
+agregar validaciones a los inputs de editar calificaciones
 
-
-
+al subir unaapelacion en añadir calificaciones, el input de apelacion file no se limpia
 en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
 
+tengo que hacer que cuando se elimine un archivoobligatorio, diga no cumple
 
 
+puede que el decreto no este
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
 
 

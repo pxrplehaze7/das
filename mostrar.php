@@ -415,6 +415,7 @@
                                 <form action="calificaciones.php" method="POST">
                                     <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
                                     <input type="hidden" name="nameidtracalif" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                    </form>
                             </div>
 
 
