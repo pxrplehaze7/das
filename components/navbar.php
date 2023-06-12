@@ -24,7 +24,7 @@ if (isset($_POST['nameBuscaRut'])) {
   if (mysqli_num_rows($resultadoDatosTra) == 1) {
     // Si se encuentra una persona, se asigna el resultado a $persona
     $persona = mysqli_fetch_assoc($resultadoDatosTra);
-    $idtra=$persona['IDTra'];
+    $idtra = $persona['IDTra'];
 
     // Cerrar la conexión a la base de datos  
     // mysqli_close($conn);
@@ -92,8 +92,13 @@ if (isset($_POST['nameBuscaRut'])) {
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <li><a class="dropdown-item" href="#!">Settings</a></li>
-        <!-- <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
+        <form action="editPerfil.php" method="post">
+          <input type="hidden" name="idperfil" value="<?php echo $IDUsuario; ?>">
+          <button type="submit" class="dropdown-item">Editar Perfil</button>
+        </form>
+
+
+
         <li>
           <hr class="dropdown-divider" />
         </li>

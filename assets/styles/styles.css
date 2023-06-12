@@ -10974,7 +10974,9 @@ body {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   position: relative;
+  font-size: 15px;
 }
+
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
   font-size: 0.9rem;
 }

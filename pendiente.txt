@@ -23,10 +23,11 @@ CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA
 tengo que crear un login, 
 agregar las validaciones de permisos de usuario
 
-crear usuarios
-permitir ver listado de usuarios
+
 permitir cambiar permisos, ver como cambiar la contraseña
 habra un administrador quepueda registrar al resto de los usuarios y modificar sus permisos, el resto no
+hacer quesolo el administrador pueda ver quieres somn los usuarios
+
 
 agregar validaciones a los inputs de editar calificaciones
 
@@ -41,7 +42,13 @@ puede que el decreto no este
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
 
+los usuarios no se pueden cambiar a si mismosel permiso asignado
 
+
+https://codepen.io/Dannaotrop/pen/mGgpNa
+
+
+https://codepen.io/tamer_aka_remat/pen/qMgaRo
 
 
 

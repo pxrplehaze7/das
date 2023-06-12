@@ -568,3 +568,60 @@ $("#edicion_calif").on("submit", function (event) {
     }
   });
 });
+
+
+$(document).ready(function() {
+  $("#registroU").on("submit", function(event) {
+    event.preventDefault();
+
+    Swal.fire({
+      title: '¿Desea registrar Usuario?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var formData = new FormData(this);
+        $.ajax({
+          url: "./controller/addUsuario.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false
+        }).done(function(response) {
+          response = JSON.parse(response);
+          if (response.success) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Usuario registrado exitosamente',
+              showConfirmButton: false, 
+            }).then(() => {
+              $("#idPersona").val("");
+              $("#idAppat").val("");
+              $("#idApmat").val("");
+              $("#idCorreo").val("");
+              $("#idPass").val("");
+              $("#idPermiso").val("");
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al registrar Usuario',
+              text: response.message
+            });
+          }
+        }).fail(function(response) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al registrar Usuario',
+            text: response.responseText
+          });
+        });
+      }
+    });
+  });
+});
