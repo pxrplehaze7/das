@@ -34,12 +34,17 @@
             <main>
                 <?php if (isset($persona)) { ?>
                     <div class="container-md">
-                        <form action="editar_registro.php" method="POST">
+                        <!-- <form action="editar_registro.php" method="POST"> -->
+                        <form action="editar_registro.php" method="GET">
+
                             <div class="row d-flex justify-content-center align-items-center principal">
                                 <div class="title">
                                     <h1 class="mt-4">Información</h1>
                                     <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+                                    <!-- <input type="hidden" name="nameidtraEditar" id="idtraid" value="<?php echo $persona['IDTra'] ?>"> -->
+                                    <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+
+                                    <!-- <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>"> -->
                                 </div>
                             </div>
                         </form>
@@ -390,7 +395,7 @@
 
                         </div>
 
-
+                    
                         <br>
                         <div class="observaciones seccion">
                             <h6>Observaciones</h6>
@@ -409,7 +414,7 @@
                                 <h6>Calificaciones</h6>
                                 <form action="calificaciones.php" method="POST">
                                     <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                    <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">                                </form>
+                                    <input type="hidden" name="nameidtracalif" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                             </div>
 
 

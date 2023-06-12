@@ -24,7 +24,7 @@ if (isset($_POST['nameBuscaRut'])) {
   if (mysqli_num_rows($resultadoDatosTra) == 1) {
     // Si se encuentra una persona, se asigna el resultado a $persona
     $persona = mysqli_fetch_assoc($resultadoDatosTra);
-    $idtra = $persona['IDTra'];
+    $idtra=$persona['IDTra'];
 
     // Cerrar la conexión a la base de datos  
     // mysqli_close($conn);

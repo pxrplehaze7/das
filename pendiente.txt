@@ -19,7 +19,7 @@ ver que hacer cuando quieren ver los contratos anteriores
 al editar rut, mejor usarel id del trabajador para que no de error al cambiar el rut y luego actualizar
 me falta hacer lo de editar calificaciones
 
-
+CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
 tengo que crear un login, 
 agregar las validaciones de permisos de usuario

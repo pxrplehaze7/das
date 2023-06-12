@@ -2,11 +2,16 @@
 include("./controller/config/conexion.php");
 
 // Obtener el rut enviado por POST
-if (isset($_POST['nameRutEditar'])) {
-    $rut = $_POST['nameRutEditar']; //se asigna el valor del input rut a $rut
+// if (isset($_POST['nameidtraEditar'])) {
+    if (isset($_GET['id'])) {
+
+    // $idtra = $_POST['nameidtraEditar'];
+    $idtra = $_GET['id'];
+    // $rut = $_POST['nameRutEditar']; 
+
 
     // Realiza la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, lug.IDLugar, sec.IDSector, IDTra, NombreTra, PaternoTra, MaternoTra, Inscripcion, Decreto, Rut, Genero, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur, RutaSerM, RutaSCom, RutaExaM, Observ, RutaInscripcion
+    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, lug.IDLugar, sec.IDSector, tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Decreto, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaContrato, tra.RutaDJur, tra.RutaSerM, tra.RutaSCom, tra.RutaExaM, tra.Observ, tra.RutaInscripcion
     FROM trabajador tra
     INNER JOIN categoria cat ON (cat.IDCat = tra.IDCat)
     INNER JOIN contrato con ON (con.IDCon = tra.IDCon)
@@ -14,7 +19,7 @@ if (isset($_POST['nameRutEditar'])) {
     INNER JOIN lugar lug ON (lug.IDLugar = tra.IDLugar)
     INNER JOIN sector sec ON (sec.IDSector = tra.IDSector)
     INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
-    WHERE Rut='$rut' LIMIT 1";
+    WHERE tra.IDTra='$idtra' LIMIT 1";
 
 
 
@@ -49,7 +54,6 @@ if (isset($_POST['nameRutEditar'])) {
     <!-- ICONOS -->
 
     <!-- datatable -->
-    <link href="cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -68,8 +72,9 @@ if (isset($_POST['nameRutEditar'])) {
                         <form id="editInfoPersonal" action="./controller/editInfoP.php" method="POST">
                             <div class="title">
                                 <h1 class="mt-4">Editar Información
-                                    <input name="rutInicio" value="<?php echo $rut ?>" class="form-control" hidden>
                                 </h1>
+                                <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
+
                             </div>
                             <br>
                             <div class="seccion">
@@ -78,7 +83,7 @@ if (isset($_POST['nameRutEditar'])) {
                                 <div class="row ">
                                     <div class="col-md">
                                         <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
-                                        <input type="text" name="RutInput" id="idRutInput" value="<?php echo $rut ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
+                                        <input type="text" name="RutInput" id="idRutInput" value="<?php echo $persona['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                                         <br>
                                     </div>
                                     <div class="col-md">
@@ -242,39 +247,39 @@ if (isset($_POST['nameRutEditar'])) {
                                         <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $persona['Profesion'] ?>" class="form-control" require>
                                     </div>
                                     <br>
-                                  
-                                        <div class="row" id="afpyprevdiv">
-                                            <div class="col-md-6"> <!-- AFP -->
-                                                <?php
-                                                $sqlafp = "SELECT IDAFP, NombreAFP FROM afp";
-                                                $resultadoafp = mysqli_query($conn, $sqlafp);
 
-                                                echo "<label for='idSelectAFP'>AFP </label>"; //Label 
-                                                echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
-                                                while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
-                                                    $selected = ($fila2['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
-                                                    echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
-                                                }
-                                                echo "</select>";
-                                                ?>
+                                    <div class="row" id="afpyprevdiv">
+                                        <div class="col-md-6"> <!-- AFP -->
+                                            <?php
+                                            $sqlafp = "SELECT IDAFP, NombreAFP FROM afp";
+                                            $resultadoafp = mysqli_query($conn, $sqlafp);
 
-                                                <br>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <?php
-                                                $sqlprev = "SELECT IDPrev, NombrePrev FROM prevision";
-                                                $resultadoprev = mysqli_query($conn, $sqlprev);
-                                                echo "<label for='idSelectCat'>Previsión </label>"; //Label 
-                                                echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
-                                                while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
-                                                    $selected3 = ($fila3['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
-                                                    echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
-                                                }
-                                                echo "</select>";
-                                                ?>
-                                            </div>
+                                            echo "<label for='idSelectAFP'>AFP </label>"; //Label 
+                                            echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
+                                            while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
+                                                $selected = ($fila2['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
+                                                echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+
+                                            <br>
                                         </div>
-                     
+                                        <div class="col-md-6">
+                                            <?php
+                                            $sqlprev = "SELECT IDPrev, NombrePrev FROM prevision";
+                                            $resultadoprev = mysqli_query($conn, $sqlprev);
+                                            echo "<label for='idSelectCat'>Previsión </label>"; //Label 
+                                            echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
+                                            while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
+                                                $selected3 = ($fila3['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
+                                                echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <br>
@@ -326,7 +331,7 @@ if (isset($_POST['nameRutEditar'])) {
                         <br>
 
                         <form id="editInfoContacto" action="./controller/editContacto.php" method="POST">
-                            <input name="rutInicio" value="<?php echo $rut ?>" class="form-control" hidden>
+                            <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
                             <div class="seccion">
                                 <h6>Datos de Contacto</h6>
                                 <div class="row">
@@ -357,6 +362,8 @@ if (isset($_POST['nameRutEditar'])) {
                         <br>
                         <div id="c_docs">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs">
+                            <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+
                                 <div class="documentacion seccion">
                                     <h6>Documentación</h6>
                                     <table id="docsEDIT" class="table table-striped table-bordered" style="width:100%">
@@ -606,7 +613,7 @@ if (isset($_POST['nameRutEditar'])) {
                                 </div>
                             </form>
                         </div>
-                        
+
 
 
                     </div>
@@ -617,15 +624,7 @@ if (isset($_POST['nameRutEditar'])) {
             </main>
         </div>
     </div>
-<script>
-    // FUNCION PARA LIMPIAR EL INPUT FILE
-function clearFileInput(inputId) {
-  console.log("input del file",inputId);
-  var fileInput = document.getElementById(inputId);
-  fileInput.value = "";
-  
-}
-</script>
+
 
     <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->
     <script src="./assets/js/main.js"></script>

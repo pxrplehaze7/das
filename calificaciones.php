@@ -1,13 +1,13 @@
 <?php
 include("./controller/config/conexion.php");
-if (isset($_POST['nameRutCalifica'])) {
-    $rut = $_POST['nameRutCalifica'];
+if (isset($_POST['nameidtracalif'])) {
+    $idtracal = $_POST['nameidtracalif'];
 
-    $datosCali = "SELECT idTra, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
-    WHERE Rut='$rut' LIMIT 1";
+    $datosCali = "SELECT idTra, Rut, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
+    WHERE IDTra='$idtracal' LIMIT 1";
 
     $datosCali = mysqli_query($conn, $datosCali);
-    list($idTrabajador, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
+    list($idTrabajador, $rut, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
 }
 
 ?>

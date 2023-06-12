@@ -2,7 +2,7 @@
 include("../controller/config/conexion.php");
 
 // SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
-$rutInicial = $_POST['rutInicio'];
+$idtrab = $_POST['laid'];
 $rutInput = $_POST['RutInput'];
 $nombreP    = $_POST['namePersona'];
 $paternoP   = $_POST['namePaterno'];
@@ -55,8 +55,7 @@ $sql = "UPDATE trabajador SET
         Medico = '$medicoOno',
         Inscripcion = $inscripcionOno,
         Profesion = '$profesionP'
-        WHERE Rut = '$rutInicial'"; // Agregamos comillas al valor de Rut en la cláusula WHERE
-
+        WHERE IDTra = '$idtrab'";
 // Ejecutar consulta SQL
 if (mysqli_query($conn, $sql)) {
   // La actualización fue exitosa

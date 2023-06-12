@@ -470,15 +470,7 @@
             </main>
         </div>
     </div>
-    <script>
-    // FUNCION PARA LIMPIAR EL INPUT FILE
-function clearFileInput(inputId) {
-  console.log("input del file",inputId);
-  var fileInput = document.getElementById(inputId);
-  fileInput.value = "";
-  
-}
-</script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
     <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->

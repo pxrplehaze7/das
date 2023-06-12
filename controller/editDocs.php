@@ -4,7 +4,8 @@ include("./config/conexion.php");
 
 
 //SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
-$rutPersona = $_POST['rut'];
+$idtrab = $_POST['laid'];
+$rutPersona = $_POST['nameRutEditar'];
 
 $decreto     = $_POST['nameDecreto'];
 
@@ -380,7 +381,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     Decreto = '$decreto',
     RutaNac = '$ruta_nacFINAL',
     RutaAntec = '$ruta_AntecedentesFINAL',
-
     RutaPrev = '$ruta_PrevisionFINAL',
     RutaCV = '$ruta_CurriculumFINAL',
     RutaAFP = '$ruta_afpFINAL',

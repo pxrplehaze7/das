@@ -23,14 +23,30 @@ function honorario() {
     }
   } else {
 
+    if (document.getElementById('idAFPinput')) {
+      clearFileInput('idAFPinput');
+    }
 
+    if (document.getElementById('#idPREVinput')) {
+      clearFileInput('idPREVinput');
+    }
 
-    clearFileInput('idAFPinput');
-    clearFileInput('idPREVinput');
-    clearFileInput('idDJuradainput');
-    clearFileInput('idNACinput');
-    clearFileInput('idSCompatibleinput');
-    clearFileInput('idMilitarDoc');
+    if (document.getElementById('#idDJuradainput')) {
+      clearFileInput('idDJuradainput');
+    }
+
+    if (document.getElementById('#idNACinput')) {
+      clearFileInput('idNACinput');
+    }
+
+    if (document.getElementById('#idSCompatibleinput')) {
+      clearFileInput('idSCompatibleinput');
+    }
+
+    if (document.getElementById('#idMilitarDoc')) {
+      clearFileInput('idMilitarDoc');
+    }
+
     afpDiv.hide();
     previsionDiv.hide();
     djurDiv.hide();

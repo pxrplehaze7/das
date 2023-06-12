@@ -1,4 +1,4 @@
-$("#documentosObligatorios").on("submit", function(event) {
+$("#documentosObligatorios").on("submit", function (event) {
   event.preventDefault();
 
   let selectCat = document.querySelector('#idSelectCat');
@@ -58,20 +58,20 @@ $("#documentosObligatorios").on("submit", function(event) {
         contentType: false,
         processData: false
       })
-      .done(function(respuesta) {
-        $('body').append(respuesta);
-        document.getElementById("documentosObligatorios").reset();
-        $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+          document.getElementById("documentosObligatorios").reset();
+          $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
 
-      })
-      .fail(function(respuesta) {
-        $('body').append(respuesta);
-        $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+          $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
 
-      })
-      .always(function(respuesta) {
-        console.info("DATA:", respuesta)
-      });
+        })
+        .always(function (respuesta) {
+          console.info("DATA:", respuesta)
+        });
     }
   });
 });
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function deleteFile(campo, rut) {
+function deleteFile(campo, idtra) {
   Swal.fire({
     title: '¿Está seguro que desea eliminar el documento?',
     icon: 'warning',
@@ -128,7 +128,7 @@ function deleteFile(campo, rut) {
       $.ajax({
         url: './controller/eliminaRuta.php',
         type: 'POST',
-        data: { campo: campo, rut: rut },
+        data: { campo: campo, idtra: idtra },
         success: function (respuesta) {
           Swal.fire({
             title: 'Documento eliminado exitosamente.',
@@ -185,6 +185,7 @@ function cargarSectores() {
 }
 
 
+
 // FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
 function cargarSectoresTABLA() {
   const lugarSeleccionado = document.getElementById("idSelectLugar").value;
@@ -210,13 +211,27 @@ function cargarSectoresTABLA() {
   });
 }
 
-$("#idNoApelo").change(function() {
+
+
+// FUNCION PARA LIMPIAR EL INPUT FILE
+function clearFileInput(inputId) {
+  console.log("input del file", inputId);
+  var fileInput = document.getElementById(inputId);
+  fileInput.value = "";
+
+}
+
+
+
+
+$("#idNoApelo").change(function () {
   if ($(this).is(":checked")) {
     $("#idApelacionDoc").val("");
   }
 });
 
-$("#documentosApelacion").on("submit", function(event) {
+
+$("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
@@ -303,7 +318,7 @@ $("#edicion_pdfs").on("submit", function (event) {
     } else {
       let formData = new FormData(this);
 
-      formData.append('rut', $('#idRutInput').val()); // Agrega el valor del input de tipo texto
+      formData.append('laid', $('#idtrabid').val());
 
       $.ajax({
         url: "./controller/editDocs.php",
@@ -385,7 +400,7 @@ $("#limpia-filtro").on("click", function () {
   $("#idSelectSector").val(0);
   $("#idSelectCumple").val("");
 
-// Restablecer el valor predeterminado del select de sector
+  // Restablecer el valor predeterminado del select de sector
   $("#idSelectSector").html("<option value='0' hidden> Selecciona</option>");
 
   // Recargar la tabla con todos los registros
@@ -406,7 +421,7 @@ $("#limpia-filtro").on("click", function () {
 
 
 
-$("#editInfoContacto").on("submit", function(event) {
+$("#editInfoContacto").on("submit", function (event) {
   event.preventDefault(); // Evita el envío del formulario por defecto
 
   var celularInput = document.getElementById("idCelular");
@@ -426,7 +441,7 @@ $("#editInfoContacto").on("submit", function(event) {
 
   var formData = new FormData(this);
 
-  formData.append('rut', $('#idRutInput').val());
+  formData.append('laid', $('#idtrabid').val());
   Swal.fire({
     title: '¿Desea actualizar la información de contacto?',
     showDenyButton: true,
@@ -444,7 +459,7 @@ $("#editInfoContacto").on("submit", function(event) {
         cache: false,
         contentType: false,
         processData: false
-      }).done(function(response) {
+      }).done(function (response) {
         response = JSON.parse(response);
         if (response.success) {
           Swal.fire({
@@ -458,7 +473,7 @@ $("#editInfoContacto").on("submit", function(event) {
             text: response.message
           });
         }
-      }).fail(function(response) {
+      }).fail(function (response) {
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la información',
@@ -472,12 +487,12 @@ $("#editInfoContacto").on("submit", function(event) {
 
 
 
-$("#editInfoPersonal").on("submit", function(event) {
+$("#editInfoPersonal").on("submit", function (event) {
   event.preventDefault(); // Evita el envío del formulario por defecto
 
   var formData = new FormData(this);
 
-  formData.append('rut', $('#idRutInput').val());
+  formData.append('laid', $('#idtrabid').val());
 
   Swal.fire({
     title: '¿Desea actualizar la información personal?',
@@ -496,7 +511,7 @@ $("#editInfoPersonal").on("submit", function(event) {
         cache: false,
         contentType: false,
         processData: false
-      }).done(function(response) {
+      }).done(function (response) {
         response = JSON.parse(response);
         if (response.success) {
           Swal.fire({
@@ -510,7 +525,7 @@ $("#editInfoPersonal").on("submit", function(event) {
             text: response.message
           });
         }
-      }).fail(function(response) {
+      }).fail(function (response) {
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la información',

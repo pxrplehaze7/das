@@ -65,7 +65,7 @@ CREATE TABLE `das`.`trabajador` (
     `Rut` VARCHAR(10) NOT NULL,
     `Decreto` VARCHAR(30) NOT NULL,
     `Genero` VARCHAR(10) NOT NULL,
-    `Medico` VARCHAR(2) NULL,
+    `Medico` VARCHAR(2) NOT NULL,
     `Inscripcion` BOOLEAN NOT NULL,
     `Profesion` VARCHAR(300) NOT NULL,
     `CelularTra` VARCHAR(9) NULL,

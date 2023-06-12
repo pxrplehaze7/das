@@ -1,8 +1,8 @@
 <?php
 include("./config/conexion.php");
-$rut = $_POST['rut'];
+$idtra = $_POST['idtra'];
 $campo = $_POST['campo'];
-$sqlRuta = "UPDATE trabajador SET $campo='' WHERE Rut='$rut'";
+$sqlRuta = "UPDATE trabajador SET $campo='' WHERE IDTra='$idtra'";
 $resultado = mysqli_query($conn, $sqlRuta);
 if ($resultado) {
     echo json_encode(['success' => true]);
