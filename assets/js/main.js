@@ -181,22 +181,19 @@ function clearFileInput(inputId) {
 }
 
 
-
-
 $("#idNoApelo").change(function () {
   if ($(this).is(":checked")) {
     $("#idApelacionDoc").val("");
   }
 });
 
-
 $("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
     // Si no se ha seleccionado ninguna opción
-    Swal.fire('Debe indicar si apelo o no');
-    // alert('Debe indicar si apelo o no.');
+    Swal.fire('Debe indicar si apeló o no');
+    // alert('Debe indicar si apeló o no.');
     return;
   }
 
@@ -240,6 +237,9 @@ $("#documentosApelacion").on("submit", function (event) {
           // Limpia el campo de entrada de archivo solo si se seleccionó "No" en el input radio
           if ($('#idNoApelo').is(":checked")) {
             $('#idApelacionDoc').val('');
+          } else {
+            // Si se seleccionó "Si" en el input radio
+            $('#idApelacionDoc').val('');
           }
 
         })
@@ -257,7 +257,6 @@ $("#documentosApelacion").on("submit", function (event) {
     }
   });
 });
-
 
 
 $("#edicion_pdfs").on("submit", function (event) {
@@ -287,26 +286,20 @@ $("#edicion_pdfs").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-
-        .done(
-          function (respuesta) {
-            $('body').append(respuesta);
-
-          }
-        )//fin del done
-        .fail(
-          function (respuesta) {
-            $('body').append(respuesta);
-          }
-        )//fin del fail
-        .always(
-          (respuesta) => {
-            console.info("DATA:", respuesta)
-          }
-        )//fin del always
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .always(function (respuesta) {
+          console.info("DATA:", respuesta);
+          location.reload(); // Actualiza la página
+        });
     }
-  })
+  });
 });
+
 
 $("#btn-filtro").on("click", function () {
 

@@ -2,27 +2,20 @@
 
 cuando edito el rut para cambiarlo, la validacion me aparece con que ya esta registrado ysi actualizo no me muestra la informaciondel perfil
 
-no me muestra el error al insertar y ver como probar forzando error
 
 hacer que para que no haya paginacion, muestre todos los registros de una vez
-
-hacer que cuando se registre, se limpie el formulario y no muestre como si se estuviera validando algun rut
-
-al eliminar archivo, preguntar y hacer focus a esa zona
 
 
 ver como hacer focus a los radio porque no me deja
 
 ver que hacer cuando quieren ver los contratos anteriores
 
-al editar rut, mejor usarel id del trabajador para que no de error al cambiar el rut y luego actualizar
 me falta hacer lo de editar calificaciones
 
 CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
 tengo que crear un login, 
 agregar las validaciones de permisos de usuario
-
 
 permitir cambiar permisos, ver como cambiar la contraseña
 habra un administrador quepueda registrar al resto de los usuarios y modificar sus permisos, el resto no
@@ -31,13 +24,8 @@ hacer quesolo el administrador pueda ver quieres somn los usuarios
 
 agregar validaciones a los inputs de editar calificaciones
 
-al subir unaapelacion en añadir calificaciones, el input de apelacion file no se limpia
 en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
 
-tengo que hacer que cuando se elimine un archivoobligatorio, diga no cumple
-
-
-puede que el decreto no este
 
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
