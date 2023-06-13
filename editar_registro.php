@@ -280,13 +280,8 @@ if (isset($_GET['id'])) {
                                             ?>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <br>
-
-
-
                                 <div class="radioCentro row">
                                     <center>
                                         <label><span style="color: #c40055;">*</span> Seleccione Género</label>
@@ -614,7 +609,7 @@ if (isset($_GET['id'])) {
                         <br>
                         <div id="editcal">
                             <form method="POST" enctype="multipart/form-data" id="edicion_calif">
-                                <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+                                <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
 
                                 <div class="documentacion seccion seccion-cal">
                                     <h6>Calificaciones</h6>
@@ -630,17 +625,19 @@ if (isset($_GET['id'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $sqlCalificacion = "SELECT *
-                                            FROM calificaciones
-                                            WHERE IDTra = $idtra";
 
-
-                                            $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
-                                            while ($mostrar = mysqli_fetch_array($resultadoCalif)) { ?>
                                                 <tr>
+                                                <?php
+                                            $sqlCalificacion = "SELECT * FROM calificaciones WHERE IDTra = $idtra";
+                                            $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
+
+                                            while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
+                                            ?>
+                                                   <input type="hidden" id="idcal" name="nameidCalificacion" value="<?php echo $mostrar['IDCalif'] ?>">
+
                                                     <td class="align-middle text-center">
-                                                        <input type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="fecha_cal">
+                                                        <input type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_cal">
+                                                        <?php echo $mostrar['IDCalif']?>
                                                     </td>
                                                     <td class="align-middle text-center">
                                                         <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
@@ -655,7 +652,6 @@ if (isset($_GET['id'])) {
                                                                     <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                         <i class="fa-solid fa-trash"></i>
                                                                     </button>
-
 
                                                                 </div>
                                                             </center>
@@ -678,7 +674,7 @@ if (isset($_GET['id'])) {
 
                                                     </td>
                                                     <td class="align-middle text-center">
-                                                        <select class="form-control" name="apeloEDIT">
+                                                        <select class="form-control" name="nameapeloEDIT">
                                                             <option value="Si" <?php if ($mostrar['apelo'] == 'Si') echo 'selected'; ?>>Si</option>
                                                             <option value="No" <?php if ($mostrar['apelo'] == 'No') echo 'selected'; ?>>No</option>
                                                         </select>

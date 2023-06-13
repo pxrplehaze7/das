@@ -1,6 +1,6 @@
 <?php
-include("./controller/config/conexion.php");
-include("./controller/consulta_bar.php");
+include("../controller/config/conexion.php");
+include("../controller/consulta_bar.php");
 ?>
 
 <!DOCTYPE html>

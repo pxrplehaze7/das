@@ -301,6 +301,10 @@ $("#edicion_pdfs").on("submit", function (event) {
 });
 
 
+
+
+
+
 $("#btn-filtro").on("click", function () {
 
   let datos = {
@@ -509,56 +513,64 @@ function honorarioEdit() {
 
 
 
+$(document).ready(function() {
+  $("#edicion_calif").on("submit", function(event) {
+    event.preventDefault(); // Evita el envío del formulario por defecto
 
+    var formData = new FormData(this);
 
-$("#edicion_calif").on("submit", function (event) {
-  event.preventDefault(); // Evita el envío del formulario por defecto
+    formData.append('idcal', $('#idcal').val());
 
-  var formData = new FormData(this);
-
-  formData.append('laid', $('#idtrabid').val());
-
-  Swal.fire({
-    title: '¿Desea actualizar las calificaciones?',
-    showDenyButton: true,
-    showCancelButton: false,
-    allowOutsideClick: false,
-    confirmButtonText: 'Sí',
-    confirmButtonColor: '#00c4a0',
-    denyButtonColor: '#ba0051'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      $.ajax({
-        url: "./controller/editcalif.php",
-        method: "POST",
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false
-      }).done(function (response) {
-        response = JSON.parse(response);
-        if (response.success) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Información actualizada correctamente',
-          }).then(function() {
-            location.reload(); // Actualiza la página
-          });
-        } else {
+    Swal.fire({
+      title: '¿Desea actualizar las calificaciones?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "./controller/editcalif.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false
+        }).done(function(response) {
+          console.log(response);
+          response = JSON.parse(response);
+          console.log(response);
+          if (response.success) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Información actualizada correctamente',
+            });
+            console.log("salio bien");
+            // .then(function() {
+            //   location.reload();
+            // });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al actualizar la información',
+              text: response.message
+            });
+            console.log("salio mal");
+          }
+        }).fail(function(response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información',
-            text: response.message
+            text: response.responseText
           });
-        }
-      }).fail(function (response) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error al actualizar la información',
-          text: response.responseText
+          console.log("salio nose");
+          console.log(response);
+
         });
-      });
-    }
+      }
+    });
   });
 });
 

@@ -41,13 +41,12 @@
                         <div class="seccion">
                             <h6>Datos Personales</h6>
                             <div class="row ">
-                                <div class="col-md">
-                                    <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
+                            <div class="col-md">
+                                    <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
                                     <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
                                     <div id="rut-validation"></div>
                                     <br>
                                 </div>
-
                                 <div class="col-md">
                                     <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
                                     <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" oninput="validarTexto(this)" required>

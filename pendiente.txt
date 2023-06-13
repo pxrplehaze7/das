@@ -32,6 +32,11 @@ falta que se guarden los archivos nuevos de calificacion y apelacion ademas de l
 
 los usuarios no se pueden cambiar a si mismosel permiso asignado
 
+en mostrar calificaciones nomuestra pendiente si esta el campo vacio
+
+verque pasa con la carpeta de alguien cuando modifico el rut
+
+
 
 https://codepen.io/Dannaotrop/pen/mGgpNa
 

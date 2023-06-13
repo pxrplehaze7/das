@@ -25,8 +25,8 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     $fecha = $desde . '-' . $hasta;
     $fecha = mysqli_real_escape_string($conn, $fecha);
 
-    $pdfcalificacion = str_replace(array(' ', '(', ')'), '_', $_FILES['nameCalifdoc']['name']);
-    $pdfapelo        = str_replace(array(' ', '(', ')'), '_', $_FILES['nameApelacionDoc']['name']);
+    $pdfcalificacion = 'calificacion_periodo_' . $fecha . '_' . uniqid() . '.pdf';
+    $pdfapelo = 'apelacion_periodo_' . $fecha . '_' . uniqid() . '.pdf';
 
 
     if (!file_exists($ruta . $rut)) {
@@ -36,34 +36,21 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     if (!file_exists($rutaCalificaciones)) {
         mkdir($rutaCalificaciones, 0777, true);
     }
-    $rutasubCalificaciones = $rutaCalificaciones . 'CALIFICACIONES/';
-    $rutaApelaciones = $rutaCalificaciones . 'APELACIONES/';
 
-    if (!file_exists($rutasubCalificaciones)) {
-        mkdir($rutasubCalificaciones, 0777, true);
-    }
-    if (!file_exists($rutaApelaciones)) {
-        mkdir($rutaApelaciones, 0777, true);
-    }
+    $ruta_CalifFINAL = $rutaCalificaciones . $pdfcalificacion;
+    $ruta_ApelaFINAL = $rutaCalificaciones . $pdfapelo;
 
     // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
     $sql = "SELECT * FROM trabajador WHERE Rut = '$rut'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-        $ruta_CalifFINAL = NULL;
-        $ruta_ApelaFINAL = NULL;
-
         if (!empty($_FILES['nameCalifdoc']['tmp_name'])) {
-            $nombreCalificacion = 'CALIFICACION_' . $fecha . '_' . $fechaActual . '_' . $pdfcalificacion;
-            $ruta_CalifFINAL = $rutasubCalificaciones . $nombreCalificacion;
             move_uploaded_file($_FILES['nameCalifdoc']['tmp_name'], $ruta_CalifFINAL);
             $ruta_CalifFINAL = 'http://' . $host . '/das/controller/' . $ruta_CalifFINAL;
         }
 
         if (!empty($_FILES['nameApelacionDoc']['tmp_name'])) {
-            $nombreApelacion = 'APELACION_' . $fecha . '_' . $fechaActual . '_' . $pdfapelo;
-            $ruta_ApelaFINAL = $rutaApelaciones . $nombreApelacion;
             move_uploaded_file($_FILES['nameApelacionDoc']['tmp_name'], $ruta_ApelaFINAL);
             $ruta_ApelaFINAL = 'http://' . $host . '/das/controller/' . $ruta_ApelaFINAL;
         }

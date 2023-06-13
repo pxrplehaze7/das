@@ -69,19 +69,20 @@ $correoP    = str_replace(" ", "", $correoP); // ELIMINA ESPACIOS DE LA CADENA
 
 
 
-$pdfNacimiento = (!empty($_FILES['nameNACdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameNACdoc']['name']) : '';
-$pdfAntecedentes = (!empty($_FILES['nameANTECEdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameANTECEdoc']['name']) : '';
-$pdfAFP = (!empty($_FILES['nameAFPdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameAFPdoc']['name']) : '';
-$pdfMilitar = (!empty($_FILES['nameMilitarDoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameMilitarDoc']['name']) : '';
-$pdfCedula = (!empty($_FILES['nameCeduladoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCeduladoc']['name']) : '';
-$pdfCurriculum = (!empty($_FILES['nameCVdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCVdoc']['name']) : '';
-$pdfExamenM = (!empty($_FILES['nameExaMdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameExaMdoc']['name']) : '';
-$pdfPrevision = (!empty($_FILES['namePREVdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdoc']['name']) : '';
-$pdfEstudios = (!empty($_FILES['nameEstudiodoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodoc']['name']) : '';
-$pdfDJurada = (!empty($_FILES['nameDJuradadoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadoc']['name']) : '';
-$pdfSaludCompat = (!empty($_FILES['nameSCompatibledoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledoc']['name']) : '';
-$pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInput']['name']) : '';
-$pdfInscripcion = (!empty($_FILES['nameInscripdoc']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameInscripdoc']['name']) : '';
+$pdfNacimiento = (!empty($_FILES['nameNACdoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfAntecedentes = (!empty($_FILES['nameANTECEdoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfAFP = (!empty($_FILES['nameAFPdoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfMilitar = (!empty($_FILES['nameMilitarDoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfCedula = (!empty($_FILES['nameCeduladoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfCurriculum = (!empty($_FILES['nameCVdoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfExamenM = (!empty($_FILES['nameExaMdoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfPrevision = (!empty($_FILES['namePREVdoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfEstudios = (!empty($_FILES['nameEstudiodoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfDJurada = (!empty($_FILES['nameDJuradadoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfSaludCompat = (!empty($_FILES['nameSCompatibledoc']['name'])) ? uniqid() . '.pdf' : '';
+$pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
+$pdfInscripcion = (!empty($_FILES['nameInscripdoc']['name'])) ? uniqid() . '.pdf' : '';
+
 
 
 // CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
