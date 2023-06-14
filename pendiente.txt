@@ -8,7 +8,6 @@ hacer que para que no haya paginacion, muestre todos los registros de una vez
 
 ver como hacer focus a los radio porque no me deja
 
-ver que hacer cuando quieren ver los contratos anteriores
 
 me falta hacer lo de editar calificaciones
 
@@ -25,7 +24,7 @@ hacer quesolo el administrador pueda ver quieres somn los usuarios
 agregar validaciones a los inputs de editar calificaciones
 
 en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
-
+arreglar las fechas segun zona horaria en todos los archivos que se guardan y 
 
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
@@ -36,7 +35,8 @@ en mostrar calificaciones nomuestra pendiente si esta el campo vacio
 
 verque pasa con la carpeta de alguien cuando modifico el rut
 
-
+problema complicado es el cambio de rut, ya que tendria que cambiar ñlas rutas y nombre de .
+mejor crear por id de trabajadr
 
 https://codepen.io/Dannaotrop/pen/mGgpNa
 
