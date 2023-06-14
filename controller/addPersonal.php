@@ -19,7 +19,10 @@ $afpP       = $_POST['nameSelectAFP'];
 $prevP       = $_POST['nameSelectPrev'];
 $cumple = FALSE;
 $host = $_SERVER['HTTP_HOST'];
-$fechaActual = date('d-m-Y');
+$fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
+
+// Formatea la fecha actual en el formato deseado (d-m-Y)
+$fechaActual = $fechaActual->format('d-m-Y');
 
 // CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
 $ruta = 'pdfs_personal/';
@@ -166,49 +169,49 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
   if (!empty($pdfExamenM)) {
-    $nombreExamenM = 'EUNACOM_' . date('d-m-y') . '_' . $pdfExamenM;
+    $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfExamenM;
     $ruta_ExamenMFINAL = $ruta . $rutPersona . '/' . $nombreExamenM;
     move_uploaded_file($_FILES['nameExaMdoc']['tmp_name'], $ruta_ExamenMFINAL);
     $ruta_ExamenMFINAL = 'http://' . $host . '/das/controller/' . $ruta_ExamenMFINAL;
   }
 
   if (!empty($pdfPrevision)) {
-    $nombrePrevision = 'PREVISION_' . date('d-m-y') . '_' . $pdfPrevision;
+    $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfPrevision;
     $ruta_PrevisionFINAL = $ruta . $rutPersona . '/' . $nombrePrevision;
     move_uploaded_file($_FILES['namePREVdoc']['tmp_name'], $ruta_PrevisionFINAL);
     $ruta_PrevisionFINAL = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
   }
 
   if (!empty($pdfEstudios)) {
-    $nombreEstudios = 'ESTUDIOS_' . date('d-m-y') . '_' . $pdfEstudios;
+    $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaActual) . '_' . $pdfEstudios;
     $ruta_EstudiosFINAL = $ruta . $rutPersona . '/' . $nombreEstudios;
     move_uploaded_file($_FILES['nameEstudiodoc']['tmp_name'], $ruta_EstudiosFINAL);
     $ruta_EstudiosFINAL = 'http://' . $host . '/das/controller/' . $ruta_EstudiosFINAL;
   }
 
   if (!empty($pdfDJurada)) {
-    $nombreDJurada = 'DJURADA_' . date('d-m-y') . '_' . $pdfDJurada;
+    $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfDJurada;
     $ruta_DJuradaFINAL = $ruta . $rutPersona . '/' . $nombreDJurada;
     move_uploaded_file($_FILES['nameDJuradadoc']['tmp_name'], $ruta_DJuradaFINAL);
     $ruta_DJuradaFINAL = 'http://' . $host . '/das/controller/' . $ruta_DJuradaFINAL;
   }
 
   if (!empty($pdfSaludCompat)) {
-    $nombreSaludCompat = 'SCOMPATIBLE_' . date('d-m-y') . '_' . $pdfSaludCompat;
+    $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaActual) . '_' . $pdfSaludCompat;
     $ruta_SaludCompatFINAL = $ruta . $rutPersona . '/' . $nombreSaludCompat;
     move_uploaded_file($_FILES['nameSCompatibledoc']['tmp_name'], $ruta_SaludCompatFINAL);
     $ruta_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
   }
 
   if (!empty($pdfContrato)) {
-    $nombreContrato = 'CONTRATO_' . date('d-m-y') . '_' . $pdfContrato;
+    $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
     $ruta_ContratoFINAL = $ruta . $rutPersona . '/' . $nombreContrato;
     move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
     $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
   }
 
   if (!empty($pdfInscripcion)) {
-    $nombreInscripcion = 'INSCRIPCION_' . date('d-m-y') . '_' . $pdfInscripcion;
+    $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
     $ruta_InscripcionFINAL = $ruta . $rutPersona . '/' . $nombreInscripcion;
     move_uploaded_file($_FILES['nameInscripdoc']['tmp_name'], $ruta_InscripcionFINAL);
     $ruta_InscripcionFINAL = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;

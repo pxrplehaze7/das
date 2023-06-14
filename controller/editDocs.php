@@ -10,25 +10,29 @@ $rutPersona = $_POST['nameRutEditar'];
 $decreto     = $_POST['nameDecreto'];
 
 $host = $_SERVER['HTTP_HOST'];
-$fechaActual = date('d-m-Y');
+
+
+// Obtén la fecha actual en la zona horaria correcta
+$fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
+
+// Formatea la fecha actual en el formato deseado (d-m-Y)
+$fechaActual = $fechaActual->format('d-m-Y');
 
 // CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
 $ruta = 'pdfs_personal/';
-$pdfNacimiento = (!empty($_FILES['nameNACdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameNACdocEDIT']['name']) : '';
-$pdfAntecedentes = (!empty($_FILES['nameANTECEdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameANTECEdocEDIT']['name']) : '';
-$pdfAFP = (!empty($_FILES['nameAFPdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameAFPdocEDIT']['name']) : '';
-$pdfMilitar = (!empty($_FILES['nameMilitarDocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameMilitarDocEDIT']['name']) : '';
-$pdfCedula = (!empty($_FILES['nameCeduladocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCeduladocEDIT']['name']) : '';
-$pdfCurriculum = (!empty($_FILES['nameCVdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCVdocEDIT']['name']) : '';
-$pdfExamenM = (!empty($_FILES['nameExaMdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameExaMdocEDIT']['name']) : '';
-$pdfPrevision = (!empty($_FILES['namePREVdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['namePREVdocEDIT']['name']) : '';
-$pdfEstudios = (!empty($_FILES['nameEstudiodocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameEstudiodocEDIT']['name']) : '';
-$pdfDJurada = (!empty($_FILES['nameDJuradadocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameDJuradadocEDIT']['name']) : '';
-$pdfSaludCompat = (!empty($_FILES['nameSCompatibledocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameSCompatibledocEDIT']['name']) : '';
-$pdfContrato = (!empty($_FILES['nameDocContratoInputEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameDocContratoInputEDIT']['name']) : '';
-$pdfInscripcion = (!empty($_FILES['nameInscripdocEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameInscripdocEDIT']['name']) : '';
-
-
+$pdfNacimiento = (!empty($_FILES['nameNACdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfAntecedentes = (!empty($_FILES['nameANTECEdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfAFP = (!empty($_FILES['nameAFPdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfMilitar = (!empty($_FILES['nameMilitarDocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfCedula = (!empty($_FILES['nameCeduladocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfCurriculum = (!empty($_FILES['nameCVdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfExamenM = (!empty($_FILES['nameExaMdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfPrevision = (!empty($_FILES['namePREVdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfEstudios = (!empty($_FILES['nameEstudiodocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfDJurada = (!empty($_FILES['nameDJuradadocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfSaludCompat = (!empty($_FILES['nameSCompatibledocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfContrato = (!empty($_FILES['nameDocContratoInputEDIT']['name'])) ? uniqid() . '.pdf' : '';
+$pdfInscripcion = (!empty($_FILES['nameInscripdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 
 
 
@@ -113,7 +117,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
   if (!empty($pdfExamenM)) {
-    $nombreExamenM = 'EUNACOM_' . date('d-m-y') . '_' . $pdfExamenM;
+    $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfExamenM;
     $ruta_ExamenMFINAL = $ruta . $rutPersona . '/' . $nombreExamenM;
     move_uploaded_file($_FILES['nameExaMdocEDIT']['tmp_name'], $ruta_ExamenMFINAL);
     $ruta_ExamenMFINAL = 'http://' . $host . '/das/controller/' . $ruta_ExamenMFINAL;
@@ -125,7 +129,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 
   if (!empty($pdfPrevision)) {
-    $nombrePrevision = 'PREVISION_' . date('d-m-y') . '_' . $pdfPrevision;
+    $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfPrevision;
     $ruta_PrevisionFINAL = $ruta . $rutPersona . '/' . $nombrePrevision;
     move_uploaded_file($_FILES['namePREVdocEDIT']['tmp_name'], $ruta_PrevisionFINAL);
     $ruta_PrevisionFINAL = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
@@ -134,7 +138,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
   if (!empty($pdfEstudios)) {
-    $nombreEstudios = 'ESTUDIOS_' . date('d-m-y') . '_' . $pdfEstudios;
+    $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaActual) . '_' . $pdfEstudios;
     $ruta_EstudiosFINAL = $ruta . $rutPersona . '/' . $nombreEstudios;
     move_uploaded_file($_FILES['nameEstudiodocEDIT']['tmp_name'], $ruta_EstudiosFINAL);
     $ruta_EstudiosFINAL = 'http://' . $host . '/das/controller/' . $ruta_EstudiosFINAL;
@@ -143,7 +147,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
   if (!empty($pdfDJurada)) {
-    $nombreDJurada = 'DJURADA_' . date('d-m-y') . '_' . $pdfDJurada;
+    $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfDJurada;
     $ruta_DJuradaFINAL = $ruta . $rutPersona . '/' . $nombreDJurada;
     move_uploaded_file($_FILES['nameDJuradadocEDIT']['tmp_name'], $ruta_DJuradaFINAL);
     $ruta_DJuradaFINAL = 'http://' . $host . '/das/controller/' . $ruta_DJuradaFINAL;
@@ -154,7 +158,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 
   if (!empty($pdfSaludCompat)) {
-    $nombreSaludCompat = 'SCOMPATIBLE_' . date('d-m-y') . '_' . $pdfSaludCompat;
+    $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaActual) . '_' . $pdfSaludCompat;
     $ruta_SaludCompatFINAL = $ruta . $rutPersona . '/' . $nombreSaludCompat;
     move_uploaded_file($_FILES['nameSCompatibledocEDIT']['tmp_name'], $ruta_SaludCompatFINAL);
     $ruta_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
@@ -163,7 +167,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
   if (!empty($pdfContrato)) {
-    $nombreContrato = 'CONTRATO_' . date('d-m-y') . '_' . $pdfContrato;
+    $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
     $ruta_ContratoFINAL = $ruta . $rutPersona . '/' . $nombreContrato;
     move_uploaded_file($_FILES['nameDocContratoInputEDIT']['tmp_name'], $ruta_ContratoFINAL);
     $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
@@ -172,7 +176,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
   if (!empty($pdfInscripcion)) {
-    $nombreInscripcion = 'INSCRIPCION_' . date('d-m-y') . '_' . $pdfInscripcion;
+    $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
     $ruta_InscripcionFINAL = $ruta . $rutPersona . '/' . $nombreInscripcion;
     move_uploaded_file($_FILES['nameInscripdocEDIT']['tmp_name'], $ruta_InscripcionFINAL);
     $ruta_InscripcionFINAL = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;
