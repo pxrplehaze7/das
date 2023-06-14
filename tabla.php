@@ -113,7 +113,7 @@
                                                 <td><?php echo $ptotal['Profesion'] ?></td>
                                                 <td><?php echo $ptotal['NombreLug'] ?></td>
                                                 <td><?php echo $ptotal['NombreSector'] ?></td>
-                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;<?php } else { ?>background-color: #c40055;<?php } ?> color: white; font-weight: bold;">
+                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;<?php } else { ?>background-color: #c40055;<?php } ?> color: white; font-weight: 400;">
                                                     <?php echo $ptotal['Cumple'] == 1 ? 'Si cumple' : 'No cumple'; ?>
                                                 </td>
                                             </tr>

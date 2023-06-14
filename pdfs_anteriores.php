@@ -32,143 +32,132 @@
     <div id="layoutSidenav">
         <?php require("./components/sidebar.html"); ?>
         <div id="layoutSidenav_content">
-            <main>
-                <div class="container-md">
-                    <div class="title">
-                        <h1 class="mt-4">Registros anteriores</h1>
-                    </div>
-                    <br>
-                    <div class="">
-                        <div class="card mb-4">
-                            <div class="card-body">
-
-                                <?php
-                                function listarArchivos($ruta)
-                                {
-                                    $archivos = scandir($ruta);
-                                    $archivos = array_diff($archivos, array('.', '..')); // Eliminar las entradas "." y ".."
-                                    sort($archivos); // Ordenar los archivos alfabéticamente
-                                ?>
-
-                                    <table id="anteriores" class="table table-striped table-bordered" style="width:100%" data-search="true"">
-                                    <thead>
-                                          <tr>
-                                            <th>Nombre</th>
-                                            <th>Fecha de carga</th>
-                                            <th> </th>
-                                        </tr>
-
-                                    </thead> 
-                                    <tbody>
-                                  
-                                        <?php foreach ($archivos as $archivo) {
-                                            $rutaCompleta = $ruta . '/' . $archivo;
-                                            if (is_dir($rutaCompleta)) { ?>
-                                                <tr>
-                                                    <td><?php echo $archivo ?></td>
-                                                </tr>
-                                                <?php listarArchivos($rutaCompleta);
-                                            } else {
-                                                $extension = pathinfo($rutaCompleta, PATHINFO_EXTENSION);
-                                                if (strtolower($extension) == 'pdf') {
-                                                    $rutaArchivo = str_replace($_SERVER['DOCUMENT_ROOT'], '', $rutaCompleta);
-                                                    $descripcion = obtenerDescripcionArchivo($archivo); // Obtener la descripción del archivo
-                                                    $fechaCarga = obtenerFechaCarga($archivo); // Obtener la fecha de carga del archivo
-                                                ?>
-                                                    <tr>
-                                                        <td><?php echo $descripcion ?></td>
-                                                        <td><?php echo $fechaCarga ?></td>
-    
-    <td>
-        <div class=" contenedor-botones">
-                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $rutaArchivo; ?>', '_blank')">
-                                            <i class="fa-solid fa-expand"></i>
-                                        </button>
-                                        <a href="<?php echo $rutaArchivo; ?>" download class="btn btn-primary boton-descargar w-100">
-                                            <i class="fa-sharp fa-solid fa-download"></i>
-                                        </a>
-                            </div>
-
-                            </td>
-
-                            </tr>
-                <?php
-                                                }
-                                            }
-                                        } ?>
-                </tbody>
-                </table>
-
-            <?php
-                                }
-
-                                function obtenerDescripcionArchivo($nombreArchivo)
-                                {
-                                    $descripcion = '';
-
-                                    // Verificar el nombre del archivo y asignar una descripción personalizada
-                                    if (strpos($nombreArchivo, 'ANTECEDENTES') === 0) {
-                                        $descripcion = 'Certificado de Antecedentes';
-                                    } elseif (strpos($nombreArchivo, 'CEDULA') === 0) {
-                                        $descripcion = 'Fotocopia de Cédula de Identidad';
-                                    } elseif (strpos($nombreArchivo, 'CONTRATO') === 0) {
-                                        $descripcion = 'Contrato';
-                                    } elseif (strpos($nombreArchivo, 'CURRICULUM') === 0) {
-                                        $descripcion = 'Currículum Vitae';
-                                    } elseif (strpos($nombreArchivo, 'ESTUDIOS') === 0) {
-                                        $descripcion = 'Certificado de Estudios o Título Profesional';
-                                    } elseif (strpos($nombreArchivo, 'AFP') === 0) {
-                                        $descripcion = 'Certificado de Afiliacion AFP';
-                                    } elseif (strpos($nombreArchivo, 'CNACIMIENTO') === 0) {
-                                        $descripcion = 'Certificado de Nacimiento';
-                                    } elseif (strpos($nombreArchivo, 'DJURADA') === 0) {
-                                        $descripcion = 'Declaración Jurada';
-                                    } elseif (strpos($nombreArchivo, 'EUNACOM') === 0) {
-                                        $descripcion = 'Examen Único Nacional de Conocimientos de Medicina';
-                                    } elseif (strpos($nombreArchivo, 'INSCRIPCION') === 0) {
-                                        $descripcion = 'Certificado de inscripción en el Registro Nacional de Prestadores Individuales';
-                                    } elseif (strpos($nombreArchivo, 'PREVISION') === 0) {
-                                        $descripcion = 'Certificado de Afiliación Previsional';
-                                    } elseif (strpos($nombreArchivo, 'SCOMPATIBLE') === 0) {
-                                        $descripcion = 'Certificado de Salud Compatible';
-                                    } elseif (strpos($nombreArchivo, 'SMILITAR') === 0) {
-                                        $descripcion = 'Certificado de Servicio Militar al Día';
-                                    }
-
-                                    return $descripcion;
-                                }
-
-                                function obtenerFechaCarga($nombreArchivo)
-                                {
-                                    $patron = '/\d{2}_\d{2}_\d{4}/'; // Expresión regular para buscar la fecha en el nombre del archivo
-                                    preg_match($patron, $nombreArchivo, $coincidencias);
-                                    $fechaCarga = '';
-
-                                    if (count($coincidencias) > 0) {
-                                        $fechaCarga = str_replace('_', '/', $coincidencias[0]);
-                                    }
-
-                                    return $fechaCarga;
-                                }
-
-                                $rut = $_GET['rutcito']; // Obtener el rut ingresado por el usuario
-
-                                $folder = "das/controller/pdfs_personal"; // Ruta de la carpeta principal relativa al directorio raíz del servidor web
-                                $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $rut; // Ruta completa de la carpeta específica del rut
-
-                                if (is_dir($targetFolder)) { // Verificar si la carpeta existe
-                                    listarArchivos($targetFolder);
-                                } else {
-                                    echo "La carpeta para el rut $rut no existe.";
-                                }
-            ?>
-
-
-                        </div>
-                    </div>
-                </div>
+        <main>
+    <div class="container-md">
+        <div class="title">
+            <h1 class="mt-4">Registros anteriores</h1>
         </div>
-        </main>
+        <br>
+        <div class="">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <?php
+                    function listarArchivos($ruta)
+                    {
+                        $archivos = scandir($ruta);
+                        $archivos = array_diff($archivos, array('.', '..')); // Eliminar las entradas "." y ".."
+                        sort($archivos); // Ordenar los archivos alfabéticamente
+                    ?>
+                        <table id="anteriores" class="table table-striped table-bordered" style="width:100%" data-search="true">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Fecha de carga</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($archivos as $archivo) {
+                                    $rutaCompleta = $ruta . '/' . $archivo;
+                                    if (is_file($rutaCompleta)) { // Verificar si es un archivo
+                                        $extension = pathinfo($rutaCompleta, PATHINFO_EXTENSION);
+                                        if (strtolower($extension) == 'pdf') {
+                                            $rutaArchivo = str_replace($_SERVER['DOCUMENT_ROOT'], '', $rutaCompleta);
+                                            $descripcion = obtenerDescripcionArchivo($archivo); // Obtener la descripción del archivo
+                                            $fechaCarga = obtenerFechaCarga($archivo); // Obtener la fecha de carga del archivo
+                                ?>
+                                            <tr>
+                                                <td><?php echo $descripcion ?></td>
+                                                <td><?php echo $fechaCarga ?></td>
+                                                <td>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $rutaArchivo; ?>', '_blank')">
+                                                            <i class="fa-solid fa-expand"></i>
+                                                        </button>
+                                                        <a href="<?php echo $rutaArchivo; ?>" download class="btn btn-primary boton-descargar w-100">
+                                                            <i class="fa-sharp fa-solid fa-download"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                <?php
+                                        }
+                                    }
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    <?php
+                    }
+
+                    function obtenerDescripcionArchivo($nombreArchivo)
+                    {
+                        $descripcion = '';
+
+                        // Verificar el nombre del archivo y asignar una descripción personalizada
+                        if (strpos($nombreArchivo, 'ANTECEDENTES') === 0) {
+                            $descripcion = 'Certificado de Antecedentes';
+                        } elseif (strpos($nombreArchivo, 'CEDULA') === 0) {
+                            $descripcion = 'Fotocopia de Cédula de Identidad';
+                        } elseif (strpos($nombreArchivo, 'CONTRATO') === 0) {
+                            $descripcion = 'Contrato';
+                        } elseif (strpos($nombreArchivo, 'CURRICULUM') === 0) {
+                            $descripcion = 'Currículum Vitae';
+                        } elseif (strpos($nombreArchivo, 'ESTUDIOS') === 0) {
+                            $descripcion = 'Certificado de Estudios o Título Profesional';
+                        } elseif (strpos($nombreArchivo, 'AFP') === 0) {
+                            $descripcion = 'Certificado de Afiliacion AFP';
+                        } elseif (strpos($nombreArchivo, 'CNACIMIENTO') === 0) {
+                            $descripcion = 'Certificado de Nacimiento';
+                        } elseif (strpos($nombreArchivo, 'DJURADA') === 0) {
+                            $descripcion = 'Declaración Jurada';
+                        } elseif (strpos($nombreArchivo, 'EUNACOM') === 0) {
+                            $descripcion = 'Examen Único Nacional de Conocimientos de Medicina';
+                        } elseif (strpos($nombreArchivo, 'INSCRIPCION') === 0) {
+                            $descripcion = 'Certificado de inscripción en el Registro Nacional de Prestadores Individuales';
+                        } elseif (strpos($nombreArchivo, 'PREVISION') === 0) {
+                            $descripcion = 'Certificado de Afiliación Previsional';
+                        } elseif (strpos($nombreArchivo, 'SCOMPATIBLE') === 0) {
+                            $descripcion = 'Certificado de Salud Compatible';
+                        } elseif (strpos($nombreArchivo, 'SMILITAR') === 0) {
+                            $descripcion = 'Certificado de Servicio Militar al Día';
+                        }
+
+                        return $descripcion;
+                    }
+
+                    function obtenerFechaCarga($nombreArchivo)
+                    {
+                        $patron = '/\d{2}_\d{2}_\d{4}/'; // Expresión regular para buscar la fecha en el nombre del archivo
+                        preg_match($patron, $nombreArchivo, $coincidencias);
+                        $fechaCarga = '';
+
+                        if (count($coincidencias) > 0) {
+                            $fechaCarga = str_replace('_', '/', $coincidencias[0]);
+                        }
+
+                        return $fechaCarga;
+                    }
+
+                    $rut = $_GET['rutcito']; // Obtener el rut ingresado por el usuario
+
+                    $folder = "das/controller/pdfs_personal"; // Ruta de la carpeta principal relativa al directorio raíz del servidor web
+                    $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $rut; // Ruta completa de la carpeta específica del rut
+
+                    if (is_dir($targetFolder)) { // Verificar si la carpeta existe
+                        listarArchivos($targetFolder);
+                    } else {
+                        echo "La carpeta para el rut $rut no existe.";
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
     </div>
     </div>
 

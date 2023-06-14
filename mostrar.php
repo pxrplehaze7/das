@@ -36,24 +36,22 @@
                     <div class="container-md">
                         <!-- <form action="editar_registro.php" method="POST"> -->
                         <form action="editar_registro.php" method="GET">
-
                             <div class="row d-flex justify-content-center align-items-center principal">
                                 <div class="title">
                                     <h1 class="mt-4">Información</h1>
                                     <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
                                     <!-- <input type="hidden" name="nameidtraEditar" id="idtraid" value="<?php echo $persona['IDTra'] ?>"> -->
                                     <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-
                                     <!-- <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>"> -->
                                 </div>
                             </div>
                         </form>
-<br>
+                        <br>
+                        <br>
                         <form action="pdfs_anteriores.php" method="GET">
-
                             <div class="row d-flex justify-content-center align-items-center principal">
                                 <div class="title">
-                                    <button class="btn btn-editar" type="submit">Registros anteriores <i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-editar" type="submit">Registros anteriores</button>
                                     <!-- <input type="hidden" name="nameidtraEditar" id="idtraid" value="<?php echo $persona['IDTra'] ?>"> -->
                                     <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
 
@@ -170,7 +168,7 @@
                                             if (!empty($persona['RutaContrato'])) { ?>
                                                 <div class="contenedor-botones">
                                                     <button type="button" class="btn btn-primary w-100 boton-ver" onclick="window.open('<?php echo $persona['RutaContrato']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaContrato'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <a href="<?php echo $persona['RutaContrato'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
 
                                             <?php } else { ?>
@@ -189,7 +187,7 @@
                                                 ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaDJur']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaDJur'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaDJur'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php
                                                 } else {
@@ -213,7 +211,7 @@
                                                 if (!empty($persona['RutaNac'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaNac'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaNac'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php
                                                 } else { ?>
@@ -231,7 +229,7 @@
                                             if (!empty($persona['RutaAntec'])) { ?>
                                                 <div class="contenedor-botones">
                                                     <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaAntec']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaAntec'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <a href="<?php echo $persona['RutaAntec'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -247,7 +245,7 @@
                                             if (!empty($persona['RutaCedula'])) { ?>
                                                 <div class="contenedor-botones">
                                                     <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaCedula']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaCedula'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <a href="<?php echo $persona['RutaCedula'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -263,7 +261,7 @@
                                             if (!empty($persona['RutaCV'])) { ?>
                                                 <div class="contenedor-botones">
                                                     <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaCV']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaCV'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <a href="<?php echo $persona['RutaCV'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -279,7 +277,7 @@
                                             if (!empty($persona['RutaEstudio'])) { ?>
                                                 <div class="contenedor-botones">
                                                     <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaEstudio']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaEstudio'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <a href="<?php echo $persona['RutaEstudio'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -296,7 +294,7 @@
                                                 if (!empty($persona['RutaSCom'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaSCom'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaSCom'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -313,7 +311,7 @@
                                                                                     if (!empty($persona['RutaAFP'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaAFP']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaAFP'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaAFP'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -331,7 +329,7 @@
                                                                                     if (!empty($persona['RutaPrev'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaPrev']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaPrev'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaPrev'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -353,7 +351,7 @@
                                                 if (!empty($persona['RutaInscripcion'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaInscripcion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaInscripcion'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaInscripcion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -373,7 +371,7 @@
                                                 if (!empty($persona['RutaExaM'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaExaM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaExaM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaExaM'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -392,7 +390,7 @@
                                                 if (!empty($persona['RutaSerM'])) { ?>
                                                     <div class="contenedor-botones">
                                                         <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSerM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaSerM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <a href="<?php echo $persona['RutaSerM'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -444,45 +442,51 @@
                                 <tbody>
                                     <?php
                                     $sqlCalificacion = "SELECT * 
-                                FROM calificaciones cal
-                                INNER JOIN trabajador tra ON (tra.IDTra = cal.IDTra)
-                                WHERE $idtra = cal.IDTra ";
+                            FROM calificaciones cal
+                            INNER JOIN trabajador tra ON (tra.IDTra = cal.IDTra)
+                            WHERE $idtra = cal.IDTra ";
 
                                     $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
 
                                     while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
-                                        echo "<tr>";
-                                        echo "<td class='align-middle text-center'>" . $mostrar['fecha'] . "</td>";
-
-                                        echo "<td class='align-middle text-center'>";
-                                        if (!empty($mostrar['RutaCalificacion'])) {
-                                            echo '
-                     
-                                <center>
-                                    <div class="contenedor-botones">
-                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $mostrar['RutaCalificacion'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
-                                    <a href="' . $mostrar['RutaCalificacion'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                </div>
-                                </center>';
-                                        }
-                                        echo '</td>';
-                                        echo "<td class='align-middle text-center'>" . $mostrar['apelo'] . "</td>";
-
-                                        echo "<td class='centrado'>";
-                                        if (!empty($mostrar['RutaApelacion'])) {
-                                            echo '
-                                <center>
-                                 <div class="contenedor-botones">
-                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open(\'' . $mostrar['RutaApelacion'] . '\', \'_blank\')"><i class="fa-solid fa-expand"></i></button>
-                                    <a href="' . $mostrar['RutaApelacion'] . '" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                </div>
-                                </center>';
-                                        }
-                                        echo '</td>';
-                                    }
                                     ?>
+                                        <tr>
+                                            <td class='align-middle text-center'><?php echo $mostrar['fecha'] ?></td>
+
+                                            <td class='align-middle text-center'>
+                                                <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
+                                                    <center>
+                                                        <div class="contenedor-botones">
+                                                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        </div>
+                                                    </center>
+                                                <?php } ?>
+                                            </td>
+
+                                            <td class='align-middle text-center'><?php echo $mostrar['apelo'] ?></td>
+
+                                            <td class='centrado'>
+                                                <?php if (!empty($mostrar['RutaApelacion']) && $mostrar['apelo'] == "Si") { ?>
+                                                    <center>
+                                                        <div class="contenedor-botones">
+                                                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $mostrar['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        </div>
+                                                    </center>
+                                                <?php } elseif (empty($mostrar['RutaApelacion']) && $mostrar['apelo'] == "Si") { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
+
+
+
                         </div>
 
                     </div>

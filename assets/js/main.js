@@ -511,68 +511,108 @@ function honorarioEdit() {
   }
 }
 
+// $(document).ready(function() {
+//   $("#edicion_calif").on("submit", function(event) {
+//     event.preventDefault(); // Evita el envío del formulario por defecto
+
+//     var formData = new FormData(this);
+//     var idCalif = $(this).find(".Btn").attr("data-idcalif"); // Obtener el ID de la calificación
+
+//     formData.append("idcal", idCalif); // Agregar el ID al objeto formData
+
+//     Swal.fire({
+//       title: '¿Desea actualizar las calificaciones?',
+//       showDenyButton: true,
+//       showCancelButton: false,
+//       allowOutsideClick: false,
+//       confirmButtonText: 'Sí',
+//       confirmButtonColor: '#00c4a0',
+//       denyButtonColor: '#ba0051'
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         $.ajax({
+//           url: "./controller/editcalif.php",
+//           method: "POST",
+//           data: formData,
+//           cache: false,
+//           contentType: false,
+//           processData: false
+//         }).done(function(response) {
+//           console.log(response);
+//           response = JSON.parse(response);
+//           console.log(response);
+//           if (response.success) {
+//             Swal.fire({
+//               icon: 'success',
+//               title: 'Información actualizada correctamente',
+//             }).then(function() {
+//               // location.reload();
+//             });
+//           } else {
+//             Swal.fire({
+//               icon: 'error',
+//               title: 'Error al actualizar la información',
+//               text: response.message
+//             });
+//           }
+//         }).fail(function(response) {
+//           Swal.fire({
+//             icon: 'error',
+//             title: 'Error al actualizar la información',
+//             text: response.responseText
+//           });
+//           console.log("salio mal");
+//           console.log(response);
+//         });
+//       }
+//     });
+//   });
+// });
 
 
 $(document).ready(function() {
-  $("#edicion_calif").on("submit", function(event) {
-    event.preventDefault(); // Evita el envío del formulario por defecto
+  $(".Btn").click(function(event) {
+    event.preventDefault();
 
-    var formData = new FormData(this);
+    var form = $(this).closest("form");
+    var formData = new FormData(form[0]);
 
-    formData.append('idcal', $('#idcal').val());
+    // Obtener la ID del botón
+    var idCalif = $(this).data("idcalif");
+    formData.append("idcalif", idCalif);
 
-    Swal.fire({
-      title: '¿Desea actualizar las calificaciones?',
-      showDenyButton: true,
-      showCancelButton: false,
-      allowOutsideClick: false,
-      confirmButtonText: 'Sí',
-      confirmButtonColor: '#00c4a0',
-      denyButtonColor: '#ba0051'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          url: "./controller/editcalif.php",
-          method: "POST",
-          data: formData,
-          cache: false,
-          contentType: false,
-          processData: false
-        }).done(function(response) {
-          console.log(response);
-          response = JSON.parse(response);
-          console.log(response);
-          if (response.success) {
-            Swal.fire({
-              icon: 'success',
-              title: 'Información actualizada correctamente',
-            });
-            console.log("salio bien");
-            // .then(function() {
-            //   location.reload();
-            // });
-          } else {
-            Swal.fire({
-              icon: 'error',
-              title: 'Error al actualizar la información',
-              text: response.message
-            });
-            console.log("salio mal");
-          }
-        }).fail(function(response) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error al actualizar la información',
-            text: response.responseText
-          });
-          console.log("salio nose");
-          console.log(response);
-
-        });
+    // Realizar la solicitud AJAX
+    $.ajax({
+      url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
+      method: "POST",
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // La solicitud se completó con éxito
+        console.log(response); // Puedes mostrar la respuesta del servidor en la consola para depuración
+        // Aquí puedes realizar cualquier otra acción que desees después de guardar la actualización
+      },
+      error: function(xhr, status, error) {
+        // Ocurrió un error en la solicitud AJAX
+        console.error(error); // Muestra el error en la consola para depuración
       }
     });
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 $(document).ready(function() {

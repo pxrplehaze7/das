@@ -259,6 +259,24 @@ p {
   justify-content: center !important;
 }
 
+.boton-descargar2 {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  width: 130px !important;
+  background-color: #00c4a0 !important;
+  color: black !important;
+  border-color: #00c4a0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.boton-descargar2:hover {
+  background-color: #02a385 !important ;
+  color: black !important;
+  border-color: #02a385 !important ;
+}
+
 .boton-ver {
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -593,6 +611,37 @@ button.boton-registrarB:active {
   margin-bottom: 8px;
   margin-right: 11%;
 }
+.btn-editar:hover {
+  background-color: #2b2670 !important;
+}
+.btn-editar:active {
+  background-color: #322c83 !important;
+}
+
+
+.califica button {
+  position: absolute;
+  margin-bottom: 23px;
+  right: 0;
+  bottom: 0;
+  border: none;
+  color: #212529;
+}
+
+
+.btn-calificacion {
+  background-color: #212529 !important;
+  color: white !important;
+  margin-bottom: 8px;
+  margin-right: 12px;
+}
+.btn-calificacion:hover {
+  background-color: #2b2670 !important;
+}
+.btn-calificacion:active {
+  background-color: #322c83 !important;
+}
+
 
 
 .title {

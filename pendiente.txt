@@ -13,7 +13,6 @@ me falta hacer lo de editar calificaciones
 
 CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
-tengo que crear un login, 
 agregar las validaciones de permisos de usuario
 
 permitir cambiar permisos, ver como cambiar la contraseña
@@ -28,21 +27,31 @@ arreglar las fechas segun zona horaria en todos los archivos que se guardan y
 
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
-
+podria hacer que os usuarios se muestren junto a un boton como las calificaciones, y que al presionar editar, permitar ir a editar y se vea como el registro de usuario
 los usuarios no se pueden cambiar a si mismosel permiso asignado
 
-en mostrar calificaciones nomuestra pendiente si esta el campo vacio
 
 verque pasa con la carpeta de alguien cuando modifico el rut
 
-problema complicado es el cambio de rut, ya que tendria que cambiar ñlas rutas y nombre de .
+problema complicado es el cambio de rut, ya que tendria que cambiar las rutas y nombre de carpetas, problemas al editar y guardar
 mejor crear por id de trabajadr
 
-https://codepen.io/Dannaotrop/pen/mGgpNa
+hacer que cuando encuentre a alguien en la lista total, muestre un boton para ir al perfil
 
 
-https://codepen.io/tamer_aka_remat/pen/qMgaRo
+lo de editar calificaciones falla totalmente
 
+
+Médico: Sí | Honorario: Sí | Inscripción: Sí
+Médico: Sí | Honorario: Sí | Inscripción: No
+Médico: Sí | Honorario: No | Inscripción: Sí
+Médico: Sí | Honorario: No | Inscripción: No
+Médico: No | Honorario: Sí | Inscripción: Sí
+Médico: No | Honorario: Sí | Inscripción: No
+Médico: No | Honorario: No | Inscripción: Sí
+Médico: No | Honorario: No | Inscripción: No
+
+variantes para verificacion
 
 
       <?php if ($id_rol_usuario_actual == 1) { ?>

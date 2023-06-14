@@ -3,57 +3,62 @@
 include("./config/conexion.php");
 
 //SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
-$idcalif = $_POST['idcal'];
+$idcalif = $_POST['idcalif'];
 $rutPersona = $_POST['nameRUT'];
 $fecha_input = $_POST['namefecha_cal'];
 $sionoapelo = $_POST['nameapeloEDIT'];
+echo $idcalif;
+echo $sionoapelo;
 
-$fechaActual = date('d-m-Y');
+$fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 
+// Formatea la fecha actual en el formato deseado (d-m-Y)
+$fechaActual = $fechaActual->format('d-m-Y');
 // OBTIENE EL NOMBRE EL HOST
 $host = $_SERVER['HTTP_HOST'];
 
-// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
+// CARPETA DONDE SE GUARDARAN LOS ARCHIVOS
 $ruta = 'pdfs_personal/';
 
-// print_r($_FILES);
-// exit();
-$pdfcalificacion = (!empty($_FILES['nameCalifEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameCalifEDIT']['name']) : '';
+$pdfcalificacion = (!empty($_FILES['nameCalifEDIT']['name'])) ? uniqid() . '.pdf' : '';
 
-$pdfapelo = (!empty($_FILES['nameApelaEDIT']['name'])) ? str_replace(array(' ', '(', ')'), '_', $_FILES['nameApelaEDIT']['name']) : '';
+$pdfapelo = (!empty($_FILES['nameApelaEDIT']['name'])) ? uniqid() . '.pdf' : '';
 
 $consultaDoc = "SELECT * FROM calificaciones WHERE IDCalif = '$idcalif'";
 $resFile = mysqli_query($conn, $consultaDoc);
+
+echo $pdfcalificacion;
+echo $pdfapelo;
+
 if (mysqli_num_rows($resFile) == 1) {
     $EditC = mysqli_fetch_assoc($resFile);
-} {
+
     if (!file_exists($ruta . $rutPersona)) {
         mkdir($ruta . $rutPersona, 0777, true);
     }
     $rutaCalificaciones = $ruta . $rutPersona . '/CALIFICACIONES/';
+
     if (!file_exists($rutaCalificaciones)) {
         mkdir($rutaCalificaciones, 0777, true);
     }
-    $rutasubCalificaciones = $rutaCalificaciones . 'CALIFICACIONES/';
-    $rutaApelaciones = $rutaCalificaciones . 'APELACIONES/';
 
-    if (!file_exists($rutasubCalificaciones)) {
-        mkdir($rutasubCalificaciones, 0777, true);
-    }
+    $rutaApelaciones = $ruta . $rutPersona . '/CALIFICACIONES/';
     if (!file_exists($rutaApelaciones)) {
         mkdir($rutaApelaciones, 0777, true);
     }
 }
+
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM calificaciones WHERE IDCalif = '$idcalif'")) > 0) {
 
     if (!empty($pdfcalificacion)) {
         $nombreCalificacion = 'CALIFICACION_' . $fechaActual . '_' . $pdfcalificacion;
-        $ruta_CalifFINAL = $rutasubCalificaciones . $nombreCalificacion;
+        $ruta_CalifFINAL = $rutaCalificaciones . $nombreCalificacion;
         move_uploaded_file($_FILES['nameCalifEDIT']['tmp_name'], $ruta_CalifFINAL);
         $ruta_CalifFINAL = 'http://' . $host . '/das/controller/' . $ruta_CalifFINAL;
     } else {
         $ruta_CalifFINAL = $EditC['RutaCalificacion'];
     }
+    echo $ruta_CalifFINAL;
 
     if (!empty($pdfapelo)) {
         $nombreApelacion = 'APELACION_' . $fechaActual . '_' . $pdfapelo;
@@ -64,16 +69,16 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM calificaciones WHERE IDCa
         $ruta_ApelaFINAL = $EditC['RutaApelacion'];
     }
 
+    echo $ruta_ApelaFINAL;
+
+    // Actualizar la información en la base de datos
     $califEdit = "UPDATE calificaciones SET 
       fecha = '$fecha_input',
       apelo = '$sionoapelo',
       RutaCalificacion = '$ruta_CalifFINAL',
-RutaApelacion = '$ruta_ApelaFINAL'
+      RutaApelacion = '$ruta_ApelaFINAL'
      
       WHERE IDCalif = '$idcalif'";
-    // echo $califEdit;
-    // exit();
-
 
     try {
         $resultado = mysqli_query($conn, $califEdit);
@@ -90,14 +95,24 @@ RutaApelacion = '$ruta_ApelaFINAL'
             exit;
         }
     } catch (Exception $e) {
-        if (file_exists($ruta . $rutPersona)) {
-            $files = glob($ruta . $rutPersona . '/*');
+        if (file_exists($rutaCalificaciones)) {
+            $files = glob($rutaCalificaciones . '*');
             foreach ($files as $file) {
                 if (is_file($file)) {
                     unlink($file);
                 }
             }
-            rmdir($ruta . $rutPersona);
+            rmdir($rutaCalificaciones);
+        }
+
+        if (file_exists($rutaApelaciones)) {
+            $files = glob($rutaApelaciones . '*');
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
+            }
+            rmdir($rutaApelaciones);
         }
 
         $response = [
@@ -111,3 +126,4 @@ RutaApelacion = '$ruta_ApelaFINAL'
 }
 
 mysqli_close($conn);
+?>

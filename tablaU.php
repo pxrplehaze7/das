@@ -26,7 +26,6 @@
 
 
 </head>
-
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
@@ -41,18 +40,15 @@
                     <div class="">
                         <div class="card mb-4">
                             <div class="card-body">
-
-
                                 <table id="totalUsuarios" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
-
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
                                             <th>Apellido Materno</th>
                                             <th>Correo</th>
                                             <th>Permiso</th>
-
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody id="trabajadores_tbody">
@@ -63,18 +59,16 @@
                                         $resultados = mysqli_query($conn, $usuarios);
                                         while ($user = mysqli_fetch_array($resultados)) { ?>
                                             <tr>
-                                        
                                                 <td><?php echo $user['NombreU'] ?></td>
                                                 <td><?php echo $user['ApellidoP'] ?></td>
                                                 <td><?php echo $user['ApellidoM'] ?></td>
                                                 <td><?php echo $user['CorreoU'] ?></td>
-                                                
-                                                
                                                 <td style="text-align: center; <?php if ($user['Rol'] == 1) { ?>background-color: #463bfa;<?php } else { ?>background-color: #009CFD;<?php } ?> color: white; ">
                                                     <?php echo $user['Rol'] == 1 ? 'Administrador' : 'Lectura'; ?>
                                                 </td>
-
-
+                                                <td>
+                                                    <a href="editarusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary">Editar</a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
