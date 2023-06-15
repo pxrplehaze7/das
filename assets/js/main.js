@@ -670,3 +670,57 @@ $(document).ready(function() {
     });
   });
 });
+
+
+
+
+
+$(document).ready(function() {
+  $("#editU").on("submit", function(event) {
+    event.preventDefault();
+
+    Swal.fire({
+      title: '¿Desea actualizar la información del usuario?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var formData = new FormData(this);
+        $.ajax({
+          url: "./controller/edituser.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false
+        }).done(function(response) {
+          response = JSON.parse(response);
+          if (response.success) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Información actualizada exitosamente',
+              showConfirmButton: false, 
+            
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al actualizar la información del Usuario',
+              text: response.message
+            });
+          }
+        }).fail(function(response) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información del Usuario',
+            text: response.responseText
+          });
+        });
+      }
+    });
+  });
+});

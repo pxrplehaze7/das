@@ -538,7 +538,7 @@ button.boton-registrarB:active {
   }
 }
 
-.Btn {
+.Btn2 {
   position: relative;
   display: flex;
   align-items: center;
@@ -565,13 +565,13 @@ button.boton-registrarB:active {
   transition-duration: 0.3s;
 }
 
-.Btn:hover {
+.Btn2:hover {
   color: transparent;
   background-color: #2b2670 !important ;
   border-color: #2b2670 !important;
 }
 
-.Btn:hover svg {
+.Btn2:hover svg {
   right: 41%;
   margin: 0;
   padding: 0;
@@ -579,7 +579,7 @@ button.boton-registrarB:active {
   transition-duration: 0.3s;
 }
 
-.Btn:active {
+.Btn2:active {
   background-color: #322c83 !important ;
   border-color: #322c83 !important;
 }

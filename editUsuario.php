@@ -1,3 +1,24 @@
+<?php
+include("./controller/config/conexion.php");
+
+
+if (isset($_GET['id'])) {
+    $idUsuario = $_GET['id'];
+    echo "ID de usuario recibido: " . $idUsuario;
+
+
+    $user = "SELECT * FROM usuario WHERE IDUsuario = '$idUsuario'";
+    $ruser = mysqli_query($conn, $user);
+
+    if (mysqli_num_rows($ruser) == 1) {
+        $us = mysqli_fetch_assoc($ruser);
+    }
+} else {
+    echo "No se recibió ningún ID de usuario";
+}
+
+?>
+
 <?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,17 +46,19 @@
 
 </head>
 
-<body class="sb-nav-fixed">
-    <?php require("./components/navbar.php") ?>
-    <div id="layoutSidenav">
 
+<body class="sb-nav-fixed">
+    <div id="layoutSidenav">
+        <?php require("./components/navbar.php") ?>
         <?php require("./components/sidebar.html") ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="registroU"  method="POST">
+                    <form id="editU" method="POST">
+                        <input name="nameidu" value="<?php echo $idUsuario ?>" class="form-control" id="iduser" hidden>
+
                         <div class="title">
-                            <h1 class="mt-4">Registro de Usuario</h1>
+                            <h1 class="mt-4">Editar Usuario</h1>
                         </div>
                         <br>
                         <div class="seccion">
@@ -43,53 +66,39 @@
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
-                                    <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" oninput="validarTexto(this)" required>
-
+                                    <input type="text" name="namePersona" value="<?php echo $us['NombreU'] ?>" id="idPersona" class="form-control" oninput="validarTexto(this)" required>
                                 </div>
-
                                 <div class="col-md">
                                     <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
-                                    <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)" required>
-
+                                    <input type="text" name="namePaterno" value="<?php echo $us['ApellidoP'] ?>" id="idAppat" class="form-control" oninput="validarTexto(this)" required>
                                 </div>
                                 <div class="col-md">
                                     <label for="idApmat">Apellido Materno</label>
-                                    <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)">
-
+                                    <input type="text" name="nameMaterno" value="<?php echo $us['ApellidoM'] ?>" id="idApmat" class="form-control" oninput="validarTexto(this)">
                                 </div>
                             </div>
                             <br>
                             <div class="row">
                                 <div class="col-4">
                                     <label for="idCorreo"><span style="color: #c40055;">*</span> Correo Electrónico</label>
-                                    <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control" required>
+                                    <input type="text" name="nameCorreo" value="<?php echo $us['CorreoU'] ?>" id="idCorreo" class="form-control" required>
                                 </div>
-
-                            
-
                                 <div class="col-4">
                                     <label><span style="color: #c40055;">*</span> Tipo de permiso</label>
                                     <select class="form-control" id="idPermiso" name="namePermiso" required>
-                                    <option value=""> Seleccione</option>
-                                        <option value=1>Administrador</option>
-                                        <option value=0>Solo lectura</option>
+                                        <option value=1 <?php if ($us['Rol'] == 1) echo 'selected'; ?>>Administrador</option>
+                                        <option value=0 <?php if ($us['Rol'] == 0) echo 'selected'; ?>>Solo lectura</option>
                                     </select>
                                 </div>
-
                             </div>
 
                             <br>
-                            <div class="boton-registrar">
-                                <button id="btnRegistrar" type="submit" class="boton-registrarB">
-                                    <div class="svg-wrapper-1">
-                                        <div class="svg-wrapper">
-                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <span>Registrar</span>
+                            <div class="boton">
+                                <button class="Btn2" id="btnEditaDoc" type="submit">Actualizar
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                    </svg>
                                 </button>
                             </div>
                         </div>
@@ -106,4 +115,5 @@
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
 </body>
+
 </html>

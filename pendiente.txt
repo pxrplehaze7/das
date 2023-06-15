@@ -30,7 +30,7 @@ podria hacer que os usuarios se muestren junto a un boton como las calificacione
 los usuarios no se pueden cambiar a si mismosel permiso asignado
 
 
-
+el boton que achica el menu tiene estilos, pasa solo al editar usuario creo
 hacer que cuando encuentre a alguien en la lista total, muestre un boton para ir al perfil
 
 

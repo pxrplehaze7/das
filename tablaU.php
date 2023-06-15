@@ -23,9 +23,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        .table-centered td {
+            vertical-align: middle;
+        }
+    </style>
 
 
 </head>
+
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
@@ -40,14 +46,14 @@
                     <div class="">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <table id="totalUsuarios" class="table table-striped table-bordered" style="width:100%" data-search="true">
+                                <table id="totalUsuarios" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
                                             <th>Apellido Materno</th>
                                             <th>Correo</th>
-                                            <th>Permiso</th>
+                                            <th class="text-center">Permiso</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -67,7 +73,10 @@
                                                     <?php echo $user['Rol'] == 1 ? 'Administrador' : 'Lectura'; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="editarusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary">Editar</a>
+                                                    <div class="d-flex align-items-center justify-content-around">
+                                                        <a href="editusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
+                                                        <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -84,6 +93,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/elimina.js"></script>
+
     <script src="./assets/js/tablaExport.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
