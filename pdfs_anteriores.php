@@ -140,15 +140,15 @@
                         return $fechaCarga;
                     }
 
-                    $rut = $_GET['rutcito']; // Obtener el rut ingresado por el usuario
+                    $id = $_GET['idantes']; // Obtener el rut ingresado por el usuario
 
                     $folder = "das/controller/pdfs_personal"; // Ruta de la carpeta principal relativa al directorio raíz del servidor web
-                    $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $rut; // Ruta completa de la carpeta específica del rut
+                    $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $id; // Ruta completa de la carpeta específica del rut
 
                     if (is_dir($targetFolder)) { // Verificar si la carpeta existe
                         listarArchivos($targetFolder);
                     } else {
-                        echo "La carpeta para el rut $rut no existe.";
+                        echo "La carpeta para el rut $id no existe.";
                     }
                     ?>
                 </div>

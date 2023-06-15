@@ -31,14 +31,14 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     $pdfapelo = 'apelacion_periodo_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
 
 
-    if (!file_exists($ruta . $rut)) {
-        mkdir($ruta . $rut, 0777, true);
+    if (!file_exists($ruta . $idTrabajador)) {
+        mkdir($ruta . $idTrabajador, 0777, true);
     }
-    $rutaCalificaciones = $ruta . $rut . '/CALIFICACIONES/';
+    $rutaCalificaciones = $ruta . $idTrabajador . '/CALIFICACIONES/';
     if (!file_exists($rutaCalificaciones)) {
         mkdir($rutaCalificaciones, 0777, true);
     }
-    $rutaApelaciones = $ruta . $rut . '/CALIFICACIONES/';
+    $rutaApelaciones = $ruta . $idTrabajador . '/CALIFICACIONES/';
     if (!file_exists($rutaApelaciones)) {
         mkdir($rutaApelaciones, 0777, true);
     }

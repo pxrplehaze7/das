@@ -49,6 +49,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
       $contratoP == 3 &&
       $medicoOno == "Si" &&
       $inscripcionOno == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -62,6 +63,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
       $contratoP == 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -73,6 +75,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
       $contratoP == 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&

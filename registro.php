@@ -217,7 +217,7 @@
                                     <label for="idCelular">Celular</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">+56</span>
-                                        <input type="text" name="nameCelular" id="idCelular" placeholder="987654321" class="form-control" maxlength="9" oninput="validarCelular(this)">
+                                        <input type="text" name="nameCelular" id="idCelularR" placeholder="987654321" class="form-control" maxlength="9" oninput="validarCelular(this)">
                                     </div>
                                 </div>
                                 <div class="col-6">

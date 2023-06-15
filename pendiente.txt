@@ -23,7 +23,6 @@ hacer quesolo el administrador pueda ver quieres somn los usuarios
 agregar validaciones a los inputs de editar calificaciones
 
 en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
-arreglar las fechas segun zona horaria en todos los archivos que se guardan y 
 
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
@@ -31,15 +30,12 @@ podria hacer que os usuarios se muestren junto a un boton como las calificacione
 los usuarios no se pueden cambiar a si mismosel permiso asignado
 
 
-verque pasa con la carpeta de alguien cuando modifico el rut
-
-problema complicado es el cambio de rut, ya que tendria que cambiar las rutas y nombre de carpetas, problemas al editar y guardar
-mejor crear por id de trabajadr
 
 hacer que cuando encuentre a alguien en la lista total, muestre un boton para ir al perfil
 
 
 lo de editar calificaciones falla totalmente
+
 
 
 Médico: Sí | Honorario: Sí | Inscripción: Sí

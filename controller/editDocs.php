@@ -45,6 +45,7 @@ if (mysqli_num_rows($resFile) == 1) {
   $inscripcionOno = $EditP['Inscripcion'];
   $medicoOno = $EditP['Medico'];
   $contratoP = $EditP['IDCon'];
+  $idt = $EditP['IDTra'];
 }
 
 
@@ -59,7 +60,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   // SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfNacimiento)) {
     $nombreNacimiento = 'CNACIMIENTO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfNacimiento;
-    $ruta_nacFINAL = $ruta . $rutPersona . '/' . $nombreNacimiento;
+    $ruta_nacFINAL = $ruta . $idt . '/' . $nombreNacimiento;
     move_uploaded_file($_FILES['nameNACdocEDIT']['tmp_name'], $ruta_nacFINAL);
     $ruta_nacFINAL = 'http://' . $host . '/das/controller/' . $ruta_nacFINAL;
   } else {
@@ -69,7 +70,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfAntecedentes)) {
     $nombreAntecedentes = 'ANTECEDENTES_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAntecedentes;
-    $ruta_AntecedentesFINAL = $ruta . $rutPersona . '/' . $nombreAntecedentes;
+    $ruta_AntecedentesFINAL = $ruta . $idt . '/' . $nombreAntecedentes;
     move_uploaded_file($_FILES['nameANTECEdocEDIT']['tmp_name'], $ruta_AntecedentesFINAL);
     $ruta_AntecedentesFINAL = 'http://' . $host . '/das/controller/' . $ruta_AntecedentesFINAL;
   } else {
@@ -79,7 +80,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfAFP)) {
     $nombreAFP = 'AFP_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAFP;
-    $ruta_afpFINAL = $ruta . $rutPersona . '/' . $nombreAFP;
+    $ruta_afpFINAL = $ruta . $idt . '/' . $nombreAFP;
     move_uploaded_file($_FILES['nameAFPdocEDIT']['tmp_name'], $ruta_afpFINAL);
     $ruta_afpFINAL = 'http://' . $host . '/das/controller/' . $ruta_afpFINAL;
   } else {
@@ -89,7 +90,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfMilitar)) {
     $nombreMilitar = 'SMILITAR_' . str_replace('-', '_', $fechaActual) . '_' . $pdfMilitar;
-    $ruta_militarFINAL = $ruta . $rutPersona . '/' . $nombreMilitar;
+    $ruta_militarFINAL = $ruta . $idt . '/' . $nombreMilitar;
     move_uploaded_file($_FILES['nameMilitarDocEDIT']['tmp_name'], $ruta_militarFINAL);
     $ruta_militarFINAL = 'http://' . $host . '/das/controller/' . $ruta_militarFINAL;
   } else {
@@ -100,7 +101,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfCedula)) {
     $nombreCedula = 'CEDULA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCedula;
-    $ruta_CedulaFINAL = $ruta . $rutPersona . '/' . $nombreCedula;
+    $ruta_CedulaFINAL = $ruta . $idt . '/' . $nombreCedula;
     move_uploaded_file($_FILES['nameCeduladocEDIT']['tmp_name'], $ruta_CedulaFINAL);
     $ruta_CedulaFINAL = 'http://' . $host . '/das/controller/' . $ruta_CedulaFINAL;
   } else {
@@ -109,7 +110,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfCurriculum)) {
     $nombreCurriculum = 'CURRICULUM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCurriculum;
-    $ruta_CurriculumFINAL = $ruta . $rutPersona . '/' . $nombreCurriculum;
+    $ruta_CurriculumFINAL = $ruta . $idt . '/' . $nombreCurriculum;
     move_uploaded_file($_FILES['nameCVdocEDIT']['tmp_name'], $ruta_CurriculumFINAL);
     $ruta_CurriculumFINAL = 'http://' . $host . '/das/controller/' . $ruta_CurriculumFINAL;
   } else {
@@ -118,7 +119,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfExamenM)) {
     $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfExamenM;
-    $ruta_ExamenMFINAL = $ruta . $rutPersona . '/' . $nombreExamenM;
+    $ruta_ExamenMFINAL = $ruta . $idt . '/' . $nombreExamenM;
     move_uploaded_file($_FILES['nameExaMdocEDIT']['tmp_name'], $ruta_ExamenMFINAL);
     $ruta_ExamenMFINAL = 'http://' . $host . '/das/controller/' . $ruta_ExamenMFINAL;
   } else {
@@ -130,7 +131,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfPrevision)) {
     $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfPrevision;
-    $ruta_PrevisionFINAL = $ruta . $rutPersona . '/' . $nombrePrevision;
+    $ruta_PrevisionFINAL = $ruta . $idt . '/' . $nombrePrevision;
     move_uploaded_file($_FILES['namePREVdocEDIT']['tmp_name'], $ruta_PrevisionFINAL);
     $ruta_PrevisionFINAL = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
   } else {
@@ -139,7 +140,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfEstudios)) {
     $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaActual) . '_' . $pdfEstudios;
-    $ruta_EstudiosFINAL = $ruta . $rutPersona . '/' . $nombreEstudios;
+    $ruta_EstudiosFINAL = $ruta . $idt . '/' . $nombreEstudios;
     move_uploaded_file($_FILES['nameEstudiodocEDIT']['tmp_name'], $ruta_EstudiosFINAL);
     $ruta_EstudiosFINAL = 'http://' . $host . '/das/controller/' . $ruta_EstudiosFINAL;
   } else {
@@ -148,7 +149,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfDJurada)) {
     $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfDJurada;
-    $ruta_DJuradaFINAL = $ruta . $rutPersona . '/' . $nombreDJurada;
+    $ruta_DJuradaFINAL = $ruta . $idt . '/' . $nombreDJurada;
     move_uploaded_file($_FILES['nameDJuradadocEDIT']['tmp_name'], $ruta_DJuradaFINAL);
     $ruta_DJuradaFINAL = 'http://' . $host . '/das/controller/' . $ruta_DJuradaFINAL;
   } else {
@@ -159,7 +160,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfSaludCompat)) {
     $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaActual) . '_' . $pdfSaludCompat;
-    $ruta_SaludCompatFINAL = $ruta . $rutPersona . '/' . $nombreSaludCompat;
+    $ruta_SaludCompatFINAL = $ruta . $idt . '/' . $nombreSaludCompat;
     move_uploaded_file($_FILES['nameSCompatibledocEDIT']['tmp_name'], $ruta_SaludCompatFINAL);
     $ruta_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
   } else {
@@ -168,7 +169,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfContrato)) {
     $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
-    $ruta_ContratoFINAL = $ruta . $rutPersona . '/' . $nombreContrato;
+    $ruta_ContratoFINAL = $ruta . $idt . '/' . $nombreContrato;
     move_uploaded_file($_FILES['nameDocContratoInputEDIT']['tmp_name'], $ruta_ContratoFINAL);
     $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
   } else {
@@ -177,14 +178,12 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
   if (!empty($pdfInscripcion)) {
     $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
-    $ruta_InscripcionFINAL = $ruta . $rutPersona . '/' . $nombreInscripcion;
+    $ruta_InscripcionFINAL = $ruta . $idt . '/' . $nombreInscripcion;
     move_uploaded_file($_FILES['nameInscripdocEDIT']['tmp_name'], $ruta_InscripcionFINAL);
     $ruta_InscripcionFINAL = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;
   } else {
     $ruta_InscripcionFINAL = $EditP['RutaInscripcion'];
   }
-
-
 
 
   if (
@@ -194,6 +193,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       $contratoP == 3 &&
       $medicoOno == "Si" &&
       $inscripcionOno == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -207,6 +207,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       $contratoP == 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -218,6 +219,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       $contratoP == 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -368,16 +370,13 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_afpFINAL) &&
       !empty($ruta_PrevisionFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_SaludCompatFINAL) 
+      !empty($ruta_SaludCompatFINAL)
     )
   ) {
     $cumple = TRUE;
   } else {
     $cumple = FALSE;
   }
-
-
-
 
 
   // SE INSERTAN DATOS A LA BASE DE DATOS
@@ -426,14 +425,14 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } catch (Exception $e) {
 
     // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
-    if (file_exists($ruta . $rutPersona)) {
-      $files = glob($ruta . $rutPersona . '/*'); // Obtener todos los archivos dentro de la carpeta
+    if (file_exists($ruta . $idt)) {
+      $files = glob($ruta . $idt . '/*'); // Obtener todos los archivos dentro de la carpeta
       foreach ($files as $file) {
         if (is_file($file)) {
           unlink($file); // Eliminar cada archivo
         }
       }
-      rmdir($ruta . $rutPersona); // Eliminar la carpeta vacía
+      rmdir($ruta . $idt); // Eliminar la carpeta vacía
     }
 
     echo "<script> 

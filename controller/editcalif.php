@@ -3,6 +3,7 @@
 include("./config/conexion.php");
 
 //SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
+$idtra = $_POST['idtracal'];
 $idcalif = $_POST['idcalif'];
 $rutPersona = $_POST['nameRUT'];
 $fecha_input = $_POST['namefecha_cal'];
@@ -33,16 +34,16 @@ echo $pdfapelo;
 if (mysqli_num_rows($resFile) == 1) {
     $EditC = mysqli_fetch_assoc($resFile);
 
-    if (!file_exists($ruta . $rutPersona)) {
-        mkdir($ruta . $rutPersona, 0777, true);
+    if (!file_exists($ruta . $idtra)) {
+        mkdir($ruta . $idtra, 0777, true);
     }
-    $rutaCalificaciones = $ruta . $rutPersona . '/CALIFICACIONES/';
+    $rutaCalificaciones = $ruta . $idtra . '/CALIFICACIONES/';
 
     if (!file_exists($rutaCalificaciones)) {
         mkdir($rutaCalificaciones, 0777, true);
     }
 
-    $rutaApelaciones = $ruta . $rutPersona . '/CALIFICACIONES/';
+    $rutaApelaciones = $ruta . $idtra . '/CALIFICACIONES/';
     if (!file_exists($rutaApelaciones)) {
         mkdir($rutaApelaciones, 0777, true);
     }

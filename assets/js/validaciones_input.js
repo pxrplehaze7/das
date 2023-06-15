@@ -7,7 +7,13 @@ function validarTexto(input) {
 }
 
 
-
+// PERMITE 9 NUMEROS SIN ESPACIOS
+function validarCelular(input) {
+  var regex = /^\d{0,9}$/;
+  if (!regex.test(input.value)) {
+    input.value = input.value.replace(/\D/g, '').substring(0, 9);
+  }
+}
 
 
 //PERMITE SOLO EL INGRESO DE NUMEROS, k O k y -

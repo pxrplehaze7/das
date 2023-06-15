@@ -24,7 +24,7 @@ $("#documentosObligatorios").on("submit", function (event) {
       icon: 'warning',
       title: 'Advertencia',
       text: 'El número de teléfono debe tener 9 dígitos',
-      didRender: () => {
+      didOpen: () => {
         celularInput.focus();
       }
     });
@@ -571,7 +571,7 @@ function honorarioEdit() {
 
 
 $(document).ready(function() {
-  $(".Btn").click(function(event) {
+  $(".Btncalif").click(function(event) {
     event.preventDefault();
 
     var form = $(this).closest("form");

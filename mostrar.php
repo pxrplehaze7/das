@@ -53,9 +53,9 @@
                                 <div class="title">
                                     <button class="btn btn-editar" type="submit">Registros anteriores</button>
                                     <!-- <input type="hidden" name="nameidtraEditar" id="idtraid" value="<?php echo $persona['IDTra'] ?>"> -->
-                                    <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                    <input type="hidden" name="idantes" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
 
-                                    <input type="hidden" name="rutcito" value="<?php echo $persona['Rut'] ?>">
+                        
                                 </div>
                             </div>
                         </form>
