@@ -95,14 +95,15 @@
                                             <th>Lugar</th>
                                             <th>Sector</th>
                                             <th>Cumple</th>
+                                            <th></th> <!-- Nueva columna para el botón -->
                                         </tr>
                                     </thead>
                                     <tbody id="trabajadores_tbody">
                                         <?php
-                                        $sqlTodos = "SELECT t.Rut, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
-                                        FROM trabajador t 
-                                        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
-                                        INNER JOIN sector s ON (s.IDSector = t.IDSector)";
+                                        $sqlTodos = "SELECT t.Rut, t.IDTra, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
+        FROM trabajador t 
+        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
+        INNER JOIN sector s ON (s.IDSector = t.IDSector)";
 
                                         $resultadoTotal = mysqli_query($conn, $sqlTodos);
                                         while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
@@ -116,10 +117,14 @@
                                                 <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;<?php } else { ?>background-color: #c40055;<?php } ?> color: white; font-weight: 400;">
                                                     <?php echo $ptotal['Cumple'] == 1 ? 'Si cumple' : 'No cumple'; ?>
                                                 </td>
+                                                <td>
+                                                    <a href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">Ver</a>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>

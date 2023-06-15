@@ -1,3 +1,11 @@
+//PERMITE 9 NUMEROS SIN ESPACIOS
+function validarCelular(input) {
+  var regex = /^\d{0,9}$/;
+  if (input.value !== '' && !regex.test(input.value)) {
+    input.value = input.value.replace(/\D/g, '').substring(0, 9);
+  }
+}
+
 $("#documentosObligatorios").on("submit", function (event) {
   event.preventDefault();
 
@@ -70,7 +78,7 @@ $("#documentosObligatorios").on("submit", function (event) {
 
         })
         .always(function (respuesta) {
-          console.info("DATA:", respuesta)
+          console.info(respuesta)
         });
     }
   });
@@ -394,7 +402,6 @@ $("#editInfoContacto").on("submit", function (event) {
     });
     return;
   }
-
   var formData = new FormData(this);
 
   formData.append('laid', $('#idtrabid').val());
@@ -511,108 +518,6 @@ function honorarioEdit() {
   }
 }
 
-// $(document).ready(function() {
-//   $("#edicion_calif").on("submit", function(event) {
-//     event.preventDefault(); // Evita el envío del formulario por defecto
-
-//     var formData = new FormData(this);
-//     var idCalif = $(this).find(".Btn").attr("data-idcalif"); // Obtener el ID de la calificación
-
-//     formData.append("idcal", idCalif); // Agregar el ID al objeto formData
-
-//     Swal.fire({
-//       title: '¿Desea actualizar las calificaciones?',
-//       showDenyButton: true,
-//       showCancelButton: false,
-//       allowOutsideClick: false,
-//       confirmButtonText: 'Sí',
-//       confirmButtonColor: '#00c4a0',
-//       denyButtonColor: '#ba0051'
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         $.ajax({
-//           url: "./controller/editcalif.php",
-//           method: "POST",
-//           data: formData,
-//           cache: false,
-//           contentType: false,
-//           processData: false
-//         }).done(function(response) {
-//           console.log(response);
-//           response = JSON.parse(response);
-//           console.log(response);
-//           if (response.success) {
-//             Swal.fire({
-//               icon: 'success',
-//               title: 'Información actualizada correctamente',
-//             }).then(function() {
-//               // location.reload();
-//             });
-//           } else {
-//             Swal.fire({
-//               icon: 'error',
-//               title: 'Error al actualizar la información',
-//               text: response.message
-//             });
-//           }
-//         }).fail(function(response) {
-//           Swal.fire({
-//             icon: 'error',
-//             title: 'Error al actualizar la información',
-//             text: response.responseText
-//           });
-//           console.log("salio mal");
-//           console.log(response);
-//         });
-//       }
-//     });
-//   });
-// });
-
-
-$(document).ready(function() {
-  $(".Btncalif").click(function(event) {
-    event.preventDefault();
-
-    var form = $(this).closest("form");
-    var formData = new FormData(form[0]);
-
-    // Obtener la ID del botón
-    var idCalif = $(this).data("idcalif");
-    formData.append("idcalif", idCalif);
-
-    // Realizar la solicitud AJAX
-    $.ajax({
-      url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
-      method: "POST",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-        // La solicitud se completó con éxito
-        console.log(response); // Puedes mostrar la respuesta del servidor en la consola para depuración
-        // Aquí puedes realizar cualquier otra acción que desees después de guardar la actualización
-      },
-      error: function(xhr, status, error) {
-        // Ocurrió un error en la solicitud AJAX
-        console.error(error); // Muestra el error en la consola para depuración
-      }
-    });
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $(document).ready(function() {
@@ -673,8 +578,6 @@ $(document).ready(function() {
 
 
 
-
-
 $(document).ready(function() {
   $("#editU").on("submit", function(event) {
     event.preventDefault();
@@ -722,5 +625,127 @@ $(document).ready(function() {
         });
       }
     });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// $(document).ready(function() {
+//   $(".Btncalif").click(function(event) {
+//     event.preventDefault();
+
+//     var form = $(this).closest("form");
+//     var formData = new FormData(form[0]);
+
+//     // Obtener la ID del botón
+//     var idCalif = $(this).data("idcalif");
+//     formData.append("idcalif", idCalif);
+
+//     // Realizar la solicitud AJAX
+//     $.ajax({
+//       url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
+//       method: "POST",
+//       data: formData,
+//       processData: false,
+//       contentType: false,
+//       success: function(response) {
+//         // La solicitud se completó con éxito
+//         console.log(response); // Puedes mostrar la respuesta del servidor en la consola para depuración
+//         // Aquí puedes realizar cualquier otra acción que desees después de guardar la actualización
+//       },
+//       error: function(xhr, status, error) {
+//         // Ocurrió un error en la solicitud AJAX
+//         console.error(error); // Muestra el error en la consola para depuración
+//       }
+//     });
+//   });
+// });
+
+// $(document).ready(function() {
+//   $(document).on("click", ".Btncalif", function() {
+//     var idCalificacion = $(this).data("idcalif");
+//     var idTrabajador = $("#idtrabid").val();
+
+//     // Crear un objeto FormData para enviar los datos y archivos
+//     var formData = new FormData();
+//     formData.append("idCalificacion", idCalificacion);
+//     formData.append("idTrabajador", idTrabajador);
+//     formData.append("namefecha_cal[]", $("#fechacalid").val());
+//     formData.append("nameapeloEDIT[]", $("#selectapelo").val());
+//     formData.append("nameCalifEDIT[]", $("#idcalifEDIT")[0].files[0]);
+//     formData.append("nameApelaEDIT[]", $("#idapelaEDIT")[0].files[0]);
+
+//     // Realizar una solicitud AJAX al archivo PHP
+//     $.ajax({
+//       url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
+//       type: 'POST',
+//       data: formData,
+//       processData: false,
+//       contentType: false,
+
+//       success: function(response) {
+//         alert(response); // Mostrar una notificación o realizar otras acciones
+//         console.log(response); // Puedes mostrar la respuesta del servidor en la consola para depuración
+//         // Aquí puedes realizar cualquier otra acción que desees después de guardar la actualización
+//       },
+//       error: function(xhr, status, error) {
+//         // Ocurrió un error en la solicitud AJAX
+//         console.error(error); // Muestra el error en la consola para depuración
+//       }
+//     });
+//   });
+// });
+
+
+
+
+$(document).ready(function() {
+  $('#edicion_calif').submit(function(e) {
+      e.preventDefault(); // Evitar el envío del formulario de forma predeterminada
+
+      var form = $(this);
+      var formData = new FormData(form[0]);
+
+      // Realizar la solicitud AJAX para actualizar el registro
+      $.ajax({
+          type: 'POST',
+          url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+              // Actualizar la fila correspondiente en la tabla
+              // ...
+          },
+          error: function(xhr, status, error) {
+              // Manejar errores si es necesario
+              // ...
+          }
+      });
   });
 });

@@ -217,12 +217,12 @@
                                     <label for="idCelular">Celular</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">+56</span>
-                                        <input type="text" name="nameCelular" id="idCelularR" placeholder="987654321" class="form-control" maxlength="9" oninput="validarCelular(this)">
+                                        <input type="text" name="nameCelular" id="idCelular" placeholder="987654321" class="form-control" maxlength="9" oninput="validarCelular(this)">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="idCorreo">Correo Electrónico</label>
-                                    <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                    <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control">
                                 </div>
                             </div>
                         </div>

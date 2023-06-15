@@ -1,4 +1,7 @@
-<?php include("./controller/config/conexion.php"); ?>
+<?php include("./controller/config/conexion.php"); 
+
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 

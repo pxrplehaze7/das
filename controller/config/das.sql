@@ -52,7 +52,7 @@ CREATE TABLE `das`.`sector` (
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 CREATE TABLE `das`.`trabajador` (
-    `IDTra` INT NOT NULL AUTO_INCREMENT,
+    `IDTra` INT NOT NULL,
     `IDCat` INT NOT NULL,
     `IDCon` INT NOT NULL,
     `IDAFP` INT NOT NULL,

@@ -72,8 +72,7 @@ if (isset($_GET['id'])) {
 
                         <form id="editInfoPersonal" action="./controller/editInfoP.php" method="POST">
                             <div class="title">
-                                <h1 class="mt-4">Editar Información
-                                </h1>
+                                <h1 class="mt-4">Editar Información</h1>
                                 <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
 
                             </div>
@@ -338,7 +337,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <div class="col-6">
                                         <label for="idCorreo">Correo Electrónico</label>
-                                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $persona['CorreoTra'] ?>" class="form-control" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $persona['CorreoTra'] ?>" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -608,116 +607,122 @@ if (isset($_GET['id'])) {
                         </div>
                         <br>
                         <div id="editcal">
-                            <form method="POST" enctype="multipart/form-data" id="edicion_calif">
-                                <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
+                            <?php
+                            $sqlCalificacion = "SELECT * FROM calificaciones WHERE IDTra = $idtra";
+                            $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
+                            ?>
+
+
+
+
 
                                 <div class="documentacion seccion seccion-cal">
                                     <h6>Calificaciones</h6>
+
+
+
+
+
                                     <table id="calEDIT" class="table table-striped table-bordered" style="width:100%">
                                         <thead>
-                                            <tr>
-                                                <th class="text-center" style="width: 13%;">Fecha</th>
-                                                <th class="text-center">Calificación</th>
-                                                <th class="text-center">Subir o Cambiar Calificación</th>
-                                                <th class="text-center" style="width: 7%;">Apelo</th>
-                                                <th class="text-center">Apelación</th>
-                                                <th class="text-center">Subir o Cambiar Apelación</th>
-                                                <th class="text-center">Actualizar</th>
-                                            </tr>
+                                                <tr>
+                                                    <th class="text-center" style="width: 13%;">Fecha</th>
+                                                    <th class="text-center">Calificación</th>
+                                                    <th class="text-center">Subir o Cambiar Calificación</th>
+                                                    <th class="text-center" style="width: 7%;">Apelo</th>
+                                                    <th class="text-center">Apelación</th>
+                                                    <th class="text-center">Subir o Cambiar Apelación</th>
+                                                    <th class="text-center">Actualizar</th>
+                                                </tr>
                                         </thead>
                                         <tbody>
-                                            <?php
-                                            $sqlCalificacion = "SELECT * FROM calificaciones WHERE IDTra = $idtra";
-                                            $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
+                                        <?php while ($mostrar = mysqli_fetch_array($resultadoCalif)) { ?>
+                                            <form method="POST" enctype="multipart/form-data" id="edicion_calif">
+                                <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
+                                            <tr>
 
-                                            while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
-                                            ?>
-                                                <tr>
-                                                    <input type="hidden" id="idcal" name="nameidCalificacion[]" value="<?php echo $mostrar['IDCalif'] ?>">
-                                                    <input type="hidden" id="idRUT" name="nameRUT" value="<?php echo $persona['Rut'] ?>">
-                                                    <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
-
-                                                    <td class="align-middle text-center">
-                                                        <input type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_cal[]">
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
-                                                            <center>
-                                                                <div class="contenedor-botones">
-                                                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
-                                                                        <i class="fa-solid fa-expand"></i>
-                                                                    </button>
-                                                                    <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar w-100">
-                                                                        <i class="fa-sharp fa-solid fa-download"></i>
-                                                                    </a>
-                                                                    <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
-                                                                        <i class="fa-solid fa-trash"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </center>
-                                                        <?php } else { ?>
+                                                <td class="align-middle text-center">
+                                                    <input type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_cal" id="fechacalif">
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
+                                                        <center>
                                                             <div class="contenedor-botones">
-                                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                                <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
+                                                                    <i class="fa-solid fa-expand"></i>
+                                                                </button>
+                                                                <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar w-100">
+                                                                    <i class="fa-sharp fa-solid fa-download"></i>
+                                                                </a>
+                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </button>
                                                             </div>
-                                                        <?php } ?>
-                                                    </td>
-                                                    <td>
-                                                        <div class="input-group custom-input">
-                                                            <input type="file" id="idcalifEDIT" name="nameCalifEDIT[]" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idcalifEDIT')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
+                                                        </center>
+                                                    <?php } else { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                         </div>
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <select class="form-control" name="nameapeloEDIT[]">
-                                                            <option value="Si" <?php if ($mostrar['apelo'] == 'Si') echo 'selected'; ?>>Si</option>
-                                                            <option value="No" <?php if ($mostrar['apelo'] == 'No') echo 'selected'; ?>>No</option>
-                                                        </select>
-                                                    </td>
-                                                    <td class="centrado">
-                                                        <?php if (!empty($mostrar['RutaApelacion'])) { ?>
-                                                            <center>
-                                                                <div class="contenedor-botones">
-                                                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
-                                                                        <i class="fa-solid fa-expand"></i>
-                                                                    </button>
-                                                                    <a href="<?php echo $mostrar['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar w-100">
-                                                                        <i class="fa-sharp fa-solid fa-download"></i>
-                                                                    </a>
-                                                                    <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
-                                                                        <i class="fa-solid fa-trash"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </center>
-                                                        <?php } else { ?>
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group custom-input">
+                                                        <input type="file" id="idcalifEDIT" name="nameCalifEDIT" class="form-control" accept=".pdf">
+                                                        <button class="button" type="button" onclick="clearFileInput('idcalifEDIT')" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <select class="form-control" name="nameapeloEDIT" id="selectapelo">
+                                                        <option value="Si" <?php if ($mostrar['apelo'] == 'Si') echo 'selected'; ?>>Si</option>
+                                                        <option value="No" <?php if ($mostrar['apelo'] == 'No') echo 'selected'; ?>>No</option>
+                                                    </select>
+                                                </td>
+                                                <td class="centrado">
+                                                    <?php if (!empty($mostrar['RutaApelacion'])) { ?>
+                                                        <center>
                                                             <div class="contenedor-botones">
-                                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                                <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
+                                                                    <i class="fa-solid fa-expand"></i>
+                                                                </button>
+                                                                <a href="<?php echo $mostrar['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar w-100">
+                                                                    <i class="fa-sharp fa-solid fa-download"></i>
+                                                                </a>
+                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </button>
                                                             </div>
-                                                        <?php } ?>
-                                                    </td>
-                                                    <td>
-                                                        <div class="input-group file-cal">
-                                                            <input type="file" id="idapelaEDIT" name="nameApelaEDIT[]" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idapelaEDIT')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
+                                                        </center>
+                                                    <?php } else { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                         </div>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <button class="Btncalif" type="submit" data-idcalif="<?php echo $mostrar['IDCalif'] ?>">Actualizar</button>
-                                                    </td>
-                                                </tr>
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <div class="input-group file-cal">
+                                                        <input type="file" id="idapelaEDIT" name="nameApelaEDIT" class="form-control" accept=".pdf">
+                                                        <button class="button" type="button" onclick="clearFileInput('idapelaEDIT')" style="width: 40px !important;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="Btncalif" type="submit" >Actualizar</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>
                                     <br>
                                 </div>
-                            </form>
+                            
 
                         </div>
 

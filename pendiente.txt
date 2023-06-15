@@ -11,6 +11,17 @@ ver como hacer focus a los radio porque no me deja
 
 me falta hacer lo de editar calificaciones
 
+
+agregar validaciones a los inputs de editar calificaciones
+
+en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
+
+falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
+
+
+
+tuve que eliminar la validacion del correo y del celular
+
 CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
 agregar las validaciones de permisos de usuario
@@ -20,22 +31,19 @@ habra un administrador quepueda registrar al resto de los usuarios y modificar s
 hacer quesolo el administrador pueda ver quieres somn los usuarios
 
 
-agregar validaciones a los inputs de editar calificaciones
-
-en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si apelo o no, la fecha y los archivos por id de calificacion.
-
-falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
 podria hacer que os usuarios se muestren junto a un boton como las calificaciones, y que al presionar editar, permitar ir a editar y se vea como el registro de usuario
 los usuarios no se pueden cambiar a si mismosel permiso asignado
 
 
-el boton que achica el menu tiene estilos, pasa solo al editar usuario creo
 hacer que cuando encuentre a alguien en la lista total, muestre un boton para ir al perfil
 
 
 lo de editar calificaciones falla totalmente
 
+falta hacer funcional el login y recuperar contraseña,
+falta hacer las sesiones, para redireccionar a los que no tienen permisos,
+falta revisar las validacionesde si cumple o no,
 
 
 Médico: Sí | Honorario: Sí | Inscripción: Sí

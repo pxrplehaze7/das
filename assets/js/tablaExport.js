@@ -32,8 +32,8 @@ $(document).ready(function() {
         {
           extend: 'excel',
           text: '<i class="fas fa-file-excel"></i> Exportar a Excel',
-          title: 'Registro de Usuarios',
-          filename: 'Registro de Usuarios',
+          title: 'Trabajadores Registrados',
+          filename: 'Trabajadores_Registrados',
           orientation: 'landscape',
           className: 'btn btn-dexcel btn-success',
           exportOptions: {
@@ -44,8 +44,8 @@ $(document).ready(function() {
         {
           extend: 'pdf',
           text: '<i class="fas fa-file-pdf"></i> Exportar a PDF',
-          title: 'Registro de Usuarios',
-          filename: 'Registro de Usuarios',
+          title: 'Trabajadores Registrados',
+          filename: 'Trabajadores_Registrados',
           orientation: 'landscape',
           className: 'btn btn-dpdf btn-danger',
           exportOptions: {
@@ -117,24 +117,24 @@ $(document).ready(function() {
       {
         extend: 'excel',
         text: '<i class="fas fa-file-excel"></i> Exportar a Excel',
-        title: 'Registro de Usuarios',
-        filename: 'Registro de Usuarios',
+        title: 'Usuarios Registrados',
+        filename: 'Usuarios_Registrados',
         orientation: 'landscape',
         className: 'btn btn-dexcel btn-success',
         exportOptions: {
-          columns: ':visible',
+          columns: ':not(:last-child)', // Excluir la última columna
           title: 'Datos en Excel'
         }
       },
       {
         extend: 'pdf',
         text: '<i class="fas fa-file-pdf"></i> Exportar a PDF',
-        title: 'Registro de Usuarios',
-        filename: 'Registro de Usuarios',
-        orientation: 'landscape',
+        title: 'Usuarios Registrados',
+        filename: 'Usuarios_Registrados',
+        orientation: 'portrait', // Cambiar a 'portrait' para modo retrato
         className: 'btn btn-dpdf btn-danger',
         exportOptions: {
-          columns: ':visible',
+          columns: ':not(:last-child)', // Excluir la última columna
           title: 'Datos en PDF'
         },
         customize: function(doc) {
@@ -160,8 +160,9 @@ $(document).ready(function() {
     $(node).removeClass('btn-default').addClass('btn-sm');
   });
 
-  $('#total').on('buttons.export', function(e, button, config) {
+  $('#totalUsuarios').on('buttons.export', function(e, button, config) {
     var updatedData = table.buttons.exportData(config);
     config.data = updatedData;
   });
 });
+
