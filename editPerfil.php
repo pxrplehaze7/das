@@ -23,6 +23,7 @@ if (!isset($_SESSION['rol'])) {
         $apellidop = $miperfil['ApellidoP'];
         $apellidom = $miperfil['ApellidoM'];
         $correo = $miperfil['CorreoU'];
+        $idper = $miperfil['IDUsuario'];
     } else {
        
         echo "No se encontraron datos de perfil";
@@ -68,18 +69,18 @@ if (!isset($_SESSION['rol'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="registroU" method="POST">
+                    <form id="miperfil"  method="POST">
                         <div class="title">
                             <h1 class="mt-4">Editar mis datos</h1>
                         </div>
                         <br>
                         <div class="seccion">
+                        <input name="idperson" id="idPersonaperfil" value="<?php echo $idper?> " type="hidden">
 
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
                                     <input type="text" name="namePersona" id="idPersona" value="<?php echo $nombre; ?>" class="form-control" oninput="validarTexto(this)" required>
-
                                 </div>
 
                                 <div class="col-md">
@@ -101,7 +102,7 @@ if (!isset($_SESSION['rol'])) {
                                 </div>
 
                                 <div class="col-4">
-                                    <label for="idPass"><span style="color: #c40055;">*</span> Contraseña Temporal</label>
+                                    <label for="idPass"><span style="color: #c40055;">*</span> Cambiar Contraseña</label>
                                     <input type="password" name="namePass" id="idPass" class="form-control" value="<?php echo $miperfil['Contrasenna']; ?>" required>
                                 </div>
 
