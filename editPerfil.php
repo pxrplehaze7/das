@@ -1,29 +1,40 @@
 <?php
-include("./controller/config/conexion.php");
 session_start();
+include("./controller/config/conexion.php");
+
 if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
-if ($_SESSION['rol'] !== '1') {
-    header('Location: ./components/error.html');
-    exit();
-}
-$IDUsuario = $_POST['idperfil'];
 
-if (isset($_GET['idperfil'])) {
-    $iduser = $_GET['idperfil'];
 
-    $datosperfil = "SELECT * FROM usuario WHERE IDUser='$iduser' LIMIT 1";
+
+ if (isset($_SESSION['idperfil'])) {
+    echo $_SESSION['idperfil'];
+    $idUsuario = $_SESSION['idperfil'];
+
+    $datosperfil = "SELECT * FROM usuario WHERE IDUsuario='$idUsuario' LIMIT 1";
     $resultDatosperfil = mysqli_query($conn, $datosperfil);
 
     if (mysqli_num_rows($resultDatosperfil) == 1) {
-        // Si se encuentra una persona, se asigna el resultado a $persona
         $miperfil = mysqli_fetch_assoc($resultDatosperfil);
-    }
-} ?>
 
-<?php include("./controller/config/conexion.php"); ?>
+        $nombre = $miperfil['NombreU'];
+        $apellidop = $miperfil['ApellidoP'];
+        $apellidom = $miperfil['ApellidoM'];
+        $correo = $miperfil['CorreoU'];
+    } else {
+       
+        echo "No se encontraron datos de perfil";
+        exit();
+    }
+} else {
+ 
+    echo "No se ha establecido la variable de sesión 'idperfil'";
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,10 +61,10 @@ if (isset($_GET['idperfil'])) {
 </head>
 
 <body class="sb-nav-fixed">
-    <?php require("./components/navbar.php") ?>
+    <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
 
-        <?php require("./components/sidebar.php") ?>
+        <?php require("./components/sidebar.php"); ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
@@ -67,18 +78,18 @@ if (isset($_GET['idperfil'])) {
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
-                                    <input type="text" name="namePersona" id="idPersona" value="<?php echo $miperfil['NombreU'] ?>" class="form-control" oninput="validarTexto(this)" required>
+                                    <input type="text" name="namePersona" id="idPersona" value="<?php echo $nombre; ?>" class="form-control" oninput="validarTexto(this)" required>
 
                                 </div>
 
                                 <div class="col-md">
                                     <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
-                                    <input type="text" name="namePaterno" id="idAppat" value="<?php echo $miperfil['ApellidoP'] ?>" class="form-control" oninput="validarTexto(this)" required>
+                                    <input type="text" name="namePaterno" id="idAppat" value="<?php echo $apellidop; ?>" class="form-control" oninput="validarTexto(this)" required>
 
                                 </div>
                                 <div class="col-md">
                                     <label for="idApmat">Apellido Materno</label>
-                                    <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $miperfil['ApellidoM'] ?>" class="form-control" oninput="validarTexto(this)">
+                                    <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $apellidom; ?>" class="form-control" oninput="validarTexto(this)">
 
                                 </div>
                             </div>
@@ -86,12 +97,12 @@ if (isset($_GET['idperfil'])) {
                             <div class="row">
                                 <div class="col-4">
                                     <label for="idCorreo"><span style="color: #c40055;">*</span> Correo Electrónico</label>
-                                    <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $miperfil['CorreoU'] ?>" class="form-control" required>
+                                    <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $correo; ?>" class="form-control" required>
                                 </div>
 
                                 <div class="col-4">
-                                    <label for="idCorreo"><span style="color: #c40055;">*</span> Contraseña Temporal</label>
-                                    <input type="password" name="namePass" id="idPass" class="form-control" value="<?php echo $miperfil['Contrasenna'] ?>" required>
+                                    <label for="idPass"><span style="color: #c40055;">*</span> Contraseña Temporal</label>
+                                    <input type="password" name="namePass" id="idPass" class="form-control" value="<?php echo $miperfil['Contrasenna']; ?>" required>
                                 </div>
 
                             </div>

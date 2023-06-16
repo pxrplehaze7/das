@@ -92,10 +92,12 @@ if (isset($_POST['nameBuscaRut'])) {
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <form action="editPerfil.php" method="post">
-          <input type="hidden" name="idperfil" value="<?php echo $IDUsuario; ?>">
+        <!-- <form action="editPerfil.php" method="POST">
+<input type="hidden" name="idUsuario" value="<?php echo $_SESSION['idperfil']; ?>">
           <button type="submit" class="dropdown-item">Editar Perfil</button>
-        </form>
+        </form> -->
+        <!-- <li><a class="dropdown-item" href="./editPerfil.php">Editar Perfil</a></li> -->
+        <a href="editPerfil.php">Editar perfil</a>
 
 
 

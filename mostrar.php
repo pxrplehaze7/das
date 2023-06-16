@@ -1,4 +1,4 @@
-<?php include("./controller/config/conexion.php"); 
+<?php include("./controller/config/conexion.php");
 session_start();
 if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
@@ -40,15 +40,14 @@ if (!isset($_SESSION['rol'])) {
             <main>
                 <?php if (isset($persona)) { ?>
                     <div class="container-md">
-                        <!-- <form action="editar_registro.php" method="POST"> -->
+
+                    <!-- AQUI ME FALTA OCULTAR EL BOTON -->
                         <form action="editar_registro.php" method="GET">
                             <div class="row d-flex justify-content-center align-items-center principal">
                                 <div class="title">
                                     <h1 class="mt-4">Información</h1>
                                     <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <!-- <input type="hidden" name="nameidtraEditar" id="idtraid" value="<?php echo $persona['IDTra'] ?>"> -->
                                     <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-                                    <!-- <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>"> -->
                                 </div>
                             </div>
                         </form>
@@ -58,10 +57,9 @@ if (!isset($_SESSION['rol'])) {
                             <div class="row d-flex justify-content-center align-items-center principal">
                                 <div class="title">
                                     <button class="btn btn-editar" type="submit">Registros anteriores</button>
-                                    <!-- <input type="hidden" name="nameidtraEditar" id="idtraid" value="<?php echo $persona['IDTra'] ?>"> -->
-                                    <input type="hidden" name="idantes" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                    <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
 
-                        
+
                                 </div>
                             </div>
                         </form>
@@ -429,12 +427,14 @@ if (!isset($_SESSION['rol'])) {
 
                             <div class="row d-flex justify-content-center align-items-center califica">
                                 <h6>Calificaciones</h6>
-                                <form action="calificaciones.php" method="POST">
-                                    <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                    <input type="hidden" name="nameidtracalif" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-                                </form>
+                                <?php
+                                if ($_SESSION['rol'] === '1') { ?>
+                                    <form action="calificaciones.php" method="POST">
+                                        <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                        <input type="hidden" name="nameidtracalif" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                    </form>
+                                <?php } ?>
                             </div>
-
 
                             <table id="myTable" class="table table-striped table-bordered">
                                 <thead>

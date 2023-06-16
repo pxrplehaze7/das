@@ -147,7 +147,7 @@ if (!isset($_SESSION['rol'])) {
                         return $fechaCarga;
                     }
 
-                    $id = $_GET['idantes']; // Obtener el rut ingresado por el usuario
+                    $id = $_GET['id']; // Obtener el rut ingresado por el usuario
 
                     $folder = "das/controller/pdfs_personal"; // Ruta de la carpeta principal relativa al directorio raíz del servidor web
                     $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $id; // Ruta completa de la carpeta específica del rut
