@@ -1,5 +1,14 @@
 <?php
 include("./controller/config/conexion.php");
+session_start();
+if (!isset($_SESSION['rol'])) {
+    header('Location: index.php');
+    exit();
+}
+if ($_SESSION['rol'] !== '1') {
+    header('Location: ./components/error.html');
+    exit();
+}
 if (isset($_POST['nameidtracalif'])) {
     $idtracal = $_POST['nameidtracalif'];
 
@@ -9,11 +18,9 @@ if (isset($_POST['nameidtracalif'])) {
     $datosCali = mysqli_query($conn, $datosCali);
     list($idTrabajador, $rut, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,7 +47,7 @@ if (isset($_POST['nameidtracalif'])) {
 <body class="sb-nav-fixed">
     <div id="layoutSidenav">
         <?php require("./components/navbar.php") ?>
-        <?php require("./components/sidebar.html") ?>
+        <?php require("./components/sidebar.php") ?>
 
 
         <div id="layoutSidenav_content">

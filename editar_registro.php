@@ -1,16 +1,18 @@
 <?php
 include("./controller/config/conexion.php");
+session_start();
+if (!isset($_SESSION['rol'])) {
+    header('Location: index.php');
+    exit();
+}
+if ($_SESSION['rol'] !== '1') {
+    header('Location: ./components/error.html');
+    exit();
+}
 
-// Obtener el rut enviado por POST
-// if (isset($_POST['nameidtraEditar'])) {
 if (isset($_GET['id'])) {
-
-    // $idtra = $_POST['nameidtraEditar'];
     $idtra = $_GET['id'];
-    // $rut = $_POST['nameRutEditar']; 
 
-
-    // Realiza la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
     $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, lug.IDLugar, sec.IDSector, tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Decreto, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaContrato, tra.RutaDJur, tra.RutaSerM, tra.RutaSCom, tra.RutaExaM, tra.Observ, tra.RutaInscripcion
     FROM trabajador tra
     INNER JOIN categoria cat ON (cat.IDCat = tra.IDCat)
@@ -21,14 +23,9 @@ if (isset($_GET['id'])) {
     INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
     WHERE tra.IDTra='$idtra' LIMIT 1";
 
-
-
-
     $resultDatosEditar = mysqli_query($conn, $datosEditar);
 
-    // Verificar si se encontró una persona en la base de datos con el valor de $rut
     if (mysqli_num_rows($resultDatosEditar) == 1) {
-        // Si se encuentra una persona, se asigna el resultado a $persona
         $persona = mysqli_fetch_assoc($resultDatosEditar);
     }
 } ?>
@@ -62,7 +59,7 @@ if (isset($_GET['id'])) {
 <body class="sb-nav-fixed">
     <div id="layoutSidenav">
         <?php require("./components/navbar.php") ?>
-        <?php require("./components/sidebar.html") ?>
+        <?php require("./components/sidebar.php") ?>
 
 
         <div id="layoutSidenav_content">
@@ -616,113 +613,113 @@ if (isset($_GET['id'])) {
 
 
 
-                                <div class="documentacion seccion seccion-cal">
-                                    <h6>Calificaciones</h6>
+                            <div class="documentacion seccion seccion-cal">
+                                <h6>Calificaciones</h6>
 
 
 
 
 
-                                    <table id="calEDIT" class="table table-striped table-bordered" style="width:100%">
-                                        <thead>
-                                                <tr>
-                                                    <th class="text-center" style="width: 13%;">Fecha</th>
-                                                    <th class="text-center">Calificación</th>
-                                                    <th class="text-center">Subir o Cambiar Calificación</th>
-                                                    <th class="text-center" style="width: 7%;">Apelo</th>
-                                                    <th class="text-center">Apelación</th>
-                                                    <th class="text-center">Subir o Cambiar Apelación</th>
-                                                    <th class="text-center">Actualizar</th>
-                                                </tr>
-                                        </thead>
-                                        <tbody>
+                                <table id="calEDIT" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" style="width: 13%;">Fecha</th>
+                                            <th class="text-center">Calificación</th>
+                                            <th class="text-center">Subir o Cambiar Calificación</th>
+                                            <th class="text-center" style="width: 7%;">Apelo</th>
+                                            <th class="text-center">Apelación</th>
+                                            <th class="text-center">Subir o Cambiar Apelación</th>
+                                            <th class="text-center">Actualizar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                         <?php while ($mostrar = mysqli_fetch_array($resultadoCalif)) { ?>
                                             <form method="POST" enctype="multipart/form-data" id="edicion_calif">
-                                <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
-                                            <tr>
+                                                <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
+                                                <tr>
 
-                                                <td class="align-middle text-center">
-                                                    <input type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_cal" id="fechacalif">
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
-                                                        <center>
+                                                    <td class="align-middle text-center">
+                                                        <input type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_cal" id="fechacalif">
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
+                                                            <center>
+                                                                <div class="contenedor-botones">
+                                                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
+                                                                        <i class="fa-solid fa-expand"></i>
+                                                                    </button>
+                                                                    <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar w-100">
+                                                                        <i class="fa-sharp fa-solid fa-download"></i>
+                                                                    </a>
+                                                                    <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <i class="fa-solid fa-trash"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </center>
+                                                        <?php } else { ?>
                                                             <div class="contenedor-botones">
-                                                                <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
-                                                                    <i class="fa-solid fa-expand"></i>
-                                                                </button>
-                                                                <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar w-100">
-                                                                    <i class="fa-sharp fa-solid fa-download"></i>
-                                                                </a>
-                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
-                                                                    <i class="fa-solid fa-trash"></i>
-                                                                </button>
+                                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                             </div>
-                                                        </center>
-                                                    <?php } else { ?>
-                                                        <div class="contenedor-botones">
-                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group custom-input">
+                                                            <input type="file" id="idcalifEDIT" name="nameCalifEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idcalifEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <div class="input-group custom-input">
-                                                        <input type="file" id="idcalifEDIT" name="nameCalifEDIT" class="form-control" accept=".pdf">
-                                                        <button class="button" type="button" onclick="clearFileInput('idcalifEDIT')" style="width: 40px !important;">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <select class="form-control" name="nameapeloEDIT" id="selectapelo">
-                                                        <option value="Si" <?php if ($mostrar['apelo'] == 'Si') echo 'selected'; ?>>Si</option>
-                                                        <option value="No" <?php if ($mostrar['apelo'] == 'No') echo 'selected'; ?>>No</option>
-                                                    </select>
-                                                </td>
-                                                <td class="centrado">
-                                                    <?php if (!empty($mostrar['RutaApelacion'])) { ?>
-                                                        <center>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <select class="form-control" name="nameapeloEDIT" id="selectapelo">
+                                                            <option value="Si" <?php if ($mostrar['apelo'] == 'Si') echo 'selected'; ?>>Si</option>
+                                                            <option value="No" <?php if ($mostrar['apelo'] == 'No') echo 'selected'; ?>>No</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="centrado">
+                                                        <?php if (!empty($mostrar['RutaApelacion'])) { ?>
+                                                            <center>
+                                                                <div class="contenedor-botones">
+                                                                    <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
+                                                                        <i class="fa-solid fa-expand"></i>
+                                                                    </button>
+                                                                    <a href="<?php echo $mostrar['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar w-100">
+                                                                        <i class="fa-sharp fa-solid fa-download"></i>
+                                                                    </a>
+                                                                    <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <i class="fa-solid fa-trash"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </center>
+                                                        <?php } else { ?>
                                                             <div class="contenedor-botones">
-                                                                <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
-                                                                    <i class="fa-solid fa-expand"></i>
-                                                                </button>
-                                                                <a href="<?php echo $mostrar['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar w-100">
-                                                                    <i class="fa-sharp fa-solid fa-download"></i>
-                                                                </a>
-                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
-                                                                    <i class="fa-solid fa-trash"></i>
-                                                                </button>
+                                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                             </div>
-                                                        </center>
-                                                    <?php } else { ?>
-                                                        <div class="contenedor-botones">
-                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                        <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group file-cal">
+                                                            <input type="file" id="idapelaEDIT" name="nameApelaEDIT" class="form-control" accept=".pdf">
+                                                            <button class="button" type="button" onclick="clearFileInput('idapelaEDIT')" style="width: 40px !important;">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <div class="input-group file-cal">
-                                                        <input type="file" id="idapelaEDIT" name="nameApelaEDIT" class="form-control" accept=".pdf">
-                                                        <button class="button" type="button" onclick="clearFileInput('idapelaEDIT')" style="width: 40px !important;">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <button class="Btncalif" type="submit" >Actualizar</button>
-                                                    </form>
-                                                </td>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <button class="Btncalif" type="submit">Actualizar</button>
+                                            </form>
+                                            </td>
                                             </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                    <br>
-                                </div>
-                            
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                                <br>
+                            </div>
+
 
                         </div>
 

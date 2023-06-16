@@ -102,7 +102,7 @@ if (isset($_POST['nameBuscaRut'])) {
         <li>
           <hr class="dropdown-divider" />
         </li>
-        <li><a class="dropdown-item" href="#!">Cerrar Sesión</a></li>
+        <li><a class="dropdown-item" href="./controller/logout.php">Cerrar Sesión</a></li>
       </ul>
     </li>
   </ul>

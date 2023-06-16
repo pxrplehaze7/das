@@ -1,29 +1,31 @@
 <?php
-// Obtener la ID del usuario del campo oculto en el formulario
+include("./controller/config/conexion.php");
+session_start();
+if (!isset($_SESSION['rol'])) {
+    header('Location: index.php');
+    exit();
+}
+if ($_SESSION['rol'] !== '1') {
+    header('Location: ./components/error.html');
+    exit();
+}
 $IDUsuario = $_POST['idperfil'];
 
 if (isset($_GET['idperfil'])) {
     $iduser = $_GET['idperfil'];
 
-    // Realiza la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
     $datosperfil = "SELECT * FROM usuario WHERE IDUser='$iduser' LIMIT 1";
     $resultDatosperfil = mysqli_query($conn, $datosperfil);
 
-    // Verificar si se encontró una persona en la base de datos con el valor de $rut
     if (mysqli_num_rows($resultDatosperfil) == 1) {
         // Si se encuentra una persona, se asigna el resultado a $persona
         $miperfil = mysqli_fetch_assoc($resultDatosperfil);
     }
 } ?>
 
-
-
-
-
 <?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -51,7 +53,7 @@ if (isset($_GET['idperfil'])) {
     <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
 
-        <?php require("./components/sidebar.html") ?>
+        <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">

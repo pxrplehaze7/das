@@ -59,8 +59,14 @@
       </div>
     </div>
     <div class="sb-sidenav-footer">
-      <div class="small">Usuario conectado como:</div>
-      Nombre de Usuario
-    </div>
+
+    <div class="small">Usuario conectado como:</div>
+    <?php
+    if (isset($_SESSION['nombre'])) {
+        $nombreCompleto = $_SESSION['nombre'];
+        echo "<div>$nombreCompleto</div>";
+    }
+    ?>
+</div>
   </nav>
 </div>

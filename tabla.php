@@ -1,3 +1,11 @@
+<?php
+include("./controller/config/conexion.php"); 
+session_start();
+if (!isset($_SESSION['rol'])) {
+    header('Location: index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,7 +38,7 @@
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
-        <?php require("./components/sidebar.html"); ?>
+        <?php require("./components/sidebar.php"); ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">

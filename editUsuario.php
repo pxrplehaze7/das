@@ -1,11 +1,18 @@
 <?php
 include("./controller/config/conexion.php");
-
+session_start();
+if (!isset($_SESSION['rol'])) {
+    header('Location: index.php');
+    exit();
+}
+if ($_SESSION['rol'] !== '1') {
+    header('Location: ./components/error.html');
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $idUsuario = $_GET['id'];
     echo "ID de usuario recibido: " . $idUsuario;
-
 
     $user = "SELECT * FROM usuario WHERE IDUsuario = '$idUsuario'";
     $ruser = mysqli_query($conn, $user);
@@ -50,7 +57,7 @@ if (isset($_GET['id'])) {
 <body class="sb-nav-fixed">
     <div id="layoutSidenav">
         <?php require("./components/navbar.php") ?>
-        <?php require("./components/sidebar.html") ?>
+        <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
