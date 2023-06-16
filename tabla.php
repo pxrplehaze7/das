@@ -1,5 +1,5 @@
 <?php
-include("./controller/config/conexion.php"); 
+include("./controller/config/conexion.php");
 session_start();
 if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
@@ -82,10 +82,10 @@ if (!isset($_SESSION['rol'])) {
                                     </div>
                                     <div class="col-md-3 row">
                                         <div class="col mt-auto text-center">
-                                            <button id="btn-filtro" class="btn btn-enviar">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
+                                            <button id="btn-filtro" class="btn btn-filtro">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
                                         </div>
                                         <div class="col mt-auto text-center">
-                                            <button id="limpia-filtro" class="btn btn-enviar limpia-filtro">Limpiar <i class="fas fa-eraser"></i></i></button>
+                                            <button id="limpia-filtro" class="btn btn-filtro ">Limpiar <i class="fas fa-eraser"></i></i></button>
                                         </div>
                                     </div>
                                 </div>

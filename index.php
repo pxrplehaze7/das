@@ -38,7 +38,7 @@
                                             <label for="inputPassword">Contraseña</label>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="redirect" href="password.html">¿Olvidaste tu Contraseña?</a>
+                                            <a class="redirec" href="recuperar_contrasenna.html">¿Olvidaste tu Contraseña?</a>
                                             <button class="btn btn-inicio" type="submit">Entrar</button>
                                         </div>
                                     </form>

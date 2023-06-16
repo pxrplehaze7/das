@@ -519,10 +519,22 @@ function honorarioEdit() {
 }
 
 
-
 $(document).ready(function() {
   $("#registroU").on("submit", function(event) {
     event.preventDefault();
+
+    // Obtener el valor de la opción seleccionada
+    var selectedOption = $("#idPermiso").val();
+
+    // Verificar si la opción seleccionada es vacía
+    if (selectedOption === "") {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, seleccione una opción válida'
+      });
+      return; // Detener el flujo del código y evitar que se muestre el cuadro de diálogo de confirmación
+    }
 
     Swal.fire({
       title: '¿Desea registrar Usuario?',
@@ -548,13 +560,15 @@ $(document).ready(function() {
             Swal.fire({
               icon: 'success',
               title: 'Usuario registrado exitosamente',
-              showConfirmButton: false, 
+              html: 'Clave temporal: <strong>' + response.tempPass + '</strong>',
+              showConfirmButton: true,
+              confirmButtonText: 'OK'
             }).then(() => {
+              $("#idRutInput").val("");
               $("#idPersona").val("");
               $("#idAppat").val("");
               $("#idApmat").val("");
               $("#idCorreo").val("");
-              $("#idPass").val("");
               $("#idPermiso").val("");
             });
           } else {
@@ -575,6 +589,7 @@ $(document).ready(function() {
     });
   });
 });
+
 
 
 

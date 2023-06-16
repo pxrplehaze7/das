@@ -4,7 +4,12 @@ session_start();
 if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
-} ?>
+}
+if ($_SESSION['rol'] !== '1') {
+    header('Location: ./components/error.html');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -61,10 +66,7 @@ if (!isset($_SESSION['rol'])) {
                                             <th>Apellido Materno</th>
                                             <th>Correo</th>
                                             <th class="text-center">Permiso</th>
-                                            <?php
-                                            if ($_SESSION['rol'] === '1') { ?>
-                                                <th>Acciones</th>
-                                            <?php } ?>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody id="trabajadores_tbody">
@@ -82,15 +84,12 @@ if (!isset($_SESSION['rol'])) {
                                                 <td style="text-align: center; <?php if ($user['Rol'] == 1) { ?>background-color: #463bfa;<?php } else { ?>background-color: #009CFD;<?php } ?> color: white; ">
                                                     <?php echo $user['Rol'] == 1 ? 'Administrador' : 'Lectura'; ?>
                                                 </td>
-                                                <?php
-                                                if ($_SESSION['rol'] === '1') { ?>
-                                                    <td>
-                                                        <div class="d-flex align-items-center justify-content-around">
-                                                            <a href="editusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
-                                                            <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
-                                                        </div>
-                                                    </td>
-                                                <?php } ?>
+                                                <td>
+                                                    <div class="d-flex align-items-center justify-content-around">
+                                                        <a href="editusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
+                                                        <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

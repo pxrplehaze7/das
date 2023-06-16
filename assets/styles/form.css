@@ -706,3 +706,25 @@ button.boton-registrarB:active {
   margin-bottom: 8px;
   margin-right: 12px;
 }
+
+
+.btn-filtro {
+  background-color: #212529 !important;
+  border-color: #212529 !important;
+  color: #ffffff !important;
+}
+
+.btn-filtro:hover {
+  background-color: #2b2670 !important ;
+  border-color: #2b2670 !important;
+}
+
+.btn-filtro:active {
+  background-color: #322c83 !important ;
+  border-color: #322c83 !important;
+}
+
+.resets{
+  margin-left: 8px;
+  margin-right: 8px;
+}

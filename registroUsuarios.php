@@ -44,55 +44,59 @@ if ($_SESSION['rol'] !== '1') {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="registroU"  method="POST">
+                    <form id="registroU" method="POST">
                         <div class="title">
                             <h1 class="mt-4">Registro de Usuario</h1>
                         </div>
                         <br>
                         <div class="seccion">
-
+                            <div class="alert alert-warning" role="alert">
+                                Si el rut es 19876543-K la contraseña temporal será DAS19876543.
+                            </div>
                             <div class="row ">
+                                <div class="col-md">
+                                    <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
+                                    <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
+                                    <br>
+                                </div>
                                 <div class="col-md">
                                     <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
                                     <input type="text" name="namePersona" id="idPersona" placeholder="Ingrese Nombres" class="form-control" oninput="validarTexto(this)" required>
-
+                                    <br>
                                 </div>
-
                                 <div class="col-md">
                                     <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
                                     <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)" required>
-
+                                    <br>
                                 </div>
+
+                            </div>
+
+                            <div class="row" style="padding-bottom: 17px;">
                                 <div class="col-md">
                                     <label for="idApmat">Apellido Materno</label>
                                     <input type="text" name="nameMaterno" id="idApmat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)">
-
+                                    <br>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-4">
-                                    <label for="idCorreo"><span style="color: #c40055;">*</span> Correo Electrónico</label>
+                                <div class="col-md">
+                                    <label for=" idCorreo"><span style="color: #c40055;">*</span> Correo Electrónico</label>
                                     <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control" required>
+                                    <br>
                                 </div>
 
-                                <div class="col-4">
-                                    <label for="idCorreo"><span style="color: #c40055;">*</span> Contraseña Temporal</label>
-                                    <input type="password" name="namePass" id="idPass" class="form-control" required>
-                                </div>
-
-                                <div class="col-4">
-                                    <label><span style="color: #c40055;">*</span> Tipo de permiso</label>
+                                <div class="col-md">
+                                    <label><span style="color: #c40055;">*</span> Tipo de Permiso</label>
                                     <select class="form-control" id="idPermiso" name="namePermiso" required>
-                                    <option value=""> Seleccione</option>
+                                        <option hidden value=""> Seleccione</option>
                                         <option value=1>Administrador</option>
                                         <option value=0>Solo lectura</option>
                                     </select>
+                                    <br>
                                 </div>
 
                             </div>
 
-                            <br>
+                          
                             <div class="boton-registrar">
                                 <button id="btnRegistrar" type="submit" class="boton-registrarB">
                                     <div class="svg-wrapper-1">
@@ -105,7 +109,9 @@ if ($_SESSION['rol'] !== '1') {
                                     </div>
                                     <span>Registrar</span>
                                 </button>
+                                
                             </div>
+                          
                         </div>
                     </form>
                 </div>
@@ -120,4 +126,5 @@ if ($_SESSION['rol'] !== '1') {
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
 </body>
+
 </html>

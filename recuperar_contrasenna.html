@@ -24,19 +24,21 @@
             <main>
                 <div class="container">
                     <div class="row justify-content-center">
-                        <div class="col-lg-5 center-card"> <!-- Added "center-card" class -->
+                        <div class="col-lg-5 center-card">
                             <div class="card shadow-lg border-0 rounded-lg mt-5" style="width: 100%">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Recuperar Contraseña</h3></div>
+                                <div class="card-header">
+                                    <h3 class="text-center font-weight-light my-4">Recuperar Contraseña</h3>
+                                </div>
                                 <div class="card-body">
-                                    <!-- <div class="small mb-3 text-muted">Ingresa tu dirección de correo electrónico y recibirás un enlace para restablecer tu contraseña.</div> -->
-                                    <form>
+                                  <!-- <div class="small mb-3 text-muted">Ingresa tu dirección de correo electrónico y recibirás un enlace para restablecer tu contraseña.</div> -->
+                                    <form method="POST" action="recuperar_password.php">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                            <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" required />
                                             <label for="inputEmail">Correo Electrónico</label>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="redirec" href="login.html">Ir a iniciar sesión</a>
-                                            <a class="btn btn-inicio" href="login.html">Recuperar Contraseña</a>
+                                            <a class="redirec" href="index.php">Ir a iniciar sesión</a>
+                                            <button class="btn btn-inicio" type="submit">Recuperar Contraseña</button>
                                         </div>
                                     </form>
                                 </div>
@@ -48,6 +50,6 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
 </body>
+
 </html>

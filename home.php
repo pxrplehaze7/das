@@ -44,9 +44,8 @@ include("./controller/consulta_bar.php");
 
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-md">
-                    <h1 class="mt-4">Registros
-                    </h1>
+            <div class="container-md">
+                   <br>
                     <ol class="breadcrumb mb-4"></ol>
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">

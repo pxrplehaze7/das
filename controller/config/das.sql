@@ -3,6 +3,7 @@ USE `das`;
 
 CREATE TABLE `das`.`usuario` (
     `IDUsuario` INT NOT NULL AUTO_INCREMENT,
+    `RutU` VARCHAR(10) NOT NULL,
     `NombreU` VARCHAR(200) NOT NULL,
     `ApellidoP` VARCHAR(100) NOT NULL,
     `ApellidoM` VARCHAR(100) NULL,

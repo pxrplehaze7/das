@@ -19,9 +19,6 @@ en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
 
-
-tuve que eliminar la validacion del correo y del celular
-
 CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
 agregar las validaciones de permisos de usuario
@@ -38,11 +35,8 @@ los usuarios no se pueden cambiar a si mismosel permiso asignado
 
 hacer que cuando encuentre a alguien en la lista total, muestre un boton para ir al perfil
 
-
 lo de editar calificaciones falla totalmente
 
-falta hacer funcional el login y recuperar contraseña,
-falta hacer las sesiones, para redireccionar a los que no tienen permisos,
 falta revisar las validacionesde si cumple o no,
 
 
@@ -58,37 +52,17 @@ Médico: No | Honorario: No | Inscripción: No
 variantes para verificacion
 
 
-      <?php if ($id_rol_usuario_actual == 1) { ?>
+     la lista de usuarios solo la ven los administradores y solo ellos registran
 
-                                    <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-info editbtn" onclick="busca_user(<?php echo $mostrar['id_user'] ?>)" data-toggle="modal" data-target="#editar"><i class="fa-solid fa-pen-to-square"></i></button></td>
+     hacer que los admin nopuedan editarse a si mismos, porquetambien cuando se cambian a si mismos, las credenciales de session star no actualizan el rol
 
-                                    <td class="btn-admin"><button <?php if ($mostrar['id_user'] == $id_del_usuario) { ?>hidden="hidden" <?php } ?> type="button" class="btn btn-danger editbtn" data-toggle="modal" data-target="#deleteUsuario<?php echo $mostrar['id_user'] ?>"><i class="fa-solid fa-trash"></i></button>
+     hacer que al cambiar contraseña en editar perfil, sea encriptada
 
-                                        <!-- DELETE Modal-->
-                                        <div class="modal fade" id="deleteUsuario<?php echo $mostrar['id_user'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Registro</h5>
-                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">¿Esta seguro?</div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                        <button class="btn btn-primary" type="submit" data-dismiss="modal" name="eliminarUser" onclick="delete_user(<?php echo $mostrar['id_user'] ?>)">Confirmar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+     me falta ocultar elboton de editar
 
+     hacer que el admin pueda reestablecer la contraseña de un usuario con un boton y que cuando lo haga, se establezca el rut de esa persona como clave asi como das19334538
 
+     ver como hacer el formulario de reset pass mediante el boton que tambien esta en elformulario
 
-                                    </td>
-
-                                <?php } ?>
-
-
-
-
+     arreglar tablas para que sean responsivas, arreglar botones que se ponen feos, 
+     cambiar a get las cosas
