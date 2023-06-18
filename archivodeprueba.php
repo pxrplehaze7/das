@@ -1,142 +1,113 @@
-<?php include("./controller/config/conexion.php");
-session_start();
-if (!isset($_SESSION['rol'])) {
-    header('Location: index.php');
-    exit();
-}
-?>
-<!DOCTYPE html>
-<html lang="es">
+<?php
+// CONEXION A LA BASE DE DATOS
+include("./config/conexion.php");
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Información</title>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $idTrabajador = $_POST['idtracal'];
 
+    foreach ($_POST as $key => $value) {
+        if (strpos($key, 'namefecha_') !== false) {
+            $idCalificacion = substr($key, strlen('namefecha_'));
+            $fechaCal = $_POST['namefecha_'.$idCalificacion];
+            $apelo = $_POST['nameapelo_'.$idCalificacion];
 
-</head>
+            $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
+            $fechaActual = $fechaActual->format('d-m-Y');
+            $host = $_SERVER['HTTP_HOST'];
+            $ruta = 'pdfs_personal/';
 
-<body class="sb-nav-fixed">
-    <div id="layoutSidenav">
- 
+            $pdfcalificacion = (!empty($_FILES['nameCalif_'.$idCalificacion]['name'])) ? uniqid() . '.pdf' : '';
+            $pdfapelo = (!empty($_FILES['nameApela_'.$idCalificacion]['name'])) ? uniqid() . '.pdf' : '';
 
-    <?php
-include("./controller/config/conexion.php");
+            $consultaDoc = "SELECT * FROM calificaciones WHERE IDCalif = '$idCalificacion'";
+            $resFile = mysqli_query($conn, $consultaDoc);
 
-// Obtener el rut enviado por POST
-if (isset($_POST['nameBuscaRut'])) {
-  $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
+            if (mysqli_num_rows($resFile) == 1) {
+                $EditC = mysqli_fetch_assoc($resFile);
 
-  // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-  $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, tra.IDAFP, tra.IDPrev, tra.IDTra , tra.IDCon, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
-                  FROM trabajador tra
-                  INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
-                  INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
-                  INNER JOIN afp afp        ON (afp.IDAFP   = tra.IDAFP)
-                  INNER JOIN lugar lug      ON (lug.IDLugar = tra.IDLugar)
-                  INNER JOIN sector sec ON (sec.IDSector  = tra.IDSector)
-                  INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
-                  WHERE Rut='$rut' LIMIT 1";
+                if (!file_exists($ruta . $idTrabajador)) {
+                    mkdir($ruta . $idTrabajador, 0777, true);
+                }
+                $rutaCalificaciones = $ruta . $idTrabajador . '/CALIFICACIONES/';
 
+                if (!file_exists($rutaCalificaciones)) {
+                    mkdir($rutaCalificaciones, 0777, true);
+                }
 
+                $rutaTrabajador = $rutaCalificaciones;
+                if (!file_exists($rutaTrabajador)) {
+                    mkdir($rutaTrabajador, 0777, true);
+                }
+            }
 
-  $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
+            if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM calificaciones WHERE IDCalif = '$idCalificacion'")) > 0) {
 
-  // Verificar si se encontró una persona en la base de datos con el valor de $rut
-  if (mysqli_num_rows($resultadoDatosTra) == 1) {
-    // Si se encuentra una persona, se asigna el resultado a $persona
-    $persona = mysqli_fetch_assoc($resultadoDatosTra);
-    $idtra = $persona['IDTra'];
+                if (!empty($pdfcalificacion)) {
+                    $nombreCalificacion = 'CALIFICACION_' . $fechaActual . '_' . $pdfcalificacion;
+                    $ruta_CalifFINAL = $rutaTrabajador . $nombreCalificacion;
+                    move_uploaded_file($_FILES['nameCalif_'.$idCalificacion]['tmp_name'], $ruta_CalifFINAL);
+                    $ruta_CalifFINAL = 'http://' . $host . '/das/controller/' . $ruta_CalifFINAL;
+                } else {
+                    $ruta_CalifFINAL = $EditC['RutaCalificacion'];
+                }
 
-    // Cerrar la conexión a la base de datos  
-    // mysqli_close($conn);
-  } else {
-    echo "<script>
-      Swal.fire({
-        title: 'Usuario no encontrado',
-        text: '¿Desea registrar?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#00c4a0',
-        cancelButtonColor: '#ba0051',
-        confirmButtonText: 'Sí',
-        allowOutsideClick: false,
-        cancelButtonText: 'No'
+                if (!empty($pdfapelo)) {
+                    $nombreApelacion = 'APELACION_' . $fechaActual . '_' . $pdfapelo;
+                    $ruta_ApelaFINAL = $rutaTrabajador . $nombreApelacion;
+                    move_uploaded_file($_FILES['nameApela_'.$idCalificacion]['tmp_name'], $ruta_ApelaFINAL);
+                    $ruta_ApelaFINAL = 'http://' . $host . '/das/controller/' . $ruta_ApelaFINAL;
+                } else {
+                    $ruta_ApelaFINAL = $EditC['RutaApelacion'];
+                }
 
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = 'registro.php';
-        } else {
-          window.location.href = 'home.php';
+                // Actualizar la información en la base de datos
+                $califEdit = "UPDATE calificaciones SET 
+                    fecha = '$fechaCal',
+                    RutaCalificacion = '$ruta_CalifFINAL',
+                    apelo = '$apelo',
+                    RutaApelacion = '$ruta_ApelaFINAL'
+                    WHERE IDCalif = '$idCalificacion'";
+
+                try {
+                    $resultado = mysqli_query($conn, $califEdit);
+
+                    if (!$resultado) {
+                        throw new Exception(mysqli_error($conn));
+                    } else {
+                        $response = [
+                            'success' => true,
+                            'message' => 'Guardado correctamente'
+                        ];
+
+                        echo json_encode($response);
+                        exit;
+                    }
+                } catch (Exception $e) {
+                    if (file_exists($rutaTrabajador)) {
+                        $files = glob($rutaTrabajador . '*');
+                        foreach ($files as $file) {
+                            if (is_file($file)) {
+                                unlink($file);
+                            }
+                        }
+                        rmdir($rutaTrabajador);
+                    }
+
+                    $response = [
+                        'success' => false,
+                        'message' => 'Error al guardar los archivos: ' . $e->getMessage()
+                    ];
+
+                    echo json_encode($response);
+                    exit;
+                }
+            }
         }
-      });
-    </script>";
-  }
+    }
+} else {
+    // La solicitud no es de tipo POST, manejar el caso de error o redireccionar si es necesario
+    echo "Error: se esperaba una solicitud POST";
 }
+
+mysqli_close($conn);
 ?>
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-  <!-- Navbar Brand-->
-  <a class="navbar-brand ps-3" href="home.php"><img src="./assets/img/logo.png" width="30px"> DAS Chiguayante</a>
-  <!-- Sidebar Toggle-->
-  <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-  <!-- Navbar Search-->
-  <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="mostrar.php" method="POST" id="searchForm">
-    <div class="input-group">
-      <input class="form-control" type="text" name="nameBuscaRut" id="nameBuscaRut" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-      <button class="btn btn-primary btn-buscar" id="btnNavbarSearch" type="submit" disabled><i class="fas fa-search"></i></button>
-    </div>
-  </form>
-
-  <!-- Navbar-->
-  <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-      
-        <li> <a class="dropdown-item" href="editPerfil.php">Editar perfil</a></li>
-
-
-        <li>
-          <hr class="dropdown-divider" />
-        </li>
-        <li><a class="dropdown-item" href="./controller/logout.php">Cerrar Sesión</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-
-
-
-        <?php require("./components/sidebar.php") ?>
-
-        <div id="layoutSidenav_content">
-            <main>
-                <?php if (isset($persona)) { ?>
-                    <div class="container-md">
-
-                        <br>
-                        <div class="seccion">
-                            <div class="row ">
-                                <h6>Datos Personales</h6>
-                                <div class="col-md">
-                                    <label>Rut</label>
-                                    <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
-                                    <br>
-                                </div>
-                                <div class="col-md">
-                                    <label> Nombres</label>
-                                    <input value="<?php echo $persona['NombreTra'] ?>" class="form-control" readonly>
-                                    <br>
-                                </div>
-                            </div>
-                        
-                <?php } ?>
-            </main>
-        </div>
-    </div>
-
-
-</body>
-
-</html>

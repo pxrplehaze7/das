@@ -47,7 +47,7 @@ Médico: No | Honorario: No | Inscripción: No
 variantes para verificacion
 
 
-     la lista de usuarios solo la ven los administradores y solo ellos registran
+
 
      hacer que los admin nopuedan editarse a si mismos, porquetambien cuando se cambian a si mismos, las credenciales de session star no actualizan el rol
 
@@ -59,3 +59,14 @@ variantes para verificacion
 
      arreglar tablas para que sean responsivas, arreglar botones que se ponen feos, 
      cambiar a get las cosas
+
+
+
+
+
+
+
+
+
+
+     CALIFICACIONES FUNCIONAN AL AGREGAR, FALTA CORREGIR QUE CUANDO SE CAMBIE A NO APELO EN EDITAR, QUE SE LIMPIE ESE INPUT

@@ -27,8 +27,8 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     $fechaActual = $fechaActual->format('d-m-Y');
 
 
-    $pdfcalificacion = 'calificacion_periodo_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
-    $pdfapelo = 'apelacion_periodo_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
+    $pdfcalificacion = 'CALIFICACION_PERIODO_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
+    $pdfapelo = 'APELACION_PERIODO_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
 
 
     if (!file_exists($ruta . $idTrabajador)) {

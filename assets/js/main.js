@@ -428,10 +428,10 @@ $("#editInfoContacto").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
-          }).then(function() {
+          }).then(function () {
             location.reload(); // Actualiza la página
           });
-          
+
         } else {
           Swal.fire({
             icon: 'error',
@@ -483,7 +483,7 @@ $("#editInfoPersonal").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
-          }).then(function() {
+          }).then(function () {
             location.reload(); // Actualiza la página
           });
         } else {
@@ -519,8 +519,8 @@ function honorarioEdit() {
 }
 
 
-$(document).ready(function() {
-  $("#registroU").on("submit", function(event) {
+$(document).ready(function () {
+  $("#registroU").on("submit", function (event) {
     event.preventDefault();
 
     // Obtener el valor de la opción seleccionada
@@ -554,7 +554,7 @@ $(document).ready(function() {
           cache: false,
           contentType: false,
           processData: false
-        }).done(function(response) {
+        }).done(function (response) {
           response = JSON.parse(response);
           if (response.success) {
             Swal.fire({
@@ -578,7 +578,7 @@ $(document).ready(function() {
               text: response.message
             });
           }
-        }).fail(function(response) {
+        }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al registrar Usuario',
@@ -593,8 +593,8 @@ $(document).ready(function() {
 
 
 
-$(document).ready(function() {
-  $("#editU").on("submit", function(event) {
+$(document).ready(function () {
+  $("#editU").on("submit", function (event) {
     event.preventDefault();
 
     Swal.fire({
@@ -615,14 +615,14 @@ $(document).ready(function() {
           cache: false,
           contentType: false,
           processData: false
-        }).done(function(response) {
+        }).done(function (response) {
           response = JSON.parse(response);
           if (response.success) {
             Swal.fire({
               icon: 'success',
               title: 'Información actualizada exitosamente',
-              showConfirmButton: false, 
-            }).then(function() {
+              showConfirmButton: false,
+            }).then(function () {
               location.reload(); // Actualiza la página
             });
           } else {
@@ -632,7 +632,7 @@ $(document).ready(function() {
               text: response.message
             });
           }
-        }).fail(function(response) {
+        }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información del Usuario',
@@ -647,8 +647,8 @@ $(document).ready(function() {
 
 
 
-$(document).ready(function() {
-  $("#miperfil").on("submit", function(event) {
+$(document).ready(function () {
+  $("#miperfil").on("submit", function (event) {
     event.preventDefault();
 
     Swal.fire({
@@ -669,14 +669,14 @@ $(document).ready(function() {
           cache: false,
           contentType: false,
           processData: false
-        }).done(function(response) {
+        }).done(function (response) {
           response = JSON.parse(response);
           if (response.success) {
             Swal.fire({
               icon: 'success',
               title: 'Información actualizada exitosamente',
-              showConfirmButton: false, 
-            }).then(function() {
+              showConfirmButton: false,
+            }).then(function () {
               location.reload(); // Actualiza la página
             });
           } else {
@@ -686,7 +686,7 @@ $(document).ready(function() {
               text: response.message
             });
           }
-        }).fail(function(response) {
+        }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información del Usuario',
@@ -700,120 +700,32 @@ $(document).ready(function() {
 
 
 
+$(document).ready(function () {
+  // Iterar sobre cada formulario con la clase "formulario-edicion"
+  $(".edicionCalif").each(function () {
+    // Obtener el ID del formulario actual
+    var formularioID = $(this).attr("id");
 
+    // Agregar el event listener al evento de envío (submit) del formulario actual
+    $(this).submit(function (event) {
+      event.preventDefault(); // Evitar el envío del formulario
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $(document).ready(function() {
-//   $(".Btncalif").click(function(event) {
-//     event.preventDefault();
-
-//     var form = $(this).closest("form");
-//     var formData = new FormData(form[0]);
-
-//     // Obtener la ID del botón
-//     var idCalif = $(this).data("idcalif");
-//     formData.append("idcalif", idCalif);
-
-//     // Realizar la solicitud AJAX
-//     $.ajax({
-//       url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
-//       method: "POST",
-//       data: formData,
-//       processData: false,
-//       contentType: false,
-//       success: function(response) {
-//         // La solicitud se completó con éxito
-//         console.log(response); // Puedes mostrar la respuesta del servidor en la consola para depuración
-//         // Aquí puedes realizar cualquier otra acción que desees después de guardar la actualización
-//       },
-//       error: function(xhr, status, error) {
-//         // Ocurrió un error en la solicitud AJAX
-//         console.error(error); // Muestra el error en la consola para depuración
-//       }
-//     });
-//   });
-// });
-
-// $(document).ready(function() {
-//   $(document).on("click", ".Btncalif", function() {
-//     var idCalificacion = $(this).data("idcalif");
-//     var idTrabajador = $("#idtrabid").val();
-
-//     // Crear un objeto FormData para enviar los datos y archivos
-//     var formData = new FormData();
-//     formData.append("idCalificacion", idCalificacion);
-//     formData.append("idTrabajador", idTrabajador);
-//     formData.append("namefecha_cal[]", $("#fechacalid").val());
-//     formData.append("nameapeloEDIT[]", $("#selectapelo").val());
-//     formData.append("nameCalifEDIT[]", $("#idcalifEDIT")[0].files[0]);
-//     formData.append("nameApelaEDIT[]", $("#idapelaEDIT")[0].files[0]);
-
-//     // Realizar una solicitud AJAX al archivo PHP
-//     $.ajax({
-//       url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
-//       type: 'POST',
-//       data: formData,
-//       processData: false,
-//       contentType: false,
-
-//       success: function(response) {
-//         alert(response); // Mostrar una notificación o realizar otras acciones
-//         console.log(response); // Puedes mostrar la respuesta del servidor en la consola para depuración
-//         // Aquí puedes realizar cualquier otra acción que desees después de guardar la actualización
-//       },
-//       error: function(xhr, status, error) {
-//         // Ocurrió un error en la solicitud AJAX
-//         console.error(error); // Muestra el error en la consola para depuración
-//       }
-//     });
-//   });
-// });
-
-
-
-
-$(document).ready(function() {
-  $('#edicion_calif').submit(function(e) {
-      e.preventDefault(); // Evitar el envío del formulario de forma predeterminada
-
-      var form = $(this);
-      var formData = new FormData(form[0]);
-
-      // Realizar la solicitud AJAX para actualizar el registro
+      // Realizar la solicitud AJAX usando el ID del formulario
       $.ajax({
-          type: 'POST',
-          url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
-          data: formData,
-          processData: false,
-          contentType: false,
-          success: function(response) {
-              // Actualizar la fila correspondiente en la tabla
-              // ...
-          },
-          error: function(xhr, status, error) {
-              // Manejar errores si es necesario
-              // ...
-          }
+        url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
+        type: "POST",
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          // Manejar la respuesta del servidor
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          // Manejar el error
+          console.error(error);
+        }
       });
+    });
   });
 });
