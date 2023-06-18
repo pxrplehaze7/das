@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 include("../controller/config/conexion.php");
 
 $correo = $_POST['correoL'];
@@ -14,8 +16,6 @@ if ($result->num_rows == 1) {
     $apellidop = $row['ApellidoP'];
     $apellidom = $row['ApellidoM'];
     $idusuariop = $row['IDUsuario'];
-
-    session_start();
 
     $_SESSION['correo'] = $correo;
     $_SESSION['rol'] = $rol;
@@ -34,10 +34,10 @@ if ($result->num_rows == 1) {
     header('Location:../home.php');
     exit();
 } else {
-    header('Location: index.html?error=1');
+    $_SESSION['login_error'] = true;
+    header('Location: ../index.php');
     exit();
 }
 
 $conn->close();
 ?>
-

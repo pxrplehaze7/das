@@ -55,17 +55,17 @@ $(document).ready(function () {
           data: { rut: rut },
           success: function (response) {
             if (response === 'VALIDO') {
-              $('#rut-validation').html('El RUT es válido y no está registrado');
+              $('#rut-validation').html('<div class="alert alert-success" role="alert">El RUT es válido y no está registrado</div>');
             } else {
               $('#rut-validation').html(response);
             }
           }
         });
       } else {
-        $('#rut-validation').html('El RUT no es válido');
+        $('#rut-validation').html('<div class="alert alert-danger" role="alert">El RUT no es válido</div>');
       }
     } else {
-      $('#rut-validation').html('El RUT debe tener 9 o 10 dígitos');
+      $('#rut-validation').html('<div class="alert alert-warning" role="alert">El RUT debe tener 9 o 10 dígitos</div>');
     }
   }
 });

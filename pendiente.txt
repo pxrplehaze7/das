@@ -18,16 +18,12 @@ en calificaciones, debo mostrarlas por id del trabajador y permitir cambiar y si
 
 falta que se guarden los archivos nuevos de calificacion y apelacion ademas de la fecha y que muestre un buscar
 
-
 CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
 agregar las validaciones de permisos de usuario
+lo de editar calificaciones falla totalmente
 
-permitir cambiar permisos, ver como cambiar la contraseña
-habra un administrador quepueda registrar al resto de los usuarios y modificar sus permisos, el resto no
-hacer quesolo el administrador pueda ver quieres somn los usuarios
-
-
+la alerta de confirmar registro de trabajador falta el color del boton no o no? en pantalla chica cambia el color de lo que se ve
 
 podria hacer que os usuarios se muestren junto a un boton como las calificaciones, y que al presionar editar, permitar ir a editar y se vea como el registro de usuario
 los usuarios no se pueden cambiar a si mismosel permiso asignado
@@ -35,7 +31,6 @@ los usuarios no se pueden cambiar a si mismosel permiso asignado
 
 hacer que cuando encuentre a alguien en la lista total, muestre un boton para ir al perfil
 
-lo de editar calificaciones falla totalmente
 
 falta revisar las validacionesde si cumple o no,
 
@@ -60,9 +55,7 @@ variantes para verificacion
 
      me falta ocultar elboton de editar
 
-     hacer que el admin pueda reestablecer la contraseña de un usuario con un boton y que cuando lo haga, se establezca el rut de esa persona como clave asi como das19334538
 
-     ver como hacer el formulario de reset pass mediante el boton que tambien esta en elformulario
 
      arreglar tablas para que sean responsivas, arreglar botones que se ponen feos, 
      cambiar a get las cosas

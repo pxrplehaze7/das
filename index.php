@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,6 +19,7 @@
         }
     </style>
 </head>
+
 <body class="fondo-inicio">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
@@ -26,9 +28,21 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-5 center-card">
                             <div class="card shadow-lg border-0 rounded-lg mt-5" style="width: 100%;">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar Sesión</h3></div>
+                                <div class="card-header">
+                                    <h3 class="text-center font-weight-light my-4">Iniciar Sesión</h3>
+                                </div>
                                 <div class="card-body">
+                                    <?php
+                                    session_start();
+                                    if (isset($_SESSION['login_error']) && $_SESSION['login_error']) {
+                                        echo '<div class="alert alert-danger" role="alert">Correo o contraseña incorrectos. Por favor, intenta nuevamente.</div>';
+                                        $_SESSION['login_error'] = false;
+                                    }
+                                    ?>
+
                                     <form action="./controller/login.php" method="POST">
+
+
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="correoL" required />
                                             <label for="inputEmail">Correo Electrónico</label>
@@ -51,5 +65,8 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+
 </body>
+
 </html>

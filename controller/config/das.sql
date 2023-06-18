@@ -152,3 +152,6 @@ INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (4, 'd) Técnicos de Salud.
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5, 'e) Administrativos de Salud.');
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6, 'f) Auxiliares de servicios de Salud.');
 
+
+INSERT INTO `usuario` (`RutU`,`NombreU`,`ApellidoP`,`ApellidoM`,`Rol`,`Contrasenna`,`CorreoU`) VALUES ('19334538-7','Belen','Gonzalez','Diaz',1,'123456','correo@gmail.com');
+
