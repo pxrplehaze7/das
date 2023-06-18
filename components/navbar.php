@@ -2,11 +2,11 @@
 include("./controller/config/conexion.php");
 
 // Obtener el rut enviado por POST
-if (isset($_POST['nameBuscaRut'])) {
-  $rut = $_POST['nameBuscaRut']; //se asigna el valor del input rut a $rut
+if (isset($_GET['id'])) {
+  $idtra = $_GET['id']; //se asigna el valor del input rut a $rut
 
   // Realizar la consulta para obtener la información de la persona WHERE el rut de base de datos sea igual al $rut
-  $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, tra.IDAFP, tra.IDPrev, tra.IDTra , tra.IDCon, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
+  $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, tra.IDAFP, tra.IDPrev, tra.IDTra , tra.IDCon,tra.IDCat, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
                   INNER JOIN contrato con   ON (con.IDCon   = tra.IDCon)
@@ -14,7 +14,7 @@ if (isset($_POST['nameBuscaRut'])) {
                   INNER JOIN lugar lug      ON (lug.IDLugar = tra.IDLugar)
                   INNER JOIN sector sec ON (sec.IDSector  = tra.IDSector)
                   INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
-                  WHERE Rut='$rut' LIMIT 1";
+                  WHERE IDTra='$idtra' LIMIT 1";
 
 
 
@@ -67,12 +67,36 @@ if (isset($_POST['nameBuscaRut'])) {
 
   <script>
     document.getElementById("searchForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
       var input = document.getElementById("nameBuscaRut").value.trim();
-
       if (input.length < 9) {
-        e.preventDefault(); // Evita que el formulario se envíe si no se cumplen los requisitos
+        e.preventDefault();
         alert("El campo debe tener al menos 9 caracteres.");
+      }else{
+        $.ajax({
+        url: "./controller/buscar.php",
+        method: "POST",
+        data: { nameBuscaRut:input }
+        })
+          .done(function (respuesta) {
+            //alert('LA RESPUESTA ES:'+respuesta)
+            console.log('200 LA RESPUESTA ES id:',respuesta)
+            window.location.href= "mostrar.php?id="+respuesta
+
+          })
+          .fail(function (error) {
+            //alert('400??LA RESPUESTA ES:'+respuesta)
+            console.error(error)
+            $('body').append(error.responseText);
+          })
+          .always(function (respuesta) {
+            console.info("LA RESPUESTA: ",respuesta)
+          });
       }
+      
+
+      
     });
 
     document.getElementById("nameBuscaRut").addEventListener("input", function() {
@@ -92,7 +116,7 @@ if (isset($_POST['nameBuscaRut'])) {
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-      
+
         <li> <a class="dropdown-item" href="editPerfil.php">Editar perfil</a></li>
 
 
