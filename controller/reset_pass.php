@@ -5,10 +5,11 @@ $rutr    = $_POST['nameRut'];
 $rutSinGuion = str_replace('-', '', $rutr);
 $pass = substr($rutSinGuion, 0, -1); 
 $pass = "DAS" . $pass;
+$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 
 // SE INSERTAN DATOS A LA BASE DE DATOS
 $sqlReset = "UPDATE usuario SET 
-  Contrasenna = '$pass'
+  Contrasenna = '$hashedPass'
 WHERE IDUsuario = '$iduser'";
 
 if (mysqli_query($conn, $sqlReset)) {

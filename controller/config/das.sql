@@ -11,7 +11,9 @@ CREATE TABLE `das`.`usuario` (
     `Contrasenna` VARCHAR(300) NOT NULL,
     `CorreoU` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`IDUsuario`),
-    UNIQUE (`CorreoU`)
+    UNIQUE (`CorreoU`),
+    UNIQUE (`RutU`)
+
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 CREATE TABLE `das`.`prevision` (

@@ -245,6 +245,20 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_AntecedentesFINAL)
     )
     ||
+    (
+      // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
+      ($generoP == "Masculino" || $generoP == "Femenino") &&
+      $contratoP == 3 &&
+      $medicoOno == "Si" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_ExamenMFINAL) &&
+      !empty($ruta_AntecedentesFINAL)
+    )
+    ||
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
     (($generoP == "Masculino" || $generoP == "Femenino") &&
       $contratoP == 3 &&

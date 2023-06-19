@@ -103,7 +103,7 @@ if (!isset($_SESSION['rol'])) {
 
                                 <div class="col-4">
                                     <label for="idPass"><span style="color: #c40055;">*</span> Cambiar Contraseña</label>
-                                    <input type="password" name="namePass" id="idPass" class="form-control" value="<?php echo $miperfil['Contrasenna']; ?>" required>
+                                    <input type="password" name="namePass" id="idPass" class="form-control">
                                 </div>
 
                             </div>

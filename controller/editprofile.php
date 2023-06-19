@@ -7,13 +7,14 @@ $maternoU   = $_POST['nameMaterno'];
 $correoU    = $_POST['nameCorreo'];
 $pass       = $_POST['namePass'];
 $correoU    = str_replace(" ", "", $correoU); 
+$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 
 $sqlcambio = "UPDATE usuario SET
 NombreU = '$nombreU',
 ApellidoP = '$paternoU',
 ApellidoM = '$maternoU',
 CorreoU = '$correoU',
-Contrasenna = '$pass'
+Contrasenna = '$hashedPass'
 WHERE IDUsuario = '$idperf'";
 
 

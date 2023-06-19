@@ -186,6 +186,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
 
 
+
   if (
     (
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
@@ -197,6 +198,20 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_ExamenMFINAL) &&
+      !empty($ruta_AntecedentesFINAL)
+    )
+    ||
+    (
+      // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
+      ($generoP == "Masculino" || $generoP == "Femenino") &&
+      $contratoP == 3 &&
+      $medicoOno == "Si" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_ExamenMFINAL) &&
       !empty($ruta_AntecedentesFINAL)
@@ -410,8 +425,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       echo "<script> Swal.fire({
         icon: 'success',
         title: 'Guardado Correctamente',
-        showConfirmButton: false,
-        timer: 3000
+        confirmButtonText: 'OK'
       });</script>";
 
       echo "<script>

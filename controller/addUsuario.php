@@ -13,11 +13,12 @@ $pass = substr($rutSinGuion, 0, -1);
 $pass = "DAS" . $pass;
 $correoU    = str_replace(" ", "", $correoU); 
 
+// Encriptar la contraseña
+$hashedPass = password_hash($pass, PASSWORD_DEFAULT);
 
-  // SE INSERTAN DATOS A LA BASE DE DATOS
-  $sqlUsuario = " INSERT INTO usuario (RutU,NombreU,ApellidoP,ApellidoM,CorreoU,Contrasenna,Rol)
-   VALUES ('$rut','$nombreU','$paternoU','$maternoU','$correoU','$pass',$permiso)";
-
+// SE INSERTAN DATOS A LA BASE DE DATOS
+$sqlUsuario = " INSERT INTO usuario (RutU,NombreU,ApellidoP,ApellidoM,CorreoU,Contrasenna,Rol)
+ VALUES ('$rut','$nombreU','$paternoU','$maternoU','$correoU','$hashedPass',$permiso)";
 
 if (mysqli_query($conn, $sqlUsuario)) {
     // La actualización fue exitosa

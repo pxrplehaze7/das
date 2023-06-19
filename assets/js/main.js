@@ -266,8 +266,8 @@ $("#documentosApelacion").on("submit", function (event) {
   });
 });
 
-
 $("#edicion_pdfs").on("submit", function (event) {
+  event.stopPropagation();
   event.preventDefault();
   Swal.fire({
     title: '¿Desea actualizar los documentos?',
@@ -283,7 +283,6 @@ $("#edicion_pdfs").on("submit", function (event) {
       return;
     } else {
       let formData = new FormData(this);
-
       formData.append('laid', $('#idtrabid').val());
 
       $.ajax({
@@ -294,19 +293,20 @@ $("#edicion_pdfs").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-        .done(function (respuesta) {
-          $('body').append(respuesta);
-        })
-        .fail(function (respuesta) {
-          $('body').append(respuesta);
-        })
-        .always(function (respuesta) {
-          console.info("DATA:", respuesta);
-          location.reload(); // Actualiza la página
-        });
+      .done(function (respuesta) {
+        $('body').append(respuesta);
+      })
+      .fail(function (respuesta) {
+        $('body').append(respuesta);
+      })
+      .always(function (respuesta) {
+        console.info("DATA:", respuesta);
+      })
+    
     }
   });
 });
+
 
 
 
@@ -428,6 +428,7 @@ $("#editInfoContacto").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
+            confirmButtonText: 'OK'
           }).then(function () {
             location.reload(); // Actualiza la página
           });
@@ -483,6 +484,7 @@ $("#editInfoPersonal").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
+            confirmButtonText: 'OK'
           }).then(function () {
             location.reload(); // Actualiza la página
           });
@@ -609,7 +611,7 @@ $(document).ready(function () {
       if (result.isConfirmed) {
         var formData = new FormData(this);
         $.ajax({
-          url: "./controller/edituser.php",
+          url: "./controller/editUser.php",
           method: "POST",
           data: formData,
           cache: false,
@@ -697,33 +699,56 @@ $(document).ready(function () {
     });
   });
 });
-
-
-
 $(document).ready(function () {
-  // Iterar sobre cada formulario con la clase "formulario-edicion"
   $(".edicionCalif").each(function () {
-    // Obtener el ID del formulario actual
     var formularioID = $(this).attr("id");
 
-    // Agregar el event listener al evento de envío (submit) del formulario actual
     $(this).submit(function (event) {
-      event.preventDefault(); // Evitar el envío del formulario
+      event.preventDefault();
 
-      // Realizar la solicitud AJAX usando el ID del formulario
-      $.ajax({
-        url: "./controller/editcalif.php", // Cambia esto con la ruta correcta a tu script del lado del servidor
-        type: "POST",
-        data: new FormData(this),
-        processData: false,
-        contentType: false,
-        success: function (response) {
-          // Manejar la respuesta del servidor
-          console.log(response);
-        },
-        error: function (xhr, status, error) {
-          // Manejar el error
-          console.error(error);
+      // Mostrar alerta de confirmación
+      Swal.fire({
+        title: '¿Desea actualizar la calificación?',
+        showDenyButton: true,
+        showCancelButton: false,
+        allowOutsideClick: false,
+        confirmButtonText: 'Sí',
+        confirmButtonColor: '#00c4a0',
+        denyButtonColor: '#ba0051'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // El usuario confirmó, enviar el formulario mediante AJAX
+          $.ajax({
+            url: "./controller/editcalif.php",
+            type: "POST",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              // Manejar la respuesta del servidor
+              console.log(response);
+
+              // Mostrar alerta de éxito
+              Swal.fire({
+                icon: 'success',
+                title: 'Calificación actualizada correctamente',
+                showConfirmButton: true
+              }).then(function () {
+                location.reload(); // Actualiza la página
+              });
+            },
+            error: function (xhr, status, error) {
+              // Manejar el error
+              console.error(error);
+
+              // Mostrar alerta de error
+              Swal.fire({
+                title: "Error",
+                text: "Ocurrió un error al actualizar la calificación",
+                icon: "error"
+              });
+            }
+          });
         }
       });
     });

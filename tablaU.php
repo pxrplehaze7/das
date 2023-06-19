@@ -16,7 +16,7 @@ if ($_SESSION['rol'] !== '1') {
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <title>Lista de Registros</title>
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
@@ -61,6 +61,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <table id="totalUsuarios" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
+                                            <th>RUT</th>
                                             <th>Nombre</th>
                                             <th>Apellido Paterno</th>
                                             <th>Apellido Materno</th>
@@ -75,8 +76,11 @@ if ($_SESSION['rol'] !== '1') {
                                         FROM usuario WHERE 1";
 
                                         $resultados = mysqli_query($conn, $usuarios);
-                                        while ($user = mysqli_fetch_array($resultados)) { ?>
+                                        while ($user = mysqli_fetch_array($resultados)) {
+                                            $isCurrentSessionUser = $_SESSION['idperfil'] == $user['IDUsuario'];
+                                        ?>
                                             <tr>
+                                                <td><?php echo $user['RutU'] ?></td>
                                                 <td><?php echo $user['NombreU'] ?></td>
                                                 <td><?php echo $user['ApellidoP'] ?></td>
                                                 <td><?php echo $user['ApellidoM'] ?></td>
@@ -85,15 +89,20 @@ if ($_SESSION['rol'] !== '1') {
                                                     <?php echo $user['Rol'] == 1 ? 'Administrador' : 'Lectura'; ?>
                                                 </td>
                                                 <td>
-                                                    <div class="d-flex align-items-center justify-content-around">
-                                                        <a href="editusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
-                                                        <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
-                                                    </div>
+                                                    <?php if (!$isCurrentSessionUser) { ?>
+
+                                                        <div class="d-flex align-items-center justify-content-around">
+                                                            <a href="editusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
+                                                            <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
+                                                        </div>
+                                                    <?php } ?>
                                                 </td>
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>

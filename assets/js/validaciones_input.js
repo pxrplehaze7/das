@@ -97,6 +97,19 @@ var Fn = {
 
 
 
+$("#fechacalif").on("input", function () {
+  var input = $(this).val();
+  var regex = /^\d{4}-\d{4}$/;
+
+  if (!regex.test(input)) {
+    $(this).addClass("is-invalid");
+  } else {
+    $(this).removeClass("is-invalid");
+  }
+});
+
+
+
 
 
 

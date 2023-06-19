@@ -436,7 +436,7 @@ if (!isset($_SESSION['rol'])) {
                                 <?php } ?>
                             </div>
 
-                            <table id="myTable" class="table table-striped table-bordered">
+                            <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Fecha</th>
