@@ -6,6 +6,7 @@ function validarCelular(input) {
   }
 }
 
+//REGISTRO DE TRABAJADOR
 $("#documentosObligatorios").on("submit", function (event) {
   event.preventDefault();
 
@@ -32,6 +33,9 @@ $("#documentosObligatorios").on("submit", function (event) {
       icon: 'warning',
       title: 'Advertencia',
       text: 'El número de teléfono debe tener 9 dígitos',
+      showConfirmButton: true,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#009CFD',
       didOpen: () => {
         celularInput.focus();
       }
@@ -69,12 +73,14 @@ $("#documentosObligatorios").on("submit", function (event) {
         .done(function (respuesta) {
           $('body').append(respuesta);
           document.getElementById("documentosObligatorios").reset();
-          $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
+          //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          $('#rut-validation').html('');
 
         })
         .fail(function (respuesta) {
           $('body').append(respuesta);
-          $('#rut-validation').html(''); // Limpiar el mensaje de validación del RUT
+          //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          $('#rut-validation').html('');
 
         })
         .always(function (respuesta) {
@@ -88,39 +94,37 @@ $("#documentosObligatorios").on("submit", function (event) {
 
 
 
-
-//Para que no quede ningun radio marcado por defecto
+//PARA QUE NO QUEDE NINGUN RADIO MARCADO POR DEFECTO
 window.addEventListener("load", function () {
   if (document.URL.includes("/registro.php")) {
-    // Obtener todos los elementos de tipo radio
+    // OBTIENE TODOS LOS ELEMENTOS DE TIPO RADIO
     var radios = document.querySelectorAll('input[type="radio"]');
 
-    // Deseleccionar todos los elementos de tipo radio
+    // DESELECCIONA TODOS LOS ELEMENTOS DE TIPO RADIO
     radios.forEach(function (radio) {
       radio.checked = false;
     });
   }
-
 });
 
 
-// Espera a que el documento esté cargado
+
+
+// ESPERA A QUE EL DOCUMENTO ESTÉ CARGADO
 document.addEventListener('DOMContentLoaded', function () {
   // Obtén todos los campos de entrada requeridos
   var requiredInputs = document.querySelectorAll('input[required]');
 
-  // Verifica si hay campos de entrada requeridos no válidos
+  //REVISA SI HAY INPUTS REQUIRED NO VALIDOS
   var firstInvalidInput = Array.from(requiredInputs).find(function (input) {
     return !input.validity.valid;
   });
 
-  // Enfoca el primer campo de entrada no válido
+  // ENFOCA EL PRIMER INPUT NO VALIDO
   if (firstInvalidInput) {
     firstInvalidInput.focus();
   }
 });
-
-
 
 
 
@@ -141,7 +145,6 @@ function cargarSectores() {
       for (let i = 0; i < largo; i++) {
         let idSector = respuesta[i]['IDSector'];
         let nombreSector = respuesta[i]['NombreSector'];
-
         $("#idSelectSector").append("<option value='" + idSector + "'>" + nombreSector + "</option>");
       }
     },
@@ -179,10 +182,8 @@ function cargarSectoresTABLA() {
 }
 
 
-
 // FUNCION PARA LIMPIAR EL INPUT FILE
 function clearFileInput(inputId) {
-  console.log("input del file", inputId);
   var fileInput = document.getElementById(inputId);
   fileInput.value = "";
 
@@ -195,16 +196,14 @@ $("#idNoApelo").change(function () {
   }
 });
 
+
 $("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
-    // Si no se ha seleccionado ninguna opción
     Swal.fire('Debe indicar si apeló o no');
-    // alert('Debe indicar si apeló o no.');
     return;
   }
-
   Swal.fire({
     title: '¿Está seguro de añadir calificación?',
     showDenyButton: true,
@@ -219,7 +218,6 @@ $("#documentosApelacion").on("submit", function (event) {
       return;
     } else {
       let formData = new FormData(this);
-
       $.ajax({
         url: "./controller/addCalificacion.php",
         method: "POST",
@@ -232,11 +230,10 @@ $("#documentosApelacion").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Calificación guardada exitosamente',
-            showConfirmButton: false,
-            timer: 3000
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
-
-          // Limpia los campos
           clearFileInput('idCalifInput');
           $('#idInicio').val('');
           $('#idFin').val('');
@@ -255,8 +252,9 @@ $("#documentosApelacion").on("submit", function (event) {
           Swal.fire({
             icon: 'error',
             title: 'Error al guardar los archivos: ' + respuesta.responseText,
-            showConfirmButton: false,
-            timer: 3600
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         })
         .always(function (respuesta) {
@@ -293,16 +291,16 @@ $("#edicion_pdfs").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-      .done(function (respuesta) {
-        $('body').append(respuesta);
-      })
-      .fail(function (respuesta) {
-        $('body').append(respuesta);
-      })
-      .always(function (respuesta) {
-        console.info("DATA:", respuesta);
-      })
-    
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .always(function (respuesta) {
+          console.info("DATA:", respuesta);
+        })
+
     }
   });
 });
@@ -310,11 +308,7 @@ $("#edicion_pdfs").on("submit", function (event) {
 
 
 
-
-
-
 $("#btn-filtro").on("click", function () {
-
   let datos = {
     cumple: $("#idSelectCumple").val(),
     lugar: $("#idSelectLugar").val(),
@@ -328,7 +322,6 @@ $("#btn-filtro").on("click", function () {
   }).done(function (data) {
     $('#trabajadores_tbody').html(data);
   });
-
 });
 
 
@@ -341,7 +334,6 @@ $("#btn-filtro").on("click", function () {
     sector: $("#idSelectSector").val(),
   }
   console.log(datos);
-
   $.ajax({
     url: "./controller/cargaTabla.php",
     method: "POST",
@@ -350,7 +342,7 @@ $("#btn-filtro").on("click", function () {
     .done(function (data) {
       $('#trabajadores_tbody').html(data);
 
-      // Actualizar los datos de la tabla
+      // ACTUALIZA LOS DATOS DE LA TABLA
       var table = $('#total').DataTable();
       table.clear().rows.add($('#total tbody tr')).draw();
     });
@@ -358,16 +350,15 @@ $("#btn-filtro").on("click", function () {
 
 
 
+
+
 $("#limpia-filtro").on("click", function () {
-  // Restablecer los valores de los select a su opción predeterminada
+  // RSTABLECE LOS VALORES DE LOS SELECT
   $("#idSelectLugar").val(0);
   $("#idSelectSector").val(0);
   $("#idSelectCumple").val("");
-
-  // Restablecer el valor predeterminado del select de sector
   $("#idSelectSector").html("<option value='0' hidden> Selecciona</option>");
-
-  // Recargar la tabla con todos los registros
+  // RECARGA LA TABLA CON LOS REGISTROS
   $.ajax({
     url: "./controller/cargaTabla.php",
     method: "POST",
@@ -375,8 +366,7 @@ $("#limpia-filtro").on("click", function () {
   })
     .done(function (data) {
       $('#trabajadores_tbody').html(data);
-
-      // Actualizar los datos de la tabla
+      // ACTUALIZA LOS DATOS DE LA TABLA
       var table = $('#total').DataTable();
       table.clear().rows.add($('#total tbody tr')).draw();
     });
@@ -384,10 +374,8 @@ $("#limpia-filtro").on("click", function () {
 
 
 
-
 $("#editInfoContacto").on("submit", function (event) {
-  event.preventDefault(); // Evita el envío del formulario por defecto
-
+  event.preventDefault();
   var celularInput = document.getElementById("idCelular");
   var celularValue = celularInput.value.trim();
 
@@ -396,6 +384,9 @@ $("#editInfoContacto").on("submit", function (event) {
       icon: 'warning',
       title: 'Advertencia',
       text: 'El número de teléfono debe tener 9 dígitos',
+      showConfirmButton: true,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#009CFD',
       didOpen: () => {
         celularInput.focus();
       }
@@ -403,7 +394,6 @@ $("#editInfoContacto").on("submit", function (event) {
     return;
   }
   var formData = new FormData(this);
-
   formData.append('laid', $('#idtrabid').val());
   Swal.fire({
     title: '¿Desea actualizar la información de contacto?',
@@ -428,23 +418,28 @@ $("#editInfoContacto").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
-            confirmButtonText: 'OK'
+            showConfirmButton: true
           }).then(function () {
             location.reload(); // Actualiza la página
           });
-
         } else {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información',
-            text: response.message
+            text: response.message,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         }
       }).fail(function (response) {
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la información',
-          text: response.responseText
+          text: response.responseText,
+          showConfirmButton: true,
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#009CFD'
         });
       });
     }
@@ -484,7 +479,9 @@ $("#editInfoPersonal").on("submit", function (event) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
-            confirmButtonText: 'OK'
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           }).then(function () {
             location.reload(); // Actualiza la página
           });
@@ -492,14 +489,20 @@ $("#editInfoPersonal").on("submit", function (event) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información',
-            text: response.message
+            text: response.message,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         }
       }).fail(function (response) {
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la información',
-          text: response.responseText
+          text: response.responseText,
+          showConfirmButton: true,
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#009CFD'
         });
       });
     }
@@ -533,7 +536,10 @@ $(document).ready(function () {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Por favor, seleccione una opción válida'
+        text: 'Por favor, seleccione una opción válida',
+        showConfirmButton: true,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#009CFD'
       });
       return; // Detener el flujo del código y evitar que se muestre el cuadro de diálogo de confirmación
     }
@@ -564,7 +570,8 @@ $(document).ready(function () {
               title: 'Usuario registrado exitosamente',
               html: 'Clave temporal: <strong>' + response.tempPass + '</strong>',
               showConfirmButton: true,
-              confirmButtonText: 'OK'
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             }).then(() => {
               $("#idRutInput").val("");
               $("#idPersona").val("");
@@ -577,14 +584,20 @@ $(document).ready(function () {
             Swal.fire({
               icon: 'error',
               title: 'Error al registrar Usuario',
-              text: response.message
+              text: response.message,
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             });
           }
         }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al registrar Usuario',
-            text: response.responseText
+            text: response.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         });
       }
@@ -623,22 +636,30 @@ $(document).ready(function () {
             Swal.fire({
               icon: 'success',
               title: 'Información actualizada exitosamente',
-              showConfirmButton: false,
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             }).then(function () {
-              location.reload(); // Actualiza la página
+              location.reload(); 
             });
           } else {
             Swal.fire({
               icon: 'error',
               title: 'Error al actualizar la información del Usuario',
-              text: response.message
+              text: response.message,
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             });
           }
         }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información del Usuario',
-            text: response.responseText
+            text: response.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         });
       }
@@ -646,6 +667,67 @@ $(document).ready(function () {
   });
 });
 
+
+
+
+$(document).ready(function () {
+  $("#resetP").on("submit", function (event) {
+    event.preventDefault();
+
+    Swal.fire({
+      title: '¿Desea restablecer la contraseña del usuario?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        var formData = new FormData(this);
+        $.ajax({
+          url: "./controller/reset_pass.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false
+        }).done(function (response) {
+          response = JSON.parse(response);
+          if (response.success) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Información actualizada exitosamente',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            }).then(function () {
+              location.reload(); 
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error al actualizar la información del Usuario',
+              text: response.message,
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            });
+          }
+        }).fail(function (response) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información del Usuario',
+            text: response.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        });
+      }
+    });
+  });
+});
 
 
 
@@ -677,36 +759,48 @@ $(document).ready(function () {
             Swal.fire({
               icon: 'success',
               title: 'Información actualizada exitosamente',
-              showConfirmButton: false,
-            }).then(function () {
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'            }).then(function () {
               location.reload(); // Actualiza la página
             });
           } else {
             Swal.fire({
               icon: 'error',
               title: 'Error al actualizar la información del Usuario',
-              text: response.message
+              text: response.message,
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             });
           }
         }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información del Usuario',
-            text: response.responseText
+            text: response.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         });
       }
     });
   });
 });
+
+
+
+
+
+
+
 $(document).ready(function () {
   $(".edicionCalif").each(function () {
     var formularioID = $(this).attr("id");
 
     $(this).submit(function (event) {
       event.preventDefault();
-
-      // Mostrar alerta de confirmación
       Swal.fire({
         title: '¿Desea actualizar la calificación?',
         showDenyButton: true,
@@ -717,7 +811,6 @@ $(document).ready(function () {
         denyButtonColor: '#ba0051'
       }).then((result) => {
         if (result.isConfirmed) {
-          // El usuario confirmó, enviar el formulario mediante AJAX
           $.ajax({
             url: "./controller/editcalif.php",
             type: "POST",
@@ -725,27 +818,73 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-              // Manejar la respuesta del servidor
               console.log(response);
-
-              // Mostrar alerta de éxito
               Swal.fire({
                 icon: 'success',
                 title: 'Calificación actualizada correctamente',
-                showConfirmButton: true
-              }).then(function () {
-                location.reload(); // Actualiza la página
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'            
+                }).then(function () {
+                location.reload(); 
               });
             },
             error: function (xhr, status, error) {
-              // Manejar el error
               console.error(error);
-
-              // Mostrar alerta de error
               Swal.fire({
                 title: "Error",
                 text: "Ocurrió un error al actualizar la calificación",
-                icon: "error"
+                icon: "error",
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'
+              });
+            }
+          });
+        }
+      });
+    });
+    $(".boton-eliminar").click(function (event) {
+      event.preventDefault();
+    
+      var idCalificacion = $(this).data("idcalific");
+    
+      Swal.fire({
+        title: '¿Desea eliminar la calificación?',
+        showDenyButton: true,
+        showCancelButton: false,
+        allowOutsideClick: false,
+        confirmButtonText: 'Sí',
+        confirmButtonColor: '#00c4a0',
+        denyButtonColor: '#ba0051'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "./controller/eliminaCalificacion.php",
+            type: "POST",
+            data: { idCalificacion: idCalificacion },
+            success: function (response) {
+              console.log(response);
+    
+              Swal.fire({
+                icon: 'success',
+                title: 'Calificación eliminada correctamente',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'            
+              }).then(function () {
+                location.reload(); 
+              });
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+              Swal.fire({
+                title: "Error",
+                text: "Ocurrió un error al eliminar la calificación",
+                icon: "error",
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'
               });
             }
           });
@@ -754,3 +893,5 @@ $(document).ready(function () {
     });
   });
 });
+
+

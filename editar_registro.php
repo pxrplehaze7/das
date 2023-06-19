@@ -21,19 +21,18 @@ if (isset($_GET['id'])) {
     INNER JOIN sector sec ON (sec.IDSector = tra.IDSector)
     INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
     WHERE tra.IDTra='$idtra' LIMIT 1";
-    
-    
+
+
     $resultDatosEditar = mysqli_query($conn, $datosEditar);
-    
+
     if (mysqli_num_rows($resultDatosEditar) == 1) {
         $persona = mysqli_fetch_assoc($resultDatosEditar);
         var_dump($persona);
-        
+
         if (isset($persona['IDLugar'])) {
             $persona['IDLugar'] = $persona['IDLugar'];
         }
     }
-    
 } ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,9 +74,16 @@ if (isset($_GET['id'])) {
                     <div class="container-md">
 
                         <form id="editInfoPersonal" action="./controller/editInfoP.php" method="POST">
+                            <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
                             <div class="title">
-                                <h1 class="mt-4">Editar Información</h1>
-                                <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
+                                <div class="ti">
+                                    <h1 class="mt-4">Editar Información</h1>
+                                </div>
+                                <div class="container-volver">
+                                    <a class="button-volver" href="mostrar.php?id=<?php echo $idtra ?>">
+                                        Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
+                                    </a>
+                                </div>
 
                             </div>
                             <br>
@@ -215,7 +221,7 @@ if (isset($_GET['id'])) {
 
                                     <br>
                                     <div class="row">
-                                        <?php echo $persona['IDLugar']?>
+                                        <?php echo $persona['IDLugar'] ?>
 
 
                                         <div class="col-md-6"> <!-- LUGAR -->
@@ -318,6 +324,11 @@ if (isset($_GET['id'])) {
                                         </div>
                                     </center>
                                 </div>
+                                <br>
+                                <!-- <div class="observaciones ">
+                                  <label>Observaciones</label>
+                                    <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"><?php echo $persona['Observ'] ?></textarea>
+                                </div> -->
                                 <br>
                                 <div class="boton">
                                     <button class="Btn2" id="btn-editP" type="submit">Actualizar
@@ -623,7 +634,7 @@ if (isset($_GET['id'])) {
                                 <h6>Calificaciones</h6>
 
 
-                                <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive table-responsive-sm" style="width:100%" >
+                                <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive table-responsive-sm" style="width:100%">
 
                                     <thead>
                                         <tr>
@@ -702,8 +713,6 @@ if (isset($_GET['id'])) {
                                                     <td>
                                                         <div class="input-group file-cal">
                                                             <input type="file" id="idapelaEDIT" name="nameApela_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
-
-
                                                             <button class="button" type="button" onclick="clearFileInput('idapelaEDIT')" style="width: 40px !important;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
                                                                     <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
@@ -714,15 +723,14 @@ if (isset($_GET['id'])) {
                                                     <td class="text-center">
 
                                                         <div class="contenedor-botones">
-                                                            <button class="btn btn-primary boton-ver w-100" type="submit">
+                                                            <button class="btn btn-primary boton-ver w-100" type="submit" id="guardar-btn">
                                                                 <i class="fas fa-save"></i>
                                                             </button>
 
-                                                            <!-- <button type=" button" class="btn btn-danger w-100 boton-eliminar">
-                                                                <i class="fas fa-times"></i> </button> -->
+                                                            <button class="btn btn-danger w-100 boton-eliminar" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
                                                         </div>
-
-
                                                     </td>
                                             </form>
                                             </tr>
@@ -731,8 +739,6 @@ if (isset($_GET['id'])) {
                                 </table>
                                 <br>
                             </div>
-
-
                         </div>
 
 

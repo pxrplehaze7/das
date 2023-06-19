@@ -425,8 +425,10 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       echo "<script> Swal.fire({
         icon: 'success',
         title: 'Guardado Correctamente',
-        confirmButtonText: 'OK'
-      });</script>";
+        showConfirmButton: true,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#009CFD'
+            });</script>";
 
       echo "<script>
       var inputs = document.querySelectorAll('input.tipofile');
@@ -453,9 +455,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     Swal.fire({
       icon: 'error',
       title: `Error al guardar los archivos: " . $e->getMessage() . "`,
-      showConfirmButton: false,
-      timer: 3600
-    });
+      showConfirmButton: true,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#009CFD'    });
     </script>";
   }
 }

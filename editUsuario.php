@@ -63,8 +63,19 @@ if (isset($_GET['id'])) {
                         <input name="nameidu" value="<?php echo $idUsuario ?>" class="form-control" id="iduser" hidden>
 
                         <div class="title">
-                            <h1 class="mt-4">Editar Usuario</h1>
+
+                            <div class="ti">
+                                <h1 class="mt-4">Editar Usuario</h1>
+                            </div>
+
+                            <div class="container-volver">
+                                <a class="button-volver" href="tablaU.php">
+                                    Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
+                                </a>
+                            </div>
+
                         </div>
+
                         <br>
                         <div class="seccion">
 
@@ -119,10 +130,10 @@ if (isset($_GET['id'])) {
                                     </button>
                     </form>
 
-                    <form action="./controller/reset_pass.php" method="POST">
-                    <input type="text" name="nameRut" value="<?php echo $us['RutU'] ?>" id="rutuser" hidden>
-                    <input name="nameidu" value="<?php echo $idUsuario ?>" class="form-control" id="iduser" hidden>
-                        <button class="Btn2 resets" id="resetpass" type="submit">Resetear Contraseña
+                    <form method="POST" id="resetP">
+                        <input type="text" name="nameRut" value="<?php echo $us['RutU'] ?>" id="rutuser" hidden>
+                        <input name="nameidu" value="<?php echo $idUsuario ?>" class="form-control" id="iduser" hidden>
+                        <button class="Btn2-restablece resets" id="resetpass" type="submit">Restablecer Contraseña <i class="fa-solid fa-lock"></i>
                             <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                 <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />

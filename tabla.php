@@ -14,8 +14,8 @@ if (!isset($_SESSION['rol'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Lista de Registros</title>
-<!-- ESTILOS -->
-<link href="./assets/styles/styles.css" rel="stylesheet" />
+    <!-- ESTILOS -->
+    <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
     <!-- CDN jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -52,8 +52,8 @@ if (!isset($_SESSION['rol'])) {
 
                                 <label for="filtrobuscar">Filtrar Búsqueda:</label>
                                 <br>
-                                <div class="row" id="filtrobuscar">
-                                    <div class="col-md-3"> <!-- LUGAR -->
+                                <div class="row align-items-end" id="filtrobuscar">
+                                    <div class="col-md-3 col-sm-6"> <!-- LUGAR -->
                                         <label for="idSelectLugar">Lugar</label>
                                         <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectoresTABLA()">
                                             <option value="0" hidden> Selecciona</option>
@@ -66,13 +66,13 @@ if (!isset($_SESSION['rol'])) {
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-6">
                                         <label for="idSelectSector">Sector</label>
                                         <select name="nameSelectSector" id="idSelectSector" class="form-select filtro" required>
                                             <option value="0"> Selecciona</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 col-sm-6">
                                         <label for="idSelectCumple">Estado</label>
                                         <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
                                             <option value=""> Selecciona</option>
@@ -80,12 +80,10 @@ if (!isset($_SESSION['rol'])) {
                                             <option value="0">No Cumple</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 row">
-                                        <div class="col mt-auto text-center">
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="d-flex justify-content-end gap-2"> 
                                             <button id="btn-filtro" class="btn btn-filtro">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
-                                        </div>
-                                        <div class="col mt-auto text-center">
-                                            <button id="limpia-filtro" class="btn btn-filtro ">Limpiar <i class="fas fa-eraser"></i></i></button>
+                                            <button id="limpia-filtro" class="btn btn-filtro">Limpiar <i class="fas fa-eraser"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -122,11 +120,17 @@ if (!isset($_SESSION['rol'])) {
                                                 <td><?php echo $ptotal['Profesion'] ?></td>
                                                 <td><?php echo $ptotal['NombreLug'] ?></td>
                                                 <td><?php echo $ptotal['NombreSector'] ?></td>
-                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;<?php } else { ?>background-color: #c40055;<?php } ?> color: white; font-weight: 400;">
+                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;<?php } ?> color: <?php echo $ptotal['Cumple'] == 1 ? 'white' : '#c40055'; ?>; font-weight: 700;">
                                                     <?php echo $ptotal['Cumple'] == 1 ? 'Si cumple' : 'No cumple'; ?>
                                                 </td>
+
                                                 <td>
-                                                    <a href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">Ver</a>
+                                                    <div class="container-ver">
+                                                        <a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
+                                                            <i class="fas fa-share" style="display: flex; align-items: center;"></i>
+                                                        </a>
+                                                    </div>
+
                                                 </td>
                                             </tr>
                                         <?php } ?>

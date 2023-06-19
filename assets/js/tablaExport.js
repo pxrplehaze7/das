@@ -49,7 +49,7 @@ $(document).ready(function() {
           orientation: 'landscape',
           className: 'btn btn-dpdf btn-danger',
           exportOptions: {
-            columns: ':visible',
+            columns: [ 0, 1, 2, 3, 4, 5, 6],
             title: 'Datos en PDF'
           },
           customize: function(doc) {
@@ -88,7 +88,7 @@ $(document).ready(function() {
   var table = $('#totalUsuarios').DataTable({
     responsive: true,
     searching: true,
-    paging: false,
+    paging: true,
     language: {
       "sEmptyTable": "No se encontraron datos disponibles en la tabla",
       "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
@@ -134,7 +134,7 @@ $(document).ready(function() {
         orientation: 'portrait', // Cambiar a 'portrait' para modo retrato
         className: 'btn btn-dpdf btn-danger',
         exportOptions: {
-          columns: ':not(:last-child)', // Excluir la última columna
+          columns: [ 0, 1, 2, 3, 4],
           title: 'Datos en PDF'
         },
         customize: function(doc) {

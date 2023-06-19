@@ -9,8 +9,8 @@ if ($_SESSION['rol'] !== '1') {
     header('Location: ./components/error.html');
     exit();
 }
-if (isset($_POST['nameidtracalif'])) {
-    $idtracal = $_POST['nameidtracalif'];
+if (isset($_GET['id'])) {
+    $idtracal = $_GET['id'];
 
     $datosCali = "SELECT idTra, Rut, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
     WHERE IDTra='$idtracal' LIMIT 1";
@@ -21,6 +21,7 @@ if (isset($_POST['nameidtracalif'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -55,8 +56,18 @@ if (isset($_POST['nameidtracalif'])) {
                 <?php if (isset($datosCali)) { ?>
                     <div class="container-md">
                         <form id="documentosApelacion" enctype="multi/form-data" method="POST">
+
                             <div class="title">
-                                <h1 class="mt-4">Calificaciones</h1>
+                                <div class="ti">
+                                    <h1 class="mt-4">Calificaciones</h1>
+                                </div>
+
+                                <div class="container-volver">
+                                    <a class="button-volver" href="mostrar.php?id=<?php echo $idTrabajador ?>">
+                                        Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
+                                    </a>
+                                </div>
+
                             </div>
 
                             <br>

@@ -92,7 +92,7 @@ if ($_SESSION['rol'] !== '1') {
                                                     <?php if (!$isCurrentSessionUser) { ?>
 
                                                         <div class="d-flex align-items-center justify-content-around">
-                                                            <a href="editusuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
+                                                            <a href="editUsuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
                                                             <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
                                                         </div>
                                                     <?php } ?>
@@ -115,6 +115,7 @@ if ($_SESSION['rol'] !== '1') {
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/elimina.js"></script>
+    <script src="./assets/js/tablas.js"></script>
 
     <script src="./assets/js/tablaExport.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

@@ -19,8 +19,9 @@ function deleteFile(campo, idtra) {
           Swal.fire({
             title: 'Documento eliminado exitosamente.',
             icon: 'success',
-            showConfirmButton: false,
-            timer: 3000
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'         
           }).then(function () {
             location.reload();
           });
@@ -29,6 +30,9 @@ function deleteFile(campo, idtra) {
           Swal.fire({
             title: 'Error al eliminar el documento: ' + error,
             icon: 'error',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         },
       });
@@ -58,8 +62,9 @@ function deleteFileCal(rutaCalificacion, idCalificacion) {
           Swal.fire({
             title: 'Documento eliminado exitosamente.',
             icon: 'success',
-            showConfirmButton: false,
-            timer: 3000
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           }).then(function () {
             location.reload(); // Actualiza la página
           });
@@ -69,6 +74,9 @@ function deleteFileCal(rutaCalificacion, idCalificacion) {
             Swal.fire({
               title: 'Error al eliminar el documento: ' + error,
               icon: 'error',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             });
         },
       });
@@ -98,8 +106,9 @@ function deleteFileApela(rutaApelacion, idCalificacion) {
           Swal.fire({
             title: 'Documento eliminado exitosamente.',
             icon: 'success',
-            showConfirmButton: false,
-            timer: 3600
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           }).then(function () {
             location.reload(); // Actualiza la página
           });
@@ -109,6 +118,9 @@ function deleteFileApela(rutaApelacion, idCalificacion) {
             Swal.fire({
               title: 'Error al eliminar el documento: ' + error,
               icon: 'error',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
             });
         },
       });
@@ -142,8 +154,9 @@ $(document).on('click', '.btnEliminarUsuario', function () {
           Swal.fire({
             title: 'Usuario eliminado exitosamente.',
             icon: 'success',
-            showConfirmButton: false,
-            timer: 3000
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           }).then(function () {
             location.reload(); // Actualiza la página
           });
@@ -152,9 +165,16 @@ $(document).on('click', '.btnEliminarUsuario', function () {
           Swal.fire({
             title: 'Error al eliminar el usuario: ' + error,
             icon: 'error',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
           });
         },
       });
     }
   });
 });
+
+
+
+

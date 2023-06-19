@@ -16,11 +16,25 @@ CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA
 ahora no me muestra los lugares en editar tampoco sector
 
 
- me falta ocultar elboton de editar
-
-
   arreglar tablas para que sean responsivas, arreglar botones que se ponen feos, 
 
 
 
   CALIFICACIONES FUNCIONAN AL AGREGAR, FALTA CORREGIR QUE CUANDO SE CAMBIE A NO APELO EN EDITAR, QUE SE LIMPIE ESE INPUT
+
+ 
+
+    me falta agregar el editar las observaciones
+
+    validar rut del usuario
+
+
+arreglar login poeque esta feo
+agregar icono a la web  
+
+$pass = "ADMINDAS2023" es la clave de admin@gmail.com,
+    preguntar que hacer con el admin, 
+
+
+    ver como hacer que muestre usuario registrado en agregar usuario segun correo
+    hacer que muestre usuario registrado segun el rut, es decir que haga la consulta a la base de datos para validar que no esta registrado

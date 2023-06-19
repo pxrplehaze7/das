@@ -119,7 +119,7 @@ if (!isset($_SESSION['rol'])) {
                                             </svg>
                                         </div>
                                     </div>
-                                    <span>Registrar</span>
+                                    <span>Guardar</span>
                                 </button>
                             </div>
                         </div>

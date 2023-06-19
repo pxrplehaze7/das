@@ -96,7 +96,7 @@ if ($_SESSION['rol'] !== '1') {
 
                             </div>
 
-                          
+
                             <div class="boton-registrar">
                                 <button id="btnRegistrar" type="submit" class="boton-registrarB">
                                     <div class="svg-wrapper-1">
@@ -109,9 +109,9 @@ if ($_SESSION['rol'] !== '1') {
                                     </div>
                                     <span>Registrar</span>
                                 </button>
-                                
+
                             </div>
-                          
+
                         </div>
                     </form>
                 </div>

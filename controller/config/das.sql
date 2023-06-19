@@ -155,5 +155,5 @@ INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5, 'e) Administrativos de 
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6, 'f) Auxiliares de servicios de Salud.');
 
 
-INSERT INTO `usuario` (`RutU`,`NombreU`,`ApellidoP`,`ApellidoM`,`Rol`,`Contrasenna`,`CorreoU`) VALUES ('19334538-7','Belen','Gonzalez','Diaz',1,'123456','correo@gmail.com');
+INSERT INTO `usuario` (`RutU`,`NombreU`,`ApellidoP`,`ApellidoM`,`Rol`,`Contrasenna`,`CorreoU`) VALUES ('19334538-7','Belen','Gonzalez','Diaz',1,'$2y$10$iA0W10c.3RkqRixtFYDr9Oitl/ZSOrh5/1U46D3N90fcwlmX6P9Ni','admin@gmail.com');
 

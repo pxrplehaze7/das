@@ -28,28 +28,29 @@ if (isset($_GET['id'])) {
 
     // Cerrar la conexión a la base de datos  
     // mysqli_close($conn);
-  } else {
-    echo "<script>
-      Swal.fire({
-        title: 'Usuario no encontrado',
-        text: '¿Desea registrar?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#00c4a0',
-        cancelButtonColor: '#ba0051',
-        confirmButtonText: 'Sí',
-        allowOutsideClick: false,
-        cancelButtonText: 'No'
+  } 
+  // else {
+  //   echo "<script>
+  //     Swal.fire({
+  //       title: 'Persona no encontrada',
+  //       text: '¿Desea registrar?',
+  //       icon: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonColor: '#00c4a0',
+  //       cancelButtonColor: '#ba0051',
+  //       confirmButtonText: 'Sí',
+  //       allowOutsideClick: false,
+  //       cancelButtonText: 'No'
 
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.href = 'registro.php';
-        } else {
-          window.location.href = 'home.php';
-        }
-      });
-    </script>";
-  }
+  //     }).then((result) => {
+  //       if (result.isConfirmed) {
+  //         window.location.href = 'registro.php';
+  //       } else {
+  //         window.location.href = 'home.php';
+  //       }
+  //     });
+  //   </script>";
+  // }
 }
 ?>
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">

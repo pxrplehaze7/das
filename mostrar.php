@@ -41,33 +41,36 @@ if (!isset($_SESSION['rol'])) {
                 <?php if (isset($persona)) { ?>
                     <div class="container-md">
 
-                    <!-- AQUI ME FALTA OCULTAR EL BOTON -->
-                        <form action="editar_registro.php" method="GET">
-                            <div class="row d-flex justify-content-center align-items-center principal">
-                                <div class="title">
-                                    <h1 class="mt-4">Información</h1>
-                                    <button class="btn btn-editar" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                    <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-                                </div>
+                        <div class="title">
+                            <div class="ti">
+                                <h1 class="mt-4">Información</h1>
                             </div>
-                        </form>
-                        <br>
-                        <br>
-                        <form action="pdfs_anteriores.php" method="GET">
-                            <div class="row d-flex justify-content-center align-items-center principal">
-                                <div class="title">
-                                    <button class="btn btn-editar" type="submit">Registros anteriores</button>
-                                    <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-
-
-                                </div>
-                            </div>
-                        </form>
+                        </div>
 
                         <br>
                         <div class="seccion">
+                            <div class="title">
+                                <div class="ti">
+                                    <h6 class="mt-4">Datos Personales</h6>
+                                </div>
+
+
+                                <?php if ($_SESSION['rol'] === '1') { ?>
+                                    <form action="editar_registro.php" method="GET">
+                                        <div class="container-volver">
+                                            <div class="title">
+                                                <button class="btn btn-editar" style="width: 100px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
+                                                <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                            </div>
+                                        </div>
+                                    </form>
+                                <?php } ?>
+
+
+                            </div>
+
                             <div class="row ">
-                                <h6>Datos Personales</h6>
+
                                 <div class="col-md">
                                     <label>Rut</label>
                                     <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
@@ -155,7 +158,20 @@ if (!isset($_SESSION['rol'])) {
 
 
                         <div class="documentacion seccion">
-                            <h6>Documentación</h6>
+                            <div class="title">
+                                <div class="ti">
+                                    <h6 class="mt-4">Documentación</h6>
+                                </div>
+                                <form action="pdfs_anteriores.php" method="GET">
+                                    <div class="container-volver">
+                                        <div class="title">
+                                            <button class="btn btn-editar" type="submit" style="width: 190px;">Registros anteriores <i class="fas fa-history"></i></button>
+                                            <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
 
                             <table id="docs" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
@@ -429,9 +445,9 @@ if (!isset($_SESSION['rol'])) {
                                 <h6>Calificaciones</h6>
                                 <?php
                                 if ($_SESSION['rol'] === '1') { ?>
-                                    <form action="calificaciones.php" method="POST">
+                                    <form action="calificaciones.php" method="GET">
                                         <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                        <input type="hidden" name="nameidtracalif" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                        <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                     </form>
                                 <?php } ?>
                             </div>
@@ -495,6 +511,10 @@ if (!isset($_SESSION['rol'])) {
 
                         </div>
 
+
+
+
+                        
                     </div>
                 <?php } ?>
             </main>

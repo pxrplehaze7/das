@@ -50,6 +50,8 @@
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputPassword" type="password" placeholder="Password" name="contrasennaL" required />
                                             <label for="inputPassword">Contraseña</label>
+                                            <?php
+                                            ?>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="redirec" href="recuperar_contrasenna.html">¿Olvidaste tu Contraseña?</a>
