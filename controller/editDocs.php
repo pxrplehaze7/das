@@ -49,10 +49,10 @@ if (mysqli_num_rows($resFile) == 1) {
 }
 
 
-// CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
-if (!file_exists($ruta . $rutPersona)) {
-  mkdir($ruta . $rutPersona, 0777, true);
-}
+// // CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
+// if (!file_exists($ruta . $rutPersona)) {
+//   mkdir($ruta . $rutPersona, 0777, true);
+// }
 
 // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {

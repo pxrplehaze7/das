@@ -46,6 +46,7 @@ if (!isset($_SESSION['rol'])) {
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- cdn css bootstrap -->

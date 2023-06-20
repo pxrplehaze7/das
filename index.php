@@ -9,6 +9,7 @@
     <meta name="author" content="" />
     <title>Login - SB Admin</title>
     <link href="./assets/styles/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
         .center-card {
@@ -53,8 +54,7 @@
                                             <?php
                                             ?>
                                         </div>
-                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="redirec" href="recuperar_contrasenna.html">¿Olvidaste tu Contraseña?</a>
+                                        <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
                                             <button class="btn btn-inicio" type="submit">Entrar</button>
                                         </div>
                                     </form>

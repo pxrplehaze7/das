@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
 
     if (mysqli_num_rows($resultDatosEditar) == 1) {
         $personaa = mysqli_fetch_assoc($resultDatosEditar);
-        var_dump($personaa);
+        // var_dump($personaa);
     }
 } ?>
 <!DOCTYPE html>
@@ -44,6 +44,7 @@ if (isset($_GET['id'])) {
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <!-- CDN jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- CDN CSS Bootstrap -->
@@ -393,7 +394,7 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/contrato.php') ?></td>
-                                                <td>
+                                                <td class="align-middle">
                                                     <div class="input-group">
                                                         <input type="file" id="idDocContratoInputEDIT" name="nameDocContratoInputEDIT" class="form-control" accept=".pdf">
                                                         <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')" style="width: 40px !important;">
@@ -410,7 +411,7 @@ if (isset($_GET['id'])) {
                                                 <tr>
                                                     <td class="align-middle">Certificado de Nacimiento</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idNACinput" name="nameNACdocEDIT" class="form-control" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idNACinput')" style="width: 40px !important;">
@@ -425,7 +426,7 @@ if (isset($_GET['id'])) {
                                             <tr>
                                                 <td class="align-middle">Certificado de Antecedentes</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
-                                                <td>
+                                                <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idANTECEinput" name="nameANTECEdocEDIT" class="form-control" accept=".pdf">
                                                         <button class="button" type="button" onclick="clearFileInput('idANTECEinput')" style="width: 40px !important;">
@@ -441,7 +442,7 @@ if (isset($_GET['id'])) {
                                             <tr>
                                                 <td class="align-middle">Fotocopia Cédula de Identidad</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
-                                                <td>
+                                                <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idCedulainput" name="nameCeduladocEDIT" class="form-control" accept=".pdf">
                                                         <button class="button" type="button" onclick="clearFileInput('idCedulainput')" style="width: 40px !important;" style="width: 40px !important;">
@@ -457,7 +458,7 @@ if (isset($_GET['id'])) {
                                                 <tr>
                                                     <td class="align-middle">Declaración Jurada</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idDJuradainput" name="nameDJuradadocEDIT" class="form-control" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idDJuradainput')" style="width: 40px !important;">
@@ -473,7 +474,7 @@ if (isset($_GET['id'])) {
                                             <tr>
                                                 <td class="align-middle">Curriculum Vitae</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
-                                                <td>
+                                                <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idCVinput" name="nameCVdocEDIT" class="form-control" accept=".pdf">
                                                         <button class="button" type="button" onclick="clearFileInput('idCVinput')" style="width: 40px !important;">
@@ -488,7 +489,7 @@ if (isset($_GET['id'])) {
                                             <tr>
                                                 <td class="align-middle">Certificado de Estudios o Título Profesional</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
-                                                <td>
+                                                <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idEstudioinput" name="nameEstudiodocEDIT" class="form-control" accept=".pdf">
                                                         <button class="button" type="button" onclick="clearFileInput('idEstudioinput')" style="width: 40px !important;">
@@ -505,7 +506,7 @@ if (isset($_GET['id'])) {
                                                 <tr>
                                                     <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDocEDIT" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idMilitarDoc')" style="width: 40px !important;">
@@ -521,7 +522,7 @@ if (isset($_GET['id'])) {
                                                 <tr>
                                                     <td class="align-middle">Examen Único Nacional de Conocimientos de Medicina</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idExamenMinput" name="nameExaMdocEDIT" class="form-control" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idExamenMinput')" style="width: 40px !important;">
@@ -538,7 +539,7 @@ if (isset($_GET['id'])) {
                                                 <tr>
                                                     <td class="align-middle">Certificado de Salud Compatible</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idSCompatibleinput" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idSCompatibleinput')" style="width: 40px !important;">
@@ -554,7 +555,7 @@ if (isset($_GET['id'])) {
                                                 <tr>
                                                     <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idInscripinput" name="nameInscripdocEDIT" class="form-control" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idInscripinput')" style="width: 40px !important;">
@@ -572,7 +573,7 @@ if (isset($_GET['id'])) {
                                                     <td class="align-middle"> Certificado de Afiliación AFP
                                                     </td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/afp.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idAFPinput" name="nameAFPdocEDIT" class="form-control" accept=".pdf">
                                                             <button class="button" type="button" onclick="clearFileInput('idAFPinput')" style="width: 40px !important;">
@@ -590,7 +591,7 @@ if (isset($_GET['id'])) {
                                                     <td class="align-middle">Certificado de Afiliación Previsión
                                                     </td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/prevision.php') ?></td>
-                                                    <td>
+                                                    <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idPREVinput" name="namePREVdocEDIT" class="form-control" accept=".pdf">
 
@@ -630,7 +631,7 @@ if (isset($_GET['id'])) {
                                 <h6>Calificaciones</h6>
 
 
-                                <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive table-responsive-sm" style="width:100%">
+                                <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
 
                                     <thead>
                                         <tr>

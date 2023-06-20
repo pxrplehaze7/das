@@ -119,7 +119,7 @@ INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (8, 'AFP Capital');
 
 INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (1, 'Reemplazo');
 INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (2, 'Plazo Fijo');
-INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (3, 'Honorarios');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (3, 'Honorario');
 INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (4, 'Indefinido');
 
 INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (1, 'Dirección de Administración de Salud');

@@ -468,9 +468,9 @@ $("#editInfoPersonal").on("submit", function (event) {
         cache: false,
         contentType: false,
         processData: false
-      }).done(function (response) {
-        response = JSON.parse(response);
-        if (response.success) {
+      }).done(function (respuesta) {
+        respuesta = JSON.parse(respuesta);
+        if (respuesta.success) {
           Swal.fire({
             icon: 'success',
             title: 'Información actualizada correctamente',
@@ -484,17 +484,17 @@ $("#editInfoPersonal").on("submit", function (event) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información',
-            text: response.message,
+            text: respuesta.message,
             showConfirmButton: true,
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#009CFD'
           });
         }
-      }).fail(function (response) {
+      }).fail(function (respuesta) {
         Swal.fire({
           icon: 'error',
           title: 'Error al actualizar la información',
-          text: response.responseText,
+          text: respuesta.responseText,
           showConfirmButton: true,
           confirmButtonText: 'Aceptar',
           confirmButtonColor: '#009CFD'

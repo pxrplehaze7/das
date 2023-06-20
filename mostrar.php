@@ -16,6 +16,7 @@ if (!isset($_SESSION['rol'])) {
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- cdn css bootstrap -->
@@ -59,7 +60,7 @@ if (!isset($_SESSION['rol'])) {
                                     <form action="editar_registro.php" method="GET">
                                         <div class="container-volver">
                                             <div class="title">
-                                                <button class="btn btn-editar" style="width: 120px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
+                                                <button class="btn btn-editar" style="width: 90px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
                                                 <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                             </div>
                                         </div>
@@ -160,7 +161,7 @@ if (!isset($_SESSION['rol'])) {
                         <div class="documentacion seccion">
                             <div class="title">
                                 <div class="ti">
-                                    <h6 class="mt-4">Documentación</h6>
+                                    <h6 class="mt-4">Documentos</h6>
                                 </div>
                                 <form action="pdfs_anteriores.php" method="GET">
                                     <div class="container-volver">
@@ -451,7 +452,7 @@ if (!isset($_SESSION['rol'])) {
                                 <form action="calificaciones.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
-                                        <button class="btn btn-calificacion" style="width: 120px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                        <button class="btn btn-calificacion" style="width: 100px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
                                         <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                         </div>
                                     </div>
@@ -464,7 +465,7 @@ if (!isset($_SESSION['rol'])) {
 
 
 
-                            <table id="myTable" class="table table-striped table-bordered" style="width:100%">
+                            <table id="calif" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Fecha</th>

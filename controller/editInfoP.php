@@ -39,8 +39,9 @@ if ($_POST['nameSelectLugar'] != "") {
   $lugarP = "NULL"; // Agregamos comillas al NULL para que sea reconocido como una cadena
 }
 
+
 // Consulta SQL para actualizar los datos
-$sql = "UPDATE trabajador SET 
+$sqlRuta = "UPDATE trabajador SET 
         IDCat = $categoriaP,
         IDCon = $contratoP,
         IDLugar = $lugarP,
@@ -56,25 +57,270 @@ $sql = "UPDATE trabajador SET
         Inscripcion = $inscripcionOno,
         Profesion = '$profesionP',
         Observ = '$observ'
+
         WHERE IDTra = '$idtrab'";
 // Ejecutar consulta SQL
-if (mysqli_query($conn, $sql)) {
-  // La actualización fue exitosa
-  $response = array(
-      'success' => true,
-      'message' => 'Información actualizada correctamente.'
-  );
-  echo json_encode($response);
-} else {
-  // Error al actualizar
-  $response = array(
-      'success' => false,
-      'message' => 'Error al actualizar la información: ' . mysqli_error($conn)
-  );
-  echo json_encode($response);
+$resultado1 = mysqli_query($conn, $sqlRuta);
+
+
+
+$consultaFile = "SELECT * FROM trabajador WHERE IDTra = '$idtrab'";
+$resFile = mysqli_query($conn, $consultaFile);
+if (mysqli_num_rows($resFile) == 1) {
+  $EditP = mysqli_fetch_assoc($resFile);
+  $genero2    = $EditP['Genero'];
+  $inscripcionOno2 = $EditP['Inscripcion'];
+  $medicoOno2 = $EditP['Medico'];
+  $contratoP2 = $EditP['IDCon'];
 }
 
 
-// Cerrar conexión
+if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = '$idtrab'")) > 0) {
+
+    $ruta_nacFINAL = $EditP['RutaNac'];
+    $ruta_AntecedentesFINAL = $EditP['RutaAntec'];
+    $ruta_afpFINAL = $EditP['RutaAFP'];
+    $ruta_militarFINAL = $EditP['RutaSerM'];
+    $ruta_CedulaFINAL = $EditP['RutaCedula'];
+    $ruta_CurriculumFINAL = $EditP['RutaCV'];
+    $ruta_ExamenMFINAL = $EditP['RutaExaM'];
+    $ruta_PrevisionFINAL = $EditP['RutaPrev'];
+    $ruta_EstudiosFINAL = $EditP['RutaEstudio'];
+    $ruta_DJuradaFINAL = $EditP['RutaDJur'];
+    $ruta_SaludCompatFINAL = $EditP['RutaSCom'];
+    $ruta_ContratoFINAL = $EditP['RutaContrato'];
+    $ruta_InscripcionFINAL = $EditP['RutaInscripcion'];
+  }
+
+  if (
+    (
+      // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
+      ($genero2 == "Masculino" || $genero2 == "Femenino") &&
+      $contratoP2 == 3 &&
+      $medicoOno2 == "Si" &&
+      $inscripcionOno2 == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_ExamenMFINAL) &&
+      !empty($ruta_AntecedentesFINAL)
+    )
+    ||
+    (
+      // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
+      ($genero2 == "Masculino" || $genero2 == "Femenino") &&
+      $contratoP2 == 3 &&
+      $medicoOno2 == "Si" &&
+      $inscripcionOno2 == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_ExamenMFINAL) &&
+      !empty($ruta_AntecedentesFINAL)
+    )
+    ||
+    // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
+    (($genero2 == "Masculino" || $genero2 == "Femenino") &&
+      $contratoP2 == 3 &&
+      $medicoOno2 == "No" &&
+      $inscripcionOno2 == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_AntecedentesFINAL))
+    ||
+    // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
+    (($genero2 == "Masculino" || $genero2 == "Femenino") &&
+      $contratoP2 == 3 &&
+      $medicoOno2 == "No" &&
+      $inscripcionOno2 == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_AntecedentesFINAL))
+    ||
+    // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN
+    ($genero2 == "Masculino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "No" &&
+      $inscripcionOno2 == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL)
+    )
+    ||
+    // HOMBRE NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN
+    ($genero2 == "Masculino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "Si" &&
+      $inscripcionOno2 == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL) &&
+      !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // HOMBRE NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
+    ($genero2 == "Masculino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "Si" &&
+      $inscripcionOno2 == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // HOMBRE NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN
+    ($genero2 == "Masculino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "No" &&
+      $inscripcionOno2 == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL) &&
+      !empty($ruta_InscripcionFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN
+    ($genero2 == "Femenino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "Si" &&
+      $inscripcionOno2 == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
+    ($genero2 == "Femenino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "Si" &&
+      $inscripcionOno2 == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN
+    ($genero2 == "Femenino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "No" &&
+      $inscripcionOno2 == TRUE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_InscripcionFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, NO ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
+    ($genero2 == "Femenino" &&
+      $contratoP2 != 3 &&
+      $medicoOno2 == "No" &&
+      $inscripcionOno2 == FALSE &&
+      !empty($ruta_ContratoFINAL) &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL)
+    )
+  ) {
+    $cumple = TRUE;
+  } else {
+    $cumple = FALSE;
+  }
+// SE INSERTAN DATOS A LA BASE DE DATOS
+
+$actualizaC = "UPDATE trabajador SET Cumple = '$cumple' WHERE IDTra = '$idtrab'";
+
+$resultado2 = mysqli_query($conn, $actualizaC);
+
+  
+if ($resultado1 && $resultado2) {
+ // La actualización fue exitosa
+ $response = array(
+  'success' => true,
+  'message' => 'Información actualizada correctamente.'
+);
+echo json_encode($response);
+} else {
+// Error al actualizar
+$response = array(
+  'success' => false,
+  'message' => 'Error al actualizar la información: ' . mysqli_error($conn)
+);
+echo json_encode($response);
+}
+
 mysqli_close($conn);
+
 ?>
+

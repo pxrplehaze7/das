@@ -11669,7 +11669,11 @@ body {
 }
 
 .fondo-inicio {
-  background-color: #212529 !important;
+  /* background-color: #212529 !important; */
+  background-image: url('../img/bg.jpg')!important;
+  background-repeat: no-repeat !important; 
+  background-size: cover !important; 
+  background-position: center !important;
 }
 
 .btn-inicio {

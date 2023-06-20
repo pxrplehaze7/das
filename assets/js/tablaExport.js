@@ -3,7 +3,7 @@ $(document).ready(function() {
     var table = $('#total').DataTable({
       responsive: true,
       searching: true,
-      paging: false,
+      paging: true,
       language: {
         "sEmptyTable": "No se encontraron datos disponibles en la tabla",
         "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
@@ -37,7 +37,7 @@ $(document).ready(function() {
           orientation: 'landscape',
           className: 'btn btn-dexcel btn-success',
           exportOptions: {
-            columns: ':visible',
+            columns: [ 0, 1, 2, 3, 4, 5, 6, 7],
             title: 'Datos en Excel'
           }
         },
@@ -49,13 +49,13 @@ $(document).ready(function() {
           orientation: 'landscape',
           className: 'btn btn-dpdf btn-danger',
           exportOptions: {
-            columns: [ 0, 1, 2, 3, 4, 5, 6],
+            columns: [ 0, 1, 2, 3, 4, 5, 6, 7],
             title: 'Datos en PDF'
           },
           customize: function(doc) {
             doc.defaultStyle.alignment = 'center';
             doc.styles.tableHeader.alignment = 'center';
-            doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+            doc.content[1].table.widths = ['10%', '5%', '8%', '24%', '15%', '15%', '15%', '8%']; // Establece el ancho de la columna 3 como 10%
             doc.defaultStyle.fontSize = 10;
             doc.styles.tableHeader.fontSize = 10;
             doc.styles.tableBodyEven.fontSize = 10;
@@ -69,6 +69,7 @@ $(document).ready(function() {
       ]
     });
   
+
     table.buttons(['print']).remove();
   
     table.buttons().nodes().each(function(node) {

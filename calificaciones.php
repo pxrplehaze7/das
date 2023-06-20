@@ -30,6 +30,7 @@ if (isset($_GET['id'])) {
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- cdn css bootstrap -->
@@ -166,12 +167,6 @@ if (isset($_GET['id'])) {
                                 </div>
 
 
-
-
-
-
-
-
                                 <div id="adjuntaApelacion">
                                     <label for="idApelacionDoc"><span style="color: red;">*</span> Apelación</label>
                                     <div class="input-group">
@@ -223,62 +218,6 @@ if (isset($_GET['id'])) {
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable({
-                language: {
-                    "sEmptyTable": "No se encontraron datos disponibles en la tabla",
-                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-                    "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ",",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sLoadingRecords": "Cargando...",
-                    "sProcessing": "Procesando...",
-                    "sSearch": "Buscar:",
-                    "sZeroRecords": "No se encontraron registros coincidentes",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast": "Último",
-                        "sNext": "Siguiente",
-                        "sPrevious": "Anterior"
-                    },
-                    "oAria": {
-                        "sSortAscending": ": activar para ordenar la columna de manera ascendente",
-                        "sSortDescending": ": activar para ordenar la columna de manera descendente"
-                    }
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#docs').DataTable({
-                language: {
-                    "sEmptyTable": "No se encontraron datos disponibles en la tabla",
-                    "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
-                    "sInfoFiltered": "(filtrado de _MAX_ registros en total)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ",",
-                    "sLengthMenu": "Mostrar _MENU_ registros",
-                    "sLoadingRecords": "Cargando...",
-                    "sProcessing": "Procesando...",
-                    "sSearch": "Buscar:",
-                    "sZeroRecords": "No se encontraron registros coincidentes"
-                },
-                dom: 'frt',
-                pagingType: 'numbers',
-                order: [],
-                columnDefs: [{
-                    targets: '_all',
-                    orderable: false
-                }]
-            });
-        });
-    </script>
 </body>
 
 </html>

@@ -17,6 +17,7 @@ if (!isset($_SESSION['rol'])) {
     <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <!-- CDN jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- CDN CSS Bootstrap -->
@@ -41,7 +42,7 @@ if (!isset($_SESSION['rol'])) {
         <?php require("./components/sidebar.php"); ?>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-md">
+                <div class="container-md tablap">
                     <div class="title">
                         <h1 class="mt-4">Lista de Trabajadores Registrados</h1>
                     </div>
@@ -94,33 +95,36 @@ if (!isset($_SESSION['rol'])) {
                                 <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
-                                            <th>Rut</th>
+                                            <th style="width: 75px;">Rut</th>
                                             <th>Decreto</th>
+                                            <th>Contrato</th>
                                             <th>Nombre</th>
                                             <th>Profesión</th>
                                             <th>Lugar</th>
                                             <th>Sector</th>
                                             <th>Cumple</th>
-                                            <th></th> <!-- Nueva columna para el botón -->
+                                            <th>Ver</th> 
                                         </tr>
                                     </thead>
                                     <tbody id="trabajadores_tbody">
                                         <?php
-                                        $sqlTodos = "SELECT t.Rut, t.IDTra, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple
-        FROM trabajador t 
-        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
-        INNER JOIN sector s ON (s.IDSector = t.IDSector)";
+                                        $sqlTodos = "SELECT t.Rut, t.IDTra, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple, c.NombreCon
+                                        FROM trabajador t 
+                                        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
+                                        INNER JOIN sector s ON (s.IDSector = t.IDSector)
+                                        INNER JOIN contrato c ON (c.IDCon = t.IDCon)";
 
                                         $resultadoTotal = mysqli_query($conn, $sqlTodos);
                                         while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
                                             <tr>
-                                                <td><?php echo $ptotal['Rut'] ?></td>
-                                                <td><?php echo $ptotal['Decreto'] ?></td>
-                                                <td><?php echo $ptotal['NombreTra'] . ' ' . $ptotal['PaternoTra'] . ' ' . $ptotal['MaternoTra']; ?></td>
-                                                <td><?php echo $ptotal['Profesion'] ?></td>
-                                                <td><?php echo $ptotal['NombreLug'] ?></td>
-                                                <td><?php echo $ptotal['NombreSector'] ?></td>
-                                                <td style="text-align: center; font-weight: 700;">
+                                                <td  class="align-middle"><?php echo $ptotal['Rut'] ?></td>
+                                                <td  class="align-middle"><?php echo $ptotal['Decreto'] ?></td>
+                                                <td  class="align-middle"><?php echo $ptotal['NombreCon'] ?></td>
+                                                <td  class="align-middle"><?php echo $ptotal['NombreTra'] . ' ' . $ptotal['PaternoTra'] . ' ' . $ptotal['MaternoTra']; ?></td>
+                                                <td  class="align-middle"><?php echo $ptotal['Profesion'] ?></td>
+                                                <td  class="align-middle"><?php echo $ptotal['NombreLug'] ?></td>
+                                                <td  class="align-middle"><?php echo $ptotal['NombreSector'] ?></td>
+                                                <td  class="align-middle" style="text-align: center; font-weight: 700;">
                                                     <?php
                                                     if ($ptotal['Cumple'] == 1) {
                                                         echo '<span style="color: #00886f;">Si cumple</span>';
@@ -129,16 +133,17 @@ if (!isset($_SESSION['rol'])) {
                                                     }
                                                     ?>
                                                 </td>
-
-
-                                                <td>
-                                                    <div class="container-ver">
-                                                        <center><a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
-                                                            <i class="fas fa-share" style="display: flex; align-items: center;"></i>
-                                                        </a></center>
+                                                <td style="vertical-align: middle;">
+                                                    <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                                                        <a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
+                                                            <span style="display: flex; align-items: center;">
+                                                                <i class="fas fa-share"></i>
+                                                            </span>
+                                                        </a>
                                                     </div>
-
                                                 </td>
+
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>

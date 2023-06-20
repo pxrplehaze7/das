@@ -5,7 +5,7 @@
 
 @media (max-width: 700px) {
   body {
-      min-width: 700px !important;
+    min-width: 700px !important;
   }
 }
 
@@ -36,15 +36,12 @@ h1 {
   border-radius: 30px;
   margin-bottom: 20px;
   padding-left: 3% !important;
-  padding-right:3% !important;
+  padding-right: 3% !important;
   padding-top: 4%;
   padding-bottom: 4%;
   background-color: #ffffff;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.18);
 }
-
-
-
 
 /* SUBTITULOS DE SECCIONES */
 h6 {
@@ -327,7 +324,6 @@ p {
 .boton-eliminar:hover {
   background-color: #a70048 !important;
   border-color: #c40055 !important;
-
 }
 .boton-eliminar:active {
   background-color: #920140 !important;
@@ -546,7 +542,6 @@ button.boton-registrarB:active {
   }
 }
 
-
 .Btn2-restablece {
   display: flex;
   align-items: center;
@@ -636,7 +631,6 @@ button.boton-registrarB:active {
   margin-bottom: 20px !important;
 }
 
-
 .btn-editar {
   background-color: #212529 !important;
   color: white !important;
@@ -650,7 +644,6 @@ button.boton-registrarB:active {
   background-color: #322c83 !important;
 }
 
-
 .califica button {
   position: absolute;
   margin-bottom: 23px;
@@ -659,7 +652,6 @@ button.boton-registrarB:active {
   border: none;
   color: #212529;
 }
-
 
 .btn-calificacion {
   background-color: #212529 !important;
@@ -674,24 +666,18 @@ button.boton-registrarB:active {
   background-color: #322c83 !important;
 }
 
-
-
 .title {
   /* position: relative;
   display: flex;
   align-items: center; */
 
-
-
   display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    position: relative;
-    text-align: center;
-    justify-content: center;
+  justify-content: space-between;
+  align-items: baseline;
+  position: relative;
+  text-align: center;
+  justify-content: center;
 }
-
-
 
 .title h1 {
   flex-grow: 1;
@@ -707,7 +693,6 @@ button.boton-registrarB:active {
   color: #212529;
 }
 
-
 .title button::before {
   border: #6b66bc;
 }
@@ -715,16 +700,11 @@ button.boton-registrarB:active {
   color: #463bfa;
 }
 
-
-
 .califica {
-
-    position: relative;
-    display: flex;
-    align-items: center;
-  
+  position: relative;
+  display: flex;
+  align-items: center;
 }
-
 
 .califica h6 {
   flex-grow: 1;
@@ -741,14 +721,12 @@ button.boton-registrarB:active {
   color: #212529;
 }
 
-
 .btn-calificacion {
   background-color: #212529 !important;
   color: white !important;
   margin-bottom: 8px;
   margin-right: 12px;
 }
-
 
 .btn-filtro {
   background-color: #212529 !important;
@@ -766,23 +744,22 @@ button.boton-registrarB:active {
   border-color: #322c83 !important;
 }
 
-.resets{
+.resets {
   margin-left: 8px;
   margin-right: 8px;
 }
 
-
-.container-volver{
+.container-volver {
   align-self: baseline;
   position: absolute;
   right: 0;
   bottom: 0;
   transform: translateY(-17%);
 }
-.ti{
+.ti {
   display: flex;
-    align-items: center;
-    z-index: 1;
+  align-items: center;
+  z-index: 1;
 }
 
 .button-volver {
@@ -802,11 +779,9 @@ button.boton-registrarB:active {
   color: white;
 }
 
-
-
 .button-ir {
   background-color: #212529;
-  width: 86px;
+  width: 50px;
   display: flex;
   height: 29px;
   border-radius: 5px;
@@ -820,3 +795,12 @@ button.boton-registrarB:active {
   color: white;
 }
 
+.container-ver {
+  display: flex;
+}
+
+@media (min-width: 1400px) {
+  .tablap {
+    max-width: 1600px !important;
+  }
+}
