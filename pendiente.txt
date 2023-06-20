@@ -12,20 +12,9 @@ ver como hacer focus a los radio porque no me deja
 CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
 
 
-
-ahora no me muestra los lugares en editar tampoco sector
-
-
   arreglar tablas para que sean responsivas, arreglar botones que se ponen feos, 
 
-
-
-  CALIFICACIONES FUNCIONAN AL AGREGAR, FALTA CORREGIR QUE CUANDO SE CAMBIE A NO APELO EN EDITAR, QUE SE LIMPIE ESE INPUT
-
  
-
-    me falta agregar el editar las observaciones
-
 
 
 arreglar login poeque esta feo
@@ -35,9 +24,8 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
     preguntar que hacer con el admin, 
 
 
-    ver como hacer que muestre usuario registrado en agregar usuario segun correo
-
-
+<input type="text" id="myInput" autocomplete="off">
+para que no se autocompleten los inputs
 
 
 

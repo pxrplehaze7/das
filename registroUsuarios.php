@@ -81,6 +81,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <div class="col-md">
                                     <label for=" idCorreo"><span style="color: #c40055;">*</span> Correo Electrónico</label>
                                     <input type="text" name="nameCorreo" id="idCorreo" placeholder="correo@daschiguayante.cl" class="form-control" required>
+                                    <div id="correo-validation"></div>
                                     <br>
                                 </div>
 

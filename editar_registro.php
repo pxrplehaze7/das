@@ -10,9 +10,13 @@ if ($_SESSION['rol'] !== '1') {
     exit();
 }
 
+
+
 if (isset($_GET['id'])) {
     $idtra = $_GET['id'];
-    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, lug.IDLugar, sec.IDSector, tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Decreto, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaContrato, tra.RutaDJur, tra.RutaSerM, tra.RutaSCom, tra.RutaExaM, tra.Observ, tra.RutaInscripcion, tra.IDLugar
+    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, 
+    lug.IDLugar, sec.IDSector, tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Decreto, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaContrato, tra.RutaDJur,
+     tra.RutaSerM, tra.RutaSCom, tra.RutaExaM, tra.Observ, tra.RutaInscripcion
     FROM trabajador tra
     INNER JOIN categoria cat ON (cat.IDCat = tra.IDCat)
     INNER JOIN contrato con ON (con.IDCon = tra.IDCon)
@@ -20,23 +24,18 @@ if (isset($_GET['id'])) {
     INNER JOIN lugar lug ON (lug.IDLugar = tra.IDLugar)
     INNER JOIN sector sec ON (sec.IDSector = tra.IDSector)
     INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
-    WHERE tra.IDTra='$idtra' LIMIT 1";
+    WHERE IDTra='$idtra' LIMIT 1";
 
 
     $resultDatosEditar = mysqli_query($conn, $datosEditar);
 
     if (mysqli_num_rows($resultDatosEditar) == 1) {
-        $persona = mysqli_fetch_assoc($resultDatosEditar);
-        var_dump($persona);
-
-        if (isset($persona['IDLugar'])) {
-            $persona['IDLugar'] = $persona['IDLugar'];
-        }
+        $personaa = mysqli_fetch_assoc($resultDatosEditar);
+        var_dump($personaa);
     }
 } ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -67,14 +66,13 @@ if (isset($_GET['id'])) {
         <?php require("./components/navbar.php") ?>
         <?php require("./components/sidebar.php") ?>
 
-
         <div id="layoutSidenav_content">
             <main>
-                <?php if (isset($persona)) { ?>
+                <?php if (isset($personaa)) { ?>
+
                     <div class="container-md">
 
                         <form id="editInfoPersonal" action="./controller/editInfoP.php" method="POST">
-                            <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
                             <div class="title">
                                 <div class="ti">
                                     <h1 class="mt-4">Editar Información</h1>
@@ -92,13 +90,15 @@ if (isset($_GET['id'])) {
                                 <h6>Datos Personales</h6>
                                 <div class="row ">
                                     <div class="col-md">
+                                    <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
+
                                         <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
-                                        <input type="text" name="RutInput" id="idRutInput" value="<?php echo $persona['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
+                                        <input type="text" name="RutInput" id="idRutInput" value="<?php echo $personaa['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                                         <br>
                                     </div>
                                     <div class="col-md">
                                         <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
-                                        <input type="text" name="namePersona" id="idPersona" value="<?php echo $persona['NombreTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
+                                        <input type="text" name="namePersona" id="idPersona" value="<?php echo $personaa['NombreTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
                                         <br>
                                     </div>
                                 </div>
@@ -106,12 +106,12 @@ if (isset($_GET['id'])) {
                                 <div class="row">
                                     <div class="col-md">
                                         <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
-                                        <input type="text" name="namePaterno" id="idAppat" value="<?php echo $persona['PaternoTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
+                                        <input type="text" name="namePaterno" id="idAppat" value="<?php echo $personaa['PaternoTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
                                         <br>
                                     </div>
                                     <div class="col-md">
                                         <label for="idApmat">Apellido Materno</label>
-                                        <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $persona['MaternoTra'] ?>" class="form-control" oninput="validarTexto(this)">
+                                        <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $personaa['MaternoTra'] ?>" class="form-control" oninput="validarTexto(this)">
                                         <br>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ if (isset($_GET['id'])) {
                                             echo '<option value="" hidden>Selecciona un Contrato</option>'; // Opción por defecto en blanco
 
                                             while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
-                                                $selected = ($fila['IDCon'] == $persona['IDCon']) ? 'selected' : '';
+                                                $selected = ($fila['IDCon'] == $personaa['IDCon']) ? 'selected' : '';
                                                 echo "<option value='" . $fila['IDCon'] . "' " . $selected . ">" . $fila['NombreCon'] . "</option>";
                                             }
                                             echo "</select>";
@@ -145,7 +145,7 @@ if (isset($_GET['id'])) {
                                             echo "<select name='nameSelectCat' id='idSelectCat' class='form-select' required> ";
                                             echo '<option hidden value=""> Selecciona una Categoría</option>'; // Opción por defecto en blan
                                             while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
-                                                $selected = ($fila['IDCat'] == $persona['IDCat']) ? 'selected' : '';
+                                                $selected = ($fila['IDCat'] == $personaa['IDCat']) ? 'selected' : '';
                                                 echo "<option value='" . $fila['IDCat'] . "' " . $selected . ">" . $fila['NombreCat'] . "</option>";
                                             }
                                             echo "</select>";
@@ -155,14 +155,13 @@ if (isset($_GET['id'])) {
                                         <br>
                                     </div>
 
-
                                     <div id="idInscripcion" class="radioCentro row">
                                         <center>
                                             <label><span style="color: #c40055;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
 
                                             <div class="radio-inputs">
                                                 <label>
-                                                    <input type="radio" name="nameInscrip" id="idSiInscrip" value=1 class="radio-input" <?php if ($persona['Inscripcion'] == 1) echo "checked"; ?>>
+                                                    <input type="radio" name="nameInscrip" id="idSiInscrip" value=1 class="radio-input" <?php if ($personaa['Inscripcion'] == 1) echo "checked"; ?>>
                                                     <span class=" radio-tile">
                                                         <span class="radio-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -173,7 +172,7 @@ if (isset($_GET['id'])) {
                                                     </span>
                                                 </label>
                                                 <label>
-                                                    <input type="radio" name="nameInscrip" id="idNoInscrip" value=0 class="radio-input" <?php if ($persona['Inscripcion'] == 0) echo "checked"; ?>>
+                                                    <input type="radio" name="nameInscrip" id="idNoInscrip" value=0 class="radio-input" <?php if ($personaa['Inscripcion'] == 0) echo "checked"; ?>>
                                                     <span class="radio-tile">
                                                         <span class="radio-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -187,13 +186,13 @@ if (isset($_GET['id'])) {
                                         </center>
                                     </div>
 
-                                    <?php if ($persona['IDCat'] == 1) { ?>
+                                    <?php if ($personaa['IDCat'] == 1) { ?>
                                         <div id="idPreguntaCat1" class="radioCentro row">
                                             <center>
                                                 <label><span style="color: #c40055;">*</span> ¿Es médico?</label>
                                                 <div class="radio-inputs">
                                                     <label>
-                                                        <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input" <?php if ($persona['Medico'] == 'Si') echo "checked"; ?>>
+                                                        <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input" <?php if ($personaa['Medico'] == 'Si') echo "checked"; ?>>
                                                         <span class="radio-tile">
                                                             <span class="radio-icon">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -204,7 +203,7 @@ if (isset($_GET['id'])) {
                                                         </span>
                                                     </label>
                                                     <label>
-                                                        <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radio-input" <?php if ($persona['Medico'] == 'No') echo "checked"; ?>>
+                                                        <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radio-input" <?php if ($personaa['Medico'] == 'No') echo "checked"; ?>>
                                                         <span class="radio-tile">
                                                             <span class="radio-icon">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -221,9 +220,6 @@ if (isset($_GET['id'])) {
 
                                     <br>
                                     <div class="row">
-                                        <?php echo $persona['IDLugar'] ?>
-
-
                                         <div class="col-md-6"> <!-- LUGAR -->
                                             <label for="idSelectLugar"><span style="color: #c40055;">*</span> Lugar</label>
                                             <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
@@ -232,7 +228,7 @@ if (isset($_GET['id'])) {
                                                 $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
                                                 $resultadoLugar = mysqli_query($conn, $sqlLugar);
                                                 while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
-                                                    $selected = ($fila['IDLugar'] == $persona['IDLugar']) ? "selected" : "";
+                                                    $selected = ($fila['IDLugar'] == $personaa['IDLugar']) ? "selected" : "";
                                                     echo "<option value='" . $fila['IDLugar'] . "' $selected>" . $fila['NombreLug'] . "</option>";
                                                 }
                                                 ?>
@@ -247,7 +243,7 @@ if (isset($_GET['id'])) {
                                                 $sqlSector = "SELECT IDSector, NombreSector FROM sector";
                                                 $resultadoSector = mysqli_query($conn, $sqlSector);
                                                 while ($fila = mysqli_fetch_assoc($resultadoSector)) {
-                                                    $selected = ($fila['IDSector'] == $persona['IDSector']) ? "selected" : "";
+                                                    $selected = ($fila['IDSector'] == $personaa['IDSector']) ? "selected" : "";
                                                     echo "<option value='" . $fila['IDSector'] . "' $selected>" . $fila['NombreSector'] . "</option>";
                                                 }
                                                 ?>
@@ -257,7 +253,7 @@ if (isset($_GET['id'])) {
 
                                     <div>
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
-                                        <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $persona['Profesion'] ?>" class="form-control" require>
+                                        <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $personaa['Profesion'] ?>" class="form-control" require>
                                     </div>
                                     <br>
 
@@ -270,7 +266,7 @@ if (isset($_GET['id'])) {
                                             echo "<label for='idSelectAFP'>AFP </label>"; //Label 
                                             echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
                                             while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
-                                                $selected = ($fila2['IDAFP'] == $persona['IDAFP']) ? 'selected' : '';
+                                                $selected = ($fila2['IDAFP'] == $personaa['IDAFP']) ? 'selected' : '';
                                                 echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
                                             }
                                             echo "</select>";
@@ -285,7 +281,7 @@ if (isset($_GET['id'])) {
                                             echo "<label for='idSelectCat'>Previsión </label>"; //Label 
                                             echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
                                             while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
-                                                $selected3 = ($fila3['IDPrev'] == $persona['IDPrev']) ? 'selected' : '';
+                                                $selected3 = ($fila3['IDPrev'] == $personaa['IDPrev']) ? 'selected' : '';
                                                 echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
                                             }
                                             echo "</select>";
@@ -300,7 +296,7 @@ if (isset($_GET['id'])) {
 
                                         <div class="radio-inputs">
                                             <label>
-                                                <input class="radio-input" type="radio" name="nameGenero" id="idFemenino" value="Femenino" <?php if ($persona['Genero'] == 'Femenino') echo "checked"; ?> required">
+                                                <input class="radio-input" type="radio" name="nameGenero" id="idFemenino" value="Femenino" <?php if ($personaa['Genero'] == 'Femenino') echo "checked"; ?> required">
                                                 <span class="radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -311,7 +307,7 @@ if (isset($_GET['id'])) {
                                                 </span>
                                             </label>
                                             <label>
-                                                <input class="radio-input" type="radio" name="nameGenero" id="idMasculino" value="Masculino" <?php if ($persona['Genero'] == 'Masculino') echo "checked"; ?> required>
+                                                <input class="radio-input" type="radio" name="nameGenero" id="idMasculino" value="Masculino" <?php if ($personaa['Genero'] == 'Masculino') echo "checked"; ?> required>
                                                 <span class="radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -325,10 +321,10 @@ if (isset($_GET['id'])) {
                                     </center>
                                 </div>
                                 <br>
-                                <!-- <div class="observaciones ">
-                                  <label>Observaciones</label>
-                                    <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"><?php echo $persona['Observ'] ?></textarea>
-                                </div> -->
+                                <div class="observaciones ">
+                                    <label>Observaciones</label>
+                                    <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"><?php echo $personaa['Observ'] ?></textarea>
+                                </div>
                                 <br>
                                 <div class="boton">
                                     <button class="Btn2" id="btn-editP" type="submit">Actualizar
@@ -350,12 +346,12 @@ if (isset($_GET['id'])) {
                                         <label for="idCelular">Celular</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">+56</span>
-                                            <input type="text" name="nameCelular" id="idCelular" value="<?php echo $persona['CelularTra'] ?>" class="form-control" maxlength="9" oninput="validarCelular(this)">
+                                            <input type="text" name="nameCelular" id="idCelular" value="<?php echo $personaa['CelularTra'] ?>" class="form-control" maxlength="9" oninput="validarCelular(this)">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <label for="idCorreo">Correo Electrónico</label>
-                                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $persona['CorreoTra'] ?>" class="form-control">
+                                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $personaa['CorreoTra'] ?>" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -372,7 +368,7 @@ if (isset($_GET['id'])) {
                         <br>
                         <div id="c_docs">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs">
-                                <input type="hidden" name="nameRutEditar" value="<?php echo $persona['Rut'] ?>">
+                                <input type="hidden" name="nameRutEditar" value="<?php echo $personaa['Rut'] ?>">
 
                                 <div class="documentacion seccion">
                                     <h6>Documentación</h6>
@@ -392,7 +388,7 @@ if (isset($_GET['id'])) {
                                                             Nº de Decreto
                                                         </div>
                                                         <div class="col-md-5 align-middle">
-                                                            <input type="text" name="nameDecreto" id="idDecreto" value="<?php echo $persona['Decreto'] ?>" class="form-control" maxlength="30" required>
+                                                            <input type="text" name="nameDecreto" id="idDecreto" value="<?php echo $personaa['Decreto'] ?>" class="form-control" maxlength="30" required>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -410,7 +406,7 @@ if (isset($_GET['id'])) {
                                             </tr>
 
 
-                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Nacimiento</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
@@ -457,7 +453,7 @@ if (isset($_GET['id'])) {
                                                 </td>
                                             </tr>
 
-                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Declaración Jurada</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
@@ -505,7 +501,7 @@ if (isset($_GET['id'])) {
                                             </tr>
 
 
-                                            <?php if ($persona['Genero'] == 'Masculino' && $persona['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['Genero'] == 'Masculino' && $personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
@@ -521,7 +517,7 @@ if (isset($_GET['id'])) {
                                                     </td>
                                                 </tr><?php } ?>
 
-                                            <?php if ($persona['Medico'] == 'Si') { ?>
+                                            <?php if ($personaa['Medico'] == 'Si') { ?>
                                                 <tr>
                                                     <td class="align-middle">Examen Único Nacional de Conocimientos de Medicina</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
@@ -538,7 +534,7 @@ if (isset($_GET['id'])) {
                                                 </tr><?php } ?>
 
 
-                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Salud Compatible</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
@@ -554,7 +550,7 @@ if (isset($_GET['id'])) {
                                                     </td>
                                                 </tr><?php } ?>
 
-                                            <?php if ($persona['Inscripcion'] == 1) { ?>
+                                            <?php if ($personaa['Inscripcion'] == 1) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
@@ -571,7 +567,7 @@ if (isset($_GET['id'])) {
                                                 </tr><?php } ?>
 
 
-                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle"> Certificado de Afiliación AFP
                                                     </td>
@@ -589,7 +585,7 @@ if (isset($_GET['id'])) {
                                                     </td>
                                                 </tr><?php } ?>
 
-                                            <?php if ($persona['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Afiliación Previsión
                                                     </td>
@@ -741,11 +737,7 @@ if (isset($_GET['id'])) {
                             </div>
                         </div>
 
-
                     </div>
-
-
-
                 <?php } ?>
             </main>
         </div>

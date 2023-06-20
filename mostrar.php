@@ -59,7 +59,7 @@ if (!isset($_SESSION['rol'])) {
                                     <form action="editar_registro.php" method="GET">
                                         <div class="container-volver">
                                             <div class="title">
-                                                <button class="btn btn-editar" style="width: 100px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
+                                                <button class="btn btn-editar" style="width: 120px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
                                                 <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                             </div>
                                         </div>
@@ -165,7 +165,7 @@ if (!isset($_SESSION['rol'])) {
                                 <form action="pdfs_anteriores.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
-                                            <button class="btn btn-editar" type="submit" style="width: 190px;">Registros anteriores <i class="fas fa-history"></i></button>
+                                            <button class="btn btn-editar" type="submit" style="width: 120px;">Anteriores <i class="fas fa-history"></i></button>
                                             <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                         </div>
                                     </div>
@@ -441,16 +441,28 @@ if (!isset($_SESSION['rol'])) {
 
                         <div class="seccion">
 
-                            <div class="row d-flex justify-content-center align-items-center califica">
-                                <h6>Calificaciones</h6>
-                                <?php
-                                if ($_SESSION['rol'] === '1') { ?>
-                                    <form action="calificaciones.php" method="GET">
-                                        <button class="btn btn-calificacion" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+
+
+                            <div class="title">
+                                <div class="ti">
+                                    <h6 class="mt-4">Calificaciones</h6>
+                                </div>
+                                <?php if ($_SESSION['rol'] === '1') { ?>
+                                <form action="calificaciones.php" method="GET">
+                                    <div class="container-volver">
+                                        <div class="title">
+                                        <button class="btn btn-calificacion" style="width: 120px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
                                         <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-                                    </form>
+                                        </div>
+                                    </div>
+                                </form>
                                 <?php } ?>
                             </div>
+
+
+
+
+
 
                             <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                                 <thead>

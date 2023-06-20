@@ -36,9 +36,6 @@ $("#documentosObligatorios").on("submit", function (event) {
       showConfirmButton: true,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#009CFD',
-      didOpen: () => {
-        celularInput.focus();
-      }
     });
     return;
   }
@@ -281,8 +278,7 @@ $("#edicion_pdfs").on("submit", function (event) {
       return;
     } else {
       let formData = new FormData(this);
-      formData.append('laid', $('#idtrabid').val());
-
+      formData.append('laid', $('#idtrabid').attr('value'));
       $.ajax({
         url: "./controller/editDocs.php",
         method: "POST",
@@ -291,16 +287,15 @@ $("#edicion_pdfs").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-        .done(function (respuesta) {
-          $('body').append(respuesta);
-        })
-        .fail(function (respuesta) {
-          $('body').append(respuesta);
-        })
-        .always(function (respuesta) {
-          console.info("DATA:", respuesta);
-        })
-
+      .done(function (respuesta) {
+        $('body').append(respuesta);
+      })
+      .fail(function (respuesta) {
+        $('body').append(respuesta);
+      })
+      .always(function (respuesta) {
+        console.info("DATA:", respuesta);
+      });
     }
   });
 });
@@ -394,7 +389,7 @@ $("#editInfoContacto").on("submit", function (event) {
     return;
   }
   var formData = new FormData(this);
-  formData.append('laid', $('#idtrabid').val());
+  formData.append('laid', $('#idtrabid').attr('value'));
   Swal.fire({
     title: '¿Desea actualizar la información de contacto?',
     showDenyButton: true,
@@ -454,7 +449,7 @@ $("#editInfoPersonal").on("submit", function (event) {
 
   var formData = new FormData(this);
 
-  formData.append('laid', $('#idtrabid').val());
+  formData.append('laid', $('#idtrabid').attr('value'));
 
   Swal.fire({
     title: '¿Desea actualizar la información personal?',

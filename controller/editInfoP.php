@@ -13,7 +13,7 @@ $profesionP = $_POST['nameProfesion'];
 $inscripcionOno = $_POST['nameInscrip'];
 $afpP       = $_POST['nameSelectAFP'];
 $prevP       = $_POST['nameSelectPrev'];
-// $obser = $POST['nameObserv'];
+$observ = $_POST['nameObserv'];
 $categoriaP = $_POST['nameSelectCat'];
 if ($categoriaP == 1) {
   // SI ES IGUAL A 1 (CATEGORIA A) TOMA EL VALOR DEL INPUT RADIO Y LO ASIGNA A LA VARIABLE
@@ -55,7 +55,7 @@ $sql = "UPDATE trabajador SET
         Medico = '$medicoOno',
         Inscripcion = $inscripcionOno,
         Profesion = '$profesionP',
-        -- Observ = '$obser'
+        Observ = '$observ'
         WHERE IDTra = '$idtrab'";
 // Ejecutar consulta SQL
 if (mysqli_query($conn, $sql)) {

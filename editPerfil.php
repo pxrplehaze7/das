@@ -96,12 +96,12 @@ if (!isset($_SESSION['rol'])) {
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-6">
                                     <label for="idCorreo"><span style="color: #c40055;">*</span> Correo Electrónico</label>
                                     <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $correo; ?>" class="form-control" required>
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-6">
                                     <label for="idPass"><span style="color: #c40055;">*</span> Cambiar Contraseña</label>
                                     <input type="password" name="namePass" id="idPass" class="form-control">
                                 </div>

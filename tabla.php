@@ -81,7 +81,7 @@ if (!isset($_SESSION['rol'])) {
                                         </select>
                                     </div>
                                     <div class="col-md-3 col-sm-6">
-                                        <div class="d-flex justify-content-end gap-2"> 
+                                        <div class="d-flex justify-content-end gap-2">
                                             <button id="btn-filtro" class="btn btn-filtro">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
                                             <button id="limpia-filtro" class="btn btn-filtro">Limpiar <i class="fas fa-eraser"></i></button>
                                         </div>
@@ -120,15 +120,22 @@ if (!isset($_SESSION['rol'])) {
                                                 <td><?php echo $ptotal['Profesion'] ?></td>
                                                 <td><?php echo $ptotal['NombreLug'] ?></td>
                                                 <td><?php echo $ptotal['NombreSector'] ?></td>
-                                                <td style="text-align: center; <?php if ($ptotal['Cumple'] == 1) { ?>background-color: #00c4a0;<?php } ?> color: <?php echo $ptotal['Cumple'] == 1 ? 'white' : '#c40055'; ?>; font-weight: 700;">
-                                                    <?php echo $ptotal['Cumple'] == 1 ? 'Si cumple' : 'No cumple'; ?>
+                                                <td style="text-align: center; font-weight: 700;">
+                                                    <?php
+                                                    if ($ptotal['Cumple'] == 1) {
+                                                        echo '<span style="color: #00886f;">Si cumple</span>';
+                                                    } else {
+                                                        echo '<span style="color: #c40055;">No cumple</span>';
+                                                    }
+                                                    ?>
                                                 </td>
+
 
                                                 <td>
                                                     <div class="container-ver">
-                                                        <a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
+                                                        <center><a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
                                                             <i class="fas fa-share" style="display: flex; align-items: center;"></i>
-                                                        </a>
+                                                        </a></center>
                                                     </div>
 
                                                 </td>

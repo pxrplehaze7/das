@@ -32,6 +32,15 @@ $(document).ready(function () {
       validarRutU(rutUsuario);
     }
   });
+
+
+  $('#idCorreo').on('blur', function () {
+    var correoElectronico = $(this).val();
+    if (correoElectronico.trim() !== '') {
+      validarCorreo(correoElectronico);
+    }
+  });
+
   // Verificar si el campo de entrada está vacío antes de enviar el formulario
   $('#registroU').on('submit', function () {
     var rutUsuario = $('#idRutInputU').val();
@@ -40,6 +49,14 @@ $(document).ready(function () {
     } else {
       validarRutU(rutUsuario);
     }
+
+
+    if (correoElectronico.trim() === '') {
+      $('#correo-validation').html(''); // Eliminar el mensaje de validación del correo si el campo está vacío
+    } else {
+      validarCorreo(correoElectronico);
+    }
+
   });
   function validarRutU(rutUsuario) {
     if (rutUsuario.length === 10 || rutUsuario.length === 9) {
@@ -75,6 +92,36 @@ $(document).ready(function () {
       }, 2000);
     }
   }
+
+
+
+
+
+  function validarCorreo(correoElectronico) {
+    // Realizar la solicitud AJAX al servidor
+    $.ajax({
+      url: './controller/check_correo.php',
+      type: 'POST',
+      data: { correo: correoElectronico },
+      success: function(response) {
+        if (response === 'VALIDO') {
+          $('#correo-validation').html('<div class="alert alert-success" role="alert">El correo es válido y no está registrado</div>');
+          setTimeout(function() {
+            $('#correo-validation').html('');
+          }, 2000);
+        } else {
+          $('#correo-validation').html(response);
+          setTimeout(function() {
+            $('#correo-validation').html('');
+          }, 2000);
+        }
+      }
+    });
+  }
+
+
+
+
 });
 var FnU = {
   // VALIDA QUE EL RUT EN FORMATO XXXXXXXX-X EXISTA

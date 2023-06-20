@@ -427,9 +427,10 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
         title: 'Guardado Correctamente',
         showConfirmButton: true,
         confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#009CFD'
-            });</script>";
-
+        confirmButtonColor: '#009CFD' }).then(() => {
+          location.reload(); // Recarga la página
+        });
+      </script>";
       echo "<script>
       var inputs = document.querySelectorAll('input.tipofile');
       for (var i = 0; i < inputs.length; i++) {
