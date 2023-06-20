@@ -55,9 +55,9 @@ if ($_SESSION['rol'] !== '1') {
                             </div>
                             <div class="row ">
                                 <div class="col-md">
-                                    <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
-                                    <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
-                                    <br>
+                                    <label for="idRutInputU"><span style="color: #f36f03;">*</span> Rut</label>
+                                    <input type="text" name="nameRut" id="idRutInputU" placeholder="19876543-K" class="form-control" maxlength="10" required>
+                                    <div id="rut-validationU"></div>
                                 </div>
                                 <div class="col-md">
                                     <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>

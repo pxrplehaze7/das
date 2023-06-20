@@ -26,7 +26,6 @@ ahora no me muestra los lugares en editar tampoco sector
 
     me falta agregar el editar las observaciones
 
-    validar rut del usuario
 
 
 arreglar login poeque esta feo
@@ -37,4 +36,30 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
 
 
     ver como hacer que muestre usuario registrado en agregar usuario segun correo
-    hacer que muestre usuario registrado segun el rut, es decir que haga la consulta a la base de datos para validar que no esta registrado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
