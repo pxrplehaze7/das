@@ -76,6 +76,8 @@ $(document).ready(function () {
               setTimeout(function () {
                 $('#rut-validationU').html('');
               }, 2000);
+              $('#idRutInputU').val(''); 
+
             }
           }
         });
@@ -114,6 +116,8 @@ $(document).ready(function () {
           setTimeout(function() {
             $('#correo-validation').html('');
           }, 2000);
+          $('#idCorreo').val(''); 
+
         }
       }
     });
@@ -193,6 +197,7 @@ $(document).ready(function () {
               setTimeout(function() {
                 $('#rut-validation').html('');
             }, 2000);
+            $('#idRutInput').val(''); 
             }
           }
         });

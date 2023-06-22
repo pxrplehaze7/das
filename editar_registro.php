@@ -661,7 +661,7 @@ if (isset($_GET['id'])) {
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 boton-eliminar-calif" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
                                                                         </button>
                                                                     </div>
@@ -674,8 +674,8 @@ if (isset($_GET['id'])) {
                                                         </td>
                                                         <td>
                                                             <div class="input-group custom-input">
-                                                                <input type="file" id="idcalifEDIT" name="nameCalif_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
-                                                                <button class="button" type="button" onclick="clearFileInput('idcalifEDIT')" style="width: 40px !important;">
+                                                                <input type="file" id="idcalifEDIT_<?php echo $mostrar['IDCalif'] ?>" name="nameCalif_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
+                                                                <button class="button" type="button" onclick="clearFileInput('idcalifEDIT_<?php echo $mostrar['IDCalif'] ?>')" style="width: 40px !important;">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
                                                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                                                     </svg>
@@ -696,8 +696,9 @@ if (isset($_GET['id'])) {
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 boton-eliminar-calif" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
+
                                                                         </button>
                                                                     </div>
                                                                 </center>
@@ -709,8 +710,8 @@ if (isset($_GET['id'])) {
                                                         </td>
                                                         <td>
                                                             <div class="input-group file-cal">
-                                                                <input type="file" id="idapelaEDIT" name="nameApela_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
-                                                                <button class="button" type="button" onclick="clearFileInput('idapelaEDIT')" style="width: 40px !important;">
+                                                                <input type="file" id="idapelaEDIT_<?php echo $mostrar['IDCalif'] ?>" name="nameApela_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
+                                                                <button class="button" type="button" onclick="clearFileInput('idapelaEDIT_<?php echo $mostrar['IDCalif'] ?>')" style="width: 40px !important;">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
                                                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                                                     </svg>
@@ -724,7 +725,7 @@ if (isset($_GET['id'])) {
                                                                     <i class="fas fa-save"></i>
                                                                 </button>
 
-                                                                <button class="btn btn-danger w-100 boton-eliminar" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
+                                                                <button class="btn btn-danger w-100 boton-eliminar-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
                                                                     <i class="fas fa-times"></i>
                                                                 </button>
                                                             </div>

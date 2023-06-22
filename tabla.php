@@ -157,7 +157,7 @@ if (!isset($_SESSION['rol'])) {
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/tablaExport.js"></script>

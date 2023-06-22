@@ -1,11 +1,5 @@
 
 
-cuando edito el rut para cambiarlo, la validacion me aparece con que ya esta registrado ysi actualizo no me muestra la informaciondel perfil
-
-
-
-ver como hacer focus a los radio porque no me deja
-
 
 
 $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
@@ -17,13 +11,6 @@ para que no se autocompleten los inputs
 
 
 
-hacer que afp y prevision sea obligatorioal registrar y editar
-
-que se limpie el niput cuand este registrado rut o correo
-
-
-
-https://codepen.io/pxrplehaze7/pen/WNYGJNe
 
 
 

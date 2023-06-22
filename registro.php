@@ -44,7 +44,7 @@ if ($_SESSION['rol'] !== '1') {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="documentosObligatorios" enctype="multipart/form-data" method="POST">
+                    <form id="documentosObligatorios" enctype="multipart/form-data" method="POST" autocomplete="off">
                         <div class="title">
                             <h1 class="mt-4">Registro de Trabajador</h1>
                         </div>

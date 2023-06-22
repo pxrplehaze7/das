@@ -790,7 +790,6 @@ $(document).ready(function () {
 
 
 
-$(document).ready(function () {
   $(".edicionCalif").each(function () {
     var formularioID = $(this).attr("id");
 
@@ -839,7 +838,9 @@ $(document).ready(function () {
         }
       });
     });
-    $(".boton-eliminar").click(function (event) {
+
+    
+    $(".boton-eliminar-calif").click(function (event) {
       event.preventDefault();
     
       var idCalificacion = $(this).data("idcalific");
@@ -855,7 +856,7 @@ $(document).ready(function () {
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
-            url: "./controller/eliminaCalificacion.php",
+            url: "./controller/eliminaCalificacionCompleta.php",
             type: "POST",
             data: { idCalificacion: idCalificacion },
             success: function (response) {
@@ -887,6 +888,4 @@ $(document).ready(function () {
       });
     });
   });
-});
-
 

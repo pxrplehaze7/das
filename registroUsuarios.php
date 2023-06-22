@@ -45,7 +45,7 @@ if ($_SESSION['rol'] !== '1') {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="registroU" method="POST">
+                    <form id="registroU" method="POST" autocomplete="off">
                         <div class="title">
                             <h1 class="mt-4">Registro de Usuario</h1>
                         </div>
