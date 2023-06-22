@@ -7,11 +7,6 @@ cuando edito el rut para cambiarlo, la validacion me aparece con que ya esta reg
 ver como hacer focus a los radio porque no me deja
 
 
-CUANDO PONGO CATEGORIA A EN EDITAR Y PREGUNTA SI ES MEDICO O NO, NO LANZA ALERTA Y REGISTRA UN NULL
-
- 
-
-agregar icono a la web  
 
 $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
     preguntar que hacer con el admin, 
@@ -21,16 +16,14 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
 para que no se autocompleten los inputs
 
 
-ver como hacer responsivo el editar calificaciones
-
 
 hacer que afp y prevision sea obligatorioal registrar y editar
 
+que se limpie el niput cuand este registrado rut o correo
 
 
 
-
-
+https://codepen.io/pxrplehaze7/pen/WNYGJNe
 
 
 
