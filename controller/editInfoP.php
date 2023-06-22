@@ -1,7 +1,5 @@
 <?php
 include("../controller/config/conexion.php");
-
-// SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
 $idtrab = $_POST['laid'];
 $rutInput = $_POST['RutInput'];
 $nombreP    = $_POST['namePersona'];
@@ -22,7 +20,6 @@ if ($categoriaP == 1) {
   // SI ES DISTINTO DE 1, SE ASIGNA UN NO
   $medicoOno  = 'No';
 }
-
 if ($_POST['nameSelectCon'] != "") {
   // SI NO ESTA VACIO, SE ASIGNA EL VALOR
   $contratoP = $_POST['nameSelectCon'];
@@ -30,7 +27,6 @@ if ($_POST['nameSelectCon'] != "") {
 } else {
   $contratoP = "NULL"; // Agregamos comillas al NULL para que sea reconocido como una cadena
 }
-
 if ($_POST['nameSelectLugar'] != "") {
   // SI NO ESTA VACIO, SE ASIGNA EL VALOR
   $lugarP = $_POST['nameSelectLugar'];
@@ -39,8 +35,6 @@ if ($_POST['nameSelectLugar'] != "") {
   $lugarP = "NULL"; // Agregamos comillas al NULL para que sea reconocido como una cadena
 }
 
-
-// Consulta SQL para actualizar los datos
 $sqlRuta = "UPDATE trabajador SET 
         IDCat = $categoriaP,
         IDCon = $contratoP,
@@ -57,12 +51,8 @@ $sqlRuta = "UPDATE trabajador SET
         Inscripcion = $inscripcionOno,
         Profesion = '$profesionP',
         Observ = '$observ'
-
         WHERE IDTra = '$idtrab'";
-// Ejecutar consulta SQL
 $resultado1 = mysqli_query($conn, $sqlRuta);
-
-
 
 $consultaFile = "SELECT * FROM trabajador WHERE IDTra = '$idtrab'";
 $resFile = mysqli_query($conn, $consultaFile);
@@ -74,9 +64,7 @@ if (mysqli_num_rows($resFile) == 1) {
   $contratoP2 = $EditP['IDCon'];
 }
 
-
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = '$idtrab'")) > 0) {
-
     $ruta_nacFINAL = $EditP['RutaNac'];
     $ruta_AntecedentesFINAL = $EditP['RutaAntec'];
     $ruta_afpFINAL = $EditP['RutaAFP'];
@@ -91,7 +79,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     $ruta_ContratoFINAL = $EditP['RutaContrato'];
     $ruta_InscripcionFINAL = $EditP['RutaInscripcion'];
   }
-
   if (
     (
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
@@ -297,30 +284,23 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
   } else {
     $cumple = FALSE;
   }
-// SE INSERTAN DATOS A LA BASE DE DATOS
-
 $actualizaC = "UPDATE trabajador SET Cumple = '$cumple' WHERE IDTra = '$idtrab'";
 
 $resultado2 = mysqli_query($conn, $actualizaC);
 
-  
 if ($resultado1 && $resultado2) {
- // La actualización fue exitosa
  $response = array(
   'success' => true,
   'message' => 'Información actualizada correctamente.'
 );
 echo json_encode($response);
 } else {
-// Error al actualizar
 $response = array(
   'success' => false,
   'message' => 'Error al actualizar la información: ' . mysqli_error($conn)
 );
 echo json_encode($response);
 }
-
 mysqli_close($conn);
-
 ?>
 

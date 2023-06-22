@@ -15,45 +15,36 @@ function honorario() {
     djurDiv.show();
     nacDiv.show();
     saludcDiv.show();
-
     if (generoRadio === "Masculino") {
       servicioMilitarDiv.show();
     } else {
       servicioMilitarDiv.hide();
     }
   } else {
-
     if (document.getElementById('idAFPinput')) {
       clearFileInput('idAFPinput');
     }
-
     if (document.getElementById('#idPREVinput')) {
       clearFileInput('idPREVinput');
     }
-
     if (document.getElementById('#idDJuradainput')) {
       clearFileInput('idDJuradainput');
     }
-
     if (document.getElementById('#idNACinput')) {
       clearFileInput('idNACinput');
     }
-
     if (document.getElementById('#idSCompatibleinput')) {
       clearFileInput('idSCompatibleinput');
     }
-
     if (document.getElementById('#idMilitarDoc')) {
       clearFileInput('idMilitarDoc');
     }
-
     afpDiv.hide();
     previsionDiv.hide();
     djurDiv.hide();
     nacDiv.hide();
     saludcDiv.hide();
     servicioMilitarDiv.hide();
-
   }
 }
 
@@ -65,29 +56,22 @@ $(document).ready(function () {
     // LLAMA A LA FUNCION PARA ACTUALIZAR LA VISIBILIDAD DEL INPUT
     honorario();
   });
-
   // SE AGREGA EL EVENTO CHANGE AL SELECT DE CONTRATO
   $("#idSelectCon").change(function () {
     // LLAMA A LA FUNCION PARA ACTUALIZAR LA VISIBILIDAD DEL INPUT
     honorario();
   });
-
   //SE LLAMA A LA FUNCION PARA VOLVER A VER U OCULTAR
   honorario();
 });
 
-
-
-
 $(document).ready(function () {
   // Oculta el campo al cargar la página
   $("#adjuntaApelacion").hide();
-
   // Agrega un evento change a los inputs de tipo radio
   $('input[name="nameApeloRes"]').change(function () {
     // Obtiene el valor del input de tipo radio seleccionado
     var valor = $(this).val();
-
     // Muestra u oculta el campo según el valor del input de tipo radio
     if (valor == "Si") {
       $("#adjuntaApelacion").show();
@@ -97,12 +81,9 @@ $(document).ready(function () {
   });
 });
 
-
-
 var selectCat = document.getElementById("idSelectCat");
 if (selectCat) {
   //Si se selecciona la primera categoria, pregunta si es medico
-
   var preguntaMedico = document.getElementById("idPreguntaCat1");
 
   selectCat.addEventListener("change", function () {
@@ -113,7 +94,6 @@ if (selectCat) {
     }
   });
 
-
   $(document).ready(function () {
     // Oculta el campo al cargar la página
     $("#examenMedico").hide();
@@ -121,7 +101,6 @@ if (selectCat) {
     $('input[name="nameMedico"]').change(function () {
       // Obtiene el valor del input de tipo radio seleccionado
       var valor = $(this).val();
-
       // Muestra u oculta el campo según el valor del input de tipo radio
       if (valor == "Si") {
         $("#examenMedico").show();
@@ -133,7 +112,6 @@ if (selectCat) {
   });
 
 
-
   $(document).ready(function () {
     // Oculta el campo al cargar la página
     $("#inscripcionMedico").hide();
@@ -141,7 +119,6 @@ if (selectCat) {
     $('input[name="nameInscrip"]').change(function () {
       // Obtiene el valor del input de tipo radio seleccionado
       var valor = $(this).val();
-
       // Muestra u oculta el campo según el valor del input de tipo radio
       if (valor == 1) {
         $("#inscripcionMedico").show();
@@ -151,7 +128,5 @@ if (selectCat) {
       }
     });
   });
-
-
 }
 

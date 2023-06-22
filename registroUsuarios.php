@@ -12,35 +12,24 @@ if ($_SESSION['rol'] !== '1') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro Usuarios</title>
-    <!-- ESTILOS -->
+    <title>Registro de Usuario</title>
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
-    <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <!-- cdn css bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
-    <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-
-    <!-- ICONOS -->
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
-
         <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
@@ -70,9 +59,7 @@ if ($_SESSION['rol'] !== '1') {
                                     <input type="text" name="namePaterno" id="idAppat" placeholder="Ingrese Apellido" class="form-control" oninput="validarTexto(this)" required>
                                     <br>
                                 </div>
-
                             </div>
-
                             <div class="row" style="padding-bottom: 17px;">
                                 <div class="col-md">
                                     <label for="idApmat">Apellido Materno</label>
@@ -85,7 +72,6 @@ if ($_SESSION['rol'] !== '1') {
                                     <div id="correo-validation"></div>
                                     <br>
                                 </div>
-
                                 <div class="col-md">
                                     <label><span style="color: #c40055;">*</span> Tipo de Permiso</label>
                                     <select class="form-control" id="idPermiso" name="namePermiso" required>
@@ -95,10 +81,7 @@ if ($_SESSION['rol'] !== '1') {
                                     </select>
                                     <br>
                                 </div>
-
                             </div>
-
-
                             <div class="boton-registrar">
                                 <button id="btnRegistrar" type="submit" class="boton-registrarB">
                                     <div class="svg-wrapper-1">
@@ -111,22 +94,18 @@ if ($_SESSION['rol'] !== '1') {
                                     </div>
                                     <span>Registrar</span>
                                 </button>
-
                             </div>
-
                         </div>
                     </form>
                 </div>
             </main>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
-    <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->
+    <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

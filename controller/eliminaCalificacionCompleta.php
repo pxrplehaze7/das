@@ -1,9 +1,7 @@
 <?php
 if (isset($_POST['idCalificacion'])) {
     $idcalificacion = $_POST['idCalificacion'];
-
     include("../controller/config/conexion.php");
-
     $eliminarcalificacion = "DELETE FROM calificaciones WHERE IDCalif = '$idcalificacion'";
     if (mysqli_query($conn, $eliminarcalificacion)) {
         echo "Calificación eliminada exitosamente.";

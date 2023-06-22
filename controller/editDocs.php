@@ -1,24 +1,15 @@
 <?php
-// CONEXION A LA BASE DE DATOS
 include("./config/conexion.php");
-
-
-//SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
 $idtrab = $_POST['laid'];
 $rutPersona = $_POST['nameRutEditar'];
-
 $decreto     = $_POST['nameDecreto'];
-
 $host = $_SERVER['HTTP_HOST'];
-
 
 // Obtén la fecha actual en la zona horaria correcta
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
-
-// Formatea la fecha actual en el formato deseado (d-m-Y)
 $fechaActual = $fechaActual->format('d-m-Y');
 
-// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
+// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN LA ID
 $ruta = 'pdfs_personal/';
 $pdfNacimiento = (!empty($_FILES['nameNACdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfAntecedentes = (!empty($_FILES['nameANTECEdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
@@ -34,12 +25,9 @@ $pdfSaludCompat = (!empty($_FILES['nameSCompatibledocEDIT']['name'])) ? uniqid()
 $pdfContrato = (!empty($_FILES['nameDocContratoInputEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfInscripcion = (!empty($_FILES['nameInscripdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 
-
-
 $consultaFile = "SELECT * FROM trabajador WHERE Rut = '$rutPersona'";
 $resFile = mysqli_query($conn, $consultaFile);
 if (mysqli_num_rows($resFile) == 1) {
-  // Si se encuentra una persona, se asigna el resultado a $persona
   $EditP = mysqli_fetch_assoc($resFile);
   $generoP    = $EditP['Genero'];
   $inscripcionOno = $EditP['Inscripcion'];
@@ -47,12 +35,6 @@ if (mysqli_num_rows($resFile) == 1) {
   $contratoP = $EditP['IDCon'];
   $idt = $EditP['IDTra'];
 }
-
-
-// // CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
-// if (!file_exists($ruta . $rutPersona)) {
-//   mkdir($ruta . $rutPersona, 0777, true);
-// }
 
 // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
@@ -66,8 +48,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_nacFINAL = $EditP['RutaNac'];
   }
-
-
   if (!empty($pdfAntecedentes)) {
     $nombreAntecedentes = 'ANTECEDENTES_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAntecedentes;
     $ruta_AntecedentesFINAL = $ruta . $idt . '/' . $nombreAntecedentes;
@@ -76,8 +56,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_AntecedentesFINAL = $EditP['RutaAntec'];
   }
-
-
   if (!empty($pdfAFP)) {
     $nombreAFP = 'AFP_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAFP;
     $ruta_afpFINAL = $ruta . $idt . '/' . $nombreAFP;
@@ -86,8 +64,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_afpFINAL = $EditP['RutaAFP'];
   }
-
-
   if (!empty($pdfMilitar)) {
     $nombreMilitar = 'SMILITAR_' . str_replace('-', '_', $fechaActual) . '_' . $pdfMilitar;
     $ruta_militarFINAL = $ruta . $idt . '/' . $nombreMilitar;
@@ -96,9 +72,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_militarFINAL = $EditP['RutaSerM'];
   }
-
-
-
   if (!empty($pdfCedula)) {
     $nombreCedula = 'CEDULA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCedula;
     $ruta_CedulaFINAL = $ruta . $idt . '/' . $nombreCedula;
@@ -107,7 +80,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_CedulaFINAL = $EditP['RutaCedula'];
   }
-
   if (!empty($pdfCurriculum)) {
     $nombreCurriculum = 'CURRICULUM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCurriculum;
     $ruta_CurriculumFINAL = $ruta . $idt . '/' . $nombreCurriculum;
@@ -116,7 +88,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_CurriculumFINAL = $EditP['RutaCV'];
   }
-
   if (!empty($pdfExamenM)) {
     $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfExamenM;
     $ruta_ExamenMFINAL = $ruta . $idt . '/' . $nombreExamenM;
@@ -125,10 +96,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_ExamenMFINAL = $EditP['RutaExaM'];
   }
-
-
-
-
   if (!empty($pdfPrevision)) {
     $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfPrevision;
     $ruta_PrevisionFINAL = $ruta . $idt . '/' . $nombrePrevision;
@@ -137,7 +104,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_PrevisionFINAL = $EditP['RutaPrev'];
   }
-
   if (!empty($pdfEstudios)) {
     $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaActual) . '_' . $pdfEstudios;
     $ruta_EstudiosFINAL = $ruta . $idt . '/' . $nombreEstudios;
@@ -146,7 +112,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_EstudiosFINAL = $EditP['RutaEstudio'];
   }
-
   if (!empty($pdfDJurada)) {
     $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfDJurada;
     $ruta_DJuradaFINAL = $ruta . $idt . '/' . $nombreDJurada;
@@ -155,9 +120,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_DJuradaFINAL = $EditP['RutaDJur'];
   }
-
-
-
   if (!empty($pdfSaludCompat)) {
     $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaActual) . '_' . $pdfSaludCompat;
     $ruta_SaludCompatFINAL = $ruta . $idt . '/' . $nombreSaludCompat;
@@ -166,7 +128,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_SaludCompatFINAL = $EditP['RutaSCom'];
   }
-
   if (!empty($pdfContrato)) {
     $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
     $ruta_ContratoFINAL = $ruta . $idt . '/' . $nombreContrato;
@@ -175,7 +136,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_ContratoFINAL = $EditP['RutaContrato'];
   }
-
   if (!empty($pdfInscripcion)) {
     $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
     $ruta_InscripcionFINAL = $ruta . $idt . '/' . $nombreInscripcion;
@@ -184,11 +144,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   } else {
     $ruta_InscripcionFINAL = $EditP['RutaInscripcion'];
   }
-
-
-
-  if (
-    (
+  if ((
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
       ($generoP == "Masculino" || $generoP == "Femenino") &&
       $contratoP == 3 &&
@@ -200,8 +156,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_InscripcionFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_ExamenMFINAL) &&
-      !empty($ruta_AntecedentesFINAL)
-    )
+      !empty($ruta_AntecedentesFINAL))
     ||
     (
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
@@ -255,8 +210,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_PrevisionFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_SaludCompatFINAL) &&
-      !empty($ruta_militarFINAL)
-    )
+      !empty($ruta_militarFINAL))
     ||
     // HOMBRE NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN
     ($generoP == "Masculino" &&
@@ -393,7 +347,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $cumple = FALSE;
   }
 
-
   // SE INSERTAN DATOS A LA BASE DE DATOS
   $sqlTraEdit = " UPDATE trabajador SET 
     Decreto = '$decreto',
@@ -410,15 +363,11 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     RutaExaM = '$ruta_ExamenMFINAL',
     RutaContrato = '$ruta_ContratoFINAL',
     RutaInscripcion = '$ruta_InscripcionFINAL',
-
     Cumple = '$cumple'
     WHERE Rut = '$rutPersona'";
 
-
   try {
     $resultado = mysqli_query($conn, $sqlTraEdit);
-
-    // echo "error";
     if (!$resultado) {
       throw new Exception(mysqli_error($conn));
     } else {
@@ -440,18 +389,15 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ";
     }
   } catch (Exception $e) {
-
-    // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
     if (file_exists($ruta . $idt)) {
-      $files = glob($ruta . $idt . '/*'); // Obtener todos los archivos dentro de la carpeta
+      $files = glob($ruta . $idt . '/*');
       foreach ($files as $file) {
         if (is_file($file)) {
-          unlink($file); // Eliminar cada archivo
+          unlink($file);
         }
       }
-      rmdir($ruta . $idt); // Eliminar la carpeta vacía
+      rmdir($ruta . $idt);
     }
-
     echo "<script> 
     Swal.fire({
       icon: 'error',
@@ -462,6 +408,4 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     </script>";
   }
 }
-
-// SE CIERRA LA CONEXION A LA BASE DE DATOS
 mysqli_close($conn);

@@ -1,8 +1,5 @@
 <?php
-// CONEXION A LA BASE DE DATOS
 include("./config/conexion.php");
-
-// Verificar si se recibieron los datos del formulario
 if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['nameFin']) && isset($_POST['nameApeloRes']) && isset($_POST['nameRutCa'])) {
     //SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
     $idTrabajador = $_POST['nameTrabCa'];
@@ -10,26 +7,17 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     $hasta        = $_POST['nameFin'];
     $apelo        = $_POST['nameApeloRes'];
     $rut          = $_POST['nameRutCa'];
-
-    // OBTIENE EL NOMBRE EL HOST
     $host = $_SERVER['HTTP_HOST'];
-
-    // CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
     $ruta = 'pdfs_personal/';
-
     $desde = mysqli_real_escape_string($conn, $desde);
     $hasta = mysqli_real_escape_string($conn, $hasta);
     $apelo = mysqli_real_escape_string($conn, $apelo);
-
     $fecha = $desde . '-' . $hasta;
     $fecha = mysqli_real_escape_string($conn, $fecha);
     $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
     $fechaActual = $fechaActual->format('d-m-Y');
-
-
     $pdfcalificacion = 'CALIFICACION_PERIODO_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
     $pdfapelo = 'APELACION_PERIODO_' . $fecha . '_' . $fechaActual . '_' . uniqid() . '.pdf';
-
 
     if (!file_exists($ruta . $idTrabajador)) {
         mkdir($ruta . $idTrabajador, 0777, true);
@@ -42,11 +30,9 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     if (!file_exists($rutaApelaciones)) {
         mkdir($rutaApelaciones, 0777, true);
     }
-
     $ruta_CalifFINAL = $rutaCalificaciones . $pdfcalificacion;
     $ruta_ApelaFINAL = $rutaApelaciones . $pdfapelo;
 
-    // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
     $sql = "SELECT * FROM trabajador WHERE Rut = '$rut'";
     $result = mysqli_query($conn, $sql);
 
@@ -63,7 +49,6 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
             $ruta_ApelaFINAL = '';
         }
 
-        // SE INSERTAN DATOS A LA BASE DE DATOS
         $sqlCalificacion = "INSERT INTO calificaciones (IDTra, fecha, apelo, RutaApelacion, RutaCalificacion) 
         VALUES ('$idTrabajador','$fecha','$apelo','$ruta_ApelaFINAL', '$ruta_CalifFINAL')";
 
@@ -90,4 +75,3 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
         'message' => 'Faltan datos del formulario'
     ]);
 }
-?>

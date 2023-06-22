@@ -2,9 +2,7 @@
 include("./config/conexion.php");
 $idCalificacion = $_POST['idCalificacion'];
 $rutaApelacion = $_POST['rutaApelacion'];
-
 $sqlRutaap = "UPDATE calificaciones SET RutaApelacion = '' WHERE IDCalif = '$idCalificacion'";
-
 if (mysqli_query($conn, $sqlRutaap)) {
     echo json_encode(['success' => true]);
 } else {

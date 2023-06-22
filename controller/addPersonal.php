@@ -1,5 +1,4 @@
 <?php
-// CONEXION A LA BASE DE DATOS
 include("./config/conexion.php");
 $sqlids = "SELECT MAX(IDTra) AS ultimoID FROM trabajador";
 $resides = mysqli_query($conn, $sqlids);
@@ -11,8 +10,6 @@ if ($ultimoID === null) {
 }
 $idtra = $ultimoID + 1;
 
-
-//SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
 $rutPersona = $_POST['rut'];
 $nombreP    = $_POST['namePersona'];
 $paternoP   = $_POST['namePaterno'];
@@ -20,6 +17,7 @@ $maternoP   = $_POST['nameMaterno'];
 $generoP    = $_POST['nameGenero'];
 $CelularP   = $_POST['nameCelular'];
 $correoP    = $_POST['nameCorreo'];
+$correoP    = strtolower($correoP);
 $sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
 $decreto     = $_POST['nameDecreto'];
@@ -30,14 +28,9 @@ $prevP       = $_POST['nameSelectPrev'];
 $cumple = FALSE;
 $host = $_SERVER['HTTP_HOST'];
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
-
-// Formatea la fecha actual en el formato deseado (d-m-Y)
 $fechaActual = $fechaActual->format('d-m-Y');
-
-// CARPETA DONDE SE GUARDARAN CARPETAS SEGUN RUT
 $ruta = 'pdfs_personal/';
 
-// SE ASIGNA EL VALOR DEL SELECT CATEGORIA A LA VARIABLE
 $categoriaP = $_POST['nameSelectCat'];
 if ($categoriaP == 1) {
   // SI ES IGUAL A 1 (CATEGORIA A) TOMA EL VALOR DEL INPUT RADIO Y LO ASIGNA A LA VARIABLE
@@ -46,7 +39,6 @@ if ($categoriaP == 1) {
   //SI ES DISTINTO DE 1, SE ASIGNA UN NO
   $medicoOno  = 'No';
 }
-
 
 if ($_POST['nameSelectCon'] != "") {
   //SI NO ESTA VACIO, SE ASIGNA EL VALOR
@@ -64,9 +56,6 @@ if ($_POST['nameSelectLugar'] != "") {
   $lugarP = NULL;
 }
 
-
-
-
 $nombreP    = mysqli_real_escape_string($conn, $nombreP);
 $paternoP   = mysqli_real_escape_string($conn, $paternoP);
 $maternoP   = mysqli_real_escape_string($conn, $maternoP);
@@ -76,11 +65,8 @@ $lugarP     = mysqli_real_escape_string($conn, $lugarP);
 $sector     = mysqli_real_escape_string($conn, $sector);
 $obsP       = mysqli_real_escape_string($conn, $obsP);
 $decreto    = mysqli_real_escape_string($conn, $decreto);
-$CelularP   = str_replace(" ", "", $CelularP); // ELIMINA ESPACIOS DE LA CADENA
-$correoP    = str_replace(" ", "", $correoP); // ELIMINA ESPACIOS DE LA CADENA
-
-
-
+$CelularP   = str_replace(" ", "", $CelularP);
+$correoP    = str_replace(" ", "", $correoP);
 
 $pdfNacimiento = (!empty($_FILES['nameNACdoc']['name'])) ? uniqid() . '.pdf' : '';
 $pdfAntecedentes = (!empty($_FILES['nameANTECEdoc']['name'])) ? uniqid() . '.pdf' : '';
@@ -98,11 +84,10 @@ $pdfInscripcion = (!empty($_FILES['nameInscripdoc']['name'])) ? uniqid() . '.pdf
 
 
 
-// CARPETAS CON NOMBRE SEGUN EL RUT, SI NO EXISTE LA CREA
+// CARPETAS CON NOMBRE LA ID, SI NO EXISTE LA CREA
 if (!file_exists($ruta . $idtra)) {
   mkdir($ruta . $idtra, 0777, true);
 }
-
 
 // REVISA SI EL RUT EXISTE EN LA BASE DE DATOS
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
@@ -130,7 +115,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   $ruta_InscripcionFINAL  = NULL;
 
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
-
   if (!empty($pdfAFP)) {
     // CREA EL NOMBRE DEL ARCHIVO CONCATENANDO 'afp' Y LA FECHA ACTUAL
     $nombreAFP = 'AFP_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAFP;
@@ -149,86 +133,72 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     move_uploaded_file($_FILES['nameNACdoc']['tmp_name'], $ruta_nacFINAL);
     $ruta_nacFINAL = 'http://' . $host . '/das/controller/' . $ruta_nacFINAL;
   }
-
   if (!empty($pdfMilitar)) {
     $nombreMilitar = 'SMILITAR_' . str_replace('-', '_', $fechaActual) . '_' . $pdfMilitar;
     $ruta_militarFINAL = $ruta . $idtra . '/' . $nombreMilitar;
     move_uploaded_file($_FILES['nameMilitarDoc']['tmp_name'], $ruta_militarFINAL);
     $ruta_militarFINAL = 'http://' . $host . '/das/controller/' . $ruta_militarFINAL;
   }
-
   if (!empty($pdfAntecedentes)) {
     $nombreAntecedentes = 'ANTECEDENTES_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAntecedentes;
     $ruta_AntecedentesFINAL = $ruta . $idtra . '/' . $nombreAntecedentes;
     move_uploaded_file($_FILES['nameANTECEdoc']['tmp_name'], $ruta_AntecedentesFINAL);
     $ruta_AntecedentesFINAL = 'http://' . $host . '/das/controller/' . $ruta_AntecedentesFINAL;
   }
-
   if (!empty($pdfCedula)) {
     $nombreCedula = 'CEDULA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCedula;
     $ruta_CedulaFINAL = $ruta . $idtra . '/' . $nombreCedula;
     move_uploaded_file($_FILES['nameCeduladoc']['tmp_name'], $ruta_CedulaFINAL);
     $ruta_CedulaFINAL = 'http://' . $host . '/das/controller/' . $ruta_CedulaFINAL;
   }
-
   if (!empty($pdfCurriculum)) {
     $nombreCurriculum = 'CURRICULUM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCurriculum;
     $ruta_CurriculumFINAL = $ruta . $idtra . '/' . $nombreCurriculum;
     move_uploaded_file($_FILES['nameCVdoc']['tmp_name'], $ruta_CurriculumFINAL);
     $ruta_CurriculumFINAL = 'http://' . $host . '/das/controller/' . $ruta_CurriculumFINAL;
   }
-
   if (!empty($pdfExamenM)) {
     $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfExamenM;
     $ruta_ExamenMFINAL = $ruta . $idtra . '/' . $nombreExamenM;
     move_uploaded_file($_FILES['nameExaMdoc']['tmp_name'], $ruta_ExamenMFINAL);
     $ruta_ExamenMFINAL = 'http://' . $host . '/das/controller/' . $ruta_ExamenMFINAL;
   }
-
   if (!empty($pdfPrevision)) {
     $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfPrevision;
     $ruta_PrevisionFINAL = $ruta . $idtra . '/' . $nombrePrevision;
     move_uploaded_file($_FILES['namePREVdoc']['tmp_name'], $ruta_PrevisionFINAL);
     $ruta_PrevisionFINAL = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
   }
-
   if (!empty($pdfEstudios)) {
     $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaActual) . '_' . $pdfEstudios;
     $ruta_EstudiosFINAL = $ruta . $idtra . '/' . $nombreEstudios;
     move_uploaded_file($_FILES['nameEstudiodoc']['tmp_name'], $ruta_EstudiosFINAL);
     $ruta_EstudiosFINAL = 'http://' . $host . '/das/controller/' . $ruta_EstudiosFINAL;
   }
-
   if (!empty($pdfDJurada)) {
     $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfDJurada;
     $ruta_DJuradaFINAL = $ruta . $idtra . '/' . $nombreDJurada;
     move_uploaded_file($_FILES['nameDJuradadoc']['tmp_name'], $ruta_DJuradaFINAL);
     $ruta_DJuradaFINAL = 'http://' . $host . '/das/controller/' . $ruta_DJuradaFINAL;
   }
-
   if (!empty($pdfSaludCompat)) {
     $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaActual) . '_' . $pdfSaludCompat;
     $ruta_SaludCompatFINAL = $ruta . $idtra . '/' . $nombreSaludCompat;
     move_uploaded_file($_FILES['nameSCompatibledoc']['tmp_name'], $ruta_SaludCompatFINAL);
     $ruta_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
   }
-
   if (!empty($pdfContrato)) {
     $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
     $ruta_ContratoFINAL = $ruta . $idtra . '/' . $nombreContrato;
     move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
     $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
   }
-
   if (!empty($pdfInscripcion)) {
     $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
     $ruta_InscripcionFINAL = $ruta . $idtra . '/' . $nombreInscripcion;
     move_uploaded_file($_FILES['nameInscripdoc']['tmp_name'], $ruta_InscripcionFINAL);
     $ruta_InscripcionFINAL = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;
   }
-
-
-
   if (
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN -- probado
     (($generoP == "Masculino" || $generoP == "Femenino") &&
@@ -431,24 +401,11 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $cumple = FALSE;
   }
 
-
-
-
-
-
-
-  // SE INSERTAN DATOS A LA BASE DE DATOS
   $sqlTrabajador = " INSERT INTO trabajador (IDTra,IDCat,IDCon,IDAFP,IDPrev,IDLugar,IDSector,NombreTra,PaternoTra,MaternoTra,Rut,Decreto,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,RutaContrato,Observ,RutaInscripcion,Cumple,Inscripcion)
    VALUES ($idtra,$categoriaP,$contratoP,$afpP,$prevP,$lugarP,$sector,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
 
-
-  //VERIFICA SI LA CONSULTA SE EJECUTO CORRECTAMENTE
-
-
   try {
     $resultado = mysqli_query($conn, $sqlTrabajador);
-
-    // echo "error";
     if (!$resultado) {
       throw new Exception(mysqli_error($conn));
     } else {
@@ -469,15 +426,15 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     }
   } catch (Exception $e) {
 
-    // Eliminar los archivos antes de eliminar la carpeta si hubo un error de inserción
+    // SE ELIMINARAN LOS ARCHIVOS ANTES DE ELIMINAR LA CARPETA; SI HUBO ERROR EN LA INSERCION
     if (file_exists($ruta . $idtra)) {
-      $files = glob($ruta . $idtra . '/*'); // Obtener todos los archivos dentro de la carpeta
+      $files = glob($ruta . $idtra . '/*'); //SE OBTIENEN TODOS LOS ARCHIVOS DENTRO DE LA CARPETA
       foreach ($files as $file) {
         if (is_file($file)) {
-          unlink($file); // Eliminar cada archivo
+          unlink($file); //SE ELIMINA CADA ARCHIVO
         }
       }
-      rmdir($ruta . $idtra); // Eliminar la carpeta vacía
+      rmdir($ruta . $idtra); //SE ELIMINA LA CARPETA VACIA
     }
 
     echo "<script> 
@@ -491,6 +448,4 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     </script>";
   }
 }
-
-// SE CIERRA LA CONEXION A LA BASE DE DATOS
 mysqli_close($conn);

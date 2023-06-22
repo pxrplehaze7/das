@@ -7,8 +7,8 @@ $maternoU   = $_POST['nameMaterno'];
 $correoU    = $_POST['nameCorreo'];
 $pass       = $_POST['namePass'];
 $correoU    = str_replace(" ", "", $correoU); 
+$correoU    = strtolower($correoU);
 $hashedPass = password_hash($pass, PASSWORD_DEFAULT);
-
 $sqlcambio = "UPDATE usuario SET
 NombreU = '$nombreU',
 ApellidoP = '$paternoU',
@@ -16,8 +16,6 @@ ApellidoM = '$maternoU',
 CorreoU = '$correoU',
 Contrasenna = '$hashedPass'
 WHERE IDUsuario = '$idperf'";
-
-
 if (mysqli_query($conn, $sqlcambio)) {
     $response = array(
         'success' => true,
@@ -25,14 +23,11 @@ if (mysqli_query($conn, $sqlcambio)) {
     );
     echo json_encode($response);
 } else {
-    // Error al actualizar
     $response = array(
         'success' => false,
         'message' => 'Error al registrar: ' . mysqli_error($conn)
     );
     echo json_encode($response);
 }
-
-// Cerrar conexión
 mysqli_close($conn);
 ?>

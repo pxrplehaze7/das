@@ -1,7 +1,4 @@
 <?php
-
-
-
 $cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = TRUE;";
 $sqlCumplen = mysqli_query($conn, $cumplen);
 $row = mysqli_fetch_row($sqlCumplen);
@@ -16,9 +13,6 @@ $totalTRA = "SELECT COUNT(*) FROM `trabajador`;";
 $sqlT = mysqli_query($conn, $totalTRA);
 $row = mysqli_fetch_row($sqlT);
 $total_t = $row[0];
-
-
-
 
 //trabajadores que cumplen con documentacion y son de la das
 $dasC = "SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 1 AND `Cumple` = TRUE";
@@ -40,8 +34,6 @@ if ($das_t != 0) {
     $redondeadodas = 0;
 }
 
-
-
 //trabajadores que cumplen con documentacion y son de cesfam pinares
 $pinaresC = "SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 2 AND `Cumple` = TRUE";
 $sqlpin = mysqli_query($conn, $pinaresC);
@@ -62,9 +54,6 @@ if ($pin_t != 0) {
     $redondeadopin = 0;
 }
 
-
-
-
 //trabajadores que cumplen con documentacion y son de cesfam la leonera
 $leoC = "SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 3 AND `Cumple` = TRUE";
 $sqlleoC = mysqli_query($conn, $leoC);
@@ -84,7 +73,6 @@ if ($leo_t != 0) {
     $porcentajeleo = 0;
     $redondeadoleo = 0;
 }
-
 
 //trabajadores que cumplen con documentacion y son de valle la piedra
 $valleC = "SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 4 AND `Cumple` = TRUE";

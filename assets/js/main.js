@@ -57,7 +57,6 @@ $("#documentosObligatorios").on("submit", function (event) {
 
       formData.append('rut', $('#idRutInput').val());
 
-      console.log("el formdata", formData);
 
       $.ajax({
         url: "./controller/addPersonal.php",

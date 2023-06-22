@@ -7,55 +7,40 @@ if (!isset($_SESSION['rol'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Información</title>
-    <!-- ESTILOS -->
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
-    <!-- cdn jquery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <!-- cdn css bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- ICONOS -->
-
-    <!-- datatable -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
-
 </head>
-
 <body class="sb-nav-fixed">
+    <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
-        <?php require("./components/navbar.php") ?>
         <?php require("./components/sidebar.php") ?>
-
         <div id="layoutSidenav_content">
             <main>
                 <?php if (isset($persona)) { ?>
                     <div class="container-md">
-
                         <div class="title">
                             <div class="ti">
                                 <h1 class="mt-4">Información</h1>
                             </div>
                         </div>
-
                         <br>
                         <div class="seccion">
                             <div class="title">
                                 <div class="ti">
                                     <h6 class="mt-4">Datos Personales</h6>
                                 </div>
-
-
                                 <?php if ($_SESSION['rol'] === '1') { ?>
                                     <form action="editar_registro.php" method="GET">
                                         <div class="container-volver">
@@ -66,12 +51,8 @@ if (!isset($_SESSION['rol'])) {
                                         </div>
                                     </form>
                                 <?php } ?>
-
-
                             </div>
-
                             <div class="row ">
-
                                 <div class="col-md">
                                     <label>Rut</label>
                                     <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
@@ -113,9 +94,7 @@ if (!isset($_SESSION['rol'])) {
                                     <textarea class="form-control" rows="2" readonly style="resize: none;"><?php echo $persona['NombreCat'] ?></textarea>
                                 </div>
                             </div>
-
                             <br>
-
                             <div class="row">
                                 <div class="col-md">
                                     <label>Lugar de Trabajo</label>
@@ -140,7 +119,6 @@ if (!isset($_SESSION['rol'])) {
                                     <br>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md">
                                     <label>Celular </label>
@@ -156,8 +134,6 @@ if (!isset($_SESSION['rol'])) {
                             </div>
                         </div>
                         <br>
-
-
                         <div class="documentacion seccion">
                             <div class="title">
                                 <div class="ti">
@@ -172,8 +148,6 @@ if (!isset($_SESSION['rol'])) {
                                     </div>
                                 </form>
                             </div>
-
-
                             <table id="docs" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
@@ -216,7 +190,6 @@ if (!isset($_SESSION['rol'])) {
                                                     <div class="contenedor-botones">
                                                         <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                     </div>
-
                                                 <?php
                                                 }
                                                 ?>
@@ -241,8 +214,7 @@ if (!isset($_SESSION['rol'])) {
                                                     </div>
                                                 <?php } ?>
                                             </td>
-                                        </tr><?php }
-                                                ?>
+                                        </tr><?php }  ?>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Antecedentes</td>
                                         <td class="align-middle custom-height">
@@ -340,8 +312,7 @@ if (!isset($_SESSION['rol'])) {
                                                     </div>
                                                 <?php }  ?>
                                             </td>
-                                        </tr><?php }
-                                                ?>
+                                        </tr><?php } ?>
                                     <?php if ($persona['IDCon'] != 3) { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
@@ -360,10 +331,7 @@ if (!isset($_SESSION['rol'])) {
                                                 <?php }
                                                 ?>
                                             </td>
-                                        </tr><?php }
-                                                ?>
-
-
+                                        </tr><?php }  ?>
                                     <?php if ($persona['Inscripcion'] == 1) { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
@@ -380,10 +348,7 @@ if (!isset($_SESSION['rol'])) {
                                                     </div>
                                                 <?php } ?>
                                             </td>
-                                        </tr> <?php }
-                                                ?>
-
-
+                                        </tr> <?php } ?>
                                     <?php if ($persona['Medico'] == 'Si') { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Examen Único Nacional de Conocimientos de Medicina</td>
@@ -400,9 +365,7 @@ if (!isset($_SESSION['rol'])) {
                                                     </div>
                                                 <?php } ?>
                                             </td>
-                                        </tr> <?php }
-                                                ?>
-
+                                        </tr> <?php } ?>
                                     <?php if ($persona['Genero'] == 'Masculino' && $persona['IDCon'] != 3) { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de Servicio Militar al Día</td>
@@ -419,15 +382,10 @@ if (!isset($_SESSION['rol'])) {
                                                     </div>
                                                 <?php } ?>
                                             </td>
-                                        </tr> <?php }
-                                                ?>
-
+                                        </tr> <?php }  ?>
                                 </tbody>
                             </table>
-
                         </div>
-
-
                         <br>
                         <div class="observaciones seccion">
                             <h6>Observaciones</h6>
@@ -438,33 +396,22 @@ if (!isset($_SESSION['rol'])) {
                             <?php endif; ?>
                         </div>
                         <br>
-
-
                         <div class="seccion">
-
-
-
                             <div class="title">
                                 <div class="ti">
                                     <h6 class="mt-4">Calificaciones</h6>
                                 </div>
                                 <?php if ($_SESSION['rol'] === '1') { ?>
-                                <form action="calificaciones.php" method="GET">
-                                    <div class="container-volver">
-                                        <div class="title">
-                                        <button class="btn btn-calificacion" style="width: 100px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                        <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                    <form action="calificaciones.php" method="GET">
+                                        <div class="container-volver">
+                                            <div class="title">
+                                                <button class="btn btn-calificacion" style="width: 100px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                                <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
                                 <?php } ?>
                             </div>
-
-
-
-
-
-
                             <table id="calif" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
@@ -498,9 +445,7 @@ if (!isset($_SESSION['rol'])) {
                                                     </center>
                                                 <?php } ?>
                                             </td>
-
                                             <td class='align-middle text-center'><?php echo $mostrar['apelo'] ?></td>
-
                                             <td class='centrado'>
                                                 <?php if (!empty($mostrar['RutaApelacion']) && $mostrar['apelo'] == "Si") { ?>
                                                     <center>
@@ -519,34 +464,20 @@ if (!isset($_SESSION['rol'])) {
                                     <?php } ?>
                                 </tbody>
                             </table>
-
-
-
                         </div>
-
-
-
-
-                        
                     </div>
                 <?php } ?>
             </main>
         </div>
     </div>
-
-
     <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
     <script src="./assets/js/tablas.js"></script>
-    <!-- cdn js de boostrap -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
 </body>
-
 </html>

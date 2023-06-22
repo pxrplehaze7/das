@@ -40,6 +40,7 @@ function deleteFile(campo, idtra) {
   });
 }
 
+
 //ELIMINA LA CALIFICACION
 function deleteFileCal(rutaCalificacion, idCalificacion) {
   Swal.fire({
@@ -83,6 +84,7 @@ function deleteFileCal(rutaCalificacion, idCalificacion) {
     }
   });
 }
+
 
 //ELIMINA LA APELACION
 function deleteFileApela(rutaApelacion, idCalificacion) {
@@ -133,7 +135,6 @@ function deleteFileApela(rutaApelacion, idCalificacion) {
 //ELIMINA USUARIOS 
 $(document).on('click', '.btnEliminarUsuario', function () {
   var idUsuario = $(this).data('idusuario'); // Obtiene el ID del usuario desde el atributo data
-
   Swal.fire({
     title: '¿Está seguro que desea eliminar este usuario?',
     icon: 'warning',

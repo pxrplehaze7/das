@@ -1,9 +1,7 @@
 <?php
 if (isset($_POST['idUsuario'])) {
     $idUsuario = $_POST['idUsuario'];
-
     include("../controller/config/conexion.php");
-
     $eliminarUsuario = "DELETE FROM usuario WHERE IDUsuario = '$idUsuario'";
     if (mysqli_query($conn, $eliminarUsuario)) {
         echo "Usuario eliminado exitosamente.";

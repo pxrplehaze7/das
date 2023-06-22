@@ -1,7 +1,5 @@
 <?php
 include("./config/conexion.php");
-
-
 $sqlF = "SELECT t.Rut, t.IDTra, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple, c.NombreCon
 FROM trabajador t 
 INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
@@ -31,16 +29,11 @@ if ($_POST['cumple'] != "" || $_POST['lugar'] != "0" || $_POST['sector'] != "0")
         $sqlF .= " t.IDSector = '" . $_POST['sector'] . "' ";
     }
 }
-
 $resultadoF = mysqli_query($conn, $sqlF);
-
-// Verificar si se produjo un error en la consulta
 if (!$resultadoF) {
     echo "Error en la consulta: " . mysqli_error($conn);
     exit;
 }
-
-// EJECUTAR LA QUERY
 while ($ptotal = mysqli_fetch_assoc($resultadoF)) {
 ?>
     <tr>
@@ -69,6 +62,5 @@ while ($ptotal = mysqli_fetch_assoc($resultadoF)) {
                 </a>
             </div>
         </td>
-
     </tr>
 <?php } ?>

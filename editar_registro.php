@@ -9,9 +9,6 @@ if ($_SESSION['rol'] !== '1') {
     header('Location: ./components/error.html');
     exit();
 }
-
-
-
 if (isset($_GET['id'])) {
     $idtra = $_GET['id'];
     $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, 
@@ -25,55 +22,38 @@ if (isset($_GET['id'])) {
     INNER JOIN sector sec ON (sec.IDSector = tra.IDSector)
     INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
     WHERE IDTra='$idtra' LIMIT 1";
-
-
     $resultDatosEditar = mysqli_query($conn, $datosEditar);
-
     if (mysqli_num_rows($resultDatosEditar) == 1) {
         $personaa = mysqli_fetch_assoc($resultDatosEditar);
-        // var_dump($personaa);
     }
 } ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Editar</title>
-    <!-- ESTILOS -->
+    <title>Editar Trabajador</title>
+    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
-    <!-- CDN jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-    <!-- CDN CSS Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <!-- SweetAlert -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-    <!-- Datatable -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
-    <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
-
 </head>
-
 <body class="sb-nav-fixed">
+    <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
-        <?php require("./components/navbar.php") ?>
         <?php require("./components/sidebar.php") ?>
-
         <div id="layoutSidenav_content">
             <main>
                 <?php if (isset($personaa)) { ?>
-
                     <div class="container-md">
-
                         <form id="editInfoPersonal" action="./controller/editInfoP.php" method="POST">
                             <div class="title">
                                 <div class="ti">
@@ -84,18 +64,15 @@ if (isset($_GET['id'])) {
                                         Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
                                     </a>
                                 </div>
-
                             </div>
                             <br>
                             <div class="seccion">
-
                                 <h6>Datos Personales</h6>
                                 <div class="row ">
                                     <div class="col-md">
                                         <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
-
-                                        <label for="idRutInput"><span style="color: #c40055;">*</span> Rut</label>
-                                        <input type="text" name="RutInput" id="idRutInput" value="<?php echo $personaa['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
+                                        <label for="idRutInputp"><span style="color: #c40055;">*</span> Rut</label>
+                                        <input type="text" name="RutInput" id="idRutInputp" value="<?php echo $personaa['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                                         <br>
                                     </div>
                                     <div class="col-md">
@@ -104,7 +81,6 @@ if (isset($_GET['id'])) {
                                         <br>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md">
                                         <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
@@ -117,7 +93,6 @@ if (isset($_GET['id'])) {
                                         <br>
                                     </div>
                                 </div>
-
                                 <div class="art">
                                     <div class="row">
                                         <div class="col-md-6"> <!-- TIPO DE CONTRATO -->
@@ -138,7 +113,6 @@ if (isset($_GET['id'])) {
                                             ?>
                                             <br>
                                         </div>
-
                                         <div class="col-md-6"> <!-- CATEGORIA -->
                                             <?php
                                             $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
@@ -156,11 +130,9 @@ if (isset($_GET['id'])) {
                                         </div>
                                         <br>
                                     </div>
-
                                     <div id="idInscripcion" class="radioCentro row">
                                         <center>
                                             <label><span style="color: #c40055;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
-
                                             <div class="radio-inputs">
                                                 <label>
                                                     <input type="radio" name="nameInscrip" id="idSiInscrip" value=1 class="radio-input" <?php if ($personaa['Inscripcion'] == 1) echo "checked"; ?>>
@@ -187,8 +159,6 @@ if (isset($_GET['id'])) {
                                             </div>
                                         </center>
                                     </div>
-
-
                                     <div id="idPreguntaCat1" class="radioCentro" style="display:<?php echo $personaa['IDCat'] == 1 ? 'block' : 'none' ?>;">
                                         <center>
                                             <label><span style="color: #c40055;">*</span> ¿Es médico?</label>
@@ -218,8 +188,6 @@ if (isset($_GET['id'])) {
                                             </div>
                                         </center>
                                     </div>
-
-
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6"> <!-- LUGAR -->
@@ -252,13 +220,11 @@ if (isset($_GET['id'])) {
                                             </select>
                                         </div>
                                     </div>
-
                                     <div>
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                         <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $personaa['Profesion'] ?>" class="form-control" require>
                                     </div>
                                     <br>
-
                                     <div class="row" id="afpyprevdiv">
                                         <div class="col-md-6"> <!-- AFP -->
                                             <?php
@@ -273,7 +239,6 @@ if (isset($_GET['id'])) {
                                             }
                                             echo "</select>";
                                             ?>
-
                                             <br>
                                         </div>
                                         <div class="col-md-6">
@@ -371,7 +336,6 @@ if (isset($_GET['id'])) {
                         <div id="c_docs">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs">
                                 <input type="hidden" name="nameRutEditar" value="<?php echo $personaa['Rut'] ?>">
-
                                 <div class="documentacion seccion">
                                     <h6>Documentación</h6>
                                     <table id="docsEDIT" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
@@ -406,8 +370,6 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-
-
                                             <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Nacimiento</td>
@@ -423,7 +385,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
                                             <tr>
                                                 <td class="align-middle">Certificado de Antecedentes</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
@@ -438,8 +399,6 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-
-
                                             <tr>
                                                 <td class="align-middle">Fotocopia Cédula de Identidad</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
@@ -454,7 +413,6 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-
                                             <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Declaración Jurada</td>
@@ -471,7 +429,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
                                             <tr>
                                                 <td class="align-middle">Curriculum Vitae</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
@@ -486,7 +443,6 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-
                                             <tr>
                                                 <td class="align-middle">Certificado de Estudios o Título Profesional</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
@@ -501,8 +457,6 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-
-
                                             <?php if ($personaa['Genero'] == 'Masculino' && $personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
@@ -518,7 +472,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
                                             <?php if ($personaa['Medico'] == 'Si') { ?>
                                                 <tr>
                                                     <td class="align-middle">Examen Único Nacional de Conocimientos de Medicina</td>
@@ -534,8 +487,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
-
                                             <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Salud Compatible</td>
@@ -551,7 +502,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
                                             <?php if ($personaa['Inscripcion'] == 1) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
@@ -567,8 +517,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
-
                                             <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle"> Certificado de Afiliación AFP
@@ -586,7 +534,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
                                             <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Afiliación Previsión
@@ -595,7 +542,6 @@ if (isset($_GET['id'])) {
                                                     <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idPREVinput" name="namePREVdocEDIT" class="form-control" accept=".pdf">
-
                                                             <button class="button" type="button" onclick="clearFileInput('idPREVinput')" style="width: 40px !important;">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
                                                                     <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
@@ -605,8 +551,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-
-
                                         </tbody>
                                     </table>
                                     <br>
@@ -628,7 +572,7 @@ if (isset($_GET['id'])) {
                             $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
                             ?>
 
-                            <div class="documentacion seccion seccion-cal" >
+                            <div class="documentacion seccion seccion-cal">
                                 <h6>Calificaciones</h6>
                                 <div class="" style="overflow-x: auto;">
                                     <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
@@ -736,36 +680,25 @@ if (isset($_GET['id'])) {
                                         </tbody>
                                     </table>
                                 </div>
-
-
-
                                 <br>
                             </div>
                         </div>
-
                     </div>
                 <?php } ?>
             </main>
         </div>
     </div>
-
-
     <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/elimina.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
     <script src="./assets/js/tablas.js"></script>
-    <!-- cdn js de boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
-
-
 </body>
-
 </html>

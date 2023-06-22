@@ -804,3 +804,7 @@ button.boton-registrarB:active {
     max-width: 1600px !important;
   }
 }
+.btnEliminarUsuario{
+  background-color: #c40055 !important;
+  border: #c40055 !important;
+}

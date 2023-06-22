@@ -13,22 +13,18 @@ $sqlReset = "UPDATE usuario SET
 WHERE IDUsuario = '$iduser'";
 
 if (mysqli_query($conn, $sqlReset)) {
-    // La actualización fue exitosa
     $response = array(
         'success' => true,
         'message' => 'Usuario registrado exitosamente.'
     );
     echo json_encode($response);
 } else {
-    // Error al actualizar
     $response = array(
         'success' => false,
         'message' => 'Error al registrar: ' . mysqli_error($conn)
     );
     echo json_encode($response);
 }
-
-// Cerrar conexión
 mysqli_close($conn);
 ?>
 

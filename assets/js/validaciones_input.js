@@ -41,22 +41,19 @@ $(document).ready(function () {
     }
   });
 
-  // Verificar si el campo de entrada está vacío antes de enviar el formulario
+  // VERIFICA SI EL INPUT ESTA VACIO ANTES DE ENVIAR EL FORMULARIO
   $('#registroU').on('submit', function () {
     var rutUsuario = $('#idRutInputU').val();
     if (rutUsuario.trim() === '') {
-      $('#rut-validationU').html(''); // Eliminar el mensaje de validación si el campo está vacío
+      $('#rut-validationU').html(''); // SI EL CAMPO ESTA VACIO; SE ELIMINA EL MENSAJE DE VALIDACION
     } else {
       validarRutU(rutUsuario);
     }
-
-
     if (correoElectronico.trim() === '') {
       $('#correo-validation').html(''); // Eliminar el mensaje de validación del correo si el campo está vacío
     } else {
       validarCorreo(correoElectronico);
     }
-
   });
   function validarRutU(rutUsuario) {
     if (rutUsuario.length === 10 || rutUsuario.length === 9) {
@@ -77,7 +74,6 @@ $(document).ready(function () {
                 $('#rut-validationU').html('');
               }, 2000);
               $('#idRutInputU').val(''); 
-
             }
           }
         });
@@ -96,11 +92,7 @@ $(document).ready(function () {
   }
 
 
-
-
-
   function validarCorreo(correoElectronico) {
-    // Realizar la solicitud AJAX al servidor
     $.ajax({
       url: './controller/check_correo.php',
       type: 'POST',
@@ -122,8 +114,6 @@ $(document).ready(function () {
       }
     });
   }
-
-
 
 
 });
@@ -150,9 +140,6 @@ var FnU = {
 };
 
 
-
-
-
 //VALIDACION DEL RUT EN REGISTRAR
 //PERMITE SOLO EL INGRESO DE NUMEROS, k O k y -
 if(document.getElementById("idRutInput")){
@@ -170,11 +157,10 @@ $(document).ready(function () {
     }
   });
 
-  // Verificar si el campo de entrada está vacío antes de enviar el formulario
   $('#documentosObligatorios').on('submit', function () {
     var rut = $('#idRutInput').val();
     if (rut.trim() === '') {
-      $('#rut-validation').html(''); // Eliminar el mensaje de validación si el campo está vacío
+      $('#rut-validation').html(''); 
     } else {
       validarRut(rut);
     }
@@ -226,7 +212,6 @@ var Fn = {
     var digv = tmp[1];
     var rut = tmp[0];
     if (digv == 'K') digv = 'k';
-
     return (Fn.dv(rut) == digv);
   },
   dv: function (T) {
@@ -240,16 +225,9 @@ var Fn = {
 
 
 
-
-
-
-
-
-
 $("#fechacalif").on("input", function () {
   var input = $(this).val();
   var regex = /^\d{4}-\d{4}$/;
-
   if (!regex.test(input)) {
     $(this).addClass("is-invalid");
   } else {

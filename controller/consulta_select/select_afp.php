@@ -2,9 +2,9 @@
  $sqlAFP = "SELECT IDAFP, NombreAFP FROM afp";
  $resultadoAFP = mysqli_query($conn, $sqlAFP);
 
- echo "<label for='idSelectAFP'>AFP </label>"; //Label 
+ echo "<label for='idSelectAFP'>AFP </label>";
  echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
- echo '<option value=1 hidden> Selecciona</option>'; // Opción por defecto en blanco
+ echo '<option value=1 hidden> Selecciona</option>'; 
 
  while ($fila = mysqli_fetch_assoc($resultadoAFP)) {
      echo "<option value='" . $fila['IDAFP'] . "'>" . $fila['NombreAFP'] . "</option>";

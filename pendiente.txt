@@ -15,4 +15,6 @@ para que no se autocompleten los inputs
 
 
 
-    
+    arreglar qque cuando cambio el nombre de mi perfil, secambia la contraseña
+
+    agregar alguna alerta de minimo decacteres en contraseña

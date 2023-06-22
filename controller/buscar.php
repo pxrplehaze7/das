@@ -1,7 +1,6 @@
 <?php
 include("./config/conexion.php");
 $rut = $_POST['nameBuscaRut'];
-
 $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, tra.IDAFP, tra.IDPrev, tra.IDTra , tra.IDCon, NombreTra, PaternoTra, MaternoTra, Decreto, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaContrato, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
                   FROM trabajador tra
                   INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
@@ -11,19 +10,12 @@ $sqlDatosTra = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePr
                   INNER JOIN sector sec ON (sec.IDSector  = tra.IDSector)
                   INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
                   WHERE Rut='$rut' LIMIT 1";
-
-
-
 $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
-
-// Verificar si se encontró una persona en la base de datos con el valor de $rut
 if (mysqli_num_rows($resultadoDatosTra) == 1) {
-    // Si se encuentra una persona, se asigna el resultado a $persona
     $persona = mysqli_fetch_assoc($resultadoDatosTra);
     $idtra = $persona['IDTra'];
     echo $idtra;
-    // Cerrar la conexión a la base de datos  
-    // mysqli_close($conn);
+
 } else {
     http_response_code(400);//bad request
     echo "

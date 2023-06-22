@@ -12,11 +12,12 @@ if ($_SESSION['rol'] !== '1') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>Lista de Registros</title>    
+    <title>Usuarios Registrados</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -34,6 +35,7 @@ if ($_SESSION['rol'] !== '1') {
         }
     </style>
 </head>
+
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
@@ -74,14 +76,14 @@ if ($_SESSION['rol'] !== '1') {
                                                 <td><?php echo $user['ApellidoP'] ?></td>
                                                 <td><?php echo $user['ApellidoM'] ?></td>
                                                 <td><?php echo $user['CorreoU'] ?></td>
-                                                <td style="text-align: center; <?php if ($user['Rol'] == 1) { ?>background-color: #463bfa;<?php } else { ?>background-color: #009CFD;<?php } ?> color: white; ">
+                                                <td style="<?php if ($user['Rol'] == 1) { ?>color: #463bfa;<?php } else { ?>color: #009CFD;<?php } ?> font-weight:700">
                                                     <?php echo $user['Rol'] == 1 ? 'Administrador' : 'Lectura'; ?>
                                                 </td>
                                                 <td>
                                                     <?php if (!$isCurrentSessionUser) { ?>
 
                                                         <div class="d-flex align-items-center justify-content-around">
-                                                            <a href="editUsuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
+                                                            <a href="editUsuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-warning text-white"><i class="fas fa-user-edit"></i></a>
                                                             <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
                                                         </div>
                                                     <?php } ?>
@@ -97,21 +99,17 @@ if ($_SESSION['rol'] !== '1') {
             </main>
         </div>
     </div>
-
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/elimina.js"></script>
     <script src="./assets/js/tablas.js"></script>
-
     <script src="./assets/js/tablaExport.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
-
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
@@ -119,5 +117,4 @@ if ($_SESSION['rol'] !== '1') {
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 </body>
-
 </html>

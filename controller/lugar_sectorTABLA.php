@@ -3,8 +3,7 @@ include("./config/conexion.php");
 if (isset($_POST['lugarSeleccionado'])) {
     $lugarSeleccionado = $_POST['lugarSeleccionado'];
     $respuesta = array();
-
-    // Agregar la opción "Seleccione" al inicio del arreglo de respuesta
+    // SE AGREGA LA OPCION SELECCIONE AL INICIO DEL ARREGLO DE RESPUESTA
     $respuesta[] = array('IDSector' => '0', 'NombreSector' => 'Selecciona');
 
     $sql = "SELECT IDSector, NombreSector FROM sector WHERE IDLugar = $lugarSeleccionado";
@@ -15,8 +14,6 @@ if (isset($_POST['lugarSeleccionado'])) {
             $respuesta[] = $row;
         }
     }
-
     echo json_encode($respuesta);
 }
-
 ?>
