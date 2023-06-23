@@ -44,6 +44,7 @@ $(document).ready(function () {
   // VERIFICA SI EL INPUT ESTA VACIO ANTES DE ENVIAR EL FORMULARIO
   $('#registroU').on('submit', function () {
     var rutUsuario = $('#idRutInputU').val();
+    var correoElectronico = $('#idCorreo').val(); // Obtener el valor del campo de correo electrónico
     if (rutUsuario.trim() === '') {
       $('#rut-validationU').html(''); // SI EL CAMPO ESTA VACIO; SE ELIMINA EL MENSAJE DE VALIDACION
     } else {

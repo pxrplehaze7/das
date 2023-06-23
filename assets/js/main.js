@@ -195,6 +195,7 @@ $("#idNoApelo").change(function () {
 
 $("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
+  console.log("entra al submit despues de preventdefaultl")
 
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
     Swal.fire('Debe indicar si apeló o no');
@@ -213,6 +214,7 @@ $("#documentosApelacion").on("submit", function (event) {
     if (result.isDenied) {
       return;
     } else {
+      console.log("inicia proceso de envio")
       let formData = new FormData(this);
       $.ajax({
         url: "./controller/addCalificacion.php",
@@ -567,7 +569,7 @@ $(document).ready(function () {
               confirmButtonText: 'Aceptar',
               confirmButtonColor: '#009CFD'
             }).then(() => {
-              $("#idRutInput").val("");
+              $("#idRutInputU").val("");
               $("#idPersona").val("");
               $("#idAppat").val("");
               $("#idApmat").val("");
@@ -723,11 +725,25 @@ $(document).ready(function () {
   });
 });
 
-
-
-$(document).ready(function () {
-  $("#miperfil").on("submit", function (event) {
+$(document).ready(function() {
+  $("#miperfil").on("submit", function(event) {
     event.preventDefault();
+
+    // Obtener el valor de la contraseña
+    var password = $("#idPass").val();
+
+    // Validar la longitud de la contraseña
+    if (password.length < 8) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Contraseña demasiado corta',
+        text: 'La contraseña debe tener al menos 8 caracteres',
+        showConfirmButton: true,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#009CFD'
+      });
+      return; // Detener el envío del formulario
+    }
 
     Swal.fire({
       title: '¿Desea actualizar su información?',
@@ -747,7 +763,7 @@ $(document).ready(function () {
           cache: false,
           contentType: false,
           processData: false
-        }).done(function (response) {
+        }).done(function(response) {
           response = JSON.parse(response);
           if (response.success) {
             Swal.fire({
@@ -755,7 +771,8 @@ $(document).ready(function () {
               title: 'Información actualizada exitosamente',
               showConfirmButton: true,
               confirmButtonText: 'Aceptar',
-              confirmButtonColor: '#009CFD'            }).then(function () {
+              confirmButtonColor: '#009CFD'
+            }).then(function() {
               location.reload(); // Actualiza la página
             });
           } else {
@@ -768,7 +785,7 @@ $(document).ready(function () {
               confirmButtonColor: '#009CFD'
             });
           }
-        }).fail(function (response) {
+        }).fail(function(response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar la información del Usuario',
@@ -782,8 +799,6 @@ $(document).ready(function () {
     });
   });
 });
-
-
 
 
 
@@ -841,7 +856,6 @@ $(document).ready(function () {
     
     $(".boton-eliminar-calif").click(function (event) {
       event.preventDefault();
-    
       var idCalificacion = $(this).data("idcalific");
     
       Swal.fire({

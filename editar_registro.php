@@ -601,11 +601,11 @@ if (isset($_GET['id'])) {
                                                             <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
                                                                 <center>
                                                                     <div class="contenedor-botones">
-                                                                        <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
+                                                                        <button  type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 boton-eliminar-calif" onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 " onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
                                                                         </button>
                                                                     </div>
@@ -636,11 +636,11 @@ if (isset($_GET['id'])) {
                                                             <?php if (!empty($mostrar['RutaApelacion'])) { ?>
                                                                 <center>
                                                                     <div class="contenedor-botones">
-                                                                        <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
+                                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 boton-eliminar-calif" onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 " onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
 
                                                                         </button>
@@ -665,11 +665,11 @@ if (isset($_GET['id'])) {
                                                         <td class="text-center">
 
                                                             <div class="contenedor-botones">
-                                                                <button class="btn btn-primary boton-ver w-100" type="submit" id="guardar-btn">
+                                                                <button  class="btn btn-primary boton-ver w-100" type="submit" id="guardar-btn">
                                                                     <i class="fas fa-save"></i>
                                                                 </button>
 
-                                                                <button class="btn btn-danger w-100 boton-eliminar-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
+                                                                <button  type="button" class="btn btn-danger w-100 boton-eliminar-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
                                                                     <i class="fas fa-times"></i>
                                                                 </button>
                                                             </div>

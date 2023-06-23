@@ -29,6 +29,7 @@ if (isset($_SESSION['idperfil'])) {
 } ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -43,6 +44,7 @@ if (isset($_SESSION['idperfil'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
@@ -50,7 +52,7 @@ if (isset($_SESSION['idperfil'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="miperfil" method="POST">
+                    <form id="miperfil" method="POST" autocomplete="off">
                         <div class="title">
                             <h1 class="mt-4">Editar mis datos</h1>
                         </div>
@@ -79,8 +81,16 @@ if (isset($_SESSION['idperfil'])) {
                                 </div>
                                 <div class="col-6">
                                     <label for="idPass"><span style="color: #c40055;">*</span> Cambiar Contraseña</label>
-                                    <input type="password" name="namePass" value="<?php $pass; ?>" id="idPass" class="form-control">
+                                    <div class="input-group">
+                                        <input type="password" name="namePassNueva" id="idPass" class="form-control" autocomplete="new-password">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" style="height: 38px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;border-bottom-left-radius: 0px;border-top-left-radius: 0px;">
+                                                <i id="toggleIcon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+
 
                             </div>
                             <br>
@@ -103,10 +113,28 @@ if (isset($_SESSION['idperfil'])) {
             </main>
         </div>
     </div>
-    <script src="./assets/js/sidebar.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('idPass');
+            var toggleIcon = document.getElementById('toggleIcon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+    <script src="./assets/js/sidebar.js"></scripT>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

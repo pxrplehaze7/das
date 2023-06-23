@@ -42,8 +42,7 @@
                                                         <input id="inputPassword" type="password" name="contrasennaL" required>
                                                         <label for="inputPassword">Contraseña</label>
                                                     </div>
-                                                    <button style="justify-content: center;">
-                                                        Entrar
+                                                    <button style="justify-content: center;border-radius: 20px;">                                                        Entrar
                                                         <div class="arrow-wrapper">
                                                             <div class="arrow"></div>
                                                         </div>
