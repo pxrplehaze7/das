@@ -4,10 +4,12 @@
   align-items: center;
   height: 100vh;
 }
+
 .fondo-inicio {
   background-image: url(../img/bg5.jpg);
   background-color: #314f8b;
 }
+
 .form {
   position: relative;
   display: flex;
@@ -20,6 +22,7 @@
   background-clip: border-box;
   padding-top: 20px;
 }
+
 .header {
   position: relative;
   background-clip: border-box;
@@ -28,7 +31,7 @@
   overflow: hidden;
   color: #fff;
   box-shadow: 0 0 #0000, 0 0 #0000, 0 0 #0000, 0 0 #0000,
-    rgba(33, 150, 243, 0.4);
+      rgba(33, 150, 243, 0.4);
   height: 7rem;
   letter-spacing: 0;
   line-height: 1.375;
@@ -41,12 +44,14 @@
   margin-left: 20px;
   margin-right: 20px;
 }
+
 .inputs {
   padding: 1.5rem;
   gap: 1.5rem;
   display: flex;
   flex-direction: column;
 }
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -56,6 +61,7 @@
   height: 2.75rem;
   position: relative;
 }
+
 .inputGroup {
   font-family: 'Segoe UI', sans-serif;
   position: relative;
@@ -64,7 +70,8 @@
 .inputGroup input {
   font-size: 100%;
   padding: 0.8em;
-  padding-right: 2.5em; /* Agrega este valor para dejar espacio al ícono del ojo */
+  padding-right: 2.5em;
+  /* Agrega este valor para dejar espacio al ícono del ojo */
   outline: none;
   border: 2px solid rgb(200, 200, 200);
   background-color: transparent;
@@ -99,6 +106,7 @@
   transition: all 0.3s ease;
   color: rgb(100, 100, 100);
 }
+
 .inputGroup :is(input:focus, input:valid)~label {
   transform: translateY(-50%) scale(.9);
   margin: 0em;
@@ -106,9 +114,11 @@
   padding: 0.4em;
   background-color: #fff;
 }
+
 .inputGroup :is(input:focus, input:valid) {
   border-color: rgb(150, 150, 200);
 }
+
 button {
   --primary-color: #314385;
   --secondary-color: #fff;
@@ -128,11 +138,13 @@ button {
   font-weight: bold;
   font-size: 18px;
 }
+
 button .arrow-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 button .arrow {
   margin-top: 1px;
   width: var(--arrow-width);
@@ -141,6 +153,7 @@ button .arrow {
   position: relative;
   transition: 0.2s;
 }
+
 button .arrow::before {
   content: "";
   box-sizing: border-box;
@@ -154,24 +167,27 @@ button .arrow::before {
   padding: 3px;
   transform: rotate(-45deg);
 }
+
 button:hover {
   background-color: var(--hover-color);
 }
+
 button:hover .arrow {
   background: var(--secondary-color);
 }
+
 button:hover .arrow:before {
   right: 0;
 }
 
 
-.contenedor-alerta{
+.contenedor-alerta {
   display: flex !important;
 
-justify-content: center !important;
+  justify-content: center !important;
 }
 
-.alerta-login{
+.alerta-login {
   width: 90% !important;
   margin: 0 !important;
   margin-top: 1.5rem !important;

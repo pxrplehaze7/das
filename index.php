@@ -11,6 +11,8 @@
     <link href="./assets/styles/index.css" rel="stylesheet" />
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 
 <body class="fondo-inicio">
@@ -44,7 +46,9 @@
                                                     <div class="inputGroup">
                                                         <input id="inputPassword" type="password" name="contrasennaL" required>
                                                         <label for="inputPassword">Contraseña</label>
-                                                        <span class="togglePassword" onclick="togglePasswordVisibility()"><i class="far fa-eye"></i></span>
+                                                        <span class="togglePassword"> 
+                                                            <i id="toggleIcon" class="fas fa-eye" onclick="togglePasswordVisibility()"></i>
+                                                        </span>
                                                     </div>
 
                                                     <button style="justify-content: center;border-radius: 20px;"> Entrar
@@ -65,23 +69,20 @@
         </div>
     </div>
     <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById('inputPassword');
+            var toggleIcon = document.getElementById('toggleIcon');
 
-function togglePasswordVisibility() {
-  var inputPassword = document.getElementById('inputPassword');
-  var toggleIcon = document.querySelector('.togglePassword i');
-
-  if (inputPassword.type === 'password') {
-    inputPassword.type = 'text';
-    toggleIcon.classList.remove('far', 'fa-eye');
-    toggleIcon.classList.add('far', 'fa-eye-slash');
-  } else {
-    inputPassword.type = 'password';
-    toggleIcon.classList.remove('far', 'fa-eye-slash');
-    toggleIcon.classList.add('far', 'fa-eye');
-  }
-}
-
-
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
