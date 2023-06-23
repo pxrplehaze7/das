@@ -48,7 +48,7 @@ if (mysqli_num_rows($resultadoDatosTra) == 1) {
             title: 'Persona no encontrada',
             text: 'No se ha encontrado a la persona.',
             icon: 'error',
-            confirmButtonColor: '#00c4a0',
+            confirmButtonColor: '#009cfd',
             confirmButtonText: 'Aceptar',
             allowOutsideClick: false
           });

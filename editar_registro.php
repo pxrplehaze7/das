@@ -600,7 +600,7 @@ if (isset($_GET['id'])) {
                                                     <tr>
 
                                                         <td class="align-middle text-center">
-                                                            <input style="min-width: 99px; max-width:100px" type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_<?php echo $mostrar['IDCalif'] ?>" id="fechacalif">
+                                                            <input style="min-width: 99px; max-width:100px" maxlength="9" type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_<?php echo $mostrar['IDCalif'] ?>" id="fechacalif">
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
