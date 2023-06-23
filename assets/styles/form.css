@@ -808,3 +808,18 @@ button.boton-registrarB:active {
   background-color: #c40055 !important;
   border: #c40055 !important;
 }
+
+
+  .d-calif {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    background-color: #c40055 !important;
+    border-color: #c40055 !important;
+  }
+  .d-calif:hover {
+    background-color: #a70048 !important;
+    border-color: #c40055 !important;
+  }
+  .d-calif:active {
+    background-color: #920140 !important;
+  }

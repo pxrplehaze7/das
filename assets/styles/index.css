@@ -60,15 +60,35 @@
   font-family: 'Segoe UI', sans-serif;
   position: relative;
 }
+
 .inputGroup input {
   font-size: 100%;
   padding: 0.8em;
+  padding-right: 2.5em; /* Agrega este valor para dejar espacio al ícono del ojo */
   outline: none;
   border: 2px solid rgb(200, 200, 200);
   background-color: transparent;
   border-radius: 20px;
   width: 100%;
 }
+
+
+
+.inputGroup .togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 0.8em;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: rgb(100, 100, 100);
+}
+
+
+.inputGroup .togglePassword i {
+  font-size: 16px;
+}
+
+
 .inputGroup label {
   font-size: 100%;
   position: absolute;

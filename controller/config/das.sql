@@ -10,11 +10,23 @@ CREATE TABLE `das`.`usuario` (
     `Rol` BOOLEAN NOT NULL,
     `Contrasenna` VARCHAR(300) NOT NULL,
     `CorreoU` VARCHAR(100) NOT NULL,
+    `Eliminable` BOOLEAN NOT NULL DEFAULT 1,
     PRIMARY KEY (`IDUsuario`),
     UNIQUE (`CorreoU`),
     UNIQUE (`RutU`)
-
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+    DELIMITER $$
+    CREATE TRIGGER before_delete_usuario
+    BEFORE DELETE ON usuario
+    FOR EACH ROW
+    BEGIN
+        IF OLD.IDUsuario = 1 AND OLD.Eliminable = 0 THEN
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No se puede eliminar el usuario con ID 1.';
+        END IF;
+    END$$
+    DELIMITER ;
+
 
 CREATE TABLE `das`.`prevision` (
     `IDPrev` INT NOT NULL,
@@ -155,5 +167,5 @@ INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5, 'e) Administrativos de 
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6, 'f) Auxiliares de servicios de Salud.');
 
 
-INSERT INTO `usuario` (`RutU`,`NombreU`,`ApellidoP`,`ApellidoM`,`Rol`,`Contrasenna`,`CorreoU`) VALUES ('19334538-7','Belen','Gonzalez','Diaz',1,'$2y$10$iA0W10c.3RkqRixtFYDr9Oitl/ZSOrh5/1U46D3N90fcwlmX6P9Ni','admin@gmail.com');
+INSERT INTO `usuario` (`RutU`, `NombreU`, `ApellidoP`, `ApellidoM`, `Rol`, `Contrasenna`, `CorreoU`, `Eliminable`) VALUES ('11111111-1', 'Admin', 'Admin', '', 1, '$2y$10$iA0W10c.3RkqRixtFYDr9Oitl/ZSOrh5/1U46D3N90fcwlmX6P9Ni', 'admin@gmail.com', 0);
 

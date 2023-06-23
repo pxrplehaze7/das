@@ -69,6 +69,8 @@ if ($_SESSION['rol'] !== '1') {
                                         $resultados = mysqli_query($conn, $usuarios);
                                         while ($user = mysqli_fetch_array($resultados)) {
                                             $isCurrentSessionUser = $_SESSION['idperfil'] == $user['IDUsuario'];
+                                            if ($user['IDUsuario'] != 1) {
+
                                         ?>
                                             <tr>
                                                 <td><?php echo $user['RutU'] ?></td>
@@ -89,7 +91,7 @@ if ($_SESSION['rol'] !== '1') {
                                                     <?php } ?>
                                                 </td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php } }?>
                                     </tbody>
                                 </table>
                             </div>

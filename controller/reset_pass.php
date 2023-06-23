@@ -15,7 +15,8 @@ WHERE IDUsuario = '$iduser'";
 if (mysqli_query($conn, $sqlReset)) {
     $response = array(
         'success' => true,
-        'message' => 'Usuario registrado exitosamente.'
+        'message' => 'Usuario registrado exitosamente.',
+        'tempPass' => $pass
     );
     echo json_encode($response);
 } else {

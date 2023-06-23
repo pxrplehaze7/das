@@ -1,6 +1,7 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,6 +12,7 @@
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
+
 <body class="fondo-inicio">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
@@ -38,11 +40,14 @@
                                                         <input id="inputEmail" type="text" name="correoL" required>
                                                         <label for="inputEmail">Correo Electrónico</label>
                                                     </div>
+
                                                     <div class="inputGroup">
                                                         <input id="inputPassword" type="password" name="contrasennaL" required>
                                                         <label for="inputPassword">Contraseña</label>
+                                                        <span class="togglePassword" onclick="togglePasswordVisibility()"><i class="far fa-eye"></i></span>
                                                     </div>
-                                                    <button style="justify-content: center;border-radius: 20px;">                                                        Entrar
+
+                                                    <button style="justify-content: center;border-radius: 20px;"> Entrar
                                                         <div class="arrow-wrapper">
                                                             <div class="arrow"></div>
                                                         </div>
@@ -59,6 +64,26 @@
             </main>
         </div>
     </div>
+    <script>
+
+function togglePasswordVisibility() {
+  var inputPassword = document.getElementById('inputPassword');
+  var toggleIcon = document.querySelector('.togglePassword i');
+
+  if (inputPassword.type === 'password') {
+    inputPassword.type = 'text';
+    toggleIcon.classList.remove('far', 'fa-eye');
+    toggleIcon.classList.add('far', 'fa-eye-slash');
+  } else {
+    inputPassword.type = 'password';
+    toggleIcon.classList.remove('far', 'fa-eye-slash');
+    toggleIcon.classList.add('far', 'fa-eye');
+  }
+}
+
+
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -40,8 +40,8 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="seccion">
-                            <div class="alert alert-warning" role="alert">
-                                Si el rut es 19876543-K la contraseña temporal será DAS19876543.
+                            <div class="alert alert-info" role="alert">
+                            <strong>¡Importante!</strong> Si el RUT registrado es 19876543-K, la contraseña temporal será DAS19876543.
                             </div>
                             <div class="row ">
                                 <div class="col-md">

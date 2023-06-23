@@ -29,6 +29,7 @@ if (isset($_GET['id'])) {
 } ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -46,6 +47,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
 </head>
+
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
@@ -574,6 +576,9 @@ if (isset($_GET['id'])) {
 
                             <div class="documentacion seccion seccion-cal">
                                 <h6>Calificaciones</h6>
+                                <div class="alert alert-info">
+                                    <strong>¡Importante!</strong> Las calificaciones se guardan individualmente.
+                                </div>
                                 <div class="" style="overflow-x: auto;">
                                     <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
 
@@ -582,7 +587,7 @@ if (isset($_GET['id'])) {
                                                 <th class="text-center">Fecha</th>
                                                 <th class="text-center">Calificación</th>
                                                 <th class="text-center">Subir o Cambiar Calificación</th>
-                                                <th class="text-center">Apelo</th>
+                                                <th class="text-center" style="width: 65px !important;">Apelo</th>
                                                 <th class="text-center">Apelación</th>
                                                 <th class="text-center">Subir o Cambiar Apelación</th>
                                                 <th class="text-center">Acción</th>
@@ -601,11 +606,11 @@ if (isset($_GET['id'])) {
                                                             <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
                                                                 <center>
                                                                     <div class="contenedor-botones">
-                                                                        <button  type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
+                                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 " onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
                                                                         </button>
                                                                     </div>
@@ -640,7 +645,7 @@ if (isset($_GET['id'])) {
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 " onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
 
                                                                         </button>
@@ -665,11 +670,11 @@ if (isset($_GET['id'])) {
                                                         <td class="text-center">
 
                                                             <div class="contenedor-botones">
-                                                                <button  class="btn btn-primary boton-ver w-100" type="submit" id="guardar-btn">
+                                                                <button class="btn btn-primary boton-ver w-100" type="submit" id="guardar-btn">
                                                                     <i class="fas fa-save"></i>
                                                                 </button>
 
-                                                                <button  type="button" class="btn btn-danger w-100 boton-eliminar-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
+                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar-calif d-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
                                                                     <i class="fas fa-times"></i>
                                                                 </button>
                                                             </div>
@@ -688,7 +693,7 @@ if (isset($_GET['id'])) {
             </main>
         </div>
     </div>
-    <script src="./assets/js/sidebar.js"></script> <!-- HACE QUE SE ENCOJA EL MENU LATERAL -->
+    <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/elimina.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
@@ -701,4 +706,5 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
 </body>
+
 </html>

@@ -43,7 +43,6 @@ function deleteFile(campo, idtra) {
 
 //ELIMINA LA CALIFICACION
 function deleteFileCal(rutaCalificacion, idCalificacion) {
-  console.log("inicio de eliminacion")
   Swal.fire({
     title: '¿Está seguro que desea eliminar la calificación?',
     icon: 'warning',
@@ -55,7 +54,6 @@ function deleteFileCal(rutaCalificacion, idCalificacion) {
     cancelButtonColor: '#ba0051',
   }).then((result) => {
     if (result.isConfirmed) {
-      console.log("eliminando")
       $.ajax({
         url: './controller/eliminaRutaCAL.php',
         type: 'POST',

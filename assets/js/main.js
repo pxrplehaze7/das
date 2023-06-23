@@ -108,7 +108,6 @@ window.addEventListener("load", function () {
 
 // ESPERA A QUE EL DOCUMENTO ESTÉ CARGADO
 document.addEventListener('DOMContentLoaded', function () {
-  // Obtén todos los campos de entrada requeridos
   var requiredInputs = document.querySelectorAll('input[required]');
 
   //REVISA SI HAY INPUTS REQUIRED NO VALIDOS
@@ -195,8 +194,6 @@ $("#idNoApelo").change(function () {
 
 $("#documentosApelacion").on("submit", function (event) {
   event.preventDefault();
-  console.log("entra al submit despues de preventdefaultl")
-
   if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
     Swal.fire('Debe indicar si apeló o no');
     return;
@@ -214,7 +211,6 @@ $("#documentosApelacion").on("submit", function (event) {
     if (result.isDenied) {
       return;
     } else {
-      console.log("inicia proceso de envio")
       let formData = new FormData(this);
       $.ajax({
         url: "./controller/addCalificacion.php",
@@ -256,7 +252,7 @@ $("#documentosApelacion").on("submit", function (event) {
           });
         })
         .always(function (respuesta) {
-          console.info("DATA:", respuesta);
+          console.info( respuesta);
         });
     }
   });
@@ -302,8 +298,6 @@ $("#edicion_pdfs").on("submit", function (event) {
 });
 
 
-
-
 $("#btn-filtro").on("click", function () {
   let datos = {
     cumple: $("#idSelectCumple").val(),
@@ -319,8 +313,6 @@ $("#btn-filtro").on("click", function () {
     $('#trabajadores_tbody').html(data);
   });
 });
-
-
 
 
 $("#btn-filtro").on("click", function () {
@@ -343,9 +335,6 @@ $("#btn-filtro").on("click", function () {
       table.clear().rows.add($('#total tbody tr')).draw();
     });
 });
-
-
-
 
 
 $("#limpia-filtro").on("click", function () {
@@ -443,10 +432,8 @@ $("#editInfoContacto").on("submit", function (event) {
 });
 
 
-
-
 $("#editInfoPersonal").on("submit", function (event) {
-  event.preventDefault(); // Evita el envío del formulario por defecto
+  event.preventDefault(); 
 
   var formData = new FormData(this);
 
@@ -479,7 +466,7 @@ $("#editInfoPersonal").on("submit", function (event) {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#009CFD'
           }).then(function () {
-            location.reload(); // Actualiza la página
+            location.reload(); 
           });
         } else {
           Swal.fire({
@@ -524,10 +511,8 @@ $(document).ready(function () {
   $("#registroU").on("submit", function (event) {
     event.preventDefault();
 
-    // Obtener el valor de la opción seleccionada
     var selectedOption = $("#idPermiso").val();
 
-    // Verificar si la opción seleccionada es vacía
     if (selectedOption === "") {
       Swal.fire({
         icon: 'error',
@@ -537,7 +522,7 @@ $(document).ready(function () {
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       });
-      return; // Detener el flujo del código y evitar que se muestre el cuadro de diálogo de confirmación
+      return; 
     }
 
     Swal.fire({
@@ -602,8 +587,6 @@ $(document).ready(function () {
 });
 
 
-
-
 $(document).ready(function () {
   $("#editU").on("submit", function (event) {
     event.preventDefault();
@@ -664,8 +647,6 @@ $(document).ready(function () {
 });
 
 
-
-
 $(document).ready(function () {
   $("#resetP").on("submit", function (event) {
     event.preventDefault();
@@ -693,7 +674,8 @@ $(document).ready(function () {
           if (response.success) {
             Swal.fire({
               icon: 'success',
-              title: 'Información actualizada exitosamente',
+              title: 'Se ha restablecido exitosamente',
+              html: 'Clave temporal: <strong>' + response.tempPass + '</strong>',
               showConfirmButton: true,
               confirmButtonText: 'Aceptar',
               confirmButtonColor: '#009CFD'
@@ -703,7 +685,7 @@ $(document).ready(function () {
           } else {
             Swal.fire({
               icon: 'error',
-              title: 'Error al actualizar la información del Usuario',
+              title: 'Error al restablecer la contraseña',
               text: response.message,
               showConfirmButton: true,
               confirmButtonText: 'Aceptar',
@@ -713,7 +695,7 @@ $(document).ready(function () {
         }).fail(function (response) {
           Swal.fire({
             icon: 'error',
-            title: 'Error al actualizar la información del Usuario',
+            title: 'Error al restablecer la contraseña',
             text: response.responseText,
             showConfirmButton: true,
             confirmButtonText: 'Aceptar',
@@ -724,7 +706,6 @@ $(document).ready(function () {
     });
   });
 });
-
 $(document).ready(function() {
   $("#miperfil").on("submit", function(event) {
     event.preventDefault();
@@ -732,8 +713,8 @@ $(document).ready(function() {
     // Obtener el valor de la contraseña
     var password = $("#idPass").val();
 
-    // Validar la longitud de la contraseña
-    if (password.length < 8) {
+    // Validar la longitud de la contraseña solo si se ha ingresado un valor
+    if (password.length > 0 && password.length < 8) {
       Swal.fire({
         icon: 'error',
         title: 'Contraseña demasiado corta',
@@ -742,7 +723,7 @@ $(document).ready(function() {
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       });
-      return; // Detener el envío del formulario
+      return; 
     }
 
     Swal.fire({
@@ -778,7 +759,7 @@ $(document).ready(function() {
           } else {
             Swal.fire({
               icon: 'error',
-              title: 'Error al actualizar la información del Usuario',
+              title: 'Error al actualizar su información',
               text: response.message,
               showConfirmButton: true,
               confirmButtonText: 'Aceptar',
@@ -788,7 +769,7 @@ $(document).ready(function() {
         }).fail(function(response) {
           Swal.fire({
             icon: 'error',
-            title: 'Error al actualizar la información del Usuario',
+            title: 'Error al actualizar su información',
             text: response.responseText,
             showConfirmButton: true,
             confirmButtonText: 'Aceptar',
@@ -799,9 +780,6 @@ $(document).ready(function() {
     });
   });
 });
-
-
-
 
 
   $(".edicionCalif").each(function () {

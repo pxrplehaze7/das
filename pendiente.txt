@@ -6,15 +6,6 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
     preguntar que hacer con el admin, 
 
 
-<input type="text" id="myInput" autocomplete="off">
-para que no se autocompleten los inputs
 
 
 
-
-
-
-
-    arreglar qque cuando cambio el nombre de mi perfil, secambia la contraseña
-
-    agregar alguna alerta de minimo decacteres en contraseña
