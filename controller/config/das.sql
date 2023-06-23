@@ -69,7 +69,6 @@ CREATE TABLE `das`.`sector` (
 CREATE TABLE `das`.`trabajador` (
     `IDTra` INT NOT NULL,
     `IDCat` INT NOT NULL,
-    `IDCon` INT NOT NULL,
     `IDAFP` INT NOT NULL,
     `IDPrev` INT NOT NULL,
     `IDLugar` INT NOT NULL,
@@ -78,7 +77,6 @@ CREATE TABLE `das`.`trabajador` (
     `PaternoTra` VARCHAR(100) NOT NULL,
     `MaternoTra` VARCHAR(100) NULL,
     `Rut` VARCHAR(10) NOT NULL,
-    `Decreto` VARCHAR(30) NULL,
     `Genero` VARCHAR(10) NOT NULL,
     `Medico` VARCHAR(2) NOT NULL,
     `Inscripcion` BOOLEAN NOT NULL,
@@ -96,13 +94,11 @@ CREATE TABLE `das`.`trabajador` (
     `RutaSerM` VARCHAR(400) NULL,
     `RutaSCom` VARCHAR(400) NULL,
     `RutaExaM` VARCHAR(400) NULL,
-    `RutaContrato` VARCHAR(400) NULL,
     `RutaInscripcion` VARCHAR(400) NULL,
     `Observ` VARCHAR(1000) NULL,
     `Cumple` BOOLEAN NOT NULL,
     PRIMARY KEY (`IDTra`),
     FOREIGN KEY (`IDCat`) REFERENCES categoria (`IDCat`),
-    FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`),
     FOREIGN KEY (`IDAFP`) REFERENCES afp (`IDAFP`),
     FOREIGN KEY (`IDPrev`) REFERENCES prevision (`IDPrev`),
     FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`),
@@ -169,3 +165,37 @@ INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6, 'f) Auxiliares de servi
 
 INSERT INTO `usuario` (`RutU`, `NombreU`, `ApellidoP`, `ApellidoM`, `Rol`, `Contrasenna`, `CorreoU`, `Eliminable`) VALUES ('11111111-1', 'Admin', 'Admin', '', 1, '$2y$10$iA0W10c.3RkqRixtFYDr9Oitl/ZSOrh5/1U46D3N90fcwlmX6P9Ni', 'admin@gmail.com', 0);
 
+
+
+-- Estados:
+-- 0 = vencido
+-- 1 = vigente
+-- 2 = por vencer
+
+-- CREATE TABLE `das`.`decretos` (
+--     `IDdecreto` INT NOT NULL AUTO_INCREMENT,
+--     `IDTra` INT NOT NULL,
+--     `IDCon` INT NOT NULL,
+--     `Decreto` INT (10) NULL,
+--     `FechaInicio` DATE NOT NULL,
+--     `FechaFin` DATE NULL,
+--     `Estado` INT (1) NOT NULL,
+    -- `RutaContrato` VARCHAR(400) NULL,
+--     PRIMARY KEY (`IDdecreto`),
+--     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`),
+--     FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`)
+-- ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+
+CREATE TABLE `das`.`decretos` (
+    `IDdecreto` INT NOT NULL AUTO_INCREMENT,
+    `IDTra` INT NULL,
+    `IDCon` INT NULL,
+    `Decreto` INT (10) NULL,
+    `FechaInicio` DATE NULL,
+    `FechaFin` DATE NULL,
+    `Estado` INT (1) NULL,
+    PRIMARY KEY (`IDdecreto`),
+    FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`),
+    FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;

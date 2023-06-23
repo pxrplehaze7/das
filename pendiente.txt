@@ -9,3 +9,32 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
 
 
 
+hacer que se ingrese fecha de termino del contrato y que 3 dias antes, se guarde como decreto vencido y tambien que se cambie lo de cumple o no.
+que se muestren en una lista de decretos vencidos.
+
+que 3 dias antes su estado sea, por vencer, y despues delos 3 dias sea vencido.
+
+los decretos se deben filtrar mediante un select para buscar por vencer, vencido o vigente
+
+
+tabla externa de decretos, que tengan llave foranea segun la id del trab
+entonces 
+
+
+una persona puede ser plazo fijo e indefinido a la vez, cada contrato con su decreto y fecha de inicio y termino 
+
+
+tambien tendria que cambar lo de editar por si ahi quieren agregar otro decreto mas
+
+los decretos son solo numeros siempre
+
+vercomo hacer la insercion de los distintos decretos porque se ingresar varios a la vez?
+
+cambiar todas las cosultas a trabajador ya que se agrega una nueva tabla
+
+tfecha de fin decontrato es 30 de julio,
+hoy es 23 de junio, 
+
+en la lista de trabajadores, eliminar decreto y contrato para mostrarlo en la lista de decretos
+
+en addpersonal se revisa la fecha de termino y la compara con laactual para ver si esta vigente, si no esta vigente, no funple en la tabla del trabajador

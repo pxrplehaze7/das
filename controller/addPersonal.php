@@ -21,6 +21,10 @@ $correoP    = strtolower($correoP);
 $sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
 $decreto     = $_POST['nameDecreto'];
+$InicioDec   = $_POST['nameFechaIni'];
+$InicioDec = date('d-m-Y', strtotime($InicioDec));
+$FinDec     = $_POST['nameFechaTer'];
+$FinDec = date('d-m-Y', strtotime($FinDec));
 $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
 $afpP       = $_POST['nameSelectAFP'];
@@ -30,6 +34,27 @@ $host = $_SERVER['HTTP_HOST'];
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
 $ruta = 'pdfs_personal/';
+
+
+
+$fechaActual = strtotime($fechaActual);
+$FinDec = strtotime($FinDec);
+
+if ($FinDec > $fechaActual) {
+    $vigenciaDec = 1;
+} elseif ($FinDec < $fechaActual) {
+    $vigenciaDec = 0;
+} else {
+    // Verificar si la diferencia es de 5 días antes
+    $cincoDiasAntes = strtotime('-5 days', $fechaActual);
+    if ($FinDec >= $cincoDiasAntes) {
+        $vigenciaDec = 2;
+    } else {
+        $vigenciaDec = 0;
+    }
+}
+
+
 
 $categoriaP = $_POST['nameSelectCat'];
 if ($categoriaP == 1) {
@@ -55,6 +80,8 @@ if ($_POST['nameSelectLugar'] != "") {
 } else {
   $lugarP = NULL;
 }
+
+
 
 $nombreP    = mysqli_real_escape_string($conn, $nombreP);
 $paternoP   = mysqli_real_escape_string($conn, $paternoP);
@@ -125,7 +152,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // SE CONSTRUYE LA RUTA FINAL (URL) DEL ARCHIVO
     $ruta_afpFINAL = 'http://' . $host . '/das/controller/' . $ruta_afpFINAL;
   }
-
   // SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfNacimiento)) {
     $nombreNacimiento = 'CNACIMIENTO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfNacimiento;
@@ -203,6 +229,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN -- probado
     (($generoP == "Masculino" || $generoP == "Femenino") &&
       $contratoP == 3 &&
+      $vigenciaDec != 0 &&
       $medicoOno == "Si" &&
       $inscripcionOno == TRUE &&
       !empty($ruta_ContratoFINAL) &&
@@ -217,6 +244,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     (($generoP == "Masculino" || $generoP == "Femenino") &&
       $contratoP == 3 &&
       $medicoOno == "Si" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
@@ -229,6 +257,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     (($generoP == "Masculino" || $generoP == "Femenino") &&
       $contratoP == 3 &&
       $medicoOno == "No" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
@@ -241,6 +270,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     (($generoP == "Masculino" || $generoP == "Femenino") &&
       $contratoP == 3 &&
       $medicoOno == "No" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_CurriculumFINAL) &&
@@ -252,6 +282,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ($generoP == "Masculino" &&
       $contratoP != 3 &&
       $medicoOno == "No" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
@@ -270,6 +301,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ($generoP == "Masculino" &&
       $contratoP != 3 &&
       $medicoOno == "Si" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
@@ -290,6 +322,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ($generoP == "Masculino" &&
       $contratoP != 3 &&
       $medicoOno == "Si" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
@@ -310,6 +343,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       $contratoP != 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == TRUE &&
+      $vigenciaDec != 0 &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -328,6 +362,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ($generoP == "Femenino" &&
       $contratoP != 3 &&
       $medicoOno == "Si" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
@@ -347,6 +382,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ($generoP == "Femenino" &&
       $contratoP != 3 &&
       $medicoOno == "Si" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
@@ -365,6 +401,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ($generoP == "Femenino" &&
       $contratoP != 3 &&
       $medicoOno == "No" &&
+      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
@@ -384,6 +421,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       $contratoP != 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == FALSE &&
+      $vigenciaDec != 0 &&
       !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -401,51 +439,56 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $cumple = FALSE;
   }
 
-  $sqlTrabajador = " INSERT INTO trabajador (IDTra,IDCat,IDCon,IDAFP,IDPrev,IDLugar,IDSector,NombreTra,PaternoTra,MaternoTra,Rut,Decreto,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,RutaContrato,Observ,RutaInscripcion,Cumple,Inscripcion)
-   VALUES ($idtra,$categoriaP,$contratoP,$afpP,$prevP,$lugarP,$sector,'$nombreP','$paternoP','$maternoP','$rutPersona','$decreto','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
+  $sqlTrabajador = "INSERT INTO trabajador (IDTra,IDCat,IDAFP,IDPrev,IDLugar,IDSector,NombreTra,PaternoTra,MaternoTra,Rut,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,RutaContrato,Observ,RutaInscripcion,Cumple,Inscripcion)
+VALUES ($idtra,$categoriaP,$afpP,$prevP,$lugarP,$sector,'$nombreP','$paternoP','$maternoP','$rutPersona','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
 
-  try {
-    $resultado = mysqli_query($conn, $sqlTrabajador);
-    if (!$resultado) {
-      throw new Exception(mysqli_error($conn));
-    } else {
-      echo "<script> Swal.fire({
-        icon: 'success',
-        title: 'Guardado Correctamente',
-        showConfirmButton: true,
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#009CFD'
-      });</script>";
+$sqlDecretos = "INSERT INTO decretos (IdTra,IDCon,Decreto,FechaInicio,FechaFin,Estado)
+VALUES ('$idtra','$contratoP','$decreto','$InicioDec','$FinDec','$vigenciaDec')";
 
-      echo "<script>
-      var inputs = document.querySelectorAll('input');
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].value = '';
-      }
-    </script>";
-    }
-  } catch (Exception $e) {
 
-    // SE ELIMINARAN LOS ARCHIVOS ANTES DE ELIMINAR LA CARPETA; SI HUBO ERROR EN LA INSERCION
-    if (file_exists($ruta . $idtra)) {
-      $files = glob($ruta . $idtra . '/*'); //SE OBTIENEN TODOS LOS ARCHIVOS DENTRO DE LA CARPETA
-      foreach ($files as $file) {
-        if (is_file($file)) {
-          unlink($file); //SE ELIMINA CADA ARCHIVO
-        }
-      }
-      rmdir($ruta . $idtra); //SE ELIMINA LA CARPETA VACIA
-    }
+try {
+  $resultadoTrabajador = mysqli_query($conn, $sqlTrabajador);
+  $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
 
-    echo "<script> 
-    Swal.fire({
-      icon: 'error',
-      title: `Error al guardar los archivos: " . $e->getMessage() . "`,
+  if (!$resultadoTrabajador || !$resultadoDecretos) {
+    throw new Exception(mysqli_error($conn));
+  } else {
+    echo "<script> Swal.fire({
+      icon: 'success',
+      title: 'Guardado Correctamente',
       showConfirmButton: true,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#009CFD'
-    });
+    });</script>";
+
+    echo "<script>
+    var inputs = document.querySelectorAll('input');
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].value = '';
+    }
     </script>";
+  }
+  } catch (Exception $e) {
+// SE ELIMINARAN LOS ARCHIVOS ANTES DE ELIMINAR LA CARPETA; SI HUBO ERROR EN LA INSERCION
+if (file_exists($ruta . $idtra)) {
+  $files = glob($ruta . $idtra . '/*'); //SE OBTIENEN TODOS LOS ARCHIVOS DENTRO DE LA CARPETA
+  foreach ($files as $file) {
+    if (is_file($file)) {
+      unlink($file); //SE ELIMINA CADA ARCHIVO
+    }
+  }
+  rmdir($ruta . $idtra); //SE ELIMINA LA CARPETA VACIA
+}
+
+echo "<script> 
+Swal.fire({
+  icon: 'error',
+  title: `Error al guardar los archivos: " . $e->getMessage() . "`,
+  showConfirmButton: true,
+  confirmButtonText: 'Aceptar',
+  confirmButtonColor: '#009CFD'
+});
+</script>";
   }
 }
 mysqli_close($conn);
