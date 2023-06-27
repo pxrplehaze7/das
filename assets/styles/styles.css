@@ -7886,10 +7886,10 @@ fieldset:disabled .btn {
   order: 0 !important;
 }
 
-.order-1 {
+/* .order-1 {
   order: 1 !important;
-}
-
+} */
+/* 
 .order-2 {
   order: 2 !important;
 }
@@ -7904,7 +7904,7 @@ fieldset:disabled .btn {
 
 .order-5 {
   order: 5 !important;
-}
+} */
 
 .order-last {
   order: 6 !important;
@@ -11663,24 +11663,4 @@ body {
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
 }
-
-.pie-chart-container {
-  width: 100%; /* Ajusta el ancho del contenedor del gráfico de pie */
-}
-
-
-.btn-inicio {
-  background-color: #212529 !important;
-  color: white;
-}
-
-.btn-inicio:hover {
-  background-color: #212529 !important;
-  color: white;
-}
-
-.redirect {
-  color: #212529 !important;
-}
-
 

@@ -482,7 +482,7 @@ button.boton-registrarB:active {
 }
 
 .button {
-  width: 102px;
+  width: 36.4833px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -823,3 +823,41 @@ button.boton-registrarB:active {
   .d-calif:active {
     background-color: #920140 !important;
   }
+
+.btn-mas{
+  display: flex !important;
+height: 37px !important;
+align-items: center !important;
+}
+
+.pie-chart-container {
+  width: 100%; /* Ajusta el ancho del contenedor del gráfico de pie */
+}
+
+
+.btn-inicio {
+  background-color: #212529 !important;
+  color: white;
+}
+
+.btn-inicio:hover {
+  background-color: #212529 !important;
+  color: white;
+}
+
+.redirect {
+  color: #212529 !important;
+}
+
+
+
+@media (max-width: 800px) {
+  .seccion {
+    padding-left: 3% !important;
+    padding-right: 3% !important;
+    }
+
+    .container-md {
+      max-width: 95% !important;
+    }
+}
