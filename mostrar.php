@@ -115,7 +115,7 @@ if (!isset($_SESSION['rol'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Contratos</h6>
                                 </div>
-                                <form action="pdfs_anteriores.php" method="GET">
+                                <form action="registroDECRETOS.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Añadir <i class="fa-solid fa-circle-plus"></i></button>
@@ -153,10 +153,10 @@ if (!isset($_SESSION['rol'])) {
                                     while ($decsper = mysqli_fetch_array($resultadodecs)) { ?>
                                         <tr>
                                             <td class="align-middle"><?php echo $decsper['NDecreto'] ?></td>
-                                            <td class="align-middle"><?php echo $decsper['FechaDoc'] ?></td>
+                                            <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaDoc'])) ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreCon'] ?></td>
-                                            <td class="align-middle"><?php echo $decsper['FechaInicio'] ?></td>
-                                            <td class="align-middle"><?php echo  $decsper['FechaTermino'] ?></td>
+                                            <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaInicio'])) ?></td>
+                                            <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaTermino'])) ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreLug'] ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreSector'] ?></td>
 
@@ -174,27 +174,27 @@ if (!isset($_SESSION['rol'])) {
                                                 ?>
 
                                             </td>
-                                           
-                                  
-
-                                    <td class="align-middle">
-
-                                        <?php if (!empty($decsper['RutaCon'])) { ?>
-                                            <div class="contenedor-botones">
-                                                <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $decsper['RutaCon']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                <a href="<?php echo $decsper['RutaCon'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                            </div>
-                                        <?php } else { ?>
-                                            <div class="contenedor-botones">
-                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                            </div>
-                                        <?php } ?>
-
-                                    </td>
 
 
-                             
-      </tr>
+
+                                            <td class="align-middle">
+
+                                                <?php if (!empty($decsper['RutaCon'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $decsper['RutaCon']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $decsper['RutaCon'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
+                                                <?php } ?>
+
+                                            </td>
+
+
+
+                                        </tr>
                                     <?php } ?>
                                 </tbody>
 

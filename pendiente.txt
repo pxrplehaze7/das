@@ -20,10 +20,15 @@ al registrar a trabajador a contrata:
 *realizar validacion de documentos de si cumple o no mediante una consulta de todos los datos, anteriores y decretos.
 *si hay decreto vencido, no cumple
 
+al mostrar documentos a contrata:
+-los botones de añadir y editar deben ser vistos por el admin.
+* añadir contratos
+- exportar contratos
 
 
 
 al registrar a trabajador a honorario:
+-se debe revisar el rut segun honorario
 -ingresar documentos e informacion
 -mostrar alerta de confirmacion y exito antes de continuar
 -enviar a registrar contrato
@@ -67,3 +72,34 @@ decretos no se reemplazan, honorarios tienen decreto y contrato, en lugar de cal
 hacer masbonitas las url
 
 falta agregar la tabla equivalente a calificaciones, es decir la tabla de los informes de labores
+
+al registrar decreto, las fechas se limpian pero no los select
+
+al registrar los documentos, no aparece la fecha de subida
+
+hacer que se puedan exportar los contratos de mostrar.php
+
+---necesito hacer que cuando registre a un trabajador, por obligacion deba registrar un decreto ya que puede volver atras.
+
+tendria que hacer que al registrar los datos, se establezca cumple en false,
+para que una vez se registre el decreto, haga la consulta de la validacion ??
+
+como solucionar cuando el formulario en dos pasos queda incompleto 
+
+guardar archivos de honorario y contrata aparte
+
+no puedo poner confirmar a los expirados porque hay muchos finalizados enotonces habria que confirmar cada uno.
+mejor poner confirmar solo en los por vence para asi se elimine la alerta
+
+vercomo cambiar lo de decreto vencido ya que solo si tiene todos los decretos con confirmacion entonces cumple por ese lado,
+
+todos los registrados vigentes se insertan con confirmacion 1,
+entonces cuando ese decreto este por vencer,su estado 2 y el estado sera 0,
+
+ver que hacer con los contratos indefinidos
+
+usar la columna de confirmacion solo cuando este por vencer.
+
+mostrar solo el boton de confirmar en por vencer
+
+quizas seria mejor mostrar por separado en la lista de trabajadores, algo como: documentacion:cumple decretos al dia: si o no

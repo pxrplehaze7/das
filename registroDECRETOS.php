@@ -174,7 +174,6 @@ if (isset($_GET['id'])) {
             </main>
         </div>
     </div>
-    <script src="./assets/js/decretos.js"></script>
 
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>

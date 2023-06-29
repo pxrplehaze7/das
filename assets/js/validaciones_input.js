@@ -227,6 +227,10 @@ var Fn = {
 
 
 
+
+
+
+
 $("#fechacalif").on("input", function () {
   var input = $(this).val();
   var regex = /^\d{4}-\d{4}$/;
@@ -248,4 +252,16 @@ function fechaNumeros(event) {
   const sanitizedValue = input.value.replace(/[^0-9]/g, '');
   input.value = sanitizedValue;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

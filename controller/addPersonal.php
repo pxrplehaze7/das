@@ -27,8 +27,8 @@ $cumple = FALSE;
 $host = $_SERVER['HTTP_HOST'];
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
+$fechaSubidaDoc = $fechaActual;
 $ruta = 'pdfs_personal/';
-
 $fechaActual = strtotime($fechaActual);
 
 
@@ -98,7 +98,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfAFP)) {
     // CREA EL NOMBRE DEL ARCHIVO CONCATENANDO 'afp' Y LA FECHA ACTUAL
-    $nombreAFP = 'AFP_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAFP;
+    $nombreAFP = 'AFP_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfAFP;
     // CREA LA RUTA FINAL DEL ARCHIVO
     $ruta_afpFINAL = $ruta . $idtra . '/' . $nombreAFP;
     // EL ARCHIVO PDF SE MUEVE A LA NUEVA RUTA
@@ -108,77 +108,71 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   }
   // SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfNacimiento)) {
-    $nombreNacimiento = 'CNACIMIENTO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfNacimiento;
+    $nombreNacimiento = 'CNACIMIENTO_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfNacimiento;
     $ruta_nacFINAL = $ruta . $idtra . '/' . $nombreNacimiento;
     move_uploaded_file($_FILES['nameNACdoc']['tmp_name'], $ruta_nacFINAL);
     $ruta_nacFINAL = 'http://' . $host . '/das/controller/' . $ruta_nacFINAL;
   }
   if (!empty($pdfMilitar)) {
-    $nombreMilitar = 'SMILITAR_' . str_replace('-', '_', $fechaActual) . '_' . $pdfMilitar;
+    $nombreMilitar = 'SMILITAR_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfMilitar;
     $ruta_militarFINAL = $ruta . $idtra . '/' . $nombreMilitar;
     move_uploaded_file($_FILES['nameMilitarDoc']['tmp_name'], $ruta_militarFINAL);
     $ruta_militarFINAL = 'http://' . $host . '/das/controller/' . $ruta_militarFINAL;
   }
   if (!empty($pdfAntecedentes)) {
-    $nombreAntecedentes = 'ANTECEDENTES_' . str_replace('-', '_', $fechaActual) . '_' . $pdfAntecedentes;
+    $nombreAntecedentes = 'ANTECEDENTES_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfAntecedentes;
     $ruta_AntecedentesFINAL = $ruta . $idtra . '/' . $nombreAntecedentes;
     move_uploaded_file($_FILES['nameANTECEdoc']['tmp_name'], $ruta_AntecedentesFINAL);
     $ruta_AntecedentesFINAL = 'http://' . $host . '/das/controller/' . $ruta_AntecedentesFINAL;
   }
   if (!empty($pdfCedula)) {
-    $nombreCedula = 'CEDULA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCedula;
+    $nombreCedula = 'CEDULA_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfCedula;
     $ruta_CedulaFINAL = $ruta . $idtra . '/' . $nombreCedula;
     move_uploaded_file($_FILES['nameCeduladoc']['tmp_name'], $ruta_CedulaFINAL);
     $ruta_CedulaFINAL = 'http://' . $host . '/das/controller/' . $ruta_CedulaFINAL;
   }
   if (!empty($pdfCurriculum)) {
-    $nombreCurriculum = 'CURRICULUM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfCurriculum;
+    $nombreCurriculum = 'CURRICULUM_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfCurriculum;
     $ruta_CurriculumFINAL = $ruta . $idtra . '/' . $nombreCurriculum;
     move_uploaded_file($_FILES['nameCVdoc']['tmp_name'], $ruta_CurriculumFINAL);
     $ruta_CurriculumFINAL = 'http://' . $host . '/das/controller/' . $ruta_CurriculumFINAL;
   }
   if (!empty($pdfExamenM)) {
-    $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaActual) . '_' . $pdfExamenM;
+    $nombreExamenM = 'EUNACOM_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfExamenM;
     $ruta_ExamenMFINAL = $ruta . $idtra . '/' . $nombreExamenM;
     move_uploaded_file($_FILES['nameExaMdoc']['tmp_name'], $ruta_ExamenMFINAL);
     $ruta_ExamenMFINAL = 'http://' . $host . '/das/controller/' . $ruta_ExamenMFINAL;
   }
   if (!empty($pdfPrevision)) {
-    $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfPrevision;
+    $nombrePrevision = 'PREVISION_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfPrevision;
     $ruta_PrevisionFINAL = $ruta . $idtra . '/' . $nombrePrevision;
     move_uploaded_file($_FILES['namePREVdoc']['tmp_name'], $ruta_PrevisionFINAL);
     $ruta_PrevisionFINAL = 'http://' . $host . '/das/controller/' . $ruta_PrevisionFINAL;
   }
   if (!empty($pdfEstudios)) {
-    $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaActual) . '_' . $pdfEstudios;
+    $nombreEstudios = 'ESTUDIOS_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfEstudios;
     $ruta_EstudiosFINAL = $ruta . $idtra . '/' . $nombreEstudios;
     move_uploaded_file($_FILES['nameEstudiodoc']['tmp_name'], $ruta_EstudiosFINAL);
     $ruta_EstudiosFINAL = 'http://' . $host . '/das/controller/' . $ruta_EstudiosFINAL;
   }
   if (!empty($pdfDJurada)) {
-    $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaActual) . '_' . $pdfDJurada;
+    $nombreDJurada = 'DJURADA_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfDJurada;
     $ruta_DJuradaFINAL = $ruta . $idtra . '/' . $nombreDJurada;
     move_uploaded_file($_FILES['nameDJuradadoc']['tmp_name'], $ruta_DJuradaFINAL);
     $ruta_DJuradaFINAL = 'http://' . $host . '/das/controller/' . $ruta_DJuradaFINAL;
   }
   if (!empty($pdfSaludCompat)) {
-    $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaActual) . '_' . $pdfSaludCompat;
+    $nombreSaludCompat = 'SCOMPATIBLE_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfSaludCompat;
     $ruta_SaludCompatFINAL = $ruta . $idtra . '/' . $nombreSaludCompat;
     move_uploaded_file($_FILES['nameSCompatibledoc']['tmp_name'], $ruta_SaludCompatFINAL);
     $ruta_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
   }
   if (!empty($pdfInscripcion)) {
-    $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
+    $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaSubidaDoc) . '_' . $pdfInscripcion;
     $ruta_InscripcionFINAL = $ruta . $idtra . '/' . $nombreInscripcion;
     move_uploaded_file($_FILES['nameInscripdoc']['tmp_name'], $ruta_InscripcionFINAL);
     $ruta_InscripcionFINAL = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;
   }
-
-
-
-
-
-
 
 
   if (

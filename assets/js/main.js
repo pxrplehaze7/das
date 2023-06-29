@@ -894,7 +894,6 @@ $(document).ready(function() {
   $("#RegistroDecretos").on("submit", function (event) {
     event.preventDefault();
   
-
   
     Swal.fire({
       title: '¿Realmente registrar este decreto?',
@@ -942,3 +941,8 @@ $(document).ready(function() {
       }
     });
   });
+
+
+
+
+  

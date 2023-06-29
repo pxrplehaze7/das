@@ -45,8 +45,8 @@ if ($_SESSION['rol'] !== '1') {
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
-                                    <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
-                                    <div id="rut-validation"></div>
+                                    <input type="text" name="nameRut" id="idRutInputH" placeholder="19876543-K" class="form-control" maxlength="10" required>
+                                    <div id="rut-validationH"></div>
                                     <br>
                                 </div>
                                 <div class="col-md">
@@ -69,8 +69,6 @@ if ($_SESSION['rol'] !== '1') {
                             </div>
                             <div class="art">
                                 <div class="row">
-
-
                                     <div class="col-md-6"> <!-- CATEGORIA -->
                                         <?php include("./controller/consulta_select/select_categoria.php"); ?>
                                         <br>
@@ -81,10 +79,21 @@ if ($_SESSION['rol'] !== '1') {
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                         <input type="text" name="nameProfesion" id="idProfesion" class="form-control" required>
                                     </div>
-
-
-
+                                    <br>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="tipoHono"><span style="color: #c40055;">*</span> Tipo de Honorario</label>
+                                        <select name="nametipoh" class="form-select" id="tipoHono">
+                                            <option value="Por Jornada">Por Jornada</option>
+                                            <option value="Por Horas">Por Horas</option>
+                                            <option value="Por Llamado">Por Llamado</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                </div>
+                                <br>
                                 <div id="idInscripcion" class="radioCentro row">
                                     <center>
                                         <label><span style="color: #c40055;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
@@ -198,7 +207,7 @@ if ($_SESSION['rol'] !== '1') {
                         <br>
                         <div class="seccion">
                             <h6>Documentación</h6>
-                          
+
                             <div class="document">
                                 <label for="idANTECEinput">Certificado de Antecedentes</label>
                                 <div class="input-group ">
@@ -281,8 +290,8 @@ if ($_SESSION['rol'] !== '1') {
                                 </div>
                                 <br>
                             </div>
-                         
-                           
+
+
                         </div>
                         <br>
                         <div class="observaciones seccion">
@@ -308,7 +317,6 @@ if ($_SESSION['rol'] !== '1') {
             </main>
         </div>
     </div>
-    <script src="./assets/js/decretos.js"></script>
 
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>

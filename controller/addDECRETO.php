@@ -15,7 +15,7 @@ $tipoContrato = $_POST['nameSelectCon'];
 $confirmacion = FALSE;
 $host = $_SERVER['HTTP_HOST'];
 $ruta = 'pdfs_personal/';
-$estadoDecreto = -1; // Valor por defecto, puede ser cualquier otro valor según tu lógica
+$estadoDecreto = -1;
 
 $fechaDocumento = $_POST['nameFechaDocumento'];
 $fechaDocumento = date('Y-m-d', strtotime($fechaDocumento));
@@ -28,10 +28,19 @@ $finDecreto = date('Y-m-d', strtotime($finDecreto));
 
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('Y-m-d');
-
+$fechaSubidaCon = date('d-m-y');
 $fechaAlerta = date('Y-m-d', strtotime('-5 day', strtotime($finDecreto)));
 
+$carpetaIdtra = $ruta . $idtra . '/';
+$carpetaContrato = $carpetaIdtra . 'CONTRATO/';
 
+if (!file_exists($carpetaIdtra)) {
+  mkdir($carpetaIdtra, 0777, true);
+}
+
+if (!file_exists($carpetaContrato)) {
+  mkdir($carpetaContrato, 0777, true);
+}
 
 if ($fechaActual < $fechaAlerta) {
   $estadoDecreto = 1;
@@ -41,35 +50,25 @@ if ($fechaActual < $fechaAlerta) {
   $estadoDecreto = 0;
 }
 
-
 $lugar = mysqli_real_escape_string($conn, $lugar);
 $sector = mysqli_real_escape_string($conn, $sector);
 $numdecreto = mysqli_real_escape_string($conn, $numdecreto);
 
 $pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
 
-// CARPETAS CON NOMBRE LA ID, SI NO EXISTE LA CREA
-if (!file_exists($ruta . $idtra)) {
-  mkdir($ruta . $idtra, 0777, true);
-}
-
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
 
   $ruta_ContratoFINAL = NULL;
 
-  // SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
   if (!empty($pdfContrato)) {
-    $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
-    $ruta_ContratoFINAL = $ruta . $idtra . '/' . $nombreContrato;
+    $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaSubidaCon) . '_' . $pdfContrato;
+    $ruta_ContratoFINAL = $carpetaContrato . $nombreContrato;
     move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
     $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
   }
 
-
-
   $sqlDecretos = "INSERT INTO decretos (IDTra,IDCon,IDLugar,IDSector,NDecreto,FechaDoc,RutaCon,FechaInicio,FechaTermino,FechaAlerta,Estado,Confirmacion)
     VALUES ('$idtra','$tipoContrato','$lugar','$sector','$numdecreto','$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta','$estadoDecreto','$confirmacion')";
-
 
   $sqlcumple = "UPDATE trabajador
 SET Cumple = 0
@@ -82,12 +81,11 @@ AND EXISTS (
   AND decretos.Confirmacion = 0
 )";
 
-
   try {
     $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
     $actualizacumple = mysqli_query($conn, $sqlcumple);
 
-    if ((!$resultadoDecretos) && (! $actualizacumple)) {
+    if ((!$resultadoDecretos) && (!$actualizacumple)) {
       throw new Exception(mysqli_error($conn));
     } else {
       echo "<script> Swal.fire({
