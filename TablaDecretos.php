@@ -86,8 +86,6 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo  $rowFin['NombreLug'] ?></td>
                                                     <td class="align-middle"><?php echo  $rowFin['NombreSector'] ?></td>
 
-
-
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <?php
                                                         if ($rowFin['Estado'] == 1) {
