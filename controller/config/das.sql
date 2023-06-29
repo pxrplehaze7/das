@@ -34,12 +34,6 @@ CREATE TABLE `das`.`prevision` (
     PRIMARY KEY (`IDPrev`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-CREATE TABLE `das`.`contrato` (
-    `IDCon` INT NOT NULL,
-    `NombreCon` VARCHAR(100) NOT NULL,
-    PRIMARY KEY (`IDCon`)
-) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
-
 CREATE TABLE `das`.`categoria` (
     `IDCat` INT NOT NULL,
     `NombreCat` VARCHAR(250) NOT NULL,
@@ -66,13 +60,17 @@ CREATE TABLE `das`.`sector` (
     FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
+CREATE TABLE `das`.`contrato` (
+    `IDCon` INT NOT NULL,
+    `NombreCon` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (`IDCon`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
 CREATE TABLE `das`.`trabajador` (
     `IDTra` INT NOT NULL,
     `IDCat` INT NOT NULL,
     `IDAFP` INT NOT NULL,
     `IDPrev` INT NOT NULL,
-    `IDLugar` INT NOT NULL,
-    `IDSector` INT NOT NULL,
     `NombreTra` VARCHAR(200) NOT NULL,
     `PaternoTra` VARCHAR(100) NOT NULL,
     `MaternoTra` VARCHAR(100) NULL,
@@ -101,9 +99,86 @@ CREATE TABLE `das`.`trabajador` (
     FOREIGN KEY (`IDCat`) REFERENCES categoria (`IDCat`),
     FOREIGN KEY (`IDAFP`) REFERENCES afp (`IDAFP`),
     FOREIGN KEY (`IDPrev`) REFERENCES prevision (`IDPrev`),
-    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`),
     UNIQUE (`Rut`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+
+
+
+CREATE TABLE `das`.`honorario` (
+    `IDTraH` INT NOT NULL,
+    `IDCat` INT NOT NULL,
+    `NombreH` VARCHAR(200) NOT NULL,
+    `PaternoH` VARCHAR(100) NOT NULL,
+    `MaternoH` VARCHAR(100) NULL,
+    `Rut` VARCHAR(10) NOT NULL,
+    `Genero` VARCHAR(10) NOT NULL,
+    `Medico` VARCHAR(2) NOT NULL,
+    `Inscripcion` BOOLEAN NOT NULL,
+    `Profesion` VARCHAR(300) NOT NULL,
+    `CelularH` VARCHAR(9) NULL,
+    `CorreoH` VARCHAR(100) NULL,
+    `RutaCV` VARCHAR(400) NULL,
+    `RutaAntec` VARCHAR(400) NULL,
+    `RutaCedula` VARCHAR(400) NULL,
+    `RutaEstudio` VARCHAR(400) NULL,
+    `RutaExaM` VARCHAR(400) NULL,
+    `RutaInscripcion` VARCHAR(400) NULL,
+    `Observ` VARCHAR(1000) NULL,
+    `Cumple` BOOLEAN NOT NULL,
+    PRIMARY KEY (`IDTraH`),
+    FOREIGN KEY (`IDCat`) REFERENCES categoria (`IDCat`),
+    UNIQUE (`Rut`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+
+
+
+
+CREATE TABLE `das`.`decretosH` (
+    `IDdecretoH` INT NOT NULL AUTO_INCREMENT,
+    `IDTraH` INT NOT NULL,
+    `IDLugar` INT NULL,
+    `IDSector` INT NULL,
+    `TipodeHono` VARCHAR(100) NOT NULL,
+    `NDecreto` INT (10) NULL,
+    `FechaDoc` DATE NULL,
+    `RutaCon` VARCHAR(400) NULL,
+    `FechaInicio` DATE NULL,
+    `FechaTermino` DATE NULL,
+    `FechaAlerta` DATE NULL,
+    `Estado` INT (1) NULL,
+    `Confirmacion` INT (1) NOT NULL,
+    PRIMARY KEY (`IDdecretoH`),
+    FOREIGN KEY (`IDTraH`) REFERENCES honorario (`IDTraH`),
+    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+
+
+
+
+CREATE TABLE `das`.`decretos` (
+    `IDdecreto` INT NOT NULL AUTO_INCREMENT,
+    `IDTra` INT NOT NULL,
+    `IDCon` INT NULL,
+    `IDLugar` INT NULL,
+    `IDSector` INT NULL,
+    `NDecreto` INT (10) NULL,
+    `FechaDoc` DATE NULL,
+    `RutaCon` VARCHAR(400) NULL,
+    `FechaInicio` DATE NULL,
+    `FechaTermino` DATE NULL,
+    `FechaAlerta` DATE NULL,
+    `Estado` INT (1) NULL,
+    `Confirmacion` INT (1) NOT NULL,
+    PRIMARY KEY (`IDdecreto`),
+    FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`),
+    FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`),
+    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+
 
 CREATE TABLE `das`.`calificaciones` (
     `IDCalif` INT NOT NULL AUTO_INCREMENT,
@@ -116,6 +191,13 @@ CREATE TABLE `das`.`calificaciones` (
     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
+
+
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (1, 'Reemplazo');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (2, 'Plazo Fijo');
+INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (3, 'Indefinido');
+
+
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (1, 'No posee');
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (2, 'AFP Cuprum');
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (3, 'AFP Habitat');
@@ -125,10 +207,7 @@ INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (6, 'AFP Provida');
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (7, 'AFP Uno');
 INSERT INTO `afp`(`IDAFP`, `NombreAFP`) VALUES (8, 'AFP Capital');
 
-INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (1, 'Reemplazo');
-INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (2, 'Plazo Fijo');
-INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (3, 'Honorario');
-INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (4, 'Indefinido');
+
 
 INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (1, 'Dirección de Administración de Salud');
 INSERT INTO `lugar`(`IDLugar`, `NombreLug`) VALUES (2, 'CESFAM Pinares');
@@ -167,35 +246,4 @@ INSERT INTO `usuario` (`RutU`, `NombreU`, `ApellidoP`, `ApellidoM`, `Rol`, `Cont
 
 
 
--- Estados:
--- 0 = vencido
--- 1 = vigente
--- 2 = por vencer
 
--- CREATE TABLE `das`.`decretos` (
---     `IDdecreto` INT NOT NULL AUTO_INCREMENT,
---     `IDTra` INT NOT NULL,
---     `IDCon` INT NOT NULL,
---     `Decreto` INT (10) NULL,
---     `FechaInicio` DATE NOT NULL,
---     `FechaFin` DATE NULL,
---     `Estado` INT (1) NOT NULL,
-    -- `RutaContrato` VARCHAR(400) NULL,
---     PRIMARY KEY (`IDdecreto`),
---     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`),
---     FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`)
--- ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
-
-
-CREATE TABLE `das`.`decretos` (
-    `IDdecreto` INT NOT NULL AUTO_INCREMENT,
-    `IDTra` INT NULL,
-    `IDCon` INT NULL,
-    `Decreto` INT (10) NULL,
-    `FechaInicio` DATE NULL,
-    `FechaFin` DATE NULL,
-    `Estado` INT (1) NULL,
-    PRIMARY KEY (`IDdecreto`),
-    FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`),
-    FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`)
-) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;

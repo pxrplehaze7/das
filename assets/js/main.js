@@ -41,7 +41,7 @@ $("#documentosObligatorios").on("submit", function (event) {
   }
 
   Swal.fire({
-    title: '¿Realmente desea registrar trabajador?',
+    title: '¿Registrar y continuar?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -68,9 +68,11 @@ $("#documentosObligatorios").on("submit", function (event) {
       })
         .done(function (respuesta) {
           $('body').append(respuesta);
-          document.getElementById("documentosObligatorios").reset();
-          //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-          $('#rut-validation').html('');
+          window.location.href = 'registroDECRETOS.php?id='+ respuesta;
+
+          // document.getElementById("documentosObligatorios").reset();
+          // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          // $('#rut-validation').html('');
 
         })
         .fail(function (respuesta) {
@@ -493,6 +495,7 @@ $("#editInfoPersonal").on("submit", function (event) {
 });
 
 
+//esta funcion esta en editar 
 function honorarioEdit() {
   var selectContrato = $("#idSelectCon").val();
   var afpprevdiv = $("#afpyprevdiv");
@@ -880,3 +883,62 @@ $(document).ready(function() {
     });
   });
 
+
+
+
+
+
+
+
+
+  $("#RegistroDecretos").on("submit", function (event) {
+    event.preventDefault();
+  
+
+  
+    Swal.fire({
+      title: '¿Realmente registrar este decreto?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Si',
+      confirmButtonColor: '#00c4a0',
+      denyButtonText: 'No',
+      denyButtonColor: '#ba0051',
+    }).then((result) => {
+      if (result.isDenied) {
+        return;
+      } else {
+        let formData = new FormData(this);
+  
+        formData.append('laid', $('#idtrabid').attr('value'));
+  
+  
+        $.ajax({
+          url: "./controller/addDECRETO.php",
+          method: "POST",
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false
+        })
+          .done(function (respuesta) {
+            $('body').append(respuesta);
+  
+            // document.getElementById("documentosObligatorios").reset();
+            // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+            // $('#rut-validation').html('');
+  
+          })
+          .fail(function (respuesta) {
+            $('body').append(respuesta);
+            //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+            $('#rut-validation').html('');
+  
+          })
+          .always(function (respuesta) {
+            console.info(respuesta)
+          });
+      }
+    });
+  });

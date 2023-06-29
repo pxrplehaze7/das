@@ -17,7 +17,7 @@ if ($_SESSION['rol'] !== '1') {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro de Trabajador</title>
+    <title>Registro de Honorario</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -35,9 +35,9 @@ if ($_SESSION['rol'] !== '1') {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="documentosObligatorios" enctype="multipart/form-data" method="POST" autocomplete="off">
+                    <form id="documentosHonorario" enctype="multipart/form-data" method="POST" autocomplete="off">
                         <div class="title">
-                            <h1 class="mt-4">Registro de Trabajador a Contrata</h1>
+                            <h1 class="mt-4">Registro de Trabajador a Honorario</h1>
                         </div>
                         <br>
                         <div class="seccion">
@@ -75,7 +75,7 @@ if ($_SESSION['rol'] !== '1') {
                                         <?php include("./controller/consulta_select/select_categoria.php"); ?>
                                         <br>
                                     </div>
-                                  
+
 
                                     <div class="col-md-6">
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
@@ -198,61 +198,7 @@ if ($_SESSION['rol'] !== '1') {
                         <br>
                         <div class="seccion">
                             <h6>Documentación</h6>
-                            <div class="row document" id="afp"> <!-- AFP -->
-                                <div class=" col-md-3">
-                                    <?php include("./controller/consulta_select/select_afp.php"); ?>
-                                </div>
-                                <div class="col-md-9">
-                                    <label for="idAFPinput">Certificado de Afiliación</label>
-                                    <div class="input-group">
-                                        <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
-
-                                        <button class="button" type="button" onclick="clearFileInput('idAFPinput')">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row document" id="prevision"> <!-- PREVISION -->
-                                <div class=" col-md-3">
-                                    <?php include("./controller/consulta_select/select_prevision.php"); ?>
-                                </div>
-                                <div class="col-md-9">
-                                    <label for="idPREVinput">Certificado de Afiliación</label>
-                                    <div class="input-group">
-                                        <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
-                                        <button class="button" type="button" onclick="clearFileInput('idPREVinput')">
-
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-
-
-
-                            <br>
-                            <div class="document" id="nacimiento">
-                                <label for="idNACinput">Certificado de Nacimiento</label>
-                                <div class="input-group ">
-                                    <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
-                                    <button class="button" type="button" onclick="clearFileInput('idNACinput')">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <br>
-                            </div>
-
+                          
                             <div class="document">
                                 <label for="idANTECEinput">Certificado de Antecedentes</label>
                                 <div class="input-group ">
@@ -335,45 +281,8 @@ if ($_SESSION['rol'] !== '1') {
                                 </div>
                                 <br>
                             </div>
-                            <div class="document" id="declaraciondoc">
-                                <label for="idDJuradainput">Declaración Jurada</label>
-                                <div class="input-group ">
-                                    <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
-                                    <button class="button" type="button" onclick="clearFileInput('idDJuradainput')">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="document" id="saludcomdoc">
-                                <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
-                                <div class="input-group ">
-                                    <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
-                                    <button class="button" type="button" onclick="clearFileInput('idSCompatibleinput')">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="document" id="servicioMilitarHombre">
-                                <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
-                                    <button class="button" type="button" onclick="clearFileInput('idMilitarDoc')">
-
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                            <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                <br>
-                            </div>
+                         
+                           
                         </div>
                         <br>
                         <div class="observaciones seccion">

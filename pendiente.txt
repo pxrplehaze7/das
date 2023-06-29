@@ -6,35 +6,64 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
     preguntar que hacer con el admin, 
 
 
+decretos siempre son solo numeros
+
+arreglar graficos separando a contrata y a honorario segun el lugar
 
 
 
-hacer que se ingrese fecha de termino del contrato y que 3 dias antes, se guarde como decreto vencido y tambien que se cambie lo de cumple o no.
-que se muestren en una lista de decretos vencidos.
 
-que 3 dias antes su estado sea, por vencer, y despues delos 3 dias sea vencido.
-
-los decretos se deben filtrar mediante un select para buscar por vencer, vencido o vigente
-
-
-tabla externa de decretos, que tengan llave foranea segun la id del trab
-entonces 
+al registrar a trabajador a contrata:
+*ingresar documentos e informacion
+*mostrar alerta de confirmacion y exito antes de continuar 
+*enviar a registrar contrato
+*realizar validacion de documentos de si cumple o no mediante una consulta de todos los datos, anteriores y decretos.
+*si hay decreto vencido, no cumple
 
 
-una persona puede ser plazo fijo e indefinido a la vez, cada contrato con su decreto y fecha de inicio y termino 
 
 
-tambien tendria que cambar lo de editar por si ahi quieren agregar otro decreto mas
+al registrar a trabajador a honorario:
+-ingresar documentos e informacion
+-mostrar alerta de confirmacion y exito antes de continuar
+-enviar a registrar contrato
+-realizar validacion de documentos de si cumple o no mediante una consulta de todos los datos, anteriores y decretos.
+-si hay decreto vencido, no cumple
 
-los decretos son solo numeros siempre
 
-vercomo hacer la insercion de los distintos decretos porque se ingresar varios a la vez?
 
-cambiar todas las cosultas a trabajador ya que se agrega una nueva tabla
+en lista de decretos:
+-si esta finalizado o vencido, que aparezca boton de ok el cual hara update a confirmacion y por ende, no se mostrara en la tabla de expirados ni por vencer. si esta vigente entonces confirmar ya es true, si el decreto esta vencido y confirmado, es vigente y confirmado, esta por vencer y esta confirmado entonces cumple en cuanto a decretos
 
-tfecha de fin decontrato es 30 de julio,
-hoy es 23 de junio, 
 
-en la lista de trabajadores, eliminar decreto y contrato para mostrarlo en la lista de decretos
+ ? hacer que se haga una consulta de los decretos segun el id del trabajador y si existe alguno con estado 0 , se haga update en la tabla de tra para que no cumpla,
+hacer que cuando agregue un decreto, haga una consulta para hacerle update a cumple del trabajador dependiento el estado deese decreto.
 
-en addpersonal se revisa la fecha de termino y la compara con laactual para ver si esta vigente, si no esta vigente, no funple en la tabla del trabajador
+en tabla de decretos esta lo de confirmar, hacer que cuando se confirmemediante el boton, ese decreto quede con confirmacio=1 y que se haga update de que ya cumple.
+
+intentar hacer que todo lo de honorario sea aparte,esdecir, registrar, consultar y editar aparte.
+
+ver que hacer con las validaciones de cada documento.
+
+
+vercomo cambiar los graficos, ya que los trabajadores no estan asociados aun solo cesfam o lugar.
+
+hacer que en tabla de decretos, se pueda ir a ver, se pueda editar o confirmar,
+se pueda exportar esta tabla asi que debo cambiar la id de la tabla
+
+preguntar que hacer cuando un decreto no se renueva
+
+cuando registro y me manda a decreto, no me muestra alerta de corrcto o error.
+
+
+si en confirmar uno se aunila, tambien se anula en estado, aunque este vigente.
+
+areglar validaciones segun los documentos que se suben
+
+decretos no se reemplazan, honorarios tienen decreto y contrato, en lugar de calificaciones tienen informe de labores.
+
+
+
+hacer masbonitas las url
+
+falta agregar la tabla equivalente a calificaciones, es decir la tabla de los informes de labores

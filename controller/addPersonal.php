@@ -18,13 +18,7 @@ $generoP    = $_POST['nameGenero'];
 $CelularP   = $_POST['nameCelular'];
 $correoP    = $_POST['nameCorreo'];
 $correoP    = strtolower($correoP);
-$sector     = $_POST['nameSelectSector'];
 $profesionP = $_POST['nameProfesion'];
-$decreto     = $_POST['nameDecreto'];
-$InicioDec   = $_POST['nameFechaIni'];
-$InicioDec = date('d-m-Y', strtotime($InicioDec));
-$FinDec     = $_POST['nameFechaTer'];
-$FinDec = date('d-m-Y', strtotime($FinDec));
 $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
 $afpP       = $_POST['nameSelectAFP'];
@@ -35,25 +29,7 @@ $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
 $ruta = 'pdfs_personal/';
 
-
-
 $fechaActual = strtotime($fechaActual);
-$FinDec = strtotime($FinDec);
-
-if ($FinDec > $fechaActual) {
-    $vigenciaDec = 1;
-} elseif ($FinDec < $fechaActual) {
-    $vigenciaDec = 0;
-} else {
-    // Verificar si la diferencia es de 5 días antes
-    $cincoDiasAntes = strtotime('-5 days', $fechaActual);
-    if ($FinDec >= $cincoDiasAntes) {
-        $vigenciaDec = 2;
-    } else {
-        $vigenciaDec = 0;
-    }
-}
-
 
 
 $categoriaP = $_POST['nameSelectCat'];
@@ -65,33 +41,13 @@ if ($categoriaP == 1) {
   $medicoOno  = 'No';
 }
 
-if ($_POST['nameSelectCon'] != "") {
-  //SI NO ESTA VACIO, SE ASIGNA EL VALOR
-  $contratoP = $_POST['nameSelectCon'];
-  //SI ESTA VACIO SE ASIGNA UN NULL
-} else {
-  $contratoP = NULL;
-}
-
-if ($_POST['nameSelectLugar'] != "") {
-  //SI NO ESTA VACIO, SE ASIGNA EL VALOR
-  $lugarP = $_POST['nameSelectLugar'];
-  //SI ESTA VACIO SE ASIGNA UN NULL
-} else {
-  $lugarP = NULL;
-}
-
-
 
 $nombreP    = mysqli_real_escape_string($conn, $nombreP);
 $paternoP   = mysqli_real_escape_string($conn, $paternoP);
 $maternoP   = mysqli_real_escape_string($conn, $maternoP);
 $categoriaP = mysqli_real_escape_string($conn, $categoriaP);
 $profesionP = mysqli_real_escape_string($conn, $profesionP);
-$lugarP     = mysqli_real_escape_string($conn, $lugarP);
-$sector     = mysqli_real_escape_string($conn, $sector);
 $obsP       = mysqli_real_escape_string($conn, $obsP);
-$decreto    = mysqli_real_escape_string($conn, $decreto);
 $CelularP   = str_replace(" ", "", $CelularP);
 $correoP    = str_replace(" ", "", $correoP);
 
@@ -106,7 +62,6 @@ $pdfPrevision = (!empty($_FILES['namePREVdoc']['name'])) ? uniqid() . '.pdf' : '
 $pdfEstudios = (!empty($_FILES['nameEstudiodoc']['name'])) ? uniqid() . '.pdf' : '';
 $pdfDJurada = (!empty($_FILES['nameDJuradadoc']['name'])) ? uniqid() . '.pdf' : '';
 $pdfSaludCompat = (!empty($_FILES['nameSCompatibledoc']['name'])) ? uniqid() . '.pdf' : '';
-$pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
 $pdfInscripcion = (!empty($_FILES['nameInscripdoc']['name'])) ? uniqid() . '.pdf' : '';
 
 
@@ -138,7 +93,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
   $ruta_EstudiosFINAL     = NULL;
   $ruta_DJuradaFINAL      = NULL;
   $ruta_SaludCompatFINAL  = NULL;
-  $ruta_ContratoFINAL     = NULL;
   $ruta_InscripcionFINAL  = NULL;
 
   //SI EXISTE UN ARCHIVO PDF, CONSTRUYE LA RUTA
@@ -213,78 +167,25 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     move_uploaded_file($_FILES['nameSCompatibledoc']['tmp_name'], $ruta_SaludCompatFINAL);
     $ruta_SaludCompatFINAL = 'http://' . $host . '/das/controller/' . $ruta_SaludCompatFINAL;
   }
-  if (!empty($pdfContrato)) {
-    $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaActual) . '_' . $pdfContrato;
-    $ruta_ContratoFINAL = $ruta . $idtra . '/' . $nombreContrato;
-    move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
-    $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
-  }
   if (!empty($pdfInscripcion)) {
     $nombreInscripcion = 'INSCRIPCION_' . str_replace('-', '_', $fechaActual) . '_' . $pdfInscripcion;
     $ruta_InscripcionFINAL = $ruta . $idtra . '/' . $nombreInscripcion;
     move_uploaded_file($_FILES['nameInscripdoc']['tmp_name'], $ruta_InscripcionFINAL);
     $ruta_InscripcionFINAL = 'http://' . $host . '/das/controller/' . $ruta_InscripcionFINAL;
   }
+
+
+
+
+
+
+
+
   if (
-    // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN -- probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
-      $contratoP == 3 &&
-      $vigenciaDec != 0 &&
-      $medicoOno == "Si" &&
-      $inscripcionOno == TRUE &&
-      !empty($ruta_ContratoFINAL) &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_InscripcionFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_ExamenMFINAL) &&
-      !empty($ruta_AntecedentesFINAL))
-    ||
-    // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
-      $contratoP == 3 &&
-      $medicoOno == "Si" &&
-      $vigenciaDec != 0 &&
-      $inscripcionOno == FALSE &&
-      !empty($ruta_ContratoFINAL) &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_ExamenMFINAL) &&
-      !empty($ruta_AntecedentesFINAL))
-    ||
-    // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN --probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
-      $contratoP == 3 &&
-      $medicoOno == "No" &&
-      $vigenciaDec != 0 &&
-      $inscripcionOno == TRUE &&
-      !empty($ruta_ContratoFINAL) &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_InscripcionFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_AntecedentesFINAL))
-    ||
-    // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN --probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
-      $contratoP == 3 &&
-      $medicoOno == "No" &&
-      $vigenciaDec != 0 &&
-      $inscripcionOno == FALSE &&
-      !empty($ruta_ContratoFINAL) &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_AntecedentesFINAL))
-    ||
     // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
-      $contratoP != 3 &&
       $medicoOno == "No" &&
-      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -299,11 +200,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // HOMBRE NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
-      $contratoP != 3 &&
       $medicoOno == "Si" &&
-      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -320,11 +218,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // HOMBRE NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
-      $contratoP != 3 &&
       $medicoOno == "Si" &&
-      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -340,11 +235,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // HOMBRE NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
-      $contratoP != 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == TRUE &&
-      $vigenciaDec != 0 &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -360,11 +252,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // MUJER NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
-      $contratoP != 3 &&
       $medicoOno == "Si" &&
-      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -380,11 +269,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // MUJER NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
-      $contratoP != 3 &&
       $medicoOno == "Si" &&
-      $vigenciaDec != 0 &&
       $inscripcionOno == FALSE &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -399,11 +285,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // MUJER NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
-      $contratoP != 3 &&
       $medicoOno == "No" &&
-      $vigenciaDec != 0 &&
       $inscripcionOno == TRUE &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -418,11 +301,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     ||
     // MUJER NO HONORARIO, NO ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
-      $contratoP != 3 &&
       $medicoOno == "No" &&
       $inscripcionOno == FALSE &&
-      $vigenciaDec != 0 &&
-      !empty($ruta_ContratoFINAL) &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -439,56 +319,52 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $cumple = FALSE;
   }
 
-  $sqlTrabajador = "INSERT INTO trabajador (IDTra,IDCat,IDAFP,IDPrev,IDLugar,IDSector,NombreTra,PaternoTra,MaternoTra,Rut,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,RutaContrato,Observ,RutaInscripcion,Cumple,Inscripcion)
-VALUES ($idtra,$categoriaP,$afpP,$prevP,$lugarP,$sector,'$nombreP','$paternoP','$maternoP','$rutPersona','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$ruta_ContratoFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
-
-$sqlDecretos = "INSERT INTO decretos (IdTra,IDCon,Decreto,FechaInicio,FechaFin,Estado)
-VALUES ('$idtra','$contratoP','$decreto','$InicioDec','$FinDec','$vigenciaDec')";
 
 
-try {
-  $resultadoTrabajador = mysqli_query($conn, $sqlTrabajador);
-  $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
+  $sqlTrabajador = "INSERT INTO trabajador (IDTra,IDCat,IDAFP,IDPrev,NombreTra,PaternoTra,MaternoTra,Rut,Genero,Medico,Profesion,CelularTra,CorreoTra,RutaPrev,RutaCV,RutaAFP,RutaNac,RutaAntec,RutaCedula,RutaEstudio,RutaDJur,RutaSerM,RutaSCom,RutaExaM,Observ,RutaInscripcion,Cumple,Inscripcion)
+VALUES ($idtra,$categoriaP,$afpP,$prevP,'$nombreP','$paternoP','$maternoP','$rutPersona','$generoP','$medicoOno','$profesionP','$CelularP','$correoP','$ruta_PrevisionFINAL','$ruta_CurriculumFINAL','$ruta_afpFINAL','$ruta_nacFINAL','$ruta_AntecedentesFINAL','$ruta_CedulaFINAL','$ruta_EstudiosFINAL','$ruta_DJuradaFINAL','$ruta_militarFINAL','$ruta_SaludCompatFINAL','$ruta_ExamenMFINAL','$obsP','$ruta_InscripcionFINAL','$cumple','$inscripcionOno')";
 
-  if (!$resultadoTrabajador || !$resultadoDecretos) {
-    throw new Exception(mysqli_error($conn));
-  } else {
-    echo "<script> Swal.fire({
-      icon: 'success',
-      title: 'Guardado Correctamente',
+  try {
+    $resultadoTrabajador = mysqli_query($conn, $sqlTrabajador);
+
+    if (!$resultadoTrabajador) {
+      throw new Exception(mysqli_error($conn));
+    } else {
+
+      echo $idtra;
+
+      echo "<script>
+      Swal.fire({
+        icon: 'success',
+        title: 'Guardado Correctamente',
+        showConfirmButton: false,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#009CFD'
+      }).then(() => {
+        window.location.href = 'registroDECRETOS.php?id=' + $idtra;
+      });
+    </script>";
+    }
+  } catch (Exception $e) {
+    // SE ELIMINARAN LOS ARCHIVOS ANTES DE ELIMINAR LA CARPETA; SI HUBO ERROR EN LA INSERCION
+    if (file_exists($ruta . $idtra)) {
+      $files = glob($ruta . $idtra . '/*'); //SE OBTIENEN TODOS LOS ARCHIVOS DENTRO DE LA CARPETA
+      foreach ($files as $file) {
+        if (is_file($file)) {
+          unlink($file); //SE ELIMINA CADA ARCHIVO
+        }
+      }
+      rmdir($ruta . $idtra); //SE ELIMINA LA CARPETA VACIA
+    }
+    echo "<script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Error al guardar los archivos: " . $e->getMessage() . "',
       showConfirmButton: true,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#009CFD'
-    });</script>";
-
-    echo "<script>
-    var inputs = document.querySelectorAll('input');
-    for (var i = 0; i < inputs.length; i++) {
-      inputs[i].value = '';
-    }
-    </script>";
-  }
-  } catch (Exception $e) {
-// SE ELIMINARAN LOS ARCHIVOS ANTES DE ELIMINAR LA CARPETA; SI HUBO ERROR EN LA INSERCION
-if (file_exists($ruta . $idtra)) {
-  $files = glob($ruta . $idtra . '/*'); //SE OBTIENEN TODOS LOS ARCHIVOS DENTRO DE LA CARPETA
-  foreach ($files as $file) {
-    if (is_file($file)) {
-      unlink($file); //SE ELIMINA CADA ARCHIVO
-    }
-  }
-  rmdir($ruta . $idtra); //SE ELIMINA LA CARPETA VACIA
-}
-
-echo "<script> 
-Swal.fire({
-  icon: 'error',
-  title: `Error al guardar los archivos: " . $e->getMessage() . "`,
-  showConfirmButton: true,
-  confirmButtonText: 'Aceptar',
-  confirmButtonColor: '#009CFD'
-});
-</script>";
+    });
+  </script>";
   }
 }
 mysqli_close($conn);

@@ -11,15 +11,13 @@ if ($_SESSION['rol'] !== '1') {
 }
 if (isset($_GET['id'])) {
     $idtra = $_GET['id'];
-    $datosEditar = "SELECT cat.NombreCat, con.NombreCon, afp.NombreAFP, pre.NombrePrev, lug.NombreLug, sec.NombreSector, con.IDCon, afp.IDAFP, cat.IDCat, pre.IDPrev, 
-    lug.IDLugar, sec.IDSector, tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Decreto, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaContrato, tra.RutaDJur,
+    $datosEditar = "SELECT cat.NombreCat, afp.NombreAFP, pre.NombrePrev, afp.IDAFP, cat.IDCat, pre.IDPrev, 
+    tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaDJur,
      tra.RutaSerM, tra.RutaSCom, tra.RutaExaM, tra.Observ, tra.RutaInscripcion
     FROM trabajador tra
     INNER JOIN categoria cat ON (cat.IDCat = tra.IDCat)
-    INNER JOIN contrato con ON (con.IDCon = tra.IDCon)
     INNER JOIN afp afp ON (afp.IDAFP = tra.IDAFP)
-    INNER JOIN lugar lug ON (lug.IDLugar = tra.IDLugar)
-    INNER JOIN sector sec ON (sec.IDSector = tra.IDSector)
+
     INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
     WHERE IDTra='$idtra' LIMIT 1";
     $resultDatosEditar = mysqli_query($conn, $datosEditar);
@@ -97,24 +95,7 @@ if (isset($_GET['id'])) {
                                 </div>
                                 <div class="art">
                                     <div class="row">
-                                        <div class="col-md-6"> <!-- TIPO DE CONTRATO -->
-                                            <?php
-                                            $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
-                                            $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
 
-                                            echo "<label for='idSelectCon'><span style='color: #c40055;'>*</span> Tipo de Contrato </label>"; //Label 
-                                            echo "<select name='nameSelectCon' id='idSelectCon' class='form-select' required onchange='honorarioEdit()'>";
-
-                                            echo '<option value="" hidden>Selecciona un Contrato</option>'; // Opción por defecto en blanco
-
-                                            while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
-                                                $selected = ($fila['IDCon'] == $personaa['IDCon']) ? 'selected' : '';
-                                                echo "<option value='" . $fila['IDCon'] . "' " . $selected . ">" . $fila['NombreCon'] . "</option>";
-                                            }
-                                            echo "</select>";
-                                            ?>
-                                            <br>
-                                        </div>
                                         <div class="col-md-6"> <!-- CATEGORIA -->
                                             <?php
                                             $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
@@ -128,9 +109,14 @@ if (isset($_GET['id'])) {
                                             }
                                             echo "</select>";
                                             ?>
-                                            <br>
+                                           <br>
                                         </div>
                                         <br>
+                                        <div class="col-md-6">
+                                            <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
+                                            <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $personaa['Profesion'] ?>" class="form-control" require>
+<br>
+                                        </div>
                                     </div>
                                     <div id="idInscripcion" class="radioCentro row">
                                         <center>
@@ -191,42 +177,9 @@ if (isset($_GET['id'])) {
                                         </center>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                        <div class="col-md-6"> <!-- LUGAR -->
-                                            <label for="idSelectLugar"><span style="color: #c40055;">*</span> Lugar</label>
-                                            <select name="nameSelectLugar" id="idSelectLugar" class="form-select" required onchange="cargarSectores()">
-                                                <option value="" hidden>Selecciona un Lugar</option>
-                                                <?php
-                                                $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
-                                                $resultadoLugar = mysqli_query($conn, $sqlLugar);
-                                                while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
-                                                    $selected = ($fila['IDLugar'] == $personaa['IDLugar']) ? "selected" : "";
-                                                    echo "<option value='" . $fila['IDLugar'] . "' $selected>" . $fila['NombreLug'] . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                            <br>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="idSelectSector"><span style="color: #c40055;">*</span> Sector</label>
-                                            <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
-                                                <option value="" hidden>Selecciona un Sector</option>
-                                                <?php
-                                                $sqlSector = "SELECT IDSector, NombreSector FROM sector";
-                                                $resultadoSector = mysqli_query($conn, $sqlSector);
-                                                while ($fila = mysqli_fetch_assoc($resultadoSector)) {
-                                                    $selected = ($fila['IDSector'] == $personaa['IDSector']) ? "selected" : "";
-                                                    echo "<option value='" . $fila['IDSector'] . "' $selected>" . $fila['NombreSector'] . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
-                                        <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $personaa['Profesion'] ?>" class="form-control" require>
-                                    </div>
-                                    <br>
+
+
+
                                     <div class="row" id="afpyprevdiv">
                                         <div class="col-md-6"> <!-- AFP -->
                                             <?php
@@ -349,30 +302,8 @@ if (isset($_GET['id'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="align-middle">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-md-7 align-middle">
-                                                            Nº de Decreto
-                                                        </div>
-                                                        <div class="col-md-5 align-middle">
-                                                            <input type="text" name="nameDecreto" id="idDecreto" value="<?php echo $personaa['Decreto'] ?>" class="form-control" maxlength="30" required>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/contrato.php') ?></td>
-                                                <td class="align-middle">
-                                                    <div class="input-group">
-                                                        <input type="file" id="idDocContratoInputEDIT" name="nameDocContratoInputEDIT" class="form-control" accept=".pdf">
-                                                        <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')" style="width: 40px !important;">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <?php if ($personaa['IDCon'] != 3) { ?>
+                                           
+                                        
                                                 <tr>
                                                     <td class="align-middle">Certificado de Nacimiento</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
@@ -386,7 +317,7 @@ if (isset($_GET['id'])) {
                                                             </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
+                                                </tr>
                                             <tr>
                                                 <td class="align-middle">Certificado de Antecedentes</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
@@ -415,7 +346,7 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <?php if ($personaa['IDCon'] != 3) { ?>
+                                          
                                                 <tr>
                                                     <td class="align-middle">Declaración Jurada</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
@@ -430,7 +361,7 @@ if (isset($_GET['id'])) {
 
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
+                                                </tr>
                                             <tr>
                                                 <td class="align-middle">Curriculum Vitae</td>
                                                 <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
@@ -459,7 +390,7 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <?php if ($personaa['Genero'] == 'Masculino' && $personaa['IDCon'] != 3) { ?>
+                                            <?php if ($personaa['Genero'] == 'Masculino') { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
@@ -489,7 +420,7 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-                                            <?php if ($personaa['IDCon'] != 3) { ?>
+                                         
                                                 <tr>
                                                     <td class="align-middle">Certificado de Salud Compatible</td>
                                                     <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
@@ -503,7 +434,7 @@ if (isset($_GET['id'])) {
                                                             </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
+                                                </tr>
                                             <?php if ($personaa['Inscripcion'] == 1) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
@@ -519,7 +450,6 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-                                            <?php if ($personaa['IDCon'] != 3) { ?>
                                                 <tr>
                                                     <td class="align-middle"> Certificado de Afiliación AFP
                                                     </td>
@@ -535,8 +465,7 @@ if (isset($_GET['id'])) {
 
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
-                                            <?php if ($personaa['IDCon'] != 3) { ?>
+                                                </tr>
                                                 <tr>
                                                     <td class="align-middle">Certificado de Afiliación Previsión
                                                     </td>
@@ -552,7 +481,7 @@ if (isset($_GET['id'])) {
 
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
+                                                </tr>
                                         </tbody>
                                     </table>
                                     <br>

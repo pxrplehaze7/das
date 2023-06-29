@@ -59,30 +59,19 @@ if (isset($_GET['id'])) {
                             <div class="datosPersonales seccion">
                                 <h6>Datos Personales</h6>
                                 <div class="primerGrupo row ">
-                                    <div class="rut-ver col-md">
+                                    <div class="rut-ver col-md-3">
                                         <label>Rut</label>
                                         <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" readonly>
                                         <br>
                                     </div>
-                                    <div class="nombre col-md">
-                                        <label> Nombres</label>
-                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre ?>" id="idPersonaCa" class="form-control" readonly>
+                                    <div class="nombre col-md-9">
+                                        <label> Nombre Completo</label>
+                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre.' '.$paterno.' '.$materno?>" id="idPersonaCa" class="form-control" readonly>
                                         <br>
                                     </div>
                                     <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" hidden>
                                 </div>
-                                <div class="segundoGrupo row">
-                                    <div class="paterno col-md">
-                                        <label> Apellido Paterno</label>
-                                        <input type="text" name="namePaternoCa" value="<?php echo $paterno ?>" id="idAppatCa" class="form-control" readonly>
-                                        <br>
-                                    </div>
-                                    <div class="materno col-md">
-                                        <label>Apellido Materno</label>
-                                        <input type="text" name="nameMaternoCa" value="<?php echo $materno ?>" id="idApmatCa" class="form-control" readonly>
-                                        <br>
-                                    </div>
-                                </div>
+                
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="row">

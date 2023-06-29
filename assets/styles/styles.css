@@ -7881,15 +7881,16 @@ fieldset:disabled .btn {
 .order-first {
   order: -1 !important;
 }
-
+/* 
 .order-0 {
   order: 0 !important;
 }
 
-/* .order-1 {
+.order-1 {
   order: 1 !important;
-} */
-/* 
+}
+
+
 .order-2 {
   order: 2 !important;
 }
@@ -11313,7 +11314,9 @@ body {
   transition: opacity 0.3s ease-in-out;
 }
 
-@media (min-width: 1000px) {
+
+/* AQUI ES DONDE SE ACHICA EL MENU */
+@media (min-width: 1250px) {
   #layoutSidenav #layoutSidenav_nav {
     transform: translateX(0);
   }

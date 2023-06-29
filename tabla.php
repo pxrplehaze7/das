@@ -85,34 +85,32 @@ if (!isset($_SESSION['rol'])) {
                                     <thead>
                                         <tr>
                                             <th style="width: 75px;">Rut</th>
-                                            <th>Decreto</th>
-                                            <th>Contrato</th>
-                                            <th>Nombre</th>
+
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
                                             <th>Profesión</th>
-                                            <th>Lugar</th>
-                                            <th>Sector</th>
+                                            <th>Celular</th>
+                                            <th>Correo Electrónico</th>
                                             <th style="width: 75px;">Cumple</th>
                                             <th>Ver</th>
                                         </tr>
                                     </thead>
                                     <tbody id="trabajadores_tbody">
                                         <?php
-                                        $sqlTodos = "SELECT t.Rut, t.IDTra, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Decreto, t.Profesion, l.NombreLug, s.NombreSector, t.CelularTra, t.CorreoTra, t.Cumple, c.NombreCon
-                                        FROM trabajador t 
-                                        INNER JOIN lugar l ON (l.IDLugar = t.IDLugar)
-                                        INNER JOIN sector s ON (s.IDSector = t.IDSector)
-                                        INNER JOIN contrato c ON (c.IDCon = t.IDCon)";
+                                        $sqlTodos = "SELECT Rut, IDTra, NombreTra, PaternoTra, MaternoTra, Profesion, 
+                                        CelularTra, CorreoTra, Cumple
+                                        FROM trabajador";
 
                                         $resultadoTotal = mysqli_query($conn, $sqlTodos);
                                         while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
                                             <tr>
                                                 <td class="align-middle"><?php echo $ptotal['Rut'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['Decreto'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['NombreCon'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['NombreTra'] . ' ' . $ptotal['PaternoTra'] . ' ' . $ptotal['MaternoTra']; ?></td>
+                                                <td class="align-middle"><?php echo $ptotal['NombreTra']; ?></td>
+                                                <td class="align-middle"><?php echo $ptotal['PaternoTra'] . ' ' . $ptotal['MaternoTra']; ?></td>
                                                 <td class="align-middle"><?php echo $ptotal['Profesion'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['NombreLug'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['NombreSector'] ?></td>
+                                                <td class="align-middle"><?php echo $ptotal['CelularTra'] ?></td>
+                                                <td class="align-middle"><?php echo $ptotal['CorreoTra'] ?></td>
+
                                                 <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                     <?php
                                                     if ($ptotal['Cumple'] == 1) {
