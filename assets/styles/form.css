@@ -46,10 +46,11 @@ h1 {
 /* SUBTITULOS DE SECCIONES */
 h6 {
   text-align: center;
-  /* padding-bottom: 20px; */
   font-size: 30px !important;
   color: #5c5c5c;
   font-weight: bold;
+  padding-bottom: 20px !important;
+
 }
 
 /* LABEL DE LOS INPUT */
@@ -342,6 +343,8 @@ p {
   border-color: #463bfa;
   color: #ffffff;
 }
+
+
 
 #total_info,
 #total_paginate {
@@ -861,3 +864,9 @@ align-items: center !important;
       max-width: 95% !important;
     }
 }
+
+/* .pterminar th {
+  background-color: #8f3e00 !important; 
+  color: #FFFFFF; 
+  font-weight: 600 !important;
+} */

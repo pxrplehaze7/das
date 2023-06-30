@@ -141,7 +141,7 @@ if (!isset($_SESSION['rol'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $decretosp = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon, d.RutaCon
+                                    $decretosp = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon, d.RutaCon, con.IDCon
                                         FROM decretos d
                                         INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
                                         INNER JOIN sector s ON (s.IDSector = d.IDSector)
@@ -156,7 +156,15 @@ if (!isset($_SESSION['rol'])) {
                                             <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaDoc'])) ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreCon'] ?></td>
                                             <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaInicio'])) ?></td>
-                                            <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaTermino'])) ?></td>
+                                            <td class="align-middle" style="text-align: center; font-weight: 700;">
+                                                        <?php
+                                                        if ($decsper['IDCon'] == 3) {
+                                                            echo '-';
+                                                        } else{
+                                                            echo date('d-m-Y', strtotime($decsper['FechaTermino']));
+                                                        }
+                                                        ?>
+                                                    </td>
                                             <td class="align-middle"><?php echo  $decsper['NombreLug'] ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreSector'] ?></td>
 

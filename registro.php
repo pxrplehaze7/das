@@ -12,12 +12,11 @@ if ($_SESSION['rol'] !== '1') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro de Trabajador</title>
+    <title>Registro </title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -40,6 +39,10 @@ if ($_SESSION['rol'] !== '1') {
                             <h1 class="mt-4">Registro de Trabajador a Contrata</h1>
                         </div>
                         <br>
+                        <div class="alert alert-info" role="alert">
+                        <i class="fas fa-exclamation-circle"></i>
+                            <strong>¡Importante!</strong> Decreto se registra en el siguiente paso.
+                            </div>
                         <div class="seccion">
                             <h6>Datos Personales</h6>
                             <div class="row ">
@@ -75,7 +78,7 @@ if ($_SESSION['rol'] !== '1') {
                                         <?php include("./controller/consulta_select/select_categoria.php"); ?>
                                         <br>
                                     </div>
-                                  
+
 
                                     <div class="col-md-6">
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
@@ -203,7 +206,7 @@ if ($_SESSION['rol'] !== '1') {
                                     <?php include("./controller/consulta_select/select_afp.php"); ?>
                                 </div>
                                 <div class="col-md-9">
-                                    <label for="idAFPinput">Certificado de Afiliación</label>
+                                    <label for="idAFPinput"><span style="color: #c40055;">*</span> Certificado de Afiliación a AFP</label>
                                     <div class="input-group">
                                         <input type="file" id="idAFPinput" name="nameAFPdoc" class="form-control" accept=".pdf">
 
@@ -222,7 +225,7 @@ if ($_SESSION['rol'] !== '1') {
                                     <?php include("./controller/consulta_select/select_prevision.php"); ?>
                                 </div>
                                 <div class="col-md-9">
-                                    <label for="idPREVinput">Certificado de Afiliación</label>
+                                    <label for="idPREVinput"><span style="color: #c40055;">*</span> Certificado de Afiliación a Previsión</label>
                                     <div class="input-group">
                                         <input type="file" id="idPREVinput" name="namePREVdoc" class="form-control" accept=".pdf">
                                         <button class="button" type="button" onclick="clearFileInput('idPREVinput')">
@@ -238,9 +241,8 @@ if ($_SESSION['rol'] !== '1') {
 
 
 
-                            <br>
                             <div class="document" id="nacimiento">
-                                <label for="idNACinput">Certificado de Nacimiento</label>
+                                <label for="idNACinput"><span style="color: #c40055;">*</span> Certificado de Nacimiento</label>
                                 <div class="input-group ">
                                     <input type="file" id="idNACinput" name="nameNACdoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idNACinput')">
@@ -254,7 +256,7 @@ if ($_SESSION['rol'] !== '1') {
                             </div>
 
                             <div class="document">
-                                <label for="idANTECEinput">Certificado de Antecedentes</label>
+                                <label for="idANTECEinput"><span style="color: #c40055;">*</span> Certificado de Antecedentes</label>
                                 <div class="input-group ">
                                     <input type="file" id="idANTECEinput" name="nameANTECEdoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idANTECEinput')">
@@ -268,7 +270,7 @@ if ($_SESSION['rol'] !== '1') {
                             </div>
 
                             <div class="document">
-                                <label for="idCedulainput">Fotocopia Cédula de Identidad</label>
+                                <label for="idCedulainput"><span style="color: #c40055;">*</span> Fotocopia Cédula de Identidad</label>
                                 <div class="input-group ">
                                     <input type="file" id="idCedulainput" name="nameCeduladoc" class="form-control" accept=".pdf">
 
@@ -283,7 +285,7 @@ if ($_SESSION['rol'] !== '1') {
                             </div>
 
                             <div class="document" id="cv">
-                                <label for="idCVinput">Curriculum Vitae</label>
+                                <label for="idCVinput"><span style="color: #c40055;">*</span> Curriculum Vitae</label>
                                 <div class="input-group ">
                                     <input type="file" id="idCVinput" name="nameCVdoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idCVinput')">
@@ -296,7 +298,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <br>
                             </div>
                             <div class="document" id="examenMedico">
-                                <label for="idExamenMinput">Examen Médico Unico Nacional</label>
+                                <label for="idExamenMinput"><span style="color: #c40055;">*</span> Examen Médico Unico Nacional</label>
                                 <div class="input-group ">
                                     <input type="file" id="idExamenMinput" name="nameExaMdoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idExamenMinput')">
@@ -309,7 +311,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <br>
                             </div>
                             <div class="document" id="inscripcionMedico">
-                                <label for="idInscripinput">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</label>
+                                <label for="idInscripinput"><span style="color: #c40055;">*</span> Certificado de inscripción en el Registro Nacional de Prestadores Individuales</label>
                                 <div class="input-group ">
                                     <input type="file" id="idInscripinput" name="nameInscripdoc" class="form-control" accept=".pdf">
 
@@ -323,7 +325,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <br>
                             </div>
                             <div class="document">
-                                <label for="idEstudioinput">Certificado de Estudios o Título Profesional</label>
+                                <label for="idEstudioinput"><span style="color: #c40055;">*</span> Certificado de Estudios o Título Profesional</label>
                                 <div class="input-group ">
                                     <input type="file" id="idEstudioinput" name="nameEstudiodoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idEstudioinput')">
@@ -336,7 +338,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <br>
                             </div>
                             <div class="document" id="declaraciondoc">
-                                <label for="idDJuradainput">Declaración Jurada</label>
+                                <label for="idDJuradainput"><span style="color: #c40055;">*</span> Declaración Jurada</label>
                                 <div class="input-group ">
                                     <input type="file" id="idDJuradainput" name="nameDJuradadoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idDJuradainput')">
@@ -349,7 +351,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <br>
                             </div>
                             <div class="document" id="saludcomdoc">
-                                <label for="idSCompatibleinput">Certificado de Salud Compatible</label>
+                                <label for="idSCompatibleinput"><span style="color: #c40055;">*</span> Certificado de Salud Compatible</label>
                                 <div class="input-group ">
                                     <input type="file" id="idSCompatibleinput" name="nameSCompatibledoc" class="form-control" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idSCompatibleinput')">
@@ -362,7 +364,7 @@ if ($_SESSION['rol'] !== '1') {
                                 <br>
                             </div>
                             <div class="document" id="servicioMilitarHombre">
-                                <label for="idMilitarDoc">Certificado de Servicio Militar Obligatorio al día</label>
+                                <label for="idMilitarDoc"><span style="color: #c40055;">*</span> Certificado de Servicio Militar Obligatorio al día</label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDoc" accept=".pdf">
                                     <button class="button" type="button" onclick="clearFileInput('idMilitarDoc')">

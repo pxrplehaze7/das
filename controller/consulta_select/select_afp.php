@@ -2,7 +2,7 @@
  $sqlAFP = "SELECT IDAFP, NombreAFP FROM afp";
  $resultadoAFP = mysqli_query($conn, $sqlAFP);
 
- echo "<label for='idSelectAFP'>AFP </label>";
+ echo "<label for='idSelectAFP'><span style='color: #c40055;'>*</span> AFP </label>";
  echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
  echo '<option value=1 hidden> Selecciona</option>'; 
 

@@ -40,6 +40,9 @@ if ($_SESSION['rol'] !== '1') {
                             <h1 class="mt-4">Registro de Trabajador a Honorario</h1>
                         </div>
                         <br>
+                        <div class="alert alert-info" role="alert">
+                            <strong>¡Importante!</strong> blabla
+                            </div>
                         <div class="seccion">
                             <h6>Datos Personales</h6>
                             <div class="row ">

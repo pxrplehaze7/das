@@ -257,10 +257,17 @@ function fechaNumeros(event) {
 
 
 
+function indefinido() {
+  var selectCon = document.getElementById("idSelectCon");
+  var fechaTermino = document.getElementsByName("nameFechaTermino")[0];
 
-
-
-
+  if (selectCon.value === "3") { // COMPRUEBA SI EL VALOR ES INDEFINIDO
+    fechaTermino.disabled = true; 
+    fechaTermino.value = "";
+  } else {
+    fechaTermino.disabled = false; 
+  }
+}
 
 
 

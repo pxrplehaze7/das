@@ -39,21 +39,23 @@ if (!isset($_SESSION['rol'])) {
                     </div>
                     <br>
                     <div class="">
-
-                    <div class="card mb-4"> <!-- FINALIZADOS -->
+                        <div class="card mb-4"> <!-- POR FINALIZAR -->
                             <div class="card-body">
                                 <div class="porFinalizar">
                                     <div class="title">
                                         <div class="ti">
-                                            <h6 class="mt-4">Decretos Finalizados</h6>
+                                            <h6 class="mt-4">Decretos Por Finalizar</h6>
                                         </div>
-
                                     </div>
-                                    <br>
-                                    <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
+                                    <div class="alert alert-info" role="alert">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                        <strong>¡Importante!</strong> Una vez confirmado, no se mostrara nuevamente la advertencia
+                                    </div>
+
+                                    <table id="pterminar" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                         <thead>
-                                            <tr>
-                                                <th>RUT</th>
+                                            <tr class="pterminar">
+                                                <th style="min-width: 70px;">RUT</th>
                                                 <th>N° Doc.</th>
                                                 <th>Fecha Documento</th>
                                                 <th>Tipo Contrato</th>
@@ -63,6 +65,66 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Sector</th>
                                                 <th>Estado</th>
                                                 <th>Confirmar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="trabajadores_tbody">
+                                            <?php
+                                            $sqlPorFin = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon
+                                        FROM decretos d
+                                        INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
+                                        INNER JOIN sector s ON (s.IDSector = d.IDSector)
+                                        INNER JOIN contrato con ON (con.IDCon = d.IDCon)
+                                        INNER JOIN trabajador t ON (t.IDTra = d.IDTra)
+                                        WHERE Estado =2 AND Confirmacion=0";
+                                            $rporFin = mysqli_query($conn, $sqlPorFin);
+                                            while ($rowpFin = mysqli_fetch_array($rporFin)) { ?>
+                                                <tr>
+                                                    <td class="align-middle"><?php echo $rowpFin['Rut'] ?></td>
+                                                    <td class="align-middle"><?php echo $rowpFin['NDecreto'] ?></td>
+                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaDoc'])) ?></td>
+                                                    <td class="align-middle"><?php echo  $rowpFin['NombreCon'] ?></td>
+                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaInicio'])) ?></td>
+                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaTermino'])) ?></td>
+                                                    <td class="align-middle"><?php echo  $rowpFin['NombreLug'] ?></td>
+                                                    <td class="align-middle"><?php echo  $rowpFin['NombreSector'] ?></td>
+                                                    <td class="align-middle" style="text-align: center; font-weight: 700;">
+                                                        <span style="color: #E76500;">Por Finalizar</span>
+                                                    </td>
+                                                    <td style="vertical-align: middle;">
+                                                        <div class="" style="display: flex; justify-content: center; align-items: center;">
+                                                            <button class="btn btn-warning btn-confirma" style="background-color: #E76500 !important; border-color:#E76500!important; color:white; font-size:700;" data-iddecreto="<?php echo $rowpFin['IDdecreto'] ?>">OK</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="card mb-4"> <!-- FINALIZADOS -->
+                            <div class="card-body">
+                                <div class="porFinalizar">
+                                    <div class="title">
+                                        <div class="ti">
+                                            <h6 class="mt-4">Decretos Finalizados</h6>
+                                        </div>
+                                    </div>
+                                    
+                                    <table id="expirados" class="table table-striped table-bordered" style="width:100%" data-search="true">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 70px;">RUT</th>
+                                                <th>N° Doc.</th>
+                                                <th>Fecha Documento</th>
+                                                <th>Tipo Contrato</th>
+                                                <th>Fecha Inicio</th>
+                                                <th>Fecha Termino</th>
+                                                <th>Lugar</th>
+                                                <th>Sector</th>
+                                                <th>Estado</th>
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -87,103 +149,7 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo  $rowFin['NombreSector'] ?></td>
 
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
-                                                        <?php
-                                                        if ($rowFin['Estado'] == 1) {
-                                                            echo '<span style="color: #00886f;">Vigente</span>';
-                                                        } elseif ($rowFin['Estado'] == 2) {
-                                                            echo '<span style="color: #ff9900;">Por Finalizar</span>';
-                                                        } elseif ($rowFin['Estado'] == 0) {
-                                                            echo '<span style="color: #ff0000;">Finalizado</span>';
-                                                        }
-                                                        ?>
-
-                                                    </td>
-                                                    <td style="vertical-align: middle;">
-                                                        <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                                            <a class="button-ir" href="mostrar.php?id=<?php echo $rowFin['IDdecreto']; ?>">
-                                                                <span style="display: flex; align-items: center;">
-                                                                    OK
-                                                                </span>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-                        <div class="card mb-4"> <!-- POR FINALIZAR -->
-                            <div class="card-body">
-                                <div class="porFinalizar">
-                                    <div class="title">
-                                        <div class="ti">
-                                            <h6 class="mt-4">Decretos Por Finalizar</h6>
-                                        </div>
-
-                                    </div>
-                                    <br>
-                                    <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
-                                        <thead>
-                                            <tr>
-                                                <th>RUT</th>
-                                                <th>N° Doc.</th>
-                                                <th>Fecha Documento</th>
-                                                <th>Tipo Contrato</th>
-                                                <th>Fecha Inicio</th>
-                                                <th>Fecha Termino</th>
-                                                <th>Lugar</th>
-                                                <th>Sector</th>
-                                                <th>Estado</th>
-                                                <th>Confirmar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="trabajadores_tbody">
-                                            <?php
-                                            $sqlPorFin = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon
-                                        FROM decretos d
-                                        INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
-                                        INNER JOIN sector s ON (s.IDSector = d.IDSector)
-                                        INNER JOIN contrato con ON (con.IDCon = d.IDCon)
-                                        INNER JOIN trabajador t ON (t.IDTra = d.IDTra)
-                                        WHERE Estado =2";
-                                            $rporFin = mysqli_query($conn, $sqlPorFin);
-                                            while ($rowpFin = mysqli_fetch_array($rporFin)) { ?>
-                                                <tr>
-                                                    <td class="align-middle"><?php echo $rowpFin['Rut'] ?></td>
-                                                    <td class="align-middle"><?php echo $rowpFin['NDecreto'] ?></td>
-                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaDoc'])) ?></td>
-                                                    <td class="align-middle"><?php echo  $rowpFin['NombreCon'] ?></td>
-                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaInicio'])) ?></td>
-                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaTermino'])) ?></td>
-                                                    <td class="align-middle"><?php echo  $rowpFin['NombreLug'] ?></td>
-                                                    <td class="align-middle"><?php echo  $rowpFin['NombreSector'] ?></td>
-
-
-
-                                                    <td class="align-middle" style="text-align: center; font-weight: 700;">
-                                                        <?php
-                                                        if ($rowpFin['Estado'] == 1) {
-                                                            echo '<span style="color: #00886f;">Vigente</span>';
-                                                        } elseif ($rowpFin['Estado'] == 2) {
-                                                            echo '<span style="color: #ff9900;">Por Finalizar</span>';
-                                                        } elseif ($rowpFin['Estado'] == 0) {
-                                                            echo '<span style="color: #ff0000;">Finalizado</span>';
-                                                        }
-                                                        ?>
-
-                                                    </td>
-                                                    <td style="vertical-align: middle;">
-                                                        <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                                            <a class="button-ir" href="mostrar.php?id=<?php echo $rowpFin['IDdecreto']; ?>">
-                                                                <span style="display: flex; align-items: center;">
-                                                                    OK
-                                                                </span>
-                                                            </a>
-                                                        </div>
+                                                        <span style="color: #e91818;">Finalizado</span>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -200,13 +166,11 @@ if (!isset($_SESSION['rol'])) {
                                         <div class="ti">
                                             <h6 class="mt-4">Decretos Vigentes</h6>
                                         </div>
-
                                     </div>
-                                    <br>
-                                    <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
+                                    <table id="vigentes" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                         <thead>
                                             <tr>
-                                                <th>RUT</th>
+                                                <th style="min-width: 70px;">RUT</th>
                                                 <th>N° Doc.</th>
                                                 <th>Fecha Documento</th>
                                                 <th>Tipo Contrato</th>
@@ -219,7 +183,7 @@ if (!isset($_SESSION['rol'])) {
                                         </thead>
                                         <tbody id="trabajadores_tbody">
                                             <?php
-                                            $sqlvig = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon
+                                            $sqlvig = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon, con.IDCon
                                         FROM decretos d
                                         INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
                                         INNER JOIN sector s ON (s.IDSector = d.IDSector)
@@ -235,25 +199,20 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowvig['FechaDoc'])) ?></td>
                                                     <td class="align-middle"><?php echo  $rowvig['NombreCon'] ?></td>
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowvig['FechaInicio'])) ?></td>
-                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowvig['FechaTermino'])) ?></td>
-                                                    <td class="align-middle"><?php echo  $rowvig['NombreLug'] ?></td>
-                                                    <td class="align-middle"><?php echo  $rowvig['NombreSector'] ?></td>
-
-
-
-                                                    <td class="align-middle" style="text-align: center; font-weight: 700;">
+                                                    <td class="align-middle" style="text-align: center;">
                                                         <?php
-                                                        if ($rowvig['Estado'] == 1) {
-                                                            echo '<span style="color: #00886f;">Vigente</span>';
-                                                        } elseif ($rowvig['Estado'] == 2) {
-                                                            echo '<span style="color: #ff9900;">Por Finalizar</span>';
-                                                        } elseif ($rowvig['Estado'] == 0) {
-                                                            echo '<span style="color: #ff0000;">Finalizado</span>';
+                                                        if ($rowvig['IDCon'] == 3) {
+                                                            echo '-';
+                                                        } else {
+                                                            echo date('d-m-Y', strtotime($rowvig['FechaTermino']));
                                                         }
                                                         ?>
-
                                                     </td>
-
+                                                    <td class="align-middle"><?php echo  $rowvig['NombreLug'] ?></td>
+                                                    <td class="align-middle"><?php echo  $rowvig['NombreSector'] ?></td>
+                                                    <td class="align-middle" style="text-align: center; font-weight: 700;">
+                                                        <span style="color: #119f00;">Vigente</span>
+                                                    </td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -270,6 +229,8 @@ if (!isset($_SESSION['rol'])) {
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/tablaExport.js"></script>
+    <script src="./assets/js/elimina.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

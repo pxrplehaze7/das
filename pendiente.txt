@@ -73,9 +73,7 @@ hacer masbonitas las url
 
 falta agregar la tabla equivalente a calificaciones, es decir la tabla de los informes de labores
 
-al registrar decreto, las fechas se limpian pero no los select
 
-al registrar los documentos, no aparece la fecha de subida
 
 hacer que se puedan exportar los contratos de mostrar.php
 
@@ -103,3 +101,19 @@ usar la columna de confirmacion solo cuando este por vencer.
 mostrar solo el boton de confirmar en por vencer
 
 quizas seria mejor mostrar por separado en la lista de trabajadores, algo como: documentacion:cumple decretos al dia: si o no
+
+
+en caso de que no se registre un decreto para ese trabajador, se deberia mostrar en la tabla una columna de no cumple en decretos c, donde se hara una consulta de la cantidad de decretos por persona  y si es 0,que diga, sin decretos registrados, si es mas de 0 pero 
+
+los decretos tienen 3 estados, vencidos, por vencer y vigentes, los decretos no se reemplazan , se crea uno nuevo. ddebo mostrar en una lista aquellos que estan por vencer 5 dias antes para que realizen otro decreto para esa persona o para que sepan que se termina.
+que puedo hacer para que muestre si ese trabajador tiene sus decretos al dia? es decir que si se vencio y ya se renovo, este al dia, si vencio y aun no se ha renovado, no cumpla, si vencio y se confirma que no se renovara entonces esta al dia
+
+si tipo de contrato es indefinido,que las fechas no se ingresen
+
+ver por que cuando en mostrar y presiono en paginacion de contratos, se ve la parte de los botones, es decir la tabla baja(
+cuando hay muchos registros)
+
+hacer que cuando registre a un trabajador, se establezca en no cumple apesar de tener todos los documentos. entonces cuando se registre un decreto, se revisara los documentos que ya subio (afp, prev, titulo)y se cambia a cumple o no siempre y cuando posea mas de 0 decretos.
+
+ahora se registra el trabajador, pero solo cumple una vez se le registra un decreto a esa misma persona.
+hacer que si el decreto se sube vigente, confirmar sea 1, si se sube vencido, confirmar es 1, si se sube por vencer, confirmar es 0

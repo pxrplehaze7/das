@@ -12,9 +12,8 @@ if ($_POST['nameSelectLugar'] != "") {
 }
 $sector = $_POST['nameSelectSector'];
 $tipoContrato = $_POST['nameSelectCon'];
-$confirmacion = FALSE;
 $host = $_SERVER['HTTP_HOST'];
-$ruta = 'pdfs_personal/';
+$ruta = 'PDFS/CONTRATA/';
 $estadoDecreto = -1;
 
 $fechaDocumento = $_POST['nameFechaDocumento'];
@@ -23,9 +22,27 @@ $fechaDocumento = date('Y-m-d', strtotime($fechaDocumento));
 $inicioDecreto = $_POST['nameFechaInicio'];
 $inicioDecreto = date('Y-m-d', strtotime($inicioDecreto));
 
-$finDecreto = $_POST['nameFechaTermino'];
-$finDecreto = date('Y-m-d', strtotime($finDecreto));
 
+if (empty($_POST['nameFechaTermino'])) {
+  if ($tipoContrato != 3) {
+    echo "<script> Swal.fire({
+      icon: 'error',
+      title: 'La fecha de término del decreto es obligatoria.',
+      showConfirmButton: false,
+      timer: 3000
+    });</script>";
+    exit();
+  } else {
+    $finDecreto = '2200-05-10';
+  }
+} else {
+  $finDecreto = $_POST['nameFechaTermino'];
+  $finDecreto = date('Y-m-d', strtotime($finDecreto));
+
+}
+
+
+echo "El valor de finDecreto es: " . $finDecreto;
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('Y-m-d');
 $fechaSubidaCon = date('d-m-y');
@@ -50,12 +67,18 @@ if ($fechaActual < $fechaAlerta) {
   $estadoDecreto = 0;
 }
 
+if ($estadoDecreto == 1 || $estadoDecreto == 0) {
+  $confirmacion = 1;
+} elseif ($estadoDecreto == 2) {
+  $confirmacion = 0;
+}
+
+
 $lugar = mysqli_real_escape_string($conn, $lugar);
 $sector = mysqli_real_escape_string($conn, $sector);
 $numdecreto = mysqli_real_escape_string($conn, $numdecreto);
 
 $pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
-
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
 
   $ruta_ContratoFINAL = NULL;
@@ -67,19 +90,176 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
   }
 
+
+
+  $consultaFile = "SELECT * FROM trabajador WHERE IDTra = '$idtra'";
+  $resFile = mysqli_query($conn, $consultaFile);
+  if (mysqli_num_rows($resFile) == 1) {
+    $RDoc = mysqli_fetch_assoc($resFile);
+    $generoP    = $RDoc['Genero'];
+    $inscripcionOno = $RDoc['Inscripcion'];
+    $medicoOno = $RDoc['Medico'];
+    $ruta_DJuradaFINAL = $RDoc['RutaDJur'];
+    $ruta_EstudiosFINAL = $RDoc['RutaEstudio'];
+    $ruta_CedulaFINAL = $RDoc['RutaCedula'];
+    $ruta_AntecedentesFINAL = $RDoc['RutaAntec'];
+    $ruta_nacFINAL = $RDoc['RutaNac'];
+    $ruta_afpFINAL = $RDoc['RutaAFP'];
+    $ruta_PrevisionFINAL = $RDoc['RutaPrev'];
+    $ruta_CurriculumFINAL = $RDoc['RutaCV'];
+    $ruta_SaludCompatFINAL = $RDoc['RutaSCom'];
+    $ruta_militarFINAL = $RDoc['RutaSerM'];
+    $ruta_InscripcionFINAL = $RDoc['RutaInscripcion'];
+    $ruta_ExamenMFINAL = $RDoc['RutaExaM'];
+  }
+
+
+  if (
+    // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Masculino" &&
+      $medicoOno == "No" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL)
+    )
+    ||
+    // HOMBRE NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Masculino" &&
+      $medicoOno == "Si" &&
+      $inscripcionOno == TRUE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL) &&
+      !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // HOMBRE NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Masculino" &&
+      $medicoOno == "Si" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // HOMBRE NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Masculino" &&
+      $medicoOno == "No" &&
+      $inscripcionOno == TRUE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_militarFINAL) &&
+      !empty($ruta_InscripcionFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Femenino" &&
+      $medicoOno == "Si" &&
+      $inscripcionOno == TRUE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_InscripcionFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Femenino" &&
+      $medicoOno == "Si" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_ExamenMFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Femenino" &&
+      $medicoOno == "No" &&
+      $inscripcionOno == TRUE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL) &&
+      !empty($ruta_InscripcionFINAL)
+    )
+    ||
+    // MUJER NO HONORARIO, NO ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
+    ($generoP == "Femenino" &&
+      $medicoOno == "No" &&
+      $inscripcionOno == FALSE &&
+      !empty($ruta_DJuradaFINAL) &&
+      !empty($ruta_EstudiosFINAL) &&
+      !empty($ruta_CedulaFINAL) &&
+      !empty($ruta_AntecedentesFINAL) &&
+      !empty($ruta_nacFINAL) &&
+      !empty($ruta_afpFINAL) &&
+      !empty($ruta_PrevisionFINAL) &&
+      !empty($ruta_CurriculumFINAL) &&
+      !empty($ruta_SaludCompatFINAL)
+    )
+  ) {
+    $cumple = TRUE;
+  } else {
+    $cumple = FALSE;
+  }
+
+
+
   $sqlDecretos = "INSERT INTO decretos (IDTra,IDCon,IDLugar,IDSector,NDecreto,FechaDoc,RutaCon,FechaInicio,FechaTermino,FechaAlerta,Estado,Confirmacion)
     VALUES ('$idtra','$tipoContrato','$lugar','$sector','$numdecreto','$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta','$estadoDecreto','$confirmacion')";
 
   $sqlcumple = "UPDATE trabajador
-SET Cumple = 0
-WHERE IDTra = $idtra
-AND EXISTS (
-  SELECT 1
-  FROM decretos
-  WHERE decretos.IDTra = trabajador.IDTra
-  AND decretos.Estado = 0
-  AND decretos.Confirmacion = 0
-)";
+SET Cumple = $cumple
+WHERE IDTra = $idtra";
 
   try {
     $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
@@ -88,22 +268,68 @@ AND EXISTS (
     if ((!$resultadoDecretos) && (!$actualizacumple)) {
       throw new Exception(mysqli_error($conn));
     } else {
-      echo "<script> Swal.fire({
+      echo "<script>
+      Swal.fire({
         icon: 'success',
         title: 'Guardado Correctamente',
-        showConfirmButton: true,
-        confirmButtonText: 'Aceptar',
+        showCancelButton: false,
+        cancelButtonText: 'No',
+        confirmButtonText: 'OK',
         confirmButtonColor: '#009CFD'
-      });</script>";
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Limpiar los input y select
+          var inputs = document.querySelectorAll('input:not(#idRutInputdec):not(#idPersona)');
+          for (var i = 0; i < inputs.length; i++) {
+            inputs[i].value = '';
+          }
+          var selects = document.querySelectorAll('select');
+          for (var i = 0; i < selects.length; i++) {
+            selects[i].selectedIndex = 0;
+          }
+        } else {
+          // Redireccionar a mostrar.php
+          location.href = 'mostrar.php?id=$idtra';
+        }
+      });
+    </script>";
+    
+    // Agregar el código para preguntar si desea registrar otro decreto
+    echo "<script>
+      function registrarOtroDecretos() {
+        Swal.fire({
+          icon: 'question',
+          title: '¿Desea registrar otro decreto?',
+          showCancelButton: true,
+          cancelButtonText: 'No',
+          confirmButtonText: 'Sí',
+          confirmButtonColor: '#00c4a0',
+          cancelButtonColor: '#ba0051'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Limpiar los input y select
+            var inputs = document.querySelectorAll('input:not(#idRutInputdec):not(#idPersona)');
+            for (var i = 0; i < inputs.length; i++) {
+              inputs[i].value = '';
+            }
+            var selects = document.querySelectorAll('select');
+            for (var i = 0; i < selects.length; i++) {
+              selects[i].selectedIndex = 0;
+            }
+            document.getElementById('idSelectSector').value = '';
 
-      echo "<script>
-      var inputs = document.querySelectorAll('input:not(#idRutInputdec):not(#idPersona)');
-      for (var i = 0; i < inputs.length; i++) {
-          inputs[i].value = '';
+          } else {
+            // Redireccionar a mostrar.php
+            location.href = 'mostrar.php?id=$idtra';
+           
+          }
+        });
       }
-  </script>";
+      registrarOtroDecretos();
+    </script>";
     }
   } catch (Exception $e) {
+    http_response_code(400); // Bad request
     echo "<script> 
     Swal.fire({
       icon: 'error',
@@ -115,6 +341,8 @@ AND EXISTS (
     </script>";
   }
 } else {
+  http_response_code(400); // Bad request
+
   echo "<script> Swal.fire({
     icon: 'error',
     title: 'El rut no existe, no se han subido archivos.',
@@ -125,3 +353,4 @@ AND EXISTS (
 }
 
 mysqli_close($conn);
+?>

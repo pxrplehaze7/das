@@ -141,7 +141,7 @@ $id = $_GET['id'];
                                     return $fechaCarga;
                                 }
                                 $id = $_GET['id'];
-                                $folder = "das/controller/pdfs_personal"; // RUTA DE LA CARPETA DE LA CARPETA PRINCPIAL DE ARCHIVOS
+                                $folder = "das/controller/PDFS/CONTRATA"; // RUTA DE LA CARPETA DE LA CARPETA PRINCPIAL DE ARCHIVOS
                                 $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $id; //RUTA DE LA CARPETA ESPECIFICA SEGUN EL ID
                                 if (is_dir($targetFolder)) { //REVISA QUE LA CARPETA EXISTA
                                     listarArchivos($targetFolder);

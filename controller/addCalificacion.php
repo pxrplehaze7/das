@@ -8,7 +8,7 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
     $apelo        = $_POST['nameApeloRes'];
     $rut          = $_POST['nameRutCa'];
     $host = $_SERVER['HTTP_HOST'];
-    $ruta = 'pdfs_personal/';
+    $ruta = 'PDFS/CONTRATA/';
     $desde = mysqli_real_escape_string($conn, $desde);
     $hasta = mysqli_real_escape_string($conn, $hasta);
     $apelo = mysqli_real_escape_string($conn, $apelo);

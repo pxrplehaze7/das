@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
     WHERE IDTra='$idtra' LIMIT 1";
 
     $sqldec = mysqli_query($conn, $sqldec);
-    list($rut,$nombre,$paterno,$materno) = mysqli_fetch_row($sqldec);
+    list($rut, $nombre, $paterno, $materno) = mysqli_fetch_row($sqldec);
 }
 
 
@@ -40,7 +40,7 @@ if (isset($_GET['id'])) {
 </head>
 
 <body class="sb-nav-fixed">
-    <?php 
+    <?php
     require("./components/navbar.php")
     ?>
     <div id="layoutSidenav">
@@ -49,9 +49,9 @@ if (isset($_GET['id'])) {
             <main>
                 <div class="container-lg">
                     <form id="RegistroDecretos" enctype="multipart/form-data" method="POST" autocomplete="off">
-                    <input name="idtraname" value="<?php echo $idtra;?>" id="idtrabid" hidden>
-                    
-                    <div class="title">
+                        <input name="idtraname" value="<?php echo $idtra; ?>" id="idtrabid" hidden>
+
+                        <div class="title">
                             <h1 class="mt-4">Registro de Decreto</h1>
                         </div>
                         <br>
@@ -63,12 +63,12 @@ if (isset($_GET['id'])) {
                                 <div class="row ">
                                     <div class="col-md-3">
                                         <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
-                                        <input type="text" name="nameRut" id="idRutInputdec"  class="form-control" maxlength="10"  value="<?php echo $rut?>" readonly>
+                                        <input type="text" name="nameRut" id="idRutInputdec" class="form-control" maxlength="10" value="<?php echo $rut ?>" readonly>
                                         <br>
                                     </div>
                                     <div class="col-md-9">
                                         <label for="idPersona"><span style="color: #c40055;">*</span> Nombre</label>
-                                        <input type="text" name="namePersona" id="idPersona" class="form-control" value="<?php echo $nombre .' '. $paterno. ' '. $materno?>" readonly>
+                                        <input type="text" name="namePersona" id="idPersona" class="form-control" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" readonly>
                                         <br>
                                     </div>
                                 </div>
@@ -76,6 +76,20 @@ if (isset($_GET['id'])) {
 
                                 <div class="row document">
 
+                                    <div class="col-md-6 col-sm-6"> <!-- TIPO DE CONTRATO -->
+                                        <?php
+                                        $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
+                                        $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
+                                        echo "<label for='idSelectCon'><span style='color: #c40055;'>*</span> Tipo de Contrato </label>";
+                                        echo "<select name='nameSelectCon' id='idSelectCon' class='form-select' required onchange='indefinido()'>";
+                                        echo '<option value="" hidden> Selecciona</option>';
+                                        while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
+                                            echo "<option value='" . $fila['IDCon'] . "'>" . $fila['NombreCon'] . "</option>";
+                                        }
+                                        echo "</select>";
+                                        ?>
+                                        <br>
+                                    </div>
 
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idDecreto"><span style="color: #c40055;">*</span> N° Decreto</label>
@@ -90,7 +104,19 @@ if (isset($_GET['id'])) {
                                     </div>
 
 
+                                    <div class="col-md-6 col-sm-6 document">
+                                        <label for="idDocContratoInput">Contrato</label>
+                                        <div class="input-group">
+                                            <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
+                                            <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')">
 
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <br>
+                                    </div>
 
                                     <div class="art">
 
@@ -133,24 +159,9 @@ if (isset($_GET['id'])) {
                                         <br>
                                     </div>
 
-                                    <div class="col-md-6 col-sm-6"> <!-- TIPO DE CONTRATO -->
-                                        <?php include("./controller/consulta_select/select_contrato.php"); ?>
-                                        <br>
-                                    </div>
 
-                                    <div class="col-md-6 col-sm-6 document">
-                                        <label for="idDocContratoInput">Contrato</label>
-                                        <div class="input-group">
-                                            <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
-                                            <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')">
 
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <br>
-                                    </div>
+
 
                                 </div>
                             </div>

@@ -39,10 +39,12 @@ if ($_SESSION['rol'] !== '1') {
                             <h1 class="mt-4">Registro de Usuario</h1>
                         </div>
                         <br>
-                        <div class="seccion">
-                            <div class="alert alert-info" role="alert">
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-exclamation-circle"></i>
                             <strong>¡Importante!</strong> Si el RUT registrado es 19876543-K, la contraseña temporal será DAS19876543.
                             </div>
+                        <div class="seccion">
+                           
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idRutInputU"><span style="color: #f36f03;">*</span> Rut</label>
