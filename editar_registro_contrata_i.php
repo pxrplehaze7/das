@@ -60,7 +60,7 @@ if (isset($_GET['id'])) {
                                     <h1 class="mt-4">Editar Información</h1>
                                 </div>
                                 <div class="container-volver">
-                                    <a class="button-volver" href="mostrar.php?id=<?php echo $idtra ?>">
+                                    <a class="button-volver" href="info_contrata.php?id=<?php echo $idtra ?>">
                                         Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
                                     </a>
                                 </div>

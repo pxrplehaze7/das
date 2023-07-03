@@ -68,7 +68,7 @@ $("#documentosObligatorios").on("submit", function (event) {
       })
         .done(function (respuesta) {
           $('body').append(respuesta);
-          window.location.href = 'registroDECRETOS.php?id='+ respuesta;
+          window.location.href = 'registro_decreto_c.php?id='+ respuesta;
 
           // document.getElementById("documentosObligatorios").reset();
           // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
@@ -94,7 +94,7 @@ $("#documentosObligatorios").on("submit", function (event) {
 
 //PARA QUE NO QUEDE NINGUN RADIO MARCADO POR DEFECTO
 window.addEventListener("load", function () {
-  if (document.URL.includes("/registro.php")) {
+  if (document.URL.includes("/registro_contrata_i.php")) {
     // OBTIENE TODOS LOS ELEMENTOS DE TIPO RADIO
     var radios = document.querySelectorAll('input[type="radio"]');
 
@@ -945,3 +945,139 @@ $(document).ready(function() {
 
 
 
+
+//REGISTRO DE TRABAJADOR
+$("#documentosHonorario").on("submit", function (event) {
+  event.preventDefault();
+
+  let selectCat = document.querySelector('#idSelectCat');
+  if (selectCat.value == 1) {
+    if (!document.querySelector('#idSiMedico').checked && !document.querySelector('#idNoMedico').checked) {
+      Swal.fire('Debe indicar si es médico o no');
+      return;
+    }
+  }
+
+  if (!$('#idSiInscrip').is(":checked") && !$('#idNoInscrip').is(":checked")) {
+    Swal.fire('Debe indicar si debe presentar el Certificado');
+    $('#idSiInscrip').focus();
+    $('#idNoInscrip').focus();
+    return;
+  }
+
+  var celularInput = document.getElementById("idCelular");
+  var celularValue = celularInput.value.trim();
+
+  if (celularValue !== '' && celularValue.length !== 9) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Advertencia',
+      text: 'El número de teléfono debe tener 9 dígitos',
+      showConfirmButton: true,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#009CFD',
+    });
+    return;
+  }
+
+  Swal.fire({
+    title: '¿Registrar y continuar?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+
+      formData.append('rut', $('#idRutInput').val());
+
+
+      $.ajax({
+        url: "./controller/addHonorario.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+          window.location.href = 'registro_decreto_honorario.php?idh='+ respuesta;
+
+          // document.getElementById("documentosObligatorios").reset();
+          // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          // $('#rut-validation').html('');
+
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+          //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          $('#rut-validation').html('');
+
+        })
+        .always(function (respuesta) {
+          console.info(respuesta)
+        });
+    }
+  });
+});
+
+
+
+
+$("#RegistroDecretosHonorario").on("submit", function (event) {
+  event.preventDefault();
+
+
+  Swal.fire({
+    title: '¿Realmente registrar este decreto?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+
+      formData.append('laid', $('#idtrabid').attr('value'));
+
+
+      $.ajax({
+        url: "./controller/addDECRETOh.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+
+          // document.getElementById("documentosObligatorios").reset();
+          // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          // $('#rut-validation').html('');
+
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+          //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
+          $('#rut-validation').html('');
+
+        })
+        .always(function (respuesta) {
+          console.info(respuesta)
+        });
+    }
+  });
+});

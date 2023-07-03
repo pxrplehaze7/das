@@ -55,7 +55,7 @@ while ($ptotal = mysqli_fetch_assoc($resultadoF)) {
         </td>
         <td style="vertical-align: middle;">
             <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                <a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
+                <a class="button-ir" href="info_contrata.php?id=<?php echo $ptotal['IDTra']; ?>">
                     <span style="display: flex; align-items: center;">
                         <i class="fas fa-share"></i>
                     </span>

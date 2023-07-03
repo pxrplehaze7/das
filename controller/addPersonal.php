@@ -23,7 +23,6 @@ $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
 $afpP       = $_POST['nameSelectAFP'];
 $prevP       = $_POST['nameSelectPrev'];
-$cumple = FALSE;
 $host = $_SERVER['HTTP_HOST'];
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
@@ -199,7 +198,7 @@ VALUES ($idtra,$categoriaP,$afpP,$prevP,'$nombreP','$paternoP','$maternoP','$rut
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       }).then(() => {
-        window.location.href = 'registroDECRETOS.php?id=' + $idtra;
+        window.location.href = 'registro_decreto_c.php?id=' + $idtra;
       });
     </script>";
     }

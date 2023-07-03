@@ -41,15 +41,16 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="alert alert-info" role="alert">
-                            <strong>¡Importante!</strong> blabla
-                            </div>
+                            <i class="fas fa-exclamation-circle"></i>
+                            <strong>¡Importante!</strong> Decreto se registra en el siguiente paso.
+                        </div>
                         <div class="seccion">
                             <h6>Datos Personales</h6>
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
-                                    <input type="text" name="nameRut" id="idRutInputH" placeholder="19876543-K" class="form-control" maxlength="10" required>
-                                    <div id="rut-validationH"></div>
+                                    <input type="text" name="nameRut" id="idRutInput" placeholder="19876543-K" class="form-control" maxlength="10" required>
+                                    <div id="rut-validation"></div>
                                     <br>
                                 </div>
                                 <div class="col-md">
@@ -85,17 +86,7 @@ if ($_SESSION['rol'] !== '1') {
                                     <br>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="tipoHono"><span style="color: #c40055;">*</span> Tipo de Honorario</label>
-                                        <select name="nametipoh" class="form-select" id="tipoHono">
-                                            <option value="Por Jornada">Por Jornada</option>
-                                            <option value="Por Horas">Por Horas</option>
-                                            <option value="Por Llamado">Por Llamado</option>
-                                        </select>
-                                        <br>
-                                    </div>
-                                </div>
+                     
                                 <br>
                                 <div id="idInscripcion" class="radioCentro row">
                                     <center>
@@ -324,7 +315,7 @@ if ($_SESSION['rol'] !== '1') {
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
-    <script src="./assets/js/validaciones_input.js"></script>
+    <script src="./assets/js/validaciones_input_h.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 

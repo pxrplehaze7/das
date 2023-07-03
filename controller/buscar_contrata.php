@@ -2,12 +2,11 @@
 session_start();
 
 include("./config/conexion.php");
-$rut = $_POST['nameBuscaRut'];
+$rut = $_POST['nameBuscaRutContrata'];
 $sqlDatosTra = "SELECT cat.NombreCat, afp.NombreAFP, pre.NombrePrev, tra.IDAFP, tra.IDPrev, tra.IDTra , NombreTra, PaternoTra, MaternoTra, Rut, Genero, Inscripcion, Profesion, Medico, CelularTra, CorreoTra, RutaPrev, RutaCV, RutaAFP, RutaNac, RutaAntec, RutaCedula, RutaEstudio, RutaDJur,RutaSerM, RutaSCom, RutaExaM, RutaInscripcion, Observ
               FROM trabajador tra
               INNER JOIN categoria cat  ON (cat.IDCat   = tra.IDCat)
               INNER JOIN afp afp        ON (afp.IDAFP   = tra.IDAFP)
-
               INNER JOIN prevision pre ON (pre.IDPrev  = tra.IDPrev)
               WHERE Rut='$rut' LIMIT 1";
 $resultadoDatosTra = mysqli_query($conn, $sqlDatosTra);
@@ -33,7 +32,7 @@ if (mysqli_num_rows($resultadoDatosTra) == 1) {
             allowOutsideClick: false
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = 'registro.php';
+              window.location.href = 'registro_contrata_i.php';
             } else {
             }
           });

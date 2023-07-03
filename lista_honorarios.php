@@ -81,7 +81,7 @@ if (!isset($_SESSION['rol'])) {
                                 <br>
                                 <hr>
                                 <br>
-                                <table id="total" class="table table-striped table-bordered" style="width:100%" data-search="true">
+                                <table id="total_contrata" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
                                             <th style="width: 75px;">Rut</th>
@@ -97,23 +97,23 @@ if (!isset($_SESSION['rol'])) {
                                     </thead>
                                     <tbody id="trabajadores_tbody">
                                         <?php
-                                        $sqlTodos = "SELECT Rut, IDTra, NombreTra, PaternoTra, MaternoTra, Profesion, 
-                                        CelularTra, CorreoTra, Cumple
-                                        FROM trabajador";
+                                        $sqlTodos = "SELECT Rut, IDTraH, NombreH, PaternoH, MaternoH, Profesion, 
+                                        CelularH, CorreoH, Cumple
+                                        FROM honorario";
 
                                         $resultadoTotal = mysqli_query($conn, $sqlTodos);
-                                        while ($ptotal = mysqli_fetch_array($resultadoTotal)) { ?>
+                                        while ($ptotalHono = mysqli_fetch_array($resultadoTotal)) { ?>
                                             <tr>
-                                                <td class="align-middle"><?php echo $ptotal['Rut'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['NombreTra']; ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['PaternoTra'] . ' ' . $ptotal['MaternoTra']; ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['Profesion'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['CelularTra'] ?></td>
-                                                <td class="align-middle"><?php echo $ptotal['CorreoTra'] ?></td>
+                                                <td class="align-middle"><?php echo $ptotalHono['Rut'] ?></td>
+                                                <td class="align-middle"><?php echo $ptotalHono['NombreH']; ?></td>
+                                                <td class="align-middle"><?php echo $ptotalHono['PaternoH'] . ' ' . $ptotalHono['MaternoH']; ?></td>
+                                                <td class="align-middle"><?php echo $ptotalHono['Profesion'] ?></td>
+                                                <td class="align-middle"><?php echo $ptotalHono['CelularH'] ?></td>
+                                                <td class="align-middle"><?php echo $ptotalHono['CorreoH'] ?></td>
 
                                                 <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                     <?php
-                                                    if ($ptotal['Cumple'] == 1) {
+                                                    if ($ptotalHono['Cumple'] == 1) {
                                                         echo '<span style="color: #00886f;">Si cumple</span>';
                                                     } else {
                                                         echo '<span style="color: #c40055;">No cumple</span>';
@@ -122,7 +122,7 @@ if (!isset($_SESSION['rol'])) {
                                                 </td>
                                                 <td style="vertical-align: middle;">
                                                     <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                                        <a class="button-ir" href="mostrar.php?id=<?php echo $ptotal['IDTra']; ?>">
+                                                        <a class="button-ir" href="info_honorario.php?idh=<?php echo $ptotalHono['IDTraH']; ?>">
                                                             <span style="display: flex; align-items: center;">
                                                                 <i class="fas fa-share"></i>
                                                             </span>
@@ -140,6 +140,7 @@ if (!isset($_SESSION['rol'])) {
             </main>
         </div>
     </div>
+
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/tablaExport.js"></script>

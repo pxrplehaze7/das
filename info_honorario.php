@@ -4,6 +4,18 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
+
+if (isset($_GET['idh'])) {
+    $idh = $_GET['idh'];
+
+    $datosHono = "SELECT * FROM `honorario`
+    WHERE IDTraH='$idh' LIMIT 1";
+
+    $resultDatosH = mysqli_query($conn, $datosHono);
+    if (mysqli_num_rows($resultDatosH) == 1) {
+        $honorario = mysqli_fetch_assoc($resultDatosH);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,6 +34,7 @@ if (!isset($_SESSION['rol'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -30,7 +43,7 @@ if (!isset($_SESSION['rol'])) {
         <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
-                <?php if (isset($persona)) { ?>
+                <?php if (isset($honorario)) { ?>
                     <div class="container-md">
                         <div class="title">
                             <div class="ti">
@@ -44,11 +57,11 @@ if (!isset($_SESSION['rol'])) {
                                     <h6 class="mt-4">Datos Personales</h6>
                                 </div>
                                 <?php if ($_SESSION['rol'] === '1') { ?>
-                                    <form action="editar_registro.php" method="GET">
+                                    <form action="editar_registro_honorario.php" method="GET">
                                         <div class="container-volver">
                                             <div class="title">
                                                 <button class="btn btn-editar" style="width: 90px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                                <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                                <input type="hidden" name="idh" id="idtraid" value="<?php echo $honorario['IDTraH'] ?>">
                                             </div>
                                         </div>
                                     </form>
@@ -57,12 +70,12 @@ if (!isset($_SESSION['rol'])) {
                             <div class="row ">
                                 <div class="col-md-3">
                                     <label>Rut</label>
-                                    <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $honorario['Rut'] ?>" class="form-control" readonly>
                                     <br>
                                 </div>
                                 <div class="col-md-9">
                                     <label> Nombre Completo</label>
-                                    <input value="<?php echo $persona['NombreTra'] . ' ' . $persona['PaternoTra'] . ' ' . $persona['MaternoTra'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $honorario['NombreH'] . ' ' . $honorario['PaternoH'] . ' ' . $honorario['MaternoH'] ?>" class="form-control" readonly>
                                     <br>
                                 </div>
                             </div>
@@ -71,7 +84,7 @@ if (!isset($_SESSION['rol'])) {
                             <div class="row">
                                 <div class="col-md">
                                     <label>Categoria </label>
-                                    <textarea class="form-control" rows="2" readonly style="resize: none;"><?php echo $persona['NombreCat'] ?></textarea>
+                                    <textarea class="form-control" rows="2" readonly style="resize: none;"><?php echo $honorario['NombreCat'] ?></textarea>
                                 </div>
                             </div>
                             <br>
@@ -79,33 +92,33 @@ if (!isset($_SESSION['rol'])) {
                             <div class="row">
                                 <div class="col-md">
                                     <label>Profesion</label>
-                                    <input value="<?php echo $persona['Profesion'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $honorario['Profesion'] ?>" class="form-control" readonly>
                                     <br>
                                 </div>
                                 <div class="col-md">
                                     <label>Género</label>
-                                    <input value="<?php echo $persona['Genero'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $honorario['Genero'] ?>" class="form-control" readonly>
                                     <br>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md">
                                     <label>Celular </label>
-                                    <input value="<?php echo $persona['CelularTra'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $honorario['CelularH'] ?>" class="form-control" readonly>
                                     <br>
                                 </div>
                                 <br>
                                 <div class="col-md">
                                     <label>Correo</label>
-                                    <input value="<?php echo $persona['CorreoTra'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $honorario['CorreoH'] ?>" class="form-control" readonly>
                                     <br>
                                 </div>
                             </div>
                             <h6>Observaciones</h6>
-                            <?php if (empty($persona['Observ'])) : ?>
+                            <?php if (empty($honorario['Observ'])) : ?>
                                 <textarea class="form-control" rows="5" cols="50" readonly>Sin observaciones</textarea>
                             <?php else : ?>
-                                <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
+                                <textarea class="form-control" rows="5" cols="50" readonly><?php echo $honorario['Observ'] ?></textarea>
                             <?php endif; ?>
                         </div>
 
@@ -115,22 +128,22 @@ if (!isset($_SESSION['rol'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Contratos</h6>
                                 </div>
-                                <form action="registroDECRETOS.php" method="GET">
+                                <form action="registro_decreto_h.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                            <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                            <input type="hidden" name="idh" id="idtraid" value="<?php echo $honorario['IDTraH'] ?>">
                                         </div>
                                     </div>
                                 </form>
                             </div>
 
-                            <table id="decretosp" class="table table-striped table-bordered" style="width:100%">
+                            <table id="decretosh" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>N° Doc.</th>
                                         <th>Fecha Documento</th>
-                                        <th>Tipo Contrato</th>
+                                        <th>Tipo</th>
                                         <th>Fecha Inicio</th>
                                         <th>Fecha Termino</th>
                                         <th>Lugar</th>
@@ -141,30 +154,23 @@ if (!isset($_SESSION['rol'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $decretosp = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon, d.RutaCon, con.IDCon
-                                        FROM decretos d
-                                        INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
-                                        INNER JOIN sector s ON (s.IDSector = d.IDSector)
-                                        INNER JOIN contrato con ON (con.IDCon = d.IDCon)
-                                        INNER JOIN trabajador t ON (t.IDTra = d.IDTra)
-                                        WHERE d.IDTra = $idtra";
+                                    $decretosp = "SELECT dh.IDdecretoH, dh.IDTraH, h.Rut, dh.NDecreto, dh.FechaDoc, dh.RutaCon, dh.FechaInicio, dh.FechaTermino, dh.Estado, dh.Confirmacion, l.NombreLug, s.NombreSector, dh.RutaCon, dh.TipodeHono
+                                        FROM decretosh dh
+                                        INNER JOIN lugar l ON (l.IDLugar = dh.IDLugar)
+                                        INNER JOIN sector s ON (s.IDSector = dh.IDSector)
+                                        INNER JOIN honorario h ON (h.IDTraH = dh.IDTraH)
+                                        WHERE dh.IDTraH = $idh";
 
                                     $resultadodecs = mysqli_query($conn, $decretosp);
                                     while ($decsper = mysqli_fetch_array($resultadodecs)) { ?>
                                         <tr>
                                             <td class="align-middle"><?php echo $decsper['NDecreto'] ?></td>
                                             <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaDoc'])) ?></td>
-                                            <td class="align-middle"><?php echo  $decsper['NombreCon'] ?></td>
+                                            <td class="align-middle"><?php echo  $decsper['TipodeHono'] ?></td>
                                             <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaInicio'])) ?></td>
-                                            <td class="align-middle" style="text-align: center; font-weight: 700;">
-                                                        <?php
-                                                        if ($decsper['IDCon'] == 3) {
-                                                            echo '-';
-                                                        } else{
-                                                            echo date('d-m-Y', strtotime($decsper['FechaTermino']));
-                                                        }
-                                                        ?>
-                                                    </td>
+                                            <td class="align-middle" style="text-align: center;">
+                                                <?php echo date('d-m-Y', strtotime($decsper['FechaTermino'])); ?>
+                                            </td>
                                             <td class="align-middle"><?php echo  $decsper['NombreLug'] ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreSector'] ?></td>
 
@@ -215,17 +221,17 @@ if (!isset($_SESSION['rol'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Documentos</h6>
                                 </div>
-                                <form action="pdfs_anteriores.php" method="GET">
+                                <form action="pdfs_anteriores_h.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Anteriores <i class="fas fa-history"></i></button>
-                                            <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                            <input type="hidden" name="idh" id="idtraid" value="<?php echo $honorario['IDTraH'] ?>">
                                         </div>
                                     </div>
                                 </form>
                             </div>
 
-                            <table id="docs" class="table table-striped table-bordered" style="width:100%">
+                            <table id="docshono" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Nombre</th>
@@ -233,53 +239,16 @@ if (!isset($_SESSION['rol'])) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="align-middle custom-height">Declaración Jurada</td>
-                                        <td class="align-middle custom-height">
-                                            <?php
-                                            if (!empty($persona['RutaDJur'])) {
-                                            ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaDJur']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaDJur'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                </div>
-                                            <?php
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
+                                 
 
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Nacimiento</td>
-                                        <td class="align-middle custom-height">
-                                            <?php
-                                            if (!empty($persona['RutaNac'])) { ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaNac']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaNac'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php
-                                            } else { ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                </div>
-                                            <?php } ?>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Antecedentes</td>
                                         <td class="align-middle custom-height">
                                             <?php
-                                            if (!empty($persona['RutaAntec'])) { ?>
+                                            if (!empty($honorario['RutaAntec'])) { ?>
                                                 <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaAntec']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaAntec'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $honorario['RutaAntec']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $honorario['RutaAntec'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -292,10 +261,10 @@ if (!isset($_SESSION['rol'])) {
                                         <td class="align-middle custom-height">Fotocopia de Cédula de Identidad</td>
                                         <td class="align-middle custom-height">
                                             <?php
-                                            if (!empty($persona['RutaCedula'])) { ?>
+                                            if (!empty($honorario['RutaCedula'])) { ?>
                                                 <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaCedula']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaCedula'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $honorario['RutaCedula']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $honorario['RutaCedula'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -308,10 +277,10 @@ if (!isset($_SESSION['rol'])) {
                                         <td class="align-middle custom-height">Curriculum Vitae</td>
                                         <td class="align-middle custom-height">
                                             <?php
-                                            if (!empty($persona['RutaCV'])) { ?>
+                                            if (!empty($honorario['RutaCV'])) { ?>
                                                 <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaCV']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaCV'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $honorario['RutaCV']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $honorario['RutaCV'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -324,10 +293,10 @@ if (!isset($_SESSION['rol'])) {
                                         <td class="align-middle custom-height">Certificado de Estudios o Título Profesional</td>
                                         <td class="align-middle custom-height">
                                             <?php
-                                            if (!empty($persona['RutaEstudio'])) { ?>
+                                            if (!empty($honorario['RutaEstudio'])) { ?>
                                                 <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaEstudio']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaEstudio'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $honorario['RutaEstudio']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $honorario['RutaEstudio'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                 </div>
                                             <?php } else { ?>
                                                 <div class="contenedor-botones">
@@ -336,66 +305,19 @@ if (!isset($_SESSION['rol'])) {
                                             <?php } ?>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Salud Compatible</td>
-                                        <td class="align-middle custom-height">
-                                            <?php
-                                            if (!empty($persona['RutaSCom'])) { ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSCom']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaSCom'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                <?php } ?>
-                                        </td>
-                                    </tr>
+                          
 
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Afiliación AFP (<strong><?php echo $persona['NombreAFP'] ?></strong>)</td>
-                                        <td class="align-middle custom-height"><?php
+                                   
 
-                                                                                if (!empty($persona['RutaAFP'])) { ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaAFP']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaAFP'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                </div>
-                                            <?php }  ?>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="align-middle custom-height">Certificado de Afiliación Previsional (<strong><?php echo $persona['NombrePrev'] ?></strong>)</td>
-                                        <td class="align-middle custom-height"><?php
-
-                                                                                if (!empty($persona['RutaPrev'])) { ?>
-                                                <div class="contenedor-botones">
-                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaPrev']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                    <a href="<?php echo $persona['RutaPrev'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="contenedor-botones">
-                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                </div>
-
-                                            <?php }
-                                            ?>
-                                        </td>
-                                    </tr>
-                                    <?php if ($persona['Inscripcion'] == 1) { ?>
+                                    <?php if ($honorario['Inscripcion'] == 1) { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
                                             <td class="align-middle custom-height">
                                                 <?php
-                                                if (!empty($persona['RutaInscripcion'])) { ?>
+                                                if (!empty($honorario['RutaInscripcion'])) { ?>
                                                     <div class="contenedor-botones">
-                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaInscripcion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaInscripcion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $honorario['RutaInscripcion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $honorario['RutaInscripcion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -404,15 +326,15 @@ if (!isset($_SESSION['rol'])) {
                                                 <?php } ?>
                                             </td>
                                         </tr> <?php } ?>
-                                    <?php if ($persona['Medico'] == 'Si') { ?>
+                                    <?php if ($honorario['Medico'] == 'Si') { ?>
                                         <tr>
                                             <td class="align-middle custom-height">Examen Único Nacional de Conocimientos de Medicina</td>
                                             <td class="align-middle custom-height">
                                                 <?php
-                                                if (!empty($persona['RutaExaM'])) { ?>
+                                                if (!empty($honorario['RutaExaM'])) { ?>
                                                     <div class="contenedor-botones">
-                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaExaM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaExaM'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $honorario['RutaExaM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                        <a href="<?php echo $honorario['RutaExaM'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="contenedor-botones">
@@ -421,23 +343,7 @@ if (!isset($_SESSION['rol'])) {
                                                 <?php } ?>
                                             </td>
                                         </tr> <?php } ?>
-                                    <?php if ($persona['Genero'] == 'Masculino') { ?>
-                                        <tr>
-                                            <td class="align-middle custom-height">Certificado de Servicio Militar al Día</td>
-                                            <td class="align-middle custom-height">
-                                                <?php
-                                                if (!empty($persona['RutaSerM'])) { ?>
-                                                    <div class="contenedor-botones">
-                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $persona['RutaSerM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                        <a href="<?php echo $persona['RutaSerM'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                    </div>
-                                                <?php } else { ?>
-                                                    <div class="contenedor-botones">
-                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                    </div>
-                                                <?php } ?>
-                                            </td>
-                                        </tr> <?php }  ?>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -450,20 +356,20 @@ if (!isset($_SESSION['rol'])) {
                         <div class="seccion">
                             <div class="title">
                                 <div class="ti">
-                                    <h6 class="mt-4">Calificaciones</h6>
+                                    <h6 class="mt-4">Informe de Labores</h6>
                                 </div>
                                 <?php if ($_SESSION['rol'] === '1') { ?>
-                                    <form action="calificaciones.php" method="GET">
+                                    <form action="agregar_informe.php" method="GET">
                                         <div class="container-volver">
                                             <div class="title">
                                                 <button class="btn btn-calificacion" style="width: 100px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                                <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                                <input type="hidden" name="idh" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                             </div>
                                         </div>
                                     </form>
                                 <?php } ?>
                             </div>
-                            <table id="calif" class="table table-striped table-bordered" style="width:100%">
+                            <table id="informe" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th class="text-center">Fecha</th>
@@ -474,14 +380,14 @@ if (!isset($_SESSION['rol'])) {
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sqlCalificacion = "SELECT * 
-                            FROM calificaciones cal
-                            INNER JOIN trabajador tra ON (tra.IDTra = cal.IDTra)
-                            WHERE $idtra = cal.IDTra ";
+                                    $sqlinforme = "SELECT * 
+                            FROM informes inf
+                            INNER JOIN honorario h ON (h.IDTraH = inf.IDTraH)
+                            WHERE $idh = inf.IDTraH ";
 
-                                    $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
+                                    $resultadoinforme = mysqli_query($conn, $sqlinforme);
 
-                                    while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
+                                    while ($mostrar = mysqli_fetch_array($resultadoinforme)) {
                                     ?>
                                         <tr>
                                             <td class='align-middle text-center'><?php echo $mostrar['fecha'] ?></td>
@@ -526,10 +432,20 @@ if (!isset($_SESSION['rol'])) {
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
     <script src="./assets/js/tablas.js"></script>
+    <script src="./assets/js/tablaExport.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 </body>
 
 </html>

@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
                                     <h1 class="mt-4">Calificaciones</h1>
                                 </div>
                                 <div class="container-volver">
-                                    <a class="button-volver" href="mostrar.php?id=<?php echo $idTrabajador ?>">
+                                    <a class="button-volver" href="info_contrata.php?id=<?php echo $idTrabajador ?>">
                                         Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
                                     </a>
                                 </div>
@@ -164,6 +164,7 @@ if (isset($_GET['id'])) {
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
+    <script src="./assets/js/calificacion_fecha.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

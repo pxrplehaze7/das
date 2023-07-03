@@ -12,6 +12,7 @@ if ($_SESSION['rol'] !== '1') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,13 +37,13 @@ if ($_SESSION['rol'] !== '1') {
                 <div class="container-md">
                     <form id="documentosObligatorios" enctype="multipart/form-data" method="POST" autocomplete="off">
                         <div class="title">
-                            <h1 class="mt-4">Registro de Trabajador a Contrata</h1>
+                            <h1 class="mt-4">Registro de Trabajador a Contrata e Indefinido</h1>
                         </div>
                         <br>
                         <div class="alert alert-info" role="alert">
-                        <i class="fas fa-exclamation-circle"></i>
+                            <i class="fas fa-exclamation-circle"></i>
                             <strong>¡Importante!</strong> Decreto se registra en el siguiente paso.
-                            </div>
+                        </div>
                         <div class="seccion">
                             <h6>Datos Personales</h6>
                             <div class="row ">

@@ -13,7 +13,7 @@ if (!isset($_SESSION['rol'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Personas Registradas</title>
+    <title>Decretos a Contrata</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -47,9 +47,9 @@ if (!isset($_SESSION['rol'])) {
                                             <h6 class="mt-4">Decretos Por Finalizar</h6>
                                         </div>
                                     </div>
-                                    <div class="alert alert-info" role="alert">
+                                    <div class="alert alert-warning" role="alert">
                                         <i class="fas fa-exclamation-circle"></i>
-                                        <strong>¡Importante!</strong> Una vez confirmado, no se mostrara nuevamente la advertencia
+                                        <strong>¡Importante!</strong> Una vez confirmado, no se mostrará nuevamente la advertencia
                                     </div>
 
                                     <table id="pterminar" class="table table-striped table-bordered" style="width:100%" data-search="true">
@@ -69,8 +69,8 @@ if (!isset($_SESSION['rol'])) {
                                         </thead>
                                         <tbody id="trabajadores_tbody">
                                             <?php
-                                            $sqlPorFin = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon
-                                        FROM decretos d
+                                            $sqlPorFin = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon, con.IDCon
+                                            FROM decretos d
                                         INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
                                         INNER JOIN sector s ON (s.IDSector = d.IDSector)
                                         INNER JOIN contrato con ON (con.IDCon = d.IDCon)
@@ -84,7 +84,15 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaDoc'])) ?></td>
                                                     <td class="align-middle"><?php echo  $rowpFin['NombreCon'] ?></td>
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaInicio'])) ?></td>
-                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowpFin['FechaTermino'])) ?></td>
+                                                    <td class="align-middle">
+                                                        <?php
+                                                        if ($rowpFin['IDCon'] == 3) {
+                                                            echo ' ';
+                                                        } else {
+                                                            echo date('d-m-Y', strtotime($rowpFin['FechaTermino']));
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td class="align-middle"><?php echo  $rowpFin['NombreLug'] ?></td>
                                                     <td class="align-middle"><?php echo  $rowpFin['NombreSector'] ?></td>
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
@@ -112,7 +120,7 @@ if (!isset($_SESSION['rol'])) {
                                             <h6 class="mt-4">Decretos Finalizados</h6>
                                         </div>
                                     </div>
-                                    
+
                                     <table id="expirados" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                         <thead>
                                             <tr>
@@ -129,8 +137,8 @@ if (!isset($_SESSION['rol'])) {
                                         </thead>
                                         <tbody id="trabajadores_tbody">
                                             <?php
-                                            $sqlFin = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon
-                                        FROM decretos d
+                                            $sqlFin = "SELECT d.IDdecreto, d.IDTra, t.Rut, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, d.Estado, d.Confirmacion, l.NombreLug, s.NombreSector, con.NombreCon, con.IDCon
+                                            FROM decretos d
                                         INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
                                         INNER JOIN sector s ON (s.IDSector = d.IDSector)
                                         INNER JOIN contrato con ON (con.IDCon = d.IDCon)
@@ -144,7 +152,15 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowFin['FechaDoc'])) ?></td>
                                                     <td class="align-middle"><?php echo  $rowFin['NombreCon'] ?></td>
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowFin['FechaInicio'])) ?></td>
-                                                    <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowFin['FechaTermino'])) ?></td>
+                                                    <td class="align-middle">
+                                                        <?php
+                                                        if ($rowFin['IDCon'] == 3) {
+                                                            echo ' ';
+                                                        } else {
+                                                            echo date('d-m-Y', strtotime($rowFin['FechaTermino']));
+                                                        }
+                                                        ?>
+                                                    </td>
                                                     <td class="align-middle"><?php echo  $rowFin['NombreLug'] ?></td>
                                                     <td class="align-middle"><?php echo  $rowFin['NombreSector'] ?></td>
 
@@ -199,10 +215,10 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowvig['FechaDoc'])) ?></td>
                                                     <td class="align-middle"><?php echo  $rowvig['NombreCon'] ?></td>
                                                     <td class="align-middle"><?php echo date('d-m-Y', strtotime($rowvig['FechaInicio'])) ?></td>
-                                                    <td class="align-middle" style="text-align: center;">
+                                                    <td class="align-middle">
                                                         <?php
                                                         if ($rowvig['IDCon'] == 3) {
-                                                            echo '-';
+                                                            echo ' ';
                                                         } else {
                                                             echo date('d-m-Y', strtotime($rowvig['FechaTermino']));
                                                         }

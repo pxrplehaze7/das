@@ -85,7 +85,7 @@ if ($_SESSION['rol'] !== '1') {
                                                     <?php if (!$isCurrentSessionUser) { ?>
 
                                                         <div class="d-flex align-items-center justify-content-around">
-                                                            <a href="editUsuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-warning text-white"><i class="fas fa-user-edit"></i></a>
+                                                            <a href="editar_usuario.php?id=<?php echo $user['IDUsuario']; ?>" class="btn btn-warning text-white"><i class="fas fa-user-edit"></i></a>
                                                             <button class="btn btn-danger btnEliminarUsuario" data-idusuario="<?php echo $user['IDUsuario']; ?>"><i class="fas fa-user-times"></i></button>
                                                         </div>
                                                     <?php } ?>

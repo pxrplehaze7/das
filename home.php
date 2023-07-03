@@ -5,10 +5,11 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
-include("./controller/consulta_bar.php");
+// include("./controller/consulta_bar.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,13 +27,51 @@ include("./controller/consulta_bar.php");
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
         <?php require("./components/sidebar.php"); ?>
         <div id="layoutSidenav_content">
             <main>
+                <br>
                 <div class="container-md">
+                    <div class="row">
+                        <br>
+                        <div class="col-md-6">
+                            <form class="d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="info_contrata.php" method="POST" id="searchForm">
+                                <div class="input-group">
+                                <label for="nameBuscaRut1">Buscar por RUT:</label>
+
+                                    <input class="form-control" type="text" name="nameBuscaRut" id="nameBuscaRut" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                    <button class="btn btn-primary btn-buscar" id="btnNavbarSearch" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6">
+
+                            <!-- Navbar Search-->
+                            <form class="d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
+                                <div class="input-group">
+                                <label for="nameBuscaRut1">Buscar contrata</label>
+
+                                    <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
+                                    <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+
+
                     <br>
                     <ol class="breadcrumb mb-4"></ol>
                     <div class="row">
@@ -220,8 +259,53 @@ include("./controller/consulta_bar.php");
         const ctx2 = document.getElementById('myChart').getContext('2d');
         const myPieChart = new Chart(ctx2, config2);
     </script>
+      <script>
+    document.getElementById("searchFormContrata").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      var input = document.getElementById("nameBuscaRutContrata").value.trim();
+      if (input.length < 9) {
+        e.preventDefault();
+        alert("El campo debe tener al menos 9 caracteres.");
+      } else {
+        $.ajax({
+            url: "./controller/buscar_contrata.php",
+            method: "POST",
+            data: {
+              nameBuscaRutContrata: input
+            }
+          })
+          .done(function(respuesta) {
+            //alert('LA RESPUESTA ES:'+respuesta)
+            console.log('200 LA RESPUESTA ES id:', respuesta)
+            window.location.href = "info_contrata.php?id=" + respuesta
+
+          })
+          .fail(function(error) {
+            //alert('400??LA RESPUESTA ES:'+respuesta)
+            console.error(error)
+            $('body').append(error.responseText);
+          })
+          .always(function(respuesta) {
+            console.info("LA RESPUESTA: ", respuesta)
+          });
+      }
+    });
+
+    document.getElementById("nameBuscaRutContrata").addEventListener("input", function() {
+      var input = this.value.trim();
+      var btnBuscar = document.getElementById("btnNavbarSearchContrata");
+
+      if (input.length >= 9) {
+        btnBuscar.removeAttribute("disabled");
+      } else {
+        btnBuscar.setAttribute("disabled", "disabled");
+      }
+    });
+  </script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

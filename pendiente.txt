@@ -12,33 +12,11 @@ arreglar graficos separando a contrata y a honorario segun el lugar
 
 
 
+hacer que se eliminen y modifiquen datos del honorario:
+datos personales, documentos, decretos, informede labores.
 
-al registrar a trabajador a contrata:
-*ingresar documentos e informacion
-*mostrar alerta de confirmacion y exito antes de continuar 
-*enviar a registrar contrato
-*realizar validacion de documentos de si cumple o no mediante una consulta de todos los datos, anteriores y decretos.
-*si hay decreto vencido, no cumple
+hacer que los decretos se puedan editar en el a contrata tambien
 
-al mostrar documentos a contrata:
--los botones de añadir y editar deben ser vistos por el admin.
-* añadir contratos
-- exportar contratos
-
-
-
-al registrar a trabajador a honorario:
--se debe revisar el rut segun honorario
--ingresar documentos e informacion
--mostrar alerta de confirmacion y exito antes de continuar
--enviar a registrar contrato
--realizar validacion de documentos de si cumple o no mediante una consulta de todos los datos, anteriores y decretos.
--si hay decreto vencido, no cumple
-
-
-
-en lista de decretos:
--si esta finalizado o vencido, que aparezca boton de ok el cual hara update a confirmacion y por ende, no se mostrara en la tabla de expirados ni por vencer. si esta vigente entonces confirmar ya es true, si el decreto esta vencido y confirmado, es vigente y confirmado, esta por vencer y esta confirmado entonces cumple en cuanto a decretos
 
 
  ? hacer que se haga una consulta de los decretos segun el id del trabajador y si existe alguno con estado 0 , se haga update en la tabla de tra para que no cumpla,
@@ -46,7 +24,6 @@ hacer que cuando agregue un decreto, haga una consulta para hacerle update a cum
 
 en tabla de decretos esta lo de confirmar, hacer que cuando se confirmemediante el boton, ese decreto quede con confirmacio=1 y que se haga update de que ya cumple.
 
-intentar hacer que todo lo de honorario sea aparte,esdecir, registrar, consultar y editar aparte.
 
 ver que hacer con las validaciones de cada documento.
 
@@ -61,59 +38,33 @@ preguntar que hacer cuando un decreto no se renueva
 cuando registro y me manda a decreto, no me muestra alerta de corrcto o error.
 
 
-si en confirmar uno se aunila, tambien se anula en estado, aunque este vigente.
-
-areglar validaciones segun los documentos que se suben
-
-decretos no se reemplazan, honorarios tienen decreto y contrato, en lugar de calificaciones tienen informe de labores.
-
-
-
-hacer masbonitas las url
-
 falta agregar la tabla equivalente a calificaciones, es decir la tabla de los informes de labores
 
 
 
-hacer que se puedan exportar los contratos de mostrar.php
 
 ---necesito hacer que cuando registre a un trabajador, por obligacion deba registrar un decreto ya que puede volver atras.
-
-tendria que hacer que al registrar los datos, se establezca cumple en false,
-para que una vez se registre el decreto, haga la consulta de la validacion ??
-
-como solucionar cuando el formulario en dos pasos queda incompleto 
-
-guardar archivos de honorario y contrata aparte
-
-no puedo poner confirmar a los expirados porque hay muchos finalizados enotonces habria que confirmar cada uno.
-mejor poner confirmar solo en los por vence para asi se elimine la alerta
-
-vercomo cambiar lo de decreto vencido ya que solo si tiene todos los decretos con confirmacion entonces cumple por ese lado,
-
-todos los registrados vigentes se insertan con confirmacion 1,
-entonces cuando ese decreto este por vencer,su estado 2 y el estado sera 0,
-
-ver que hacer con los contratos indefinidos
-
-usar la columna de confirmacion solo cuando este por vencer.
-
-mostrar solo el boton de confirmar en por vencer
-
-quizas seria mejor mostrar por separado en la lista de trabajadores, algo como: documentacion:cumple decretos al dia: si o no
 
 
 en caso de que no se registre un decreto para ese trabajador, se deberia mostrar en la tabla una columna de no cumple en decretos c, donde se hara una consulta de la cantidad de decretos por persona  y si es 0,que diga, sin decretos registrados, si es mas de 0 pero 
 
-los decretos tienen 3 estados, vencidos, por vencer y vigentes, los decretos no se reemplazan , se crea uno nuevo. ddebo mostrar en una lista aquellos que estan por vencer 5 dias antes para que realizen otro decreto para esa persona o para que sepan que se termina.
-que puedo hacer para que muestre si ese trabajador tiene sus decretos al dia? es decir que si se vencio y ya se renovo, este al dia, si vencio y aun no se ha renovado, no cumpla, si vencio y se confirma que no se renovara entonces esta al dia
-
-si tipo de contrato es indefinido,que las fechas no se ingresen
 
 ver por que cuando en mostrar y presiono en paginacion de contratos, se ve la parte de los botones, es decir la tabla baja(
 cuando hay muchos registros)
 
-hacer que cuando registre a un trabajador, se establezca en no cumple apesar de tener todos los documentos. entonces cuando se registre un decreto, se revisara los documentos que ya subio (afp, prev, titulo)y se cambia a cumple o no siempre y cuando posea mas de 0 decretos.
 
-ahora se registra el trabajador, pero solo cumple una vez se le registra un decreto a esa misma persona.
-hacer que si el decreto se sube vigente, confirmar sea 1, si se sube vencido, confirmar es 1, si se sube por vencer, confirmar es 0
+
+eliminar esto delosadd decreto:
+echo "El valor de finDecreto es: " . $finDecreto;
+
+
+buscar como montar servidor y sus requerimientos, entregar informe
+
+
+botones se me desordenan cuando se muestra la info
+
+revisar como son los informes de labores para tabla de base de datos
+
+cambiar la busqueda, ya que no estara en el menu
+
+busqueda de contrata funciona pero hay que cambiar la redireccion cuando no lo encuentra

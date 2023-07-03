@@ -51,7 +51,7 @@ if (isset($_GET['id'])) {
                                 <h1 class="mt-4">Editar Usuario</h1>
                             </div>
                             <div class="container-volver">
-                                <a class="button-volver" href="tablaU.php">
+                                <a class="button-volver" href="lista_usuarios.php">
                                     Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
                                 </a>
                             </div>

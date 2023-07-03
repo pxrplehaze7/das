@@ -288,8 +288,8 @@ WHERE IDTra = $idtra";
             selects[i].selectedIndex = 0;
           }
         } else {
-          // Redireccionar a mostrar.php
-          location.href = 'mostrar.php?id=$idtra';
+          // Redireccionar a info_contrata.php
+          location.href = 'info_contrata.php?id=$idtra';
         }
       });
     </script>";
@@ -319,8 +319,8 @@ WHERE IDTra = $idtra";
             document.getElementById('idSelectSector').value = '';
 
           } else {
-            // Redireccionar a mostrar.php
-            location.href = 'mostrar.php?id=$idtra';
+            // Redireccionar a info_contrata.php
+            location.href = 'info_contrata.php?id=$idtra';
            
           }
         });

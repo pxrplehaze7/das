@@ -5,10 +5,11 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
-$id = $_GET['id'];
+$idH = $_GET['idh'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,6 +27,7 @@ $id = $_GET['id'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
 </head>
+
 <body class="sb-nav-fixed">
     <?php require("./components/navbar.php"); ?>
     <div id="layoutSidenav">
@@ -38,7 +40,7 @@ $id = $_GET['id'];
                             <h1 class="mt-4">Registros anteriores</h1>
                         </div>
                         <div class="container-volver">
-                            <a class="button-volver" href="info_contrata.php?id=<?php echo $id ?>">
+                            <a class="button-volver" href="info_honorario.php?idh=<?php echo $idH ?>">
                                 Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
                             </a>
                         </div>
@@ -111,22 +113,10 @@ $id = $_GET['id'];
                                         $descripcion = 'Currículum Vitae';
                                     } elseif (strpos($nombreArchivo, 'ESTUDIOS') === 0) {
                                         $descripcion = 'Certificado de Estudios o Título Profesional';
-                                    } elseif (strpos($nombreArchivo, 'AFP') === 0) {
-                                        $descripcion = 'Certificado de Afiliacion AFP';
-                                    } elseif (strpos($nombreArchivo, 'CNACIMIENTO') === 0) {
-                                        $descripcion = 'Certificado de Nacimiento';
-                                    } elseif (strpos($nombreArchivo, 'DJURADA') === 0) {
-                                        $descripcion = 'Declaración Jurada';
                                     } elseif (strpos($nombreArchivo, 'EUNACOM') === 0) {
                                         $descripcion = 'Examen Único Nacional de Conocimientos de Medicina';
                                     } elseif (strpos($nombreArchivo, 'INSCRIPCION') === 0) {
                                         $descripcion = 'Certificado de inscripción en el Registro Nacional de Prestadores Individuales';
-                                    } elseif (strpos($nombreArchivo, 'PREVISION') === 0) {
-                                        $descripcion = 'Certificado de Afiliación Previsional';
-                                    } elseif (strpos($nombreArchivo, 'SCOMPATIBLE') === 0) {
-                                        $descripcion = 'Certificado de Salud Compatible';
-                                    } elseif (strpos($nombreArchivo, 'SMILITAR') === 0) {
-                                        $descripcion = 'Certificado de Servicio Militar al Día';
                                     }
                                     return $descripcion;
                                 }
@@ -140,13 +130,13 @@ $id = $_GET['id'];
                                     }
                                     return $fechaCarga;
                                 }
-                                $id = $_GET['id'];
-                                $folder = "das/controller/PDFS/CONTRATA"; // RUTA DE LA CARPETA DE LA CARPETA PRINCPIAL DE ARCHIVOS
-                                $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $id; //RUTA DE LA CARPETA ESPECIFICA SEGUN EL ID
+                                $idH = $_GET['idh'];
+                                $folder = "das/controller/PDFS/HONORARIO"; // RUTA DE LA CARPETA DE LA CARPETA PRINCPIAL DE ARCHIVOS
+                                $targetFolder = $_SERVER['DOCUMENT_ROOT'] . "/" . $folder . "/" . $idH; //RUTA DE LA CARPETA ESPECIFICA SEGUN EL ID
                                 if (is_dir($targetFolder)) { //REVISA QUE LA CARPETA EXISTA
                                     listarArchivos($targetFolder);
                                 } else {
-                                    echo "La carpeta para el rut $id no existe.";
+                                    echo "La carpeta para el rut $idH no existe.";
                                 }
                                 ?>
                             </div>
@@ -155,7 +145,7 @@ $id = $_GET['id'];
                 </div>
             </main>
         </div>
-    </div>    
+    </div>
     <script src="./assets/js/tablas.js"></script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
@@ -172,4 +162,5 @@ $id = $_GET['id'];
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 </body>
+
 </html>

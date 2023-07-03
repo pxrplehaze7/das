@@ -1,7 +1,7 @@
 <?php
 // Conexión a la base de datos
 require("./config/conexion.php");
-$rut = $_POST['rutH'];
+$rut = $_POST['rut'];
 $sql = "SELECT * FROM honorario WHERE Rut='$rut'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
