@@ -6,6 +6,21 @@ if (!isset($_SESSION['rol'])) {
     exit();
 }
 $id = $_GET['id'];
+
+
+// $query = "SELECT Rut FROM trabajador WHERE IDTra='$id' LIMIT 1";
+// $result = mysqli_query($conn, $query);
+
+// if ($result) {
+//     $row = mysqli_fetch_assoc($result);
+
+//     if ($row) {
+//         $rutant = $row['Rut'];
+//     }
+// }
+// Liberar el resultado de la consulta
+// mysqli_free_result($result);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +50,7 @@ $id = $_GET['id'];
                 <div class="container-md">
                     <div class="title">
                         <div class="ti">
-                            <h1 class="mt-4">Registros anteriores</h1>
+                            <h1 class="mt-4">Documentos anteriores</h1>
                         </div>
                         <div class="container-volver">
                             <a class="button-volver" href="info_contrata.php?id=<?php echo $id ?>">
@@ -146,7 +161,7 @@ $id = $_GET['id'];
                                 if (is_dir($targetFolder)) { //REVISA QUE LA CARPETA EXISTA
                                     listarArchivos($targetFolder);
                                 } else {
-                                    echo "La carpeta para el rut $id no existe.";
+                                    echo "La carpeta para el ID $id no existe.";
                                 }
                                 ?>
                             </div>

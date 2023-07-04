@@ -9,20 +9,15 @@ if ($_SESSION['rol'] !== '1') {
     header('Location: ./components/error.html');
     exit();
 }
-if (isset($_GET['id'])) {
-    $idtra = $_GET['id'];
-    $datosEditar = "SELECT cat.NombreCat, afp.NombreAFP, pre.NombrePrev, afp.IDAFP, cat.IDCat, pre.IDPrev, 
-    tra.IDTra, tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Inscripcion, tra.Rut, tra.Genero, tra.Profesion, tra.Medico, tra.CelularTra, tra.CorreoTra, tra.RutaPrev, tra.RutaCV, tra.RutaAFP, tra.RutaNac, tra.RutaAntec, tra.RutaCedula, tra.RutaEstudio, tra.RutaDJur,
-     tra.RutaSerM, tra.RutaSCom, tra.RutaExaM, tra.Observ, tra.RutaInscripcion
-    FROM trabajador tra
-    INNER JOIN categoria cat ON (cat.IDCat = tra.IDCat)
-    INNER JOIN afp afp ON (afp.IDAFP = tra.IDAFP)
-
-    INNER JOIN prevision pre ON (pre.IDPrev = tra.IDPrev)
-    WHERE IDTra='$idtra' LIMIT 1";
+if (isset($_GET['idh'])) {
+    $idh = $_GET['idh'];
+    $datosEditar = "SELECT h.IDTraH, h.IDCat, h.NombreH, h.PaternoH, h.MaternoH, h.Rut, h.Genero, h.Medico, h.Inscripcion, h.Profesion, h.CelularH, h.CorreoH, h.RutaCV, h.RutaAntec, h.RutaCedula, h.RutaEstudio, h.RutaExaM, h.RutaInscripcion, h.Observ, c.NombreCat
+    FROM honorario h
+    INNER JOIN categoria c ON (c.IDCat = h.IDCat)
+    WHERE IDTraH='$idh' LIMIT 1";
     $resultDatosEditar = mysqli_query($conn, $datosEditar);
     if (mysqli_num_rows($resultDatosEditar) == 1) {
-        $personaa = mysqli_fetch_assoc($resultDatosEditar);
+        $editHonorario = mysqli_fetch_assoc($resultDatosEditar);
     }
 } ?>
 <!DOCTYPE html>
@@ -52,15 +47,15 @@ if (isset($_GET['id'])) {
         <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
-                <?php if (isset($personaa)) { ?>
+                <?php if (isset($editHonorario)) { ?>
                     <div class="container-md">
-                        <form id="editInfoPersonal" action="./controller/editInfoP.php" method="POST">
+                        <form id="editInfoPersonalH" action="./controller/edit_infop_h.php" method="POST">
                             <div class="title">
                                 <div class="ti">
                                     <h1 class="mt-4">Editar Información</h1>
                                 </div>
                                 <div class="container-volver">
-                                    <a class="button-volver" href="info_contrata.php?id=<?php echo $idtra ?>">
+                                    <a class="button-volver" href="info_honorario.php?idh=<?php echo $idh ?>">
                                         Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
                                     </a>
                                 </div>
@@ -70,26 +65,26 @@ if (isset($_GET['id'])) {
                                 <h6>Datos Personales</h6>
                                 <div class="row ">
                                     <div class="col-md">
-                                        <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
+                                        <input name="editcontra" value="<?php echo $idh ?>" class="form-control" id="idtrabid" hidden>
                                         <label for="idRutInputp"><span style="color: #c40055;">*</span> Rut</label>
-                                        <input type="text" name="RutInput" id="idRutInputp" value="<?php echo $personaa['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
+                                        <input type="text" name="RutInput" id="idRutInputp" value="<?php echo $editHonorario['Rut'] ?>" class="form-control" pattern="^\d{7,8}-[kK\d]$" maxlength="10" required>
                                         <br>
                                     </div>
                                     <div class="col-md">
                                         <label for="idPersona"><span style="color: #c40055;">*</span> Nombres</label>
-                                        <input type="text" name="namePersona" id="idPersona" value="<?php echo $personaa['NombreTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
+                                        <input type="text" name="namePersona" id="idPersona" value="<?php echo $editHonorario['NombreH'] ?>" class="form-control" oninput="validarTexto(this)" required>
                                         <br>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md">
                                         <label for="idAppat"><span style="color: #c40055;">*</span> Apellido Paterno</label>
-                                        <input type="text" name="namePaterno" id="idAppat" value="<?php echo $personaa['PaternoTra'] ?>" class="form-control" oninput="validarTexto(this)" required>
+                                        <input type="text" name="namePaterno" id="idAppat" value="<?php echo $editHonorario['PaternoH'] ?>" class="form-control" oninput="validarTexto(this)" required>
                                         <br>
                                     </div>
                                     <div class="col-md">
                                         <label for="idApmat">Apellido Materno</label>
-                                        <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $personaa['MaternoTra'] ?>" class="form-control" oninput="validarTexto(this)">
+                                        <input type="text" name="nameMaterno" id="idApmat" value="<?php echo $editHonorario['MaternoH'] ?>" class="form-control" oninput="validarTexto(this)">
                                         <br>
                                     </div>
                                 </div>
@@ -104,18 +99,18 @@ if (isset($_GET['id'])) {
                                             echo "<select name='nameSelectCat' id='idSelectCat' class='form-select' required> ";
                                             echo '<option hidden value=""> Selecciona una Categoría</option>'; // Opción por defecto en blan
                                             while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
-                                                $selected = ($fila['IDCat'] == $personaa['IDCat']) ? 'selected' : '';
+                                                $selected = ($fila['IDCat'] == $editHonorario['IDCat']) ? 'selected' : '';
                                                 echo "<option value='" . $fila['IDCat'] . "' " . $selected . ">" . $fila['NombreCat'] . "</option>";
                                             }
                                             echo "</select>";
                                             ?>
-                                           <br>
+                                            <br>
                                         </div>
                                         <br>
                                         <div class="col-md-6">
                                             <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
-                                            <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $personaa['Profesion'] ?>" class="form-control" require>
-<br>
+                                            <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $editHonorario['Profesion'] ?>" class="form-control" require>
+                                            <br>
                                         </div>
                                     </div>
                                     <div id="idInscripcion" class="radioCentro row">
@@ -123,7 +118,7 @@ if (isset($_GET['id'])) {
                                             <label><span style="color: #c40055;">*</span> ¿Debe presentar Certificado de Inscripción?</label>
                                             <div class="radio-inputs">
                                                 <label>
-                                                    <input type="radio" name="nameInscrip" id="idSiInscrip" value=1 class="radio-input" <?php if ($personaa['Inscripcion'] == 1) echo "checked"; ?>>
+                                                    <input type="radio" name="nameInscrip" id="idSiInscrip" value=1 class="radio-input" <?php if ($editHonorario['Inscripcion'] == 1) echo "checked"; ?>>
                                                     <span class=" radio-tile">
                                                         <span class="radio-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -134,7 +129,7 @@ if (isset($_GET['id'])) {
                                                     </span>
                                                 </label>
                                                 <label>
-                                                    <input type="radio" name="nameInscrip" id="idNoInscrip" value=0 class="radio-input" <?php if ($personaa['Inscripcion'] == 0) echo "checked"; ?>>
+                                                    <input type="radio" name="nameInscrip" id="idNoInscrip" value=0 class="radio-input" <?php if ($editHonorario['Inscripcion'] == 0) echo "checked"; ?>>
                                                     <span class="radio-tile">
                                                         <span class="radio-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -147,12 +142,12 @@ if (isset($_GET['id'])) {
                                             </div>
                                         </center>
                                     </div>
-                                    <div id="idPreguntaCat1" class="radioCentro" style="display:<?php echo $personaa['IDCat'] == 1 ? 'block' : 'none' ?>;">
+                                    <div id="idPreguntaCat1" class="radioCentro" style="display:<?php echo $editHonorario['IDCat'] == 1 ? 'block' : 'none' ?>;">
                                         <center>
                                             <label><span style="color: #c40055;">*</span> ¿Es médico?</label>
                                             <div class="radio-inputs">
                                                 <label>
-                                                    <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input" <?php if ($personaa['Medico'] == 'Si') echo "checked"; ?>>
+                                                    <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input" <?php if ($editHonorario['Medico'] == 'Si') echo "checked"; ?>>
                                                     <span class="radio-tile">
                                                         <span class="radio-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -163,7 +158,7 @@ if (isset($_GET['id'])) {
                                                     </span>
                                                 </label>
                                                 <label>
-                                                    <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radio-input" <?php if ($personaa['Medico'] == 'No') echo "checked"; ?>>
+                                                    <input type="radio" name="nameMedico" id="idNoMedico" value="No" class="radio-input" <?php if ($editHonorario['Medico'] == 'No') echo "checked"; ?>>
                                                     <span class="radio-tile">
                                                         <span class="radio-icon">
                                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -178,38 +173,6 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <br>
 
-
-
-                                    <div class="row" id="afpyprevdiv">
-                                        <div class="col-md-6"> <!-- AFP -->
-                                            <?php
-                                            $sqlafp = "SELECT IDAFP, NombreAFP FROM afp";
-                                            $resultadoafp = mysqli_query($conn, $sqlafp);
-
-                                            echo "<label for='idSelectAFP'>AFP </label>"; //Label 
-                                            echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
-                                            while ($fila2 = mysqli_fetch_assoc($resultadoafp)) {
-                                                $selected = ($fila2['IDAFP'] == $personaa['IDAFP']) ? 'selected' : '';
-                                                echo "<option value='" . $fila2['IDAFP'] . "' " . $selected . ">" . $fila2['NombreAFP'] . "</option>";
-                                            }
-                                            echo "</select>";
-                                            ?>
-                                            <br>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <?php
-                                            $sqlprev = "SELECT IDPrev, NombrePrev FROM prevision";
-                                            $resultadoprev = mysqli_query($conn, $sqlprev);
-                                            echo "<label for='idSelectCat'>Previsión </label>"; //Label 
-                                            echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
-                                            while ($fila3 = mysqli_fetch_assoc($resultadoprev)) {
-                                                $selected3 = ($fila3['IDPrev'] == $personaa['IDPrev']) ? 'selected' : '';
-                                                echo "<option value='" . $fila3['IDPrev'] . "' " . $selected3 . ">" . $fila3['NombrePrev'] . "</option>";
-                                            }
-                                            echo "</select>";
-                                            ?>
-                                        </div>
-                                    </div>
                                 </div>
                                 <br>
                                 <div class="radioCentro row">
@@ -218,7 +181,7 @@ if (isset($_GET['id'])) {
 
                                         <div class="radio-inputs">
                                             <label>
-                                                <input class="radio-input" type="radio" name="nameGenero" id="idFemenino" value="Femenino" <?php if ($personaa['Genero'] == 'Femenino') echo "checked"; ?> required">
+                                                <input class="radio-input" type="radio" name="nameGenero" id="idFemenino" value="Femenino" <?php if ($editHonorario['Genero'] == 'Femenino') echo "checked"; ?> required">
                                                 <span class="radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -229,7 +192,7 @@ if (isset($_GET['id'])) {
                                                 </span>
                                             </label>
                                             <label>
-                                                <input class="radio-input" type="radio" name="nameGenero" id="idMasculino" value="Masculino" <?php if ($personaa['Genero'] == 'Masculino') echo "checked"; ?> required>
+                                                <input class="radio-input" type="radio" name="nameGenero" id="idMasculino" value="Masculino" <?php if ($editHonorario['Genero'] == 'Masculino') echo "checked"; ?> required>
                                                 <span class="radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -245,7 +208,7 @@ if (isset($_GET['id'])) {
                                 <br>
                                 <div class="observaciones ">
                                     <label>Observaciones</label>
-                                    <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"><?php echo $personaa['Observ'] ?></textarea>
+                                    <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50"><?php echo $editHonorario['Observ'] ?></textarea>
                                 </div>
                                 <br>
                                 <div class="boton">
@@ -259,8 +222,8 @@ if (isset($_GET['id'])) {
                             </div>
                         </form>
                         <br>
-                        <form id="editInfoContacto" action="./controller/editContacto.php" method="POST">
-                            <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
+                        <form id="editInfoContactoH" action="./controller/editar_contacto_h.php" method="POST">
+                            <input name="editcontra" value="<?php echo $idh ?>" class="form-control" id="idtrabid" hidden>
                             <div class="seccion">
                                 <h6>Datos de Contacto</h6>
                                 <div class="row">
@@ -268,12 +231,12 @@ if (isset($_GET['id'])) {
                                         <label for="idCelular">Celular</label>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">+56</span>
-                                            <input type="text" name="nameCelular" id="idCelular" value="<?php echo $personaa['CelularTra'] ?>" class="form-control" maxlength="9" oninput="validarCelular(this)">
+                                            <input type="text" name="nameCelular" id="idCelular" value="<?php echo $editHonorario['CelularH'] ?>" class="form-control" maxlength="9" oninput="validarCelular(this)">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <label for="idCorreo">Correo Electrónico</label>
-                                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $personaa['CorreoTra'] ?>" class="form-control">
+                                        <input type="text" name="nameCorreo" id="idCorreo" value="<?php echo $editHonorario['CorreoH'] ?>" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -289,8 +252,8 @@ if (isset($_GET['id'])) {
                         </form>
                         <br>
                         <div id="c_docs">
-                            <form method="POST" enctype="multipart/form-data" id="edicion_pdfs">
-                                <input type="hidden" name="nameRutEditar" value="<?php echo $personaa['Rut'] ?>">
+                            <form method="POST" enctype="multipart/form-data" id="edicion_pdfs_h">
+                                <input type="hidden" name="nameRutEditar" value="<?php echo $editHonorario['Rut'] ?>">
                                 <div class="documentacion seccion">
                                     <h6>Documentación</h6>
                                     <table id="docsEDIT" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
@@ -302,25 +265,24 @@ if (isset($_GET['id'])) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
-                                        
-                                                <tr>
-                                                    <td class="align-middle">Certificado de Nacimiento</td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/certificadoNac.php') ?></td>
-                                                    <td class="align-middle">
-                                                        <div class="input-group ">
-                                                            <input type="file" id="idNACinput" name="nameNACdocEDIT" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idNACinput')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+
+
+
                                             <tr>
                                                 <td class="align-middle">Certificado de Antecedentes</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/antecedentes.php') ?></td>
+                                                <td class="align-middle"><?php
+                                                                            if (!empty($editHonorario['RutaAntec'])) { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $editHonorario['RutaAntec']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $editHonorario['RutaAntec'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                            <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault();elimina_doc_h('RutaAntec', '<?php echo $editHonorario['IDTraH']; ?>')"><i class="fa-solid fa-trash"></i></button>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                        </div>
+                                                    <?php } ?>
+                                                </td>
                                                 <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idANTECEinput" name="nameANTECEdocEDIT" class="form-control" accept=".pdf">
@@ -334,7 +296,19 @@ if (isset($_GET['id'])) {
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">Fotocopia Cédula de Identidad</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/fotocopiaCedula.php') ?></td>
+                                                <td class="align-middle"><?php
+                                                                            if (!empty($editHonorario['RutaCedula'])) { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $editHonorario['RutaCedula']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $editHonorario['RutaCedula'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                            <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); elimina_doc_h('RutaCedula', '<?php echo $editHonorario['IDTraH']; ?>')"><i class="fa-solid fa-trash"></i></button>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                        </div>
+                                                    <?php   } ?>
+                                                </td>
                                                 <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idCedulainput" name="nameCeduladocEDIT" class="form-control" accept=".pdf">
@@ -346,25 +320,23 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                          
-                                                <tr>
-                                                    <td class="align-middle">Declaración Jurada</td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/declaracionJ.php') ?></td>
-                                                    <td class="align-middle">
-                                                        <div class="input-group ">
-                                                            <input type="file" id="idDJuradainput" name="nameDJuradadocEDIT" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idDJuradainput')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
 
-                                                        </div>
-                                                    </td>
-                                                </tr>
+
                                             <tr>
                                                 <td class="align-middle">Curriculum Vitae</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/curriculum.php') ?></td>
+                                                <td class="align-middle"> <?php
+                                                                            if (!empty($editHonorario['RutaCV'])) { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $editHonorario['RutaCV']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $editHonorario['RutaCV'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                            <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); elimina_doc_h('RutaCV', '<?php echo $editHonorario['IDTraH']; ?>')"><i class="fa-solid fa-trash"></i></button>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                        </div>
+                                                    <?php } ?>
+                                                </td>
                                                 <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idCVinput" name="nameCVdocEDIT" class="form-control" accept=".pdf">
@@ -378,7 +350,19 @@ if (isset($_GET['id'])) {
                                             </tr>
                                             <tr>
                                                 <td class="align-middle">Certificado de Estudios o Título Profesional</td>
-                                                <td class="align-middle"><?php include('./controller/consulta_archivo/estudios.php') ?></td>
+                                                <td class="align-middle"><?php
+                                                                            if (!empty($editHonorario['RutaEstudio'])) { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $editHonorario['RutaEstudio']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $editHonorario['RutaEstudio'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                            <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); elimina_doc_h('RutaEstudio', '<?php echo $editHonorario['IDTraH']; ?>')"><i class="fa-solid fa-trash"></i></button>
+                                                        </div>
+                                                    <?php } else { ?>
+                                                        <div class="contenedor-botones">
+                                                            <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                        </div>
+                                                    <?php } ?>
+                                                </td>
                                                 <td class="align-middle">
                                                     <div class="input-group ">
                                                         <input type="file" id="idEstudioinput" name="nameEstudiodocEDIT" class="form-control" accept=".pdf">
@@ -390,25 +374,24 @@ if (isset($_GET['id'])) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <?php if ($personaa['Genero'] == 'Masculino') { ?>
-                                                <tr>
-                                                    <td class="align-middle">Certificado de Servicio Militar Obligatorio al día</td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/servicioMilitar.php') ?></td>
-                                                    <td class="align-middle">
-                                                        <div class="input-group ">
-                                                            <input type="file" class="form-control" id="idMilitarDoc" name="nameMilitarDocEDIT" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idMilitarDoc')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr><?php } ?>
-                                            <?php if ($personaa['Medico'] == 'Si') { ?>
+
+                                            <?php if ($editHonorario['Medico'] == 'Si') { ?>
                                                 <tr>
                                                     <td class="align-middle">Examen Único Nacional de Conocimientos de Medicina</td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/examenMedico.php') ?></td>
+                                                    <td class="align-middle"><?php
+                                                                                if (!empty($editHonorario['RutaExaM'])) { ?>
+                                                            <div class="contenedor-botones">
+                                                                <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $editHonorario['RutaExaM']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                                <a href="<?php echo $editHonorario['RutaExaM'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); elimina_doc_h('RutaExaM', '<?php echo $editHonorario['IDTraH']; ?>')"><i class="fa-solid fa-trash"></i></button>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="contenedor-botones">
+                                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                            </div>
+
+                                                        <?php } ?>
+                                                    </td>
                                                     <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idExamenMinput" name="nameExaMdocEDIT" class="form-control" accept=".pdf">
@@ -420,25 +403,24 @@ if (isset($_GET['id'])) {
                                                         </div>
                                                     </td>
                                                 </tr><?php } ?>
-                                         
-                                                <tr>
-                                                    <td class="align-middle">Certificado de Salud Compatible</td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/saludCompatible.php') ?></td>
-                                                    <td class="align-middle">
-                                                        <div class="input-group ">
-                                                            <input type="file" id="idSCompatibleinput" name="nameSCompatibledocEDIT" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idSCompatibleinput')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            <?php if ($personaa['Inscripcion'] == 1) { ?>
+
+
+                                            <?php if ($editHonorario['Inscripcion'] == 1) { ?>
                                                 <tr>
                                                     <td class="align-middle">Certificado de inscripción en el Registro Nacional de Prestadores Individuales</td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/inscripcion.php') ?></td>
+                                                    <td class="align-middle"><?php
+                                                                                if (!empty($editHonorario['RutaInscripcion'])) { ?>
+                                                            <div class="contenedor-botones">
+                                                                <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $editHonorario['RutaInscripcion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                                <a href="<?php echo $editHonorario['RutaInscripcion'] ?>" download class="btn btn-primary boton-descargar w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar" onclick="event.preventDefault(); elimina_doc_h('RutaInscripcion', '<?php echo $editHonorario['IDTraH']; ?>')"><i class="fa-solid fa-trash"></i></button>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="contenedor-botones">
+                                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </td>
                                                     <td class="align-middle">
                                                         <div class="input-group ">
                                                             <input type="file" id="idInscripinput" name="nameInscripdocEDIT" class="form-control" accept=".pdf">
@@ -449,39 +431,11 @@ if (isset($_GET['id'])) {
                                                             </button>
                                                         </div>
                                                     </td>
-                                                </tr><?php } ?>
-                                                <tr>
-                                                    <td class="align-middle"> Certificado de Afiliación AFP
-                                                    </td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/afp.php') ?></td>
-                                                    <td class="align-middle">
-                                                        <div class="input-group ">
-                                                            <input type="file" id="idAFPinput" name="nameAFPdocEDIT" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idAFPinput')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
-
-                                                        </div>
-                                                    </td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="align-middle">Certificado de Afiliación Previsión
-                                                    </td>
-                                                    <td class="align-middle"><?php include('./controller/consulta_archivo/prevision.php') ?></td>
-                                                    <td class="align-middle">
-                                                        <div class="input-group ">
-                                                            <input type="file" id="idPREVinput" name="namePREVdocEDIT" class="form-control" accept=".pdf">
-                                                            <button class="button" type="button" onclick="clearFileInput('idPREVinput')" style="width: 40px !important;">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                </svg>
-                                                            </button>
 
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                            <?php } ?>
+
+
                                         </tbody>
                                     </table>
                                     <br>
@@ -499,7 +453,7 @@ if (isset($_GET['id'])) {
                         <br>
                         <div id="editcal">
                             <?php
-                            $sqlCalificacion = "SELECT * FROM calificaciones WHERE IDTra = $idtra";
+                            $sqlCalificacion = "SELECT * FROM calificaciones WHERE IDTra = $idh";
                             $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
                             ?>
 
@@ -525,7 +479,7 @@ if (isset($_GET['id'])) {
                                         <tbody>
                                             <?php while ($mostrar = mysqli_fetch_array($resultadoCalif)) { ?>
                                                 <form method="POST" enctype="multipart/form-data" id="edicion_calif_<?php echo $mostrar['IDCalif'] ?>" class="edicionCalif">
-                                                    <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
+                                                    <input name="idtracal" value="<?php echo $idh ?>" class="form-control" id="idtracal" hidden>
                                                     <tr>
 
                                                         <td class="align-middle text-center">

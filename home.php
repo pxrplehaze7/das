@@ -39,91 +39,105 @@ if (!isset($_SESSION['rol'])) {
                     <div class="row">
                         <br>
                         <div class="col-md-6">
-                            <form class="d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="info_contrata.php" method="POST" id="searchForm">
-                                <div class="input-group">
-                                <label for="nameBuscaRut1">Buscar por RUT:</label>
 
-                                    <input class="form-control" type="text" name="nameBuscaRut" id="nameBuscaRut" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                    <button class="btn btn-primary btn-buscar" id="btnNavbarSearch" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                    </button>
+                            <div class="card text-white mb-4 bg-dark d-flex align-items-center">
+                                <div class="text-center">
+
+
+                                    <form class="d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0" action="info_honorario.php" method="POST" id="searchFormHonorario">
+                                        <label for="nameBuscaRutHonorario">Buscar Honorario:</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="nameBuscaRutHonorario" id="nameBuscaRutHonorario" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchHonorario" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+
                                 </div>
-                            </form>
+
+                            </div>
+
                         </div>
 
                         <div class="col-md-6">
+                            <div class="card text-white mb-4 bg-dark d-flex align-items-center">
+                                <div class="text-center">
 
-                            <!-- Navbar Search-->
-                            <form class="d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
-                                <div class="input-group">
-                                <label for="nameBuscaRut1">Buscar contrata</label>
+                                    <!-- Navbar Search-->
+                                    <form class="d-md-inline-block form-inline ms-auto me-0  my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
+                                        <label for="nameBuscaRutContrata">Buscar a Contrata e Indefinido</label>
+                                        <div class="input-group">
 
-                                    <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
-                                    <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                        </svg>
-                                    </button>
+                                            <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
+                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+
+                            </div>
                         </div>
 
+
+
+
+
+                        <br>
+                        <ol class="breadcrumb mb-4"></ol>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
+                                <div class="card text-white mb-4" style="background-color:#463bfa;">
+                                    <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
+                                        <div class="card-body">Personal Registrado</div>
+                                        <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
+                                    </div>
+                                    <div class="card-body numero"><?php echo $total_t; ?></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
+                                <div class="card text-white mb-4" style="background-color:#00c4a0;">
+                                    <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
+                                        <div class="card-body">Documentación al Día</div>
+                                        <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
+                                    </div>
+                                    <div class="card-body numero"><?php echo $total_c; ?></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
+                                <div class="card text-white mb-4" style="background-color:#f3ab00">
+                                    <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
+                                        <div class="card-body">Documentación Pendiente</div>
+                                        <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
+                                    </div>
+                                    <div class="card-body numero" style="max-height: 150px; overflow-y: auto;"><?php echo $total_nc; ?></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 grafico">
+                                <div class=" card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-area me-1"></i>
+                                        Porcentaje de Cumplimiento Total
+                                    </div>
+                                    <div class="card-body"><canvas id="myChart" width="80%"></canvas></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6 grafico">
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Porcentaje de Cumplimiento según Lugar
+                                    </div>
+                                    <div class="card-body"><canvas id="myChartBar" width="80%"></canvas></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
-
-                    <br>
-                    <ol class="breadcrumb mb-4"></ol>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
-                            <div class="card text-white mb-4" style="background-color:#463bfa;">
-                                <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                    <div class="card-body">Personal Registrado</div>
-                                    <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
-                                </div>
-                                <div class="card-body numero"><?php echo $total_t; ?></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
-                            <div class="card text-white mb-4" style="background-color:#00c4a0;">
-                                <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                    <div class="card-body">Documentación al Día</div>
-                                    <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
-                                </div>
-                                <div class="card-body numero"><?php echo $total_c; ?></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
-                            <div class="card text-white mb-4" style="background-color:#f3ab00">
-                                <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                    <div class="card-body">Documentación Pendiente</div>
-                                    <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
-                                </div>
-                                <div class="card-body numero" style="max-height: 150px; overflow-y: auto;"><?php echo $total_nc; ?></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 grafico">
-                            <div class=" card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-area me-1"></i>
-                                    Porcentaje de Cumplimiento Total
-                                </div>
-                                <div class="card-body"><canvas id="myChart" width="80%"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-md-6 grafico">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <i class="fas fa-chart-bar me-1"></i>
-                                    Porcentaje de Cumplimiento según Lugar
-                                </div>
-                                <div class="card-body"><canvas id="myChartBar" width="80%"></canvas></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </main>
         </div>
     </div>
@@ -259,50 +273,94 @@ if (!isset($_SESSION['rol'])) {
         const ctx2 = document.getElementById('myChart').getContext('2d');
         const myPieChart = new Chart(ctx2, config2);
     </script>
-      <script>
-    document.getElementById("searchFormContrata").addEventListener("submit", function(e) {
-      e.preventDefault();
+    <script>
+        document.getElementById("searchFormContrata").addEventListener("submit", function(e) {
+            e.preventDefault();
 
-      var input = document.getElementById("nameBuscaRutContrata").value.trim();
-      if (input.length < 9) {
-        e.preventDefault();
-        alert("El campo debe tener al menos 9 caracteres.");
-      } else {
-        $.ajax({
-            url: "./controller/buscar_contrata.php",
-            method: "POST",
-            data: {
-              nameBuscaRutContrata: input
+            var input = document.getElementById("nameBuscaRutContrata").value.trim();
+            if (input.length < 9) {
+                e.preventDefault();
+                alert("El campo debe tener al menos 9 caracteres.");
+            } else {
+                $.ajax({
+                        url: "./controller/buscar_contrata.php",
+                        method: "POST",
+                        data: {
+                            nameBuscaRutContrata: input
+                        }
+                    })
+                    .done(function(respuesta) {
+                        //alert('LA RESPUESTA ES:'+respuesta)
+                        console.log('200 LA RESPUESTA ES id:', respuesta)
+                        window.location.href = "info_contrata.php?id=" + respuesta
+
+                    })
+                    .fail(function(error) {
+                        //alert('400??LA RESPUESTA ES:'+respuesta)
+                        console.error(error)
+                        $('body').append(error.responseText);
+                    })
+                    .always(function(respuesta) {
+                        console.info("LA RESPUESTA: ", respuesta)
+                    });
             }
-          })
-          .done(function(respuesta) {
-            //alert('LA RESPUESTA ES:'+respuesta)
-            console.log('200 LA RESPUESTA ES id:', respuesta)
-            window.location.href = "info_contrata.php?id=" + respuesta
+        });
 
-          })
-          .fail(function(error) {
-            //alert('400??LA RESPUESTA ES:'+respuesta)
-            console.error(error)
-            $('body').append(error.responseText);
-          })
-          .always(function(respuesta) {
-            console.info("LA RESPUESTA: ", respuesta)
-          });
-      }
-    });
+        document.getElementById("nameBuscaRutContrata").addEventListener("input", function() {
+            var input = this.value.trim();
+            var btnBuscar = document.getElementById("btnNavbarSearchContrata");
 
-    document.getElementById("nameBuscaRutContrata").addEventListener("input", function() {
-      var input = this.value.trim();
-      var btnBuscar = document.getElementById("btnNavbarSearchContrata");
+            if (input.length >= 9) {
+                btnBuscar.removeAttribute("disabled");
+            } else {
+                btnBuscar.setAttribute("disabled", "disabled");
+            }
+        });
+    </script>
+    <script>
+        document.getElementById("searchFormHonorario").addEventListener("submit", function(e) {
+            e.preventDefault();
 
-      if (input.length >= 9) {
-        btnBuscar.removeAttribute("disabled");
-      } else {
-        btnBuscar.setAttribute("disabled", "disabled");
-      }
-    });
-  </script>
+            var input = document.getElementById("nameBuscaRutHonorario").value.trim();
+            if (input.length < 9) {
+                e.preventDefault();
+                alert("El campo debe tener al menos 9 caracteres.");
+            } else {
+                $.ajax({
+                        url: "./controller/buscar_honorario.php",
+                        method: "POST",
+                        data: {
+                            nameBuscaRutHonorario: input
+                        }
+                    })
+                    .done(function(respuesta) {
+                        //alert('LA RESPUESTA ES:'+respuesta)
+                        console.log('200 LA RESPUESTA ES id:', respuesta)
+                        window.location.href = "info_honorario.php?idh=" + respuesta
+
+                    })
+                    .fail(function(error) {
+                        //alert('400??LA RESPUESTA ES:'+respuesta)
+                        console.error(error)
+                        $('body').append(error.responseText);
+                    })
+                    .always(function(respuesta) {
+                        console.info("LA RESPUESTA: ", respuesta)
+                    });
+            }
+        });
+
+        document.getElementById("nameBuscaRutHonorario").addEventListener("input", function() {
+            var input = this.value.trim();
+            var btnBuscar = document.getElementById("btnNavbarSearchHonorario");
+
+            if (input.length >= 9) {
+                btnBuscar.removeAttribute("disabled");
+            } else {
+                btnBuscar.setAttribute("disabled", "disabled");
+            }
+        });
+    </script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

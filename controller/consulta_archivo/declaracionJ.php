@@ -9,7 +9,6 @@ if (!empty($persona['RutaDJur'])) {
 <?php
 } else {
 ?>
-
     <div class="contenedor-botones">
         <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
     </div>

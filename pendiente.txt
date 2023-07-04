@@ -33,7 +33,6 @@ vercomo cambiar los graficos, ya que los trabajadores no estan asociados aun sol
 hacer que en tabla de decretos, se pueda ir a ver, se pueda editar o confirmar,
 se pueda exportar esta tabla asi que debo cambiar la id de la tabla
 
-preguntar que hacer cuando un decreto no se renueva
 
 cuando registro y me manda a decreto, no me muestra alerta de corrcto o error.
 
@@ -44,9 +43,6 @@ falta agregar la tabla equivalente a calificaciones, es decir la tabla de los in
 
 
 ---necesito hacer que cuando registre a un trabajador, por obligacion deba registrar un decreto ya que puede volver atras.
-
-
-en caso de que no se registre un decreto para ese trabajador, se deberia mostrar en la tabla una columna de no cumple en decretos c, donde se hara una consulta de la cantidad de decretos por persona  y si es 0,que diga, sin decretos registrados, si es mas de 0 pero 
 
 
 ver por que cuando en mostrar y presiono en paginacion de contratos, se ve la parte de los botones, es decir la tabla baja(
@@ -67,4 +63,14 @@ revisar como son los informes de labores para tabla de base de datos
 
 cambiar la busqueda, ya que no estara en el menu
 
-busqueda de contrata funciona pero hay que cambiar la redireccion cuando no lo encuentra
+ver si seusan o nolos consulta archivo.
+
+revisar si se eliminan bien o se suben bien los archivos editados.
+
+cuando voy a la lista de honorarios, luego veo el perfil deuno de la lista y luego presiono los desplegables del sidebar, se pone un #.
+falla porque no tengo lo de calificaciones
+
+ver dondemas agregar lode tablap en container-md
+
+
+cuando quiero acyualizar un documento, se guarda la ruta pero no el archivo porque borre la parte dondediceque si la rutanoexiste, se crea

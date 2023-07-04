@@ -8,7 +8,9 @@ if (!isset($_SESSION['rol'])) {
 if (isset($_GET['idh'])) {
     $idh = $_GET['idh'];
 
-    $datosHono = "SELECT * FROM `honorario`
+    $datosHono = "SELECT h.IDTraH, h.IDCat, h.NombreH, h.PaternoH, h.MaternoH, h.Rut, h.Genero, h.Medico, h.Inscripcion, h.Profesion, h.CelularH, h.CorreoH, h.RutaCV, h.RutaAntec, h.RutaCedula, h.RutaEstudio, h.RutaExaM, h.RutaInscripcion, h.Observ, c.NombreCat
+    FROM honorario h
+    INNER JOIN categoria c ON (c.IDCat = h.IDCat)
     WHERE IDTraH='$idh' LIMIT 1";
 
     $resultDatosH = mysqli_query($conn, $datosHono);
@@ -16,6 +18,9 @@ if (isset($_GET['idh'])) {
         $honorario = mysqli_fetch_assoc($resultDatosH);
     }
 }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -422,6 +427,9 @@ if (isset($_GET['idh'])) {
                                 </tbody>
                             </table>
                         </div>
+
+
+                        
                     </div>
                 <?php } ?>
             </main>

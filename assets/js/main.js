@@ -260,7 +260,7 @@ $("#documentosApelacion").on("submit", function (event) {
   });
 });
 
-$("#edicion_pdfs").on("submit", function (event) {
+$("#edicion_pdfs_c").on("submit", function (event) {
   event.stopPropagation();
   event.preventDefault();
   Swal.fire({
@@ -279,7 +279,7 @@ $("#edicion_pdfs").on("submit", function (event) {
       let formData = new FormData(this);
       formData.append('laid', $('#idtrabid').attr('value'));
       $.ajax({
-        url: "./controller/editDocs.php",
+        url: "./controller/edit_documentos_c.php",
         method: "POST",
         data: formData,
         cache: false,
@@ -393,7 +393,7 @@ $("#editInfoContacto").on("submit", function (event) {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: "./controller/editContacto.php",
+        url: "./controller/editar_contacto.php",
         method: "POST",
         data: formData,
         cache: false,
@@ -452,7 +452,7 @@ $("#editInfoPersonal").on("submit", function (event) {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: "./controller/editInfoP.php",
+        url: "./controller/edit_infop_c.php",
         method: "POST",
         data: formData,
         cache: false,
@@ -801,7 +801,7 @@ $(document).ready(function() {
       }).then((result) => {
         if (result.isConfirmed) {
           $.ajax({
-            url: "./controller/editcalif.php",
+            url: "./controller/editar_calificacion.php",
             type: "POST",
             data: new FormData(this),
             processData: false,
@@ -1078,6 +1078,184 @@ $("#RegistroDecretosHonorario").on("submit", function (event) {
         .always(function (respuesta) {
           console.info(respuesta)
         });
+    }
+  });
+});
+
+
+
+$("#editInfoContactoH").on("submit", function (event) {
+  event.preventDefault();
+  var celularInput = document.getElementById("idCelular");
+  var celularValue = celularInput.value.trim();
+
+  if (celularValue !== '' && celularValue.length !== 9) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Advertencia',
+      text: 'El número de teléfono debe tener 9 dígitos',
+      showConfirmButton: true,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#009CFD',
+      didOpen: () => {
+        celularInput.focus();
+      }
+    });
+    return;
+  }
+  var formData = new FormData(this);
+  formData.append('idh', $('#idtrabid').attr('value'));
+  Swal.fire({
+    title: '¿Desea actualizar la información de contacto?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Sí',
+    confirmButtonColor: '#00c4a0',
+    denyButtonColor: '#ba0051'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "./controller/editar_contacto_h.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      }).done(function (response) {
+        response = JSON.parse(response);
+        if (response.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Información actualizada correctamente',
+            showConfirmButton: true
+          }).then(function () {
+            location.reload(); // Actualiza la página
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información',
+            text: response.message,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        }
+      }).fail(function (response) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al actualizar la información',
+          text: response.responseText,
+          showConfirmButton: true,
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#009CFD'
+        });
+      });
+    }
+  });
+});
+
+
+
+$("#editInfoPersonalH").on("submit", function (event) {
+  event.preventDefault(); 
+
+  var formData = new FormData(this);
+
+  formData.append('idh', $('#idtrabid').attr('value'));
+
+  Swal.fire({
+    title: '¿Desea actualizar la información personal?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Sí',
+    confirmButtonColor: '#00c4a0',
+    denyButtonColor: '#ba0051'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: "./controller/edit_infop_h.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      }).done(function (respuesta) {
+        respuesta = JSON.parse(respuesta);
+        if (respuesta.success) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Información actualizada correctamente',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          }).then(function () {
+            location.reload(); 
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al actualizar la información',
+            text: respuesta.message,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        }
+      }).fail(function (respuesta) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al actualizar la información',
+          text: respuesta.responseText,
+          showConfirmButton: true,
+          confirmButtonText: 'Aceptar',
+          confirmButtonColor: '#009CFD'
+        });
+      });
+    }
+  });
+});
+
+
+
+
+$("#edicion_pdfs_h").on("submit", function (event) {
+  event.stopPropagation();
+  event.preventDefault();
+  Swal.fire({
+    title: '¿Desea actualizar los documentos?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+      formData.append('idh', $('#idtrabid').attr('value'));
+      $.ajax({
+        url: "./controller/edit_documentos_h.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+      .done(function (respuesta) {
+        $('body').append(respuesta);
+      })
+      .fail(function (respuesta) {
+        $('body').append(respuesta);
+      })
+      .always(function (respuesta) {
+        console.info("DATA:", respuesta);
+      });
     }
   });
 });

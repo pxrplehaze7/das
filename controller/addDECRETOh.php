@@ -95,8 +95,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
 
 
   if (
-      // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN -- probado
-      (($generoP == "Masculino" || $generoP == "Femenino") &&
+    // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN -- probado
+    (
       $medicoOno == "Si" &&
       $inscripcionOno == TRUE &&
       !empty($ruta_CurriculumFINAL) &&
@@ -107,7 +107,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
       !empty($ruta_AntecedentesFINAL))
     ||
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
+    (
       $medicoOno == "Si" &&
       $inscripcionOno == FALSE &&
       !empty($ruta_CurriculumFINAL) &&
@@ -117,7 +117,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
       !empty($ruta_AntecedentesFINAL))
     ||
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN --probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
+    (
       $medicoOno == "No" &&
       $inscripcionOno == TRUE &&
       !empty($ruta_CurriculumFINAL) &&
@@ -127,7 +127,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
       !empty($ruta_AntecedentesFINAL))
     ||
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN --probado
-    (($generoP == "Masculino" || $generoP == "Femenino") &&
+    (
       $medicoOno == "No" &&
       $inscripcionOno == FALSE &&
       !empty($ruta_CurriculumFINAL) &&
@@ -182,9 +182,9 @@ WHERE IDTraH = $idtraH";
         }
       });
     </script>";
-    
-    // Agregar el código para preguntar si desea registrar otro decreto
-    echo "<script>
+
+      // Agregar el código para preguntar si desea registrar otro decreto
+      echo "<script>
       function registrarOtroDecretos() {
         Swal.fire({
           icon: 'question',

@@ -4,6 +4,22 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
+
+if (isset($_GET['id'])) {
+    $idtra = $_GET['id'];
+
+    $datos = "SELECT t.IDTra, t.IDCat, t.IDAFP, t.IDPrev, t.NombreTra, t.PaternoTra, t.MaternoTra, t.Rut, t.Genero, t.Medico, t.Inscripcion, t.Profesion, t.CelularTra, t.CorreoTra, t.RutaPrev, t.RutaCV, t.RutaAFP, t.RutaNac, t.RutaAntec, t.RutaCedula, t.RutaEstudio, t.RutaDJur, t.RutaSerM, t.RutaSCom, t.RutaExaM, t.RutaInscripcion, t.Observ, c.NombreCat, afp.NombreAFP, prev.NombrePrev
+    FROM trabajador t
+    INNER JOIN categoria c ON (c.IDCat = t.IDCat)
+    INNER JOIN afp afp ON (afp.IDAFP = t.IDAFP)
+    INNER JOIN prevision prev ON (prev.IDPrev = t.IDPrev)
+    WHERE IDTra='$idtra' LIMIT 1";
+
+    $resultDatos = mysqli_query($conn, $datos);
+    if (mysqli_num_rows($resultDatos) == 1) {
+        $persona = mysqli_fetch_assoc($resultDatos);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,7 +48,7 @@ if (!isset($_SESSION['rol'])) {
         <div id="layoutSidenav_content">
             <main>
                 <?php if (isset($persona)) { ?>
-                    <div class="container-md">
+                    <div class="container-md tablap">
                         <div class="title">
                             <div class="ti">
                                 <h1 class="mt-4">Información</h1>

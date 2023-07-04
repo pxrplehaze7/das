@@ -1,5 +1,5 @@
 // ELIMINA DOCUMENTO DEL TRABAJADOR
-function deleteFile(campo, idtra) {
+function elimina_doc_c(campo, idtra) {
   Swal.fire({
     title: '¿Está seguro que desea eliminar el documento?',
     icon: 'warning',
@@ -12,7 +12,7 @@ function deleteFile(campo, idtra) {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: './controller/eliminaRuta.php',
+        url: './controller/elimina_doc_c.php',
         type: 'POST',
         data: { campo: campo, idtra: idtra },
         success: function (respuesta) {
@@ -55,7 +55,7 @@ function deleteFileCal(rutaCalificacion, idCalificacion) {
   }).then((result) => {
     if (result.isConfirmed) {
       $.ajax({
-        url: './controller/eliminaRutaCAL.php',
+        url: './controller/elimina_pdf_calif.php',
         type: 'POST',
         data: { rutaCalificacion: rutaCalificacion, idCalificacion: idCalificacion },
 
@@ -226,3 +226,46 @@ $(document).on('click', '.btn-confirma', function () {
     }
   });
 });
+
+
+// ELIMINA DOCUMENTO DEL TRABAJADOR
+function elimina_doc_h(campo, idh) {
+  Swal.fire({
+    title: '¿Está seguro que desea eliminar el documento?',
+    icon: 'warning',
+    showCancelButton: true,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    cancelButtonText: 'No',
+    cancelButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: './controller/elimina_doc_h.php',
+        type: 'POST',
+        data: { campo: campo, idh: idh },
+        success: function (respuesta) {
+          Swal.fire({
+            title: 'Documento eliminado exitosamente.',
+            icon: 'success',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'         
+          }).then(function () {
+            location.reload();
+          });
+        },
+        error: function (xhr, status, error) {
+          Swal.fire({
+            title: 'Error al eliminar el documento: ' + error,
+            icon: 'error',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        },
+      });
+    }
+  });
+}
