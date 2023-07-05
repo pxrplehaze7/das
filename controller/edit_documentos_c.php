@@ -3,6 +3,7 @@ include("./config/conexion.php");
 $idtrab = $_POST['laid'];
 $rutPersona = $_POST['nameRutEditar'];
 $host = $_SERVER['HTTP_HOST'];
+$ruta = 'PDFS/CONTRATA/';
 
 // Obtén la fecha actual en la zona horaria correcta
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
@@ -22,6 +23,12 @@ $pdfEstudios = (!empty($_FILES['nameEstudiodocEDIT']['name'])) ? uniqid() . '.pd
 $pdfDJurada = (!empty($_FILES['nameDJuradadocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfSaludCompat = (!empty($_FILES['nameSCompatibledocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfInscripcion = (!empty($_FILES['nameInscripdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
+
+
+// CARPETAS CON NOMBRE LA ID, SI NO EXISTE LA CREA
+if (!file_exists($ruta . $idtrab)) {
+  mkdir($ruta . $idtrab, 0777, true);
+}
 
 $consultaFile = "SELECT * FROM trabajador WHERE Rut = '$rutPersona'";
 $resFile = mysqli_query($conn, $consultaFile);
@@ -139,7 +146,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
       $medicoOno == "No" &&
-      $inscripcionOno == FALSE &&
+      $inscripcionOno == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -155,7 +162,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // HOMBRE NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
       $medicoOno == "Si" &&
-      $inscripcionOno == TRUE &&
+      $inscripcionOno == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -173,7 +180,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // HOMBRE NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
       $medicoOno == "Si" &&
-      $inscripcionOno == FALSE &&
+      $inscripcionOno == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -190,7 +197,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // HOMBRE NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Masculino" &&
       $medicoOno == "No" &&
-      $inscripcionOno == TRUE &&
+      $inscripcionOno == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -207,7 +214,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // MUJER NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
       $medicoOno == "Si" &&
-      $inscripcionOno == TRUE &&
+      $inscripcionOno == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -224,7 +231,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // MUJER NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
       $medicoOno == "Si" &&
-      $inscripcionOno == FALSE &&
+      $inscripcionOno == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -240,7 +247,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // MUJER NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
       $medicoOno == "No" &&
-      $inscripcionOno == TRUE &&
+      $inscripcionOno == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -256,7 +263,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     // MUJER NO HONORARIO, NO ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     ($generoP == "Femenino" &&
       $medicoOno == "No" &&
-      $inscripcionOno == FALSE &&
+      $inscripcionOno == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -268,9 +275,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_SaludCompatFINAL)
     )
   ) {
-    $cumple = TRUE;
+    $cumple = 1;
   } else {
-    $cumple = FALSE;
+    $cumple = 0;
   }
 
 

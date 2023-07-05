@@ -12,8 +12,6 @@ arreglar graficos separando a contrata y a honorario segun el lugar
 
 
 
-hacer que se eliminen y modifiquen datos del honorario:
-datos personales, documentos, decretos, informede labores.
 
 hacer que los decretos se puedan editar en el a contrata tambien
 
@@ -34,10 +32,8 @@ hacer que en tabla de decretos, se pueda ir a ver, se pueda editar o confirmar,
 se pueda exportar esta tabla asi que debo cambiar la id de la tabla
 
 
-cuando registro y me manda a decreto, no me muestra alerta de corrcto o error.
 
 
-falta agregar la tabla equivalente a calificaciones, es decir la tabla de los informes de labores
 
 
 
@@ -59,9 +55,7 @@ buscar como montar servidor y sus requerimientos, entregar informe
 
 botones se me desordenan cuando se muestra la info
 
-revisar como son los informes de labores para tabla de base de datos
 
-cambiar la busqueda, ya que no estara en el menu
 
 ver si seusan o nolos consulta archivo.
 
@@ -74,3 +68,10 @@ ver dondemas agregar lode tablap en container-md
 
 
 cuando quiero acyualizar un documento, se guarda la ruta pero no el archivo porque borre la parte dondediceque si la rutanoexiste, se crea
+
+eliminar autocompletar de calif y informe
+
+en el otro sistema mencionan acces, base de datos en nube, que se actualice la informacion, que no se bloquee al modificar el mismo dato al mismo tiempo, las telefonistas
+creo que lo de editar los decretos debe hacerse como el informe, pero con validaciones ya que pueden vencer
+
+agregue que si se elimina la vcarpeta de los archivos y luego se actualizan los documentos, aunque no este la carpeta, se crea y se guardan donde corresponde, solo en contrata. falta para todos los otros documentos.

@@ -453,84 +453,75 @@ if (isset($_GET['idh'])) {
                         <br>
                         <div id="editcal">
                             <?php
-                            $sqlCalificacion = "SELECT * FROM calificaciones WHERE IDTra = $idh";
-                            $resultadoCalif = mysqli_query($conn, $sqlCalificacion);
+                            $sqlinf = "SELECT * FROM informes WHERE IDTraH = $idh";
+                            $resultadoInf = mysqli_query($conn, $sqlinf);
                             ?>
 
                             <div class="documentacion seccion seccion-cal">
-                                <h6>Calificaciones</h6>
+                                <h6>Informes de Labores </h6>
                                 <div class="alert alert-info">
-                                    <strong>¡Importante!</strong> Las calificaciones se guardan individualmente.
+                                    <strong>¡Importante!</strong> Los informes se guardan individualmente.
                                 </div>
                                 <div class="" style="overflow-x: auto;">
                                     <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
 
                                         <thead>
                                             <tr>
-                                                <th class="text-center">Fecha</th>
-                                                <th class="text-center">Calificación</th>
-                                                <th class="text-center">Subir o Cambiar Calificación</th>
-                                                <th class="text-center" style="width: 65px !important;">Apelo</th>
-                                                <th class="text-center">Apelación</th>
-                                                <th class="text-center">Subir o Cambiar Apelación</th>
+                                                <th class="text-center">Mes</th>
+                                                <th class="text-center">Año</th>
+                                                <th class="text-center">Función</th>
+                                                <th class="text-center">Informe</th>
+                                                <th class="text-center">Subir o Cambiar Informe</th>
                                                 <th class="text-center">Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php while ($mostrar = mysqli_fetch_array($resultadoCalif)) { ?>
-                                                <form method="POST" enctype="multipart/form-data" id="edicion_calif_<?php echo $mostrar['IDCalif'] ?>" class="edicionCalif">
-                                                    <input name="idtracal" value="<?php echo $idh ?>" class="form-control" id="idtracal" hidden>
+                                            <?php while ($mostrar = mysqli_fetch_array($resultadoInf)) { ?>
+
+                                                <form method="POST" enctype="multipart/form-data" id="edicion_informe_<?php echo $mostrar['IDinf'] ?>" class="edicionInforme">
+                                                    <input name="idtrah" value="<?php echo $idh ?>" class="form-control" id="idtrah" hidden>
                                                     <tr>
+                                                        <!-- MES -->
+                                                        <td class="align-middle text-center">
+                                                            <select class="form-control" name="namemes_<?php echo $mostrar['IDinf'] ?>" id="selectapelo">
+                                                                <option value="Enero" <?php if ($mostrar['mes'] == 'Enero') echo 'selected'; ?>>Enero</option>
+                                                                <option value="Febrero" <?php if ($mostrar['mes'] == 'Febrero') echo 'selected'; ?>>Febrero</option>
+                                                                <option value="Marzo" <?php if ($mostrar['mes'] == 'Marzo') echo 'selected'; ?>>Marzo</option>
+                                                                <option value="Abril" <?php if ($mostrar['mes'] == 'Abril') echo 'selected'; ?>>Abril</option>
+                                                                <option value="Mayo" <?php if ($mostrar['mes'] == 'Mayo') echo 'selected'; ?>>Mayo</option>
+                                                                <option value="Junio" <?php if ($mostrar['mes'] == 'Junio') echo 'selected'; ?>>Junio</option>
+                                                                <option value="Julio" <?php if ($mostrar['mes'] == 'Julio') echo 'selected'; ?>>Julio</option>
+                                                                <option value="Agosto" <?php if ($mostrar['mes'] == 'Agosto') echo 'selected'; ?>>Agosto</option>
+                                                                <option value="Septiembre" <?php if ($mostrar['mes'] == 'Septiembre') echo 'selected'; ?>>Septiembre</option>
+                                                                <option value="Octubre" <?php if ($mostrar['mes'] == 'Octubre') echo 'selected'; ?>>Octubre</option>
+                                                                <option value="Noviembre" <?php if ($mostrar['mes'] == 'Noviembre') echo 'selected'; ?>>Noviembre</option>
+                                                                <option value="Diciembre" <?php if ($mostrar['mes'] == 'Diciembre') echo 'selected'; ?>>Diciembre</option>
 
-                                                        <td class="align-middle text-center">
-                                                            <input style="min-width: 99px; max-width:100px" maxlength="9" type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_<?php echo $mostrar['IDCalif'] ?>" id="fechacalif">
-                                                        </td>
-                                                        <td class="align-middle text-center">
-                                                            <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
-                                                                <center>
-                                                                    <div class="contenedor-botones">
-                                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')">
-                                                                            <i class="fa-solid fa-expand"></i>
-                                                                        </button>
-
-                                                                        <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileCal('<?php echo $mostrar['RutaCalificacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
-                                                                            <i class="fa-solid fa-trash"></i>
-                                                                        </button>
-                                                                    </div>
-                                                                </center>
-                                                            <?php } else { ?>
-                                                                <div class="contenedor-botones">
-                                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </td>
-                                                        <td>
-                                                            <div class="input-group custom-input">
-                                                                <input type="file" id="idcalifEDIT_<?php echo $mostrar['IDCalif'] ?>" name="nameCalif_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
-                                                                <button class="button" type="button" onclick="clearFileInput('idcalifEDIT_<?php echo $mostrar['IDCalif'] ?>')" style="width: 40px !important;">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                                    </svg>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                        <td class="align-middle text-center">
-                                                            <select class="form-control" name="nameapelo_<?php echo $mostrar['IDCalif'] ?>" id="selectapelo">
-                                                                <option value="Si" <?php if ($mostrar['apelo'] == 'Si') echo 'selected'; ?>>Si</option>
-                                                                <option value="No" <?php if ($mostrar['apelo'] == 'No') echo 'selected'; ?>>No</option>
                                                             </select>
                                                         </td>
-                                                        <td class="centrado">
-                                                            <?php if (!empty($mostrar['RutaApelacion'])) { ?>
+
+                                                        <!-- AÑO -->
+                                                        <td class="align-middle text-center">
+                                                            <input maxlength="4" type="text" class="form-control" value="<?php echo $mostrar['anno'] ?>" name="nameAnno_<?php echo $mostrar['IDinf'] ?>" id="idanno">
+                                                        </td>
+
+                                                        <!-- FUNCION -->
+                                                        <td class="align-middle text-center">
+                                                            <input type="text" class="form-control" value="<?php echo $mostrar['funcion'] ?>" name="nameFuncion_<?php echo $mostrar['IDinf'] ?>" id="idfuncion">
+                                                        </td>
+
+
+                                                        <!-- ARCHIVO -->
+                                                        <td class="align-middle text-center">
+                                                            <?php if (!empty($mostrar['RutaInforme'])) { ?>
                                                                 <center>
                                                                     <div class="contenedor-botones">
-                                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')">
+                                                                        <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaInforme'] ?>', '_blank')">
                                                                             <i class="fa-solid fa-expand"></i>
                                                                         </button>
 
-                                                                        <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileApela('<?php echo $mostrar['RutaApelacion'] ?>', '<?php echo $mostrar['IDCalif'] ?>')">
+                                                                        <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileInforme('<?php echo $mostrar['RutaInforme'] ?>', '<?php echo $mostrar['IDinf'] ?>')">
                                                                             <i class="fa-solid fa-trash"></i>
-
                                                                         </button>
                                                                     </div>
                                                                 </center>
@@ -540,16 +531,23 @@ if (isset($_GET['idh'])) {
                                                                 </div>
                                                             <?php } ?>
                                                         </td>
+
+
+
+                                                        <!-- SUBIR ARCHIVO -->
                                                         <td>
-                                                            <div class="input-group file-cal">
-                                                                <input type="file" id="idapelaEDIT_<?php echo $mostrar['IDCalif'] ?>" name="nameApela_<?php echo $mostrar['IDCalif'] ?>" class="form-control" accept=".pdf">
-                                                                <button class="button" type="button" onclick="clearFileInput('idapelaEDIT_<?php echo $mostrar['IDCalif'] ?>')" style="width: 40px !important;">
+                                                            <div class="input-group custom-input">
+                                                                <input type="file" id="IDinfEDIT_<?php echo $mostrar['IDinf'] ?>" name="nameINFORME_<?php echo $mostrar['IDinf'] ?>" class="form-control" accept=".pdf">
+                                                                <button class="button" type="button" onclick="clearFileInput('IDinfEDIT_<?php echo $mostrar['IDinf'] ?>')" style="width: 40px !important;">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
                                                                         <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                                                     </svg>
                                                                 </button>
                                                             </div>
                                                         </td>
+
+
+
                                                         <td class="text-center">
 
                                                             <div class="contenedor-botones">
@@ -557,7 +555,7 @@ if (isset($_GET['idh'])) {
                                                                     <i class="fas fa-save"></i>
                                                                 </button>
 
-                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar-calif d-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
+                                                                <button type="button" class="btn btn-danger w-100 boton-eliminar-inf d-calif" data-informee="<?php echo $mostrar['IDinf'] ?>">
                                                                     <i class="fas fa-times"></i>
                                                                 </button>
                                                             </div>

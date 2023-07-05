@@ -148,7 +148,7 @@ $(document).on('click', '.btnEliminarUsuario', function () {
     if (result.isConfirmed) {
       // Realizar la eliminación del usuario mediante una solicitud AJAX
       $.ajax({
-        url: './controller/eliminaUsuario.php',
+        url: './controller/elimina_usuario.php',
         type: 'POST',
         data: { idUsuario: idUsuario },
         success: function (respuesta) {
@@ -264,6 +264,52 @@ function elimina_doc_h(campo, idh) {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#009CFD'
           });
+        },
+      });
+    }
+  });
+}
+
+
+
+//ELIMINA LA CALIFICACION
+function deleteFileInforme(rutaInforme, idInforme) {
+  Swal.fire({
+    title: '¿Está seguro que desea eliminar el informe?',
+    icon: 'warning',
+    showCancelButton: true,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    cancelButtonText: 'No',
+    cancelButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        url: './controller/elimina_pdf_informe.php',
+        type: 'POST',
+        data: { rutaInforme: rutaInforme, idInforme: idInforme },
+
+        success: function (respuesta) {
+          Swal.fire({
+            title: 'Informe eliminado exitosamente.',
+            icon: 'success',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          }).then(function () {
+            location.reload(); // Actualiza la página
+          });
+        },
+        error: function (xhr, status, error) {
+          console.log(error),
+            Swal.fire({
+              title: 'Error al eliminar el informe: ' + error,
+              icon: 'error',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            });
         },
       });
     }

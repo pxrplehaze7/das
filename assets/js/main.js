@@ -59,7 +59,7 @@ $("#documentosObligatorios").on("submit", function (event) {
 
 
       $.ajax({
-        url: "./controller/addPersonal.php",
+        url: "./controller/add_contrata.php",
         method: "POST",
         data: formData,
         cache: false,
@@ -68,12 +68,6 @@ $("#documentosObligatorios").on("submit", function (event) {
       })
         .done(function (respuesta) {
           $('body').append(respuesta);
-          // window.location.href = 'registro_decreto_c.php?id='+ respuesta;
-          
-          // document.getElementById("documentosObligatorios").reset();
-          // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-          // $('#rut-validation').html('');
-
         })
         .fail(function (respuesta) {
           $('body').append(respuesta);
@@ -94,7 +88,7 @@ $("#documentosObligatorios").on("submit", function (event) {
 
 //PARA QUE NO QUEDE NINGUN RADIO MARCADO POR DEFECTO
 window.addEventListener("load", function () {
-  if (document.URL.includes("/registro_contrata_i.php")) {
+  if (document.URL.includes("/registro_contrata.php")) {
     // OBTIENE TODOS LOS ELEMENTOS DE TIPO RADIO
     var radios = document.querySelectorAll('input[type="radio"]');
 
@@ -215,7 +209,7 @@ $("#documentosApelacion").on("submit", function (event) {
     } else {
       let formData = new FormData(this);
       $.ajax({
-        url: "./controller/addCalificacion.php",
+        url: "./controller/add_calificacion.php",
         method: "POST",
         data: formData,
         cache: false,
@@ -606,7 +600,7 @@ $(document).ready(function () {
       if (result.isConfirmed) {
         var formData = new FormData(this);
         $.ajax({
-          url: "./controller/editUser.php",
+          url: "./controller/edit_usuario.php",
           method: "POST",
           data: formData,
           cache: false,
@@ -891,10 +885,128 @@ $(document).ready(function() {
 
 
 
+
+
+
+  
+  $(".edicionInforme").each(function () {
+    var formularioIDinforme = $(this).attr("id");
+
+    $(this).submit(function (event) {
+      event.preventDefault();
+      Swal.fire({
+        title: '¿Desea actualizar el informe?',
+        showDenyButton: true,
+        showCancelButton: false,
+        allowOutsideClick: false,
+        confirmButtonText: 'Sí',
+        confirmButtonColor: '#00c4a0',
+        denyButtonColor: '#ba0051'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "./controller/editar_informe.php",
+            type: "POST",
+            data: new FormData(this),
+            processData: false,
+            contentType: false,
+            success: function (response) {
+              console.log(response);
+              Swal.fire({
+                icon: 'success',
+                title: 'Informe actualizada correctamente',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'            
+                }).then(function () {
+                location.reload(); 
+              });
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+              Swal.fire({
+                title: "Error",
+                text: "Ocurrió un error al actualizar el informe",
+                icon: "error",
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'
+              });
+            }
+          });
+        }
+      });
+    });
+
+    
+    $(".boton-eliminar-inf").click(function (event) {
+      event.preventDefault();
+      var idinf = $(this).data("informee");
+
+      Swal.fire({
+        title: '¿Desea eliminar el informe?',
+        showDenyButton: true,
+        showCancelButton: false,
+        allowOutsideClick: false,
+        confirmButtonText: 'Sí',
+        confirmButtonColor: '#00c4a0',
+        denyButtonColor: '#ba0051'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "./controller/elimina_informe_completo.php",
+            type: "POST",
+            data: { idinf: idinf },
+            success: function (response) {
+              console.log(response);
+    
+              Swal.fire({
+                icon: 'success',
+                title: 'Informe eliminado correctamente',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'            
+              }).then(function () {
+                location.reload(); 
+              });
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+              Swal.fire({
+                title: "Error",
+                text: "Ocurrió un error al eliminar el informe",
+                icon: "error",
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#009CFD'
+              });
+            }
+          });
+        }
+      });
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   $("#RegistroDecretos").on("submit", function (event) {
     event.preventDefault();
-  
-  
     Swal.fire({
       title: '¿Realmente registrar este decreto?',
       showDenyButton: true,
@@ -910,11 +1022,10 @@ $(document).ready(function() {
       } else {
         let formData = new FormData(this);
   
-        formData.append('idtraba', $('#idtrabid').attr('value'));
-  
+        formData.append('idcontrata', $('#idtrabid').attr('value'));
   
         $.ajax({
-          url: "./controller/addDECRETO.php",
+          url: "./controller/add_decreto_contrata.php",
           method: "POST",
           data: formData,
           cache: false,
@@ -925,7 +1036,6 @@ $(document).ready(function() {
             $('body').append(respuesta);
             console.log(respuesta)
 
-  
           })
           .fail(function (respuesta) {
             $('body').append(respuesta);
@@ -938,6 +1048,9 @@ $(document).ready(function() {
       }
     });
   });
+
+
+
 
 
 
@@ -996,7 +1109,7 @@ $("#documentosHonorario").on("submit", function (event) {
 
 
       $.ajax({
-        url: "./controller/addHonorario.php",
+        url: "./controller/add_honorario.php",
         method: "POST",
         data: formData,
         cache: false,
@@ -1005,12 +1118,6 @@ $("#documentosHonorario").on("submit", function (event) {
       })
         .done(function (respuesta) {
           $('body').append(respuesta);
-          window.location.href = 'registro_decreto_honorario.php?idh='+ respuesta;
-
-          // document.getElementById("documentosObligatorios").reset();
-          // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-          // $('#rut-validation').html('');
-
         })
         .fail(function (respuesta) {
           $('body').append(respuesta);
@@ -1024,6 +1131,7 @@ $("#documentosHonorario").on("submit", function (event) {
     }
   });
 });
+
 
 
 
@@ -1047,30 +1155,24 @@ $("#RegistroDecretosHonorario").on("submit", function (event) {
     } else {
       let formData = new FormData(this);
 
-      formData.append('laid', $('#idtrabid').attr('value'));
+      formData.append('idhonorario', $('#idtrabid').attr('value'));
 
 
       $.ajax({
-        url: "./controller/addDECRETOh.php",
+        url: "./controller/add_decreto_honorario.php",
         method: "POST",
         data: formData,
         cache: false,
         contentType: false,
         processData: false
       })
-        .done(function (respuesta) {
-          $('body').append(respuesta);
+      .done(function (respuesta) {
+        $('body').append(respuesta);
+        console.log(respuesta)
 
-          // document.getElementById("documentosObligatorios").reset();
-          // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-          // $('#rut-validation').html('');
-
-        })
+      })
         .fail(function (respuesta) {
           $('body').append(respuesta);
-          //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-          $('#rut-validation').html('');
-
         })
         .always(function (respuesta) {
           console.info(respuesta)
@@ -1256,3 +1358,62 @@ $("#edicion_pdfs_h").on("submit", function (event) {
     }
   });
 });
+
+
+
+$("#informelab").on("submit", function (event) {
+  event.preventDefault();
+ 
+  Swal.fire({
+    title: '¿Está seguro de añadir informe?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+      $.ajax({
+        url: "./controller/add_informe.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+      })
+        .done(function (respuesta) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Informe guardado exitosamente',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+          clearFileInput('idInformeInput');
+          $('#idAnno').val('');
+          $('#idFuncion').val('');
+
+          $('#mes').prop('selectedIndex', -1);
+        })
+        .fail(function (respuesta) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al guardar los archivos: ' + respuesta.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        })
+        .always(function (respuesta) {
+          console.info( respuesta);
+        });
+    }
+  });
+});
+
+

@@ -61,7 +61,7 @@ if (isset($_GET['id'])) {
                                     <h6 class="mt-4">Datos Personales</h6>
                                 </div>
                                 <?php if ($_SESSION['rol'] === '1') { ?>
-                                    <form action="editar_registro_contrata_i.php" method="GET">
+                                    <form action="editar_registro_contrata.php" method="GET">
                                         <div class="container-volver">
                                             <div class="title">
                                                 <button class="btn btn-editar" style="width: 90px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
@@ -132,7 +132,7 @@ if (isset($_GET['id'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Contratos</h6>
                                 </div>
-                                <form action="registro_decreto_c.php" method="GET">
+                                <form action="registro_dec_contrata.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Añadir <i class="fa-solid fa-circle-plus"></i></button>
@@ -232,7 +232,7 @@ if (isset($_GET['id'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Documentos</h6>
                                 </div>
-                                <form action="pdfs_anteriores.php" method="GET">
+                                <form action="pdfs_antes_contrata.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Anteriores <i class="fas fa-history"></i></button>

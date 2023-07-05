@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
         <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-lg">
+                <div class="container-md">
                     <form id="RegistroDecretos" enctype="multipart/form-data" method="POST" autocomplete="off">
                         <input name="idtraname" value="<?php echo $idtra ?>" id="idtrabid" hidden>
 

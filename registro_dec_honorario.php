@@ -11,8 +11,7 @@ if ($_SESSION['rol'] !== '1') {
 }
 if (isset($_GET['idh'])) {
     $idtraH = $_GET['idh'];
-
-    $sqldec = "SELECT Rut, NombreH, PaternoH, MaternoH FROM `honorario`
+    $sqldec = "SELECT Rut, NombreH, PaternoH, MaternoH FROM honorario
     WHERE IDTraH='$idtraH' LIMIT 1";
 
     $sqldec = mysqli_query($conn, $sqldec);
@@ -79,7 +78,7 @@ if (isset($_GET['idh'])) {
                                     <div class="col-md-6 col-sm-6">
                                         <label for="tipoHono"><span style="color: #c40055;">*</span> Tipo de Honorario</label>
                                         <select name="nametipoh" class="form-select" id="tipoHono">
-                                        <option hidden value=""> Selecciona</option>; 
+                                            <option hidden value=""> Selecciona</option>;
                                             <option value="Por Jornada">Por Jornada</option>
                                             <option value="Por Horas">Por Horas</option>
                                             <option value="Por Llamado">Por Llamado</option>

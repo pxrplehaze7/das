@@ -22,7 +22,7 @@
           </a>
           <div class="collapse" id="collapseTrabajador" aria-labelledby="headingTrabajador" data-bs-parent="#sidenavAccordion">
             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionTrabajador">
-              <a class="nav-link" href="registro_contrata_i.php">
+              <a class="nav-link" href="registro_contrata.php">
                 A Contrata e Indefinidos
               </a>
 
@@ -56,7 +56,7 @@
         </a>
         <div class="collapse" id="collapseListaTrabajadores" aria-labelledby="headingListaTrabajadores" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionListaTrabajadores">
-            <a class="nav-link" href="lista_contrata_i.php">
+            <a class="nav-link" href="lista_contrata.php">
               A Contrata e Indefinidos
             </a>
 
@@ -80,11 +80,11 @@
         </a>
         <div class="collapse" id="collapseListaDecretos" aria-labelledby="headingListaDecretos" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionListaDecretos">
-            <a class="nav-link" href="lista_decretos_c.php">
+            <a class="nav-link" href="lista_dec_contrata.php">
               A Contrata e Indefinidos
             </a>
 
-            <a class="nav-link" href="lista_decretos_h.php">
+            <a class="nav-link" href="lista_dec_honorario.php">
               A honorarios
             </a>
           </nav>

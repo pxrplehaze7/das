@@ -21,7 +21,7 @@ $correoP    = strtolower($correoP);
 $profesionP = $_POST['nameProfesion'];
 $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
-$cumple = FALSE;
+$cumple = 0;
 $host = $_SERVER['HTTP_HOST'];
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
@@ -133,8 +133,6 @@ VALUES ($idtraH,$categoriaP,'$nombreP','$paternoP','$maternoP','$rutPersona','$g
       throw new Exception(mysqli_error($conn));
     } else {
 
-      echo $idtraH;
-
       echo "<script>
       Swal.fire({
         icon: 'success',
@@ -143,7 +141,7 @@ VALUES ($idtraH,$categoriaP,'$nombreP','$paternoP','$maternoP','$rutPersona','$g
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       }).then(() => {
-        window.location.href = 'registro_decreto_honorario.php?id=' + $idtraH;
+        window.location.href = 'registro_dec_honorario.php?idh=' + $idtraH;
       });
     </script>";
     }

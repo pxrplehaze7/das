@@ -29,7 +29,7 @@ $fechaActual = $fechaActual->format('d-m-Y');
 $fechaSubidaDoc = $fechaActual;
 $ruta = 'PDFS/CONTRATA/';
 $fechaActual = strtotime($fechaActual);
-$cumple = FALSE;
+$cumple = 0;
 
 
 $categoriaP = $_POST['nameSelectCat'];
@@ -197,7 +197,7 @@ VALUES ($idtra,$categoriaP,$afpP,$prevP,'$nombreP','$paternoP','$maternoP','$rut
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       }).then(() => {
-        window.location.href = 'registro_decreto_c.php?id=' + $idtra;
+        window.location.href = 'registro_dec_contrata.php?id=' + $idtra;
       });
     </script>";
     }

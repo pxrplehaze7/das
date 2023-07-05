@@ -45,7 +45,7 @@ if (
     ($generoP == "Masculino" || $generoP == "Femenino") &&
     $contratoP == 3 &&
     $medicoOno == "Si" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
@@ -60,7 +60,7 @@ if (
     ($generoP == "Masculino" || $generoP == "Femenino") &&
     $contratoP == 3 &&
     $medicoOno == "Si" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
@@ -73,7 +73,7 @@ if (
   (($generoP == "Masculino" || $generoP == "Femenino") &&
     $contratoP == 3 &&
     $medicoOno == "No" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
@@ -85,7 +85,7 @@ if (
   (($generoP == "Masculino" || $generoP == "Femenino") &&
     $contratoP == 3 &&
     $medicoOno == "No" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
@@ -96,7 +96,7 @@ if (
   ($generoP == "Masculino" &&
     $contratoP != 3 &&
     $medicoOno == "No" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -114,7 +114,7 @@ if (
   ($generoP == "Masculino" &&
     $contratoP != 3 &&
     $medicoOno == "Si" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -134,7 +134,7 @@ if (
   ($generoP == "Masculino" &&
     $contratoP != 3 &&
     $medicoOno == "Si" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -153,7 +153,7 @@ if (
   ($generoP == "Masculino" &&
     $contratoP != 3 &&
     $medicoOno == "No" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -172,7 +172,7 @@ if (
   ($generoP == "Femenino" &&
     $contratoP != 3 &&
     $medicoOno == "Si" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -191,7 +191,7 @@ if (
   ($generoP == "Femenino" &&
     $contratoP != 3 &&
     $medicoOno == "Si" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -209,7 +209,7 @@ if (
   ($generoP == "Femenino" &&
     $contratoP != 3 &&
     $medicoOno == "No" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -227,7 +227,7 @@ if (
   ($generoP == "Femenino" &&
     $contratoP != 3 &&
     $medicoOno == "No" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_ContratoFINAL) &&
     !empty($ruta_DJuradaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -240,9 +240,9 @@ if (
     !empty($ruta_SaludCompatFINAL)
   )
 ) {
-  $cumple = TRUE;
+  $cumple = 1;
 } else {
-  $cumple = FALSE;
+  $cumple = 0;
 }
 
 $actualizaC = " UPDATE trabajador SET 

@@ -1,7 +1,7 @@
 <?php
+if (isset($_POST['idhonorario'])) {
 include("./config/conexion.php");
-
-$idtraH = $_POST['laid'];
+$idtraH = $_POST['idhonorario'];
 $rutPersona = $_POST['nameRut'];
 $numdecreto  = $_POST['nameDecreto'];
 if ($_POST['nameSelectLugar'] != "") {
@@ -24,11 +24,6 @@ $inicioDecreto = date('Y-m-d', strtotime($inicioDecreto));
 
 $finDecreto = $_POST['nameFechaTermino'];
 $finDecreto = date('Y-m-d', strtotime($finDecreto));
-
-
-
-
-echo "El valor de finDecreto es: " . $finDecreto;
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('Y-m-d');
 $fechaSubidaCon = date('d-m-y');
@@ -65,6 +60,7 @@ $sector = mysqli_real_escape_string($conn, $sector);
 $numdecreto = mysqli_real_escape_string($conn, $numdecreto);
 
 $pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
+
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$rutPersona'")) > 0) {
 
   $ruta_ContratoFINAL = NULL;
@@ -98,7 +94,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN -- probado
     (
       $medicoOno == "Si" &&
-      $inscripcionOno == TRUE &&
+      $inscripcionOno == 1 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -109,7 +105,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN --probado
     (
       $medicoOno == "Si" &&
-      $inscripcionOno == FALSE &&
+      $inscripcionOno == 0 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -119,7 +115,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN --probado
     (
       $medicoOno == "No" &&
-      $inscripcionOno == TRUE &&
+      $inscripcionOno == 1 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -129,16 +125,16 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN --probado
     (
       $medicoOno == "No" &&
-      $inscripcionOno == FALSE &&
+      $inscripcionOno == 0 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_AntecedentesFINAL)
     )
   ) {
-    $cumple = TRUE;
+    $cumple = 1;
   } else {
-    $cumple = FALSE;
+    $cumple = 0;
   }
 
 
@@ -146,9 +142,8 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
   $sqlDecretos = "INSERT INTO decretosh (IDTraH,TipodeHono,IDLugar,IDSector,NDecreto,FechaDoc,RutaCon,FechaInicio,FechaTermino,FechaAlerta,Estado,Confirmacion)
     VALUES ('$idtraH','$tipoHonorario','$lugar','$sector','$numdecreto','$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta','$estadoDecreto','$confirmacion')";
 
-  $sqlcumpleH = "UPDATE honorario
-SET Cumple = $cumple
-WHERE IDTraH = $idtraH";
+  $sqlcumpleH = "UPDATE honorario SET Cumple = $cumple WHERE IDTraH = $idtraH";
+  echo $sqlcumpleH;
 
   try {
     $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
@@ -209,7 +204,7 @@ WHERE IDTraH = $idtraH";
 
           } else {
             // Redireccionar a info_honorario.php
-            location.href = 'info_honorario.php?id=$idtraH';
+            location.href = 'info_honorario.php?idh=$idtraH';
            
           }
         });
@@ -240,5 +235,10 @@ WHERE IDTraH = $idtraH";
   });</script>";
   exit();
 }
-
 mysqli_close($conn);
+} else {
+  // No se ha recibido una ID válida, mostrar mensaje de error o realizar acciones adicionales
+  echo "No se ha recibido una ID válida";
+  exit();
+}
+?>

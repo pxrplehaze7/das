@@ -133,7 +133,7 @@ if (isset($_GET['idh'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Contratos</h6>
                                 </div>
-                                <form action="registro_decreto_h.php" method="GET">
+                                <form action="registro_dec_honorario.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Añadir <i class="fa-solid fa-circle-plus"></i></button>
@@ -226,7 +226,7 @@ if (isset($_GET['idh'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Documentos</h6>
                                 </div>
-                                <form action="pdfs_anteriores_h.php" method="GET">
+                                <form action="pdfs_antes_honorario.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
                                             <button class="btn btn-editar" type="submit" style="width: 120px;">Anteriores <i class="fas fa-history"></i></button>
@@ -244,7 +244,7 @@ if (isset($_GET['idh'])) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 
+
 
                                     <tr>
                                         <td class="align-middle custom-height">Certificado de Antecedentes</td>
@@ -310,9 +310,9 @@ if (isset($_GET['idh'])) {
                                             <?php } ?>
                                         </td>
                                     </tr>
-                          
 
-                                   
+
+
 
                                     <?php if ($honorario['Inscripcion'] == 1) { ?>
                                         <tr>
@@ -348,7 +348,7 @@ if (isset($_GET['idh'])) {
                                                 <?php } ?>
                                             </td>
                                         </tr> <?php } ?>
-                                    
+
                                 </tbody>
                             </table>
                         </div>
@@ -368,7 +368,7 @@ if (isset($_GET['idh'])) {
                                         <div class="container-volver">
                                             <div class="title">
                                                 <button class="btn btn-calificacion" style="width: 100px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
-                                                <input type="hidden" name="idh" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                                <input type="hidden" name="idh" id="idtraid" value="<?php echo $honorario['IDTraH'] ?>">
                                             </div>
                                         </div>
                                     </form>
@@ -377,10 +377,10 @@ if (isset($_GET['idh'])) {
                             <table id="informe" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Fecha</th>
-                                        <th class="text-center">Calificación</th>
-                                        <th class="text-center">Apelo</th>
-                                        <th class="text-center">Apelación</th>
+                                        <th class="text-center">Mes</th>
+                                        <th class="text-center">Año</th>
+                                        <th class="text-center">Función</th>
+                                        <th class="text-center">Informe</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -395,28 +395,21 @@ if (isset($_GET['idh'])) {
                                     while ($mostrar = mysqli_fetch_array($resultadoinforme)) {
                                     ?>
                                         <tr>
-                                            <td class='align-middle text-center'><?php echo $mostrar['fecha'] ?></td>
+                                            <td class='align-middle text-center'><?php echo $mostrar['mes'] ?></td>
 
-                                            <td class='align-middle text-center'>
-                                                <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
-                                                    <center>
-                                                        <div class="contenedor-botones">
-                                                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaCalificacion'] ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                            <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
-                                                        </div>
-                                                    </center>
-                                                <?php } ?>
-                                            </td>
-                                            <td class='align-middle text-center'><?php echo $mostrar['apelo'] ?></td>
+                                           
+                                            <td class='align-middle text-center'><?php echo $mostrar['anno'] ?></td>
+                                            <td class='align-middle text-center'><?php echo $mostrar['funcion'] ?></td>
+
                                             <td class='centrado'>
-                                                <?php if (!empty($mostrar['RutaApelacion']) && $mostrar['apelo'] == "Si") { ?>
+                                                <?php if (!empty($mostrar['RutaInforme'])) { ?>
                                                     <center>
                                                         <div class="contenedor-botones">
-                                                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaApelacion'] ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                                            <a href="<?php echo $mostrar['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                            <button class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $mostrar['RutaInforme'] ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                            <a href="<?php echo $mostrar['RutaInforme'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                         </div>
                                                     </center>
-                                                <?php } elseif (empty($mostrar['RutaApelacion']) && $mostrar['apelo'] == "Si") { ?>
+                                                <?php } elseif (empty($mostrar['RutaInforme']) ) { ?>
                                                     <div class="contenedor-botones">
                                                         <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
                                                     </div>
@@ -429,7 +422,7 @@ if (isset($_GET['idh'])) {
                         </div>
 
 
-                        
+
                     </div>
                 <?php } ?>
             </main>

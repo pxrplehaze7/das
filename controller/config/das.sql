@@ -254,7 +254,7 @@ INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (5, 'e) Administrativos de 
 INSERT INTO `categoria`(`IDCat`, `NombreCat`) VALUES (6, 'f) Auxiliares de servicios de Salud.');
 
 
-INSERT INTO `usuario` (`RutU`, `NombreU`, `ApellidoP`, `ApellidoM`, `Rol`, `Contrasenna`, `CorreoU`, `Eliminable`) VALUES ('11111111-1', 'Admin', 'Admin', '', 1, '$2y$10$iA0W10c.3RkqRixtFYDr9Oitl/ZSOrh5/1U46D3N90fcwlmX6P9Ni', 'admin@gmail.com', 0);
+INSERT INTO `usuario` (`RutU`, `NombreU`, `ApellidoP`, `ApellidoM`, `Rol`, `Contrasenna`, `CorreoU`, `Eliminable`) VALUES ('11111111-1', 'ADMIN', 'DAS', '', 1, '$2y$10$iA0W10c.3RkqRixtFYDr9Oitl/ZSOrh5/1U46D3N90fcwlmX6P9Ni', 'admin@gmail.com', 0);
 
 
 

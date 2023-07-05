@@ -32,7 +32,7 @@ if (mysqli_num_rows($resultadoDatosTra) == 1) {
             allowOutsideClick: false
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = 'registro_contrata_i.php';
+              window.location.href = 'registro_contrata.php';
             } else {
             }
           });

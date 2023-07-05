@@ -36,7 +36,7 @@ if (
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
     
     $medicoOno == "Si" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
     !empty($ruta_InscripcionFINAL) &&
@@ -49,7 +49,7 @@ if (
     // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
 
     $medicoOno == "Si" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -60,7 +60,7 @@ if (
   // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
   (
     $medicoOno == "No" &&
-    $inscripcionOno == TRUE &&
+    $inscripcionOno == 1 &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
     !empty($ruta_InscripcionFINAL) &&
@@ -70,7 +70,7 @@ if (
   // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
   (
     $medicoOno == "No" &&
-    $inscripcionOno == FALSE &&
+    $inscripcionOno == 0 &&
     !empty($ruta_CurriculumFINAL) &&
     !empty($ruta_CedulaFINAL) &&
     !empty($ruta_EstudiosFINAL) &&
@@ -78,9 +78,9 @@ if (
  
   
 ) {
-  $cumple = TRUE;
+  $cumple = 1;
 } else {
-  $cumple = FALSE;
+  $cumple = 0;
 }
 
 $actualizaC = " UPDATE honorario SET 

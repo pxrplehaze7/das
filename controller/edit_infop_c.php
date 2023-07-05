@@ -66,7 +66,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
       ($genero2 == "Masculino" || $genero2 == "Femenino") &&
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -79,7 +79,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
       ($genero2 == "Masculino" || $genero2 == "Femenino") &&
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -90,7 +90,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
     (($genero2 == "Masculino" || $genero2 == "Femenino") &&
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -100,7 +100,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
     (($genero2 == "Masculino" || $genero2 == "Femenino") &&
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -109,7 +109,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN
     ($genero2 == "Masculino" &&
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -125,7 +125,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // HOMBRE NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN
     ($genero2 == "Masculino" &&
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -143,7 +143,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // HOMBRE NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
     ($genero2 == "Masculino" &&
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -160,7 +160,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // HOMBRE NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN
     ($genero2 == "Masculino" &&
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -177,7 +177,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // MUJER NO HONORARIO, ES MÉDICO Y PRESENTA INSCRIPCIÓN
     ($genero2 == "Femenino" &&
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -194,7 +194,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // MUJER NO HONORARIO, ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
     ($genero2 == "Femenino" &&
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -210,7 +210,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // MUJER NO HONORARIO, NO ES MÉDICO Y PRESENTA INSCRIPCIÓN
     ($genero2 == "Femenino" &&
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -226,7 +226,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     // MUJER NO HONORARIO, NO ES MÉDICO Y NO PRESENTA INSCRIPCIÓN
     ($genero2 == "Femenino" &&
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_DJuradaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_CedulaFINAL) &&
@@ -238,9 +238,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
       !empty($ruta_SaludCompatFINAL)
     )
   ) {
-    $cumple = TRUE;
+    $cumple = 1;
   } else {
-    $cumple = FALSE;
+    $cumple = 0;
   }
 $actualizaC = "UPDATE trabajador SET Cumple = '$cumple' WHERE IDTra = '$idtrab'";
 

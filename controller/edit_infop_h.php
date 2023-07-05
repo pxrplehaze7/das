@@ -55,7 +55,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE IDTraH = 
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
       (
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -68,7 +68,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE IDTraH = 
       // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
       (
       $medicoOno2 == "Si" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
@@ -79,7 +79,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE IDTraH = 
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
     (
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == TRUE &&
+      $inscripcionOno2 == 1 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_InscripcionFINAL) &&
@@ -89,15 +89,15 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE IDTraH = 
     // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
     (
       $medicoOno2 == "No" &&
-      $inscripcionOno2 == FALSE &&
+      $inscripcionOno2 == 0 &&
       !empty($ruta_CurriculumFINAL) &&
       !empty($ruta_CedulaFINAL) &&
       !empty($ruta_EstudiosFINAL) &&
       !empty($ruta_AntecedentesFINAL)))
   {
-    $cumple = TRUE;
+    $cumple = 1;
   } else {
-    $cumple = FALSE;
+    $cumple = 0;
   };
 $actualizaC = "UPDATE honorario SET Cumple = '$cumple' WHERE IDTraH = '$idh'";
 
