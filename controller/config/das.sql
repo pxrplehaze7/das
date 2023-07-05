@@ -192,6 +192,18 @@ CREATE TABLE `das`.`calificaciones` (
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 
+CREATE TABLE `das`.`informes` (
+    `IDinf` INT NOT NULL AUTO_INCREMENT,
+    `IDTraH` INT NOT NULL,
+    `mes` VARCHAR (10) NOT NULL,
+    `anno` VARCHAR(4) NOT NULL,
+    `RutaInforme` VARCHAR(400) NULL,
+    `funcion` VARCHAR(400) NOT NULL,
+    PRIMARY KEY (`IDinf`),
+    FOREIGN KEY (`IDTraH`) REFERENCES honorario (`IDTraH`)
+) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
+
+
 
 INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (1, 'Reemplazo');
 INSERT INTO `contrato`(`IDCon`, `NombreCon`) VALUES (2, 'Plazo Fijo');

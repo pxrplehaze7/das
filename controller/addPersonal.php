@@ -188,8 +188,7 @@ VALUES ($idtra,$categoriaP,$afpP,$prevP,'$nombreP','$paternoP','$maternoP','$rut
       throw new Exception(mysqli_error($conn));
     } else {
 
-      echo $idtra;
-
+      // echo $idtra;
       echo "<script>
       Swal.fire({
         icon: 'success',

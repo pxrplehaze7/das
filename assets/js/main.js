@@ -68,8 +68,8 @@ $("#documentosObligatorios").on("submit", function (event) {
       })
         .done(function (respuesta) {
           $('body').append(respuesta);
-          window.location.href = 'registro_decreto_c.php?id='+ respuesta;
-
+          // window.location.href = 'registro_decreto_c.php?id='+ respuesta;
+          
           // document.getElementById("documentosObligatorios").reset();
           // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
           // $('#rut-validation').html('');
@@ -910,7 +910,7 @@ $(document).ready(function() {
       } else {
         let formData = new FormData(this);
   
-        formData.append('laid', $('#idtrabid').attr('value'));
+        formData.append('idtraba', $('#idtrabid').attr('value'));
   
   
         $.ajax({
@@ -923,16 +923,13 @@ $(document).ready(function() {
         })
           .done(function (respuesta) {
             $('body').append(respuesta);
-  
-            // document.getElementById("documentosObligatorios").reset();
-            // //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-            // $('#rut-validation').html('');
+            console.log(respuesta)
+
   
           })
           .fail(function (respuesta) {
             $('body').append(respuesta);
-            //LIMPIA EL MENSAJE DE VALIDACIÓN DEL RUT
-            $('#rut-validation').html('');
+            console.log(respuesta)
   
           })
           .always(function (respuesta) {

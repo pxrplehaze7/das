@@ -37,7 +37,6 @@ if (!isset($_SESSION['rol'])) {
                 <br>
                 <div class="container-md">
                     <div class="row">
-                        <br>
                         <div class="col-md-6">
 
                             <div class="card text-white mb-4 bg-dark d-flex align-items-center">

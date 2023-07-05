@@ -1,7 +1,8 @@
 <?php
 include("./config/conexion.php");
+$idtra = $_POST['idtraba'];
+echo $idtra;
 
-$idtra = $_POST['laid'];
 $rutPersona = $_POST['nameRut'];
 $numdecreto  = $_POST['nameDecreto'];
 if ($_POST['nameSelectLugar'] != "") {
@@ -92,7 +93,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
 
 
 
-  $consultaFile = "SELECT * FROM trabajador WHERE IDTra = '$idtra'";
+  $consultaFile = "SELECT * FROM trabajador WHERE IDTra = $idtra";
   $resFile = mysqli_query($conn, $consultaFile);
   if (mysqli_num_rows($resFile) == 1) {
     $RDoc = mysqli_fetch_assoc($resFile);
@@ -247,20 +248,18 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
       !empty($ruta_SaludCompatFINAL)
     )
   ) {
-    $cumple = TRUE;
+    $cumple = 1;
   } else {
-    $cumple = FALSE;
+    $cumple = 0;
   }
 
 
 
   $sqlDecretos = "INSERT INTO decretos (IDTra,IDCon,IDLugar,IDSector,NDecreto,FechaDoc,RutaCon,FechaInicio,FechaTermino,FechaAlerta,Estado,Confirmacion)
-    VALUES ('$idtra','$tipoContrato','$lugar','$sector','$numdecreto','$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta','$estadoDecreto','$confirmacion')";
+    VALUES ($idtra,$tipoContrato,$lugar,$sector,$numdecreto,'$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta',$estadoDecreto,$confirmacion)";
 
-  $sqlcumple = "UPDATE trabajador
-SET Cumple = $cumple
-WHERE IDTra = $idtra";
-
+$sqlcumple = "UPDATE trabajador SET Cumple = $cumple WHERE IDTra =$idtra";
+echo $sqlcumple;
   try {
     $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
     $actualizacumple = mysqli_query($conn, $sqlcumple);
@@ -294,7 +293,6 @@ WHERE IDTra = $idtra";
       });
     </script>";
     
-    // Agregar el código para preguntar si desea registrar otro decreto
     echo "<script>
       function registrarOtroDecretos() {
         Swal.fire({
@@ -329,7 +327,7 @@ WHERE IDTra = $idtra";
     </script>";
     }
   } catch (Exception $e) {
-    http_response_code(400); // Bad request
+    http_response_code(400); 
     echo "<script> 
     Swal.fire({
       icon: 'error',
@@ -341,7 +339,7 @@ WHERE IDTra = $idtra";
     </script>";
   }
 } else {
-  http_response_code(400); // Bad request
+  http_response_code(400);
 
   echo "<script> Swal.fire({
     icon: 'error',

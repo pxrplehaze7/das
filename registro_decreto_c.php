@@ -49,7 +49,7 @@ if (isset($_GET['id'])) {
             <main>
                 <div class="container-lg">
                     <form id="RegistroDecretos" enctype="multipart/form-data" method="POST" autocomplete="off">
-                        <input name="idtraname" value="<?php echo $idtra; ?>" id="idtrabid" hidden>
+                        <input name="idtraname" value="<?php echo $idtra ?>" id="idtrabid" hidden>
 
                         <div class="title">
                             <h1 class="mt-4">Registro de Decreto</h1>
