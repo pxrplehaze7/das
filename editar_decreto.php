@@ -9,18 +9,35 @@ if ($_SESSION['rol'] !== '1') {
     header('Location: ./components/error.html');
     exit();
 }
-if (isset($_GET['id'])) {
-    $idtra = $_GET['id'];
+if (isset($_GET['idd'])) {
+    $iddecreto = $_GET['idd']; //ID DEL DECRETO
 
-    $sqldec = "SELECT Rut, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
-    WHERE IDTra='$idtra' LIMIT 1";
 
-    $sqldec = mysqli_query($conn, $sqldec);
-    list($rut, $nombre, $paterno, $materno) = mysqli_fetch_row($sqldec);
+    // $idpersona = "SELECT IDTra FROM decretos WHERE IDdecreto = '$iddecreto' LIMIT 1 ";
+    // $resultp = mysqli_query($conn, $idpersona);
+    // if (mysqli_num_rows($resultp) == 1) {
+    //     $idtra = mysqli_fetch_assoc($resultp);
+    // }
+
+
+
+
+    $decre = "SELECT tra.IDTra,tra.NombreTra, tra.PaternoTra, tra.MaternoTra, tra.Rut, l.NombreLug, s.NombreSector, c.NombreCon, d.NDecreto, c.IDCon, d.FechaDoc, d.FechaInicio,d.FechaTermino,l.IDLugar, s.IDSector, d.RutaCon
+    FROM decretos d
+    INNER JOIN trabajador tra ON (tra.IDTra= d.IDTra)
+    INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
+    INNER JOIN sector s ON (s.IDSector = d.IDSector)
+    INNER JOIN contrato c ON (c.IDCon = d.IDCon)
+    WHERE IDdecreto = '$iddecreto'";
+    $resultDecreto = mysqli_query($conn, $decre);
+    if (mysqli_num_rows($resultDecreto) == 1) {
+        $de = mysqli_fetch_assoc($resultDecreto);
+    }
+} else {
+    echo "No se recibió ningún ID de usuario";
 }
-
-
 ?>
+<?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -28,7 +45,7 @@ if (isset($_GET['id'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro de Decreto</title>
+    <title>Editar Usuario</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -36,37 +53,48 @@ if (isset($_GET['id'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="sb-nav-fixed">
-    <?php
-    require("./components/navbar.php")
-    ?>
+    <?php require("./components/navbar.php") ?>
     <div id="layoutSidenav">
         <?php require("./components/sidebar.php") ?>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-md">
-                    <form id="RegistroDecretos" enctype="multipart/form-data" method="POST" autocomplete="off">
-                        <input name="idtraname" value="<?php echo $idtra ?>" id="idtrabid" hidden>
+                    <form id="EdicionDecretos" enctype="multipart/form-data" method="POST" autocomplete="off">
+                        <input name="nameidtrab" value="<?php echo $de['IDTra'] ?>" id="idtrabid" hidden>
+                        <input name="nameiddec" value="<?php echo $iddecreto ?>" id="iddec" hidden>
+                        <input type="text" name="nameRutt" value="<?php echo $de['Rut'] ?>" hidden>
+
                         <div class="title">
-                            <h1 class="mt-4">Registro de Decreto</h1>
+                            <h1 class="mt-4">Editar Decreto</h1>
                         </div>
                         <br>
                         <div class="seccion">
-                            <h6>Documentación</h6>
                             <div id="document-container">
                                 <div class="row ">
                                     <div class="col-md-3">
                                         <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
-                                        <input type="text" name="nameRut" id="idRutInputdec" class="form-control" maxlength="10" value="<?php echo $rut ?>" readonly>
+                                        <input type="text" name="nameRut" id="idRutInputdec" class="form-control" maxlength="10" value="<?php echo $de['Rut'] ?>" disabled>
                                         <br>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-7">
                                         <label for="idPersona"><span style="color: #c40055;">*</span> Nombre</label>
-                                        <input type="text" name="namePersona" id="idPersona" class="form-control" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" readonly>
+                                        <input type="text" name="namePersona" id="idPersona" class="form-control" value="<?php echo $de['NombreTra'] . ' ' . $de['PaternoTra'] . ' ' . $de['MaternoTra'] ?>" disabled>
                                         <br>
+                                    </div>
+                                    <div class="col-md-2">
+                                    <label for="archivo">Archivo</label>
+
+                                        <div class="contenedor-botones" id="archivo">
+                                            <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $de['RutaCon']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                            <a href="<?php echo $de['RutaCon'] ?>" download class="btn btn-primary boton-descargar w-100" style="border-top-right-radius: 6px !important;    border-bottom-right-radius: 6px !important;"><i class="fa-sharp fa-solid fa-download"></i></a>
+
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row document">
@@ -75,28 +103,31 @@ if (isset($_GET['id'])) {
                                         $sqlTipoContrato = "SELECT IDCon, NombreCon FROM contrato";
                                         $resultadoContrato = mysqli_query($conn, $sqlTipoContrato);
                                         echo "<label for='idSelectCon'><span style='color: #c40055;'>*</span> Tipo de Contrato </label>";
+
                                         echo "<select name='nameSelectCon' id='idSelectCon' class='form-select' required onchange='indefinido()'>";
                                         echo '<option value="" hidden> Selecciona</option>';
                                         while ($fila = mysqli_fetch_assoc($resultadoContrato)) {
-                                            echo "<option value='" . $fila['IDCon'] . "'>" . $fila['NombreCon'] . "</option>";
+                                            $seleccionado = ($fila['IDCon'] == $de['IDCon']) ? 'selected' : '';
+                                            echo "<option value='" . $fila['IDCon'] . "' " . $seleccionado . ">" . $fila['NombreCon'] . "</option>";
                                         }
                                         echo "</select>";
                                         ?>
+
                                         <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idDecreto"><span style="color: #c40055;">*</span> N° Decreto</label>
-                                        <input type="text" name="nameDecreto" class="form-control" maxlength="10" required>
+                                        <input type="text" name="nameDecreto" value="<?php echo $de['NDecreto'] ?>" class="form-control" maxlength="10" required>
                                         <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idFechaDocumento"><span style="color: #c40055;">*</span> Fecha de Documento</label>
-                                        <input type="date" name="nameFechaDocumento" class="form-control" id="idFechaDocumento" required>
+                                        <input type="date" name="nameFechaDocumento" value="<?php echo $de['FechaDoc'] ?>" class="form-control" id="idFechaDocumento" required>
                                     </div>
                                     <div class="col-md-6 col-sm-6 document">
                                         <label for="idDocContratoInput"><span style="color: #c40055;">*</span> Contrato</label>
                                         <div class="input-group">
-                                            <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
+                                            <!-- <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf"> -->
                                             <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
@@ -115,8 +146,9 @@ if (isset($_GET['id'])) {
                                                     <?php
                                                     $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
                                                     $resultadoLugar = mysqli_query($conn, $sqlLugar);
-                                                    while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
-                                                        echo "<option value='" . $fila['IDLugar'] . "'>" . $fila['NombreLug'] . "</option>";
+                                                    while ($fila2 = mysqli_fetch_assoc($resultadoLugar)) {
+                                                        $lugarseleccionado = ($fila2['IDLugar'] == $de['IDLugar']) ? 'selected' : '';
+                                                        echo "<option value='" . $fila2['IDLugar'] . "' " . $lugarseleccionado . ">" . $fila2['NombreLug'] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
@@ -124,21 +156,28 @@ if (isset($_GET['id'])) {
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <label for="idSelectSector"><span style="color: #c40055;">*</span> Sector</label>
-                                                <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
-                                                    <option value="" hidden> Selecciona</option>
+                                                <select name="nameSelectSector" id="idSelectSector" class="form-select" required onchange="cargarSectores()">
+                                                    <option value="" hidden>Selecciona un Sector</option>
+                                                    <?php
+                                                    $sqlSector = "SELECT IDSector, NombreSector FROM sector";
+                                                    $resultadoSector = mysqli_query($conn, $sqlSector);
+                                                    while ($fila3 = mysqli_fetch_assoc($resultadoSector)) {
+                                                        $Sectorselected = ($fila3['IDSector'] == $de['IDSector']) ? "selected" : "";
+                                                        echo "<option value='" . $fila3['IDSector'] . "' $Sectorselected>" . $fila3['NombreSector'] . "</option>";
+                                                    }
+                                                    ?>
                                                 </select>
-                                                <br>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idFechaInicio"><span style="color: #c40055;">*</span> Fecha de Inicio</label>
-                                        <input type="date" name="nameFechaInicio" class="form-control" id="idFechaInicio" required>
+                                        <input type="date" name="nameFechaInicio" value="<?php echo $de['FechaInicio'] ?>" class="form-control" id="idFechaInicio" required>
                                         <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idFechaTermino"><span style="color: #c40055;">*</span> Fecha de Termino</label>
-                                        <input type="date" name="nameFechaTermino" class="form-control" id="idFechaTermino" required>
+                                        <input type="date" name="nameFechaTermino" value="<?php echo $de['FechaTermino'] ?>" class="form-control" id="idFechaTermino" required>
                                         <br>
                                     </div>
                                 </div>
@@ -163,7 +202,41 @@ if (isset($_GET['id'])) {
             </main>
         </div>
     </div>
+    <!-- <script>
+        $(document).ready(function() {
+            // Llama a la función cargarSectores al cargar la página
+            cargarSectores();
 
+            // Asigna un evento de cambio al campo de selección de lugar
+            $('#idSelectLugar').change(cargarSectores);
+        });
+
+        // FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
+        function cargarSectores() {
+            const lugarSeleccionado = document.getElementById("idSelectLugar").value;
+            $.ajax({
+                url: './controller/lugar_sector.php',
+                method: "POST",
+                data: {
+                    lugarSeleccionado: lugarSeleccionado
+                },
+                dataType: 'json',
+                success: function(respuesta) {
+                    let largo = respuesta.length;
+                    $("#idSelectSector").empty();
+
+                    for (let i = 0; i < largo; i++) {
+                        let idSector = respuesta[i]['IDSector'];
+                        let nombreSector = respuesta[i]['NombreSector'];
+                        $("#idSelectSector").append("<option value='" + idSector + "'>" + nombreSector + "</option>");
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error.responseText);
+                }
+            });
+        }
+    </script> -->
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>

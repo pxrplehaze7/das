@@ -249,7 +249,6 @@ if (isset($_POST['idcontrata'])) {
     VALUES ($idtra,$tipoContrato,$lugar,$sector,$numdecreto,'$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta',$estadoDecreto,$confirmacion)";
 
     $sqlcumple = "UPDATE trabajador SET Cumple = $cumple WHERE IDTra =$idtra";
-    echo $sqlcumple;
     try {
       $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
       $actualizacumple = mysqli_query($conn, $sqlcumple);
@@ -433,8 +432,6 @@ if (empty($_POST['nameFechaTermino'])) {
   $finDecreto = date('Y-m-d', strtotime($finDecreto));
 }
 
-
-echo "El valor de finDecreto es: " . $finDecreto;
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('Y-m-d');
 $fechaSubidaCon = date('d-m-y');
@@ -652,7 +649,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$
     VALUES ($idtra,$tipoContrato,$lugar,$sector,$numdecreto,'$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta',$estadoDecreto,$confirmacion)";
 
   $sqlcumple = "UPDATE trabajador SET Cumple = $cumple WHERE IDTra =$idtra";
-  echo $sqlcumple;
   try {
     $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
     $actualizacumple = mysqli_query($conn, $sqlcumple);

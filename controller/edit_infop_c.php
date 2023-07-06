@@ -62,50 +62,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE IDTra = 
     $ruta_InscripcionFINAL = $EditP['RutaInscripcion'];
   }
   if (
-    (
-      // HONORARIO HOMBRE O MUJER ES MÉDICO Y PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
-      ($genero2 == "Masculino" || $genero2 == "Femenino") &&
-      $medicoOno2 == "Si" &&
-      $inscripcionOno2 == 1 &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_InscripcionFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_ExamenMFINAL) &&
-      !empty($ruta_AntecedentesFINAL)
-    )
-    ||
-    (
-      // HONORARIO HOMBRE O MUJER ES MÉDICO Y NO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
-      ($genero2 == "Masculino" || $genero2 == "Femenino") &&
-      $medicoOno2 == "Si" &&
-      $inscripcionOno2 == 0 &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_ExamenMFINAL) &&
-      !empty($ruta_AntecedentesFINAL)
-    )
-    ||
-    // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO PERO PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
-    (($genero2 == "Masculino" || $genero2 == "Femenino") &&
-      $medicoOno2 == "No" &&
-      $inscripcionOno2 == 1 &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_InscripcionFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_AntecedentesFINAL))
-    ||
-    // HONORARIO HOMBRE O MUJER QUE NO ES MÉDICO NI PRESENTA INSCRIPCIÓN *VERSIÓN CON ANTECEDENTES, PREGUNTAR POR CONTRATO
-    (($genero2 == "Masculino" || $genero2 == "Femenino") &&
-      $medicoOno2 == "No" &&
-      $inscripcionOno2 == 0 &&
-      !empty($ruta_CurriculumFINAL) &&
-      !empty($ruta_CedulaFINAL) &&
-      !empty($ruta_EstudiosFINAL) &&
-      !empty($ruta_AntecedentesFINAL))
-    ||
     // HOMBRE NO HONORARIO, NO ES MÉDICO NI PRESENTA INSCRIPCIÓN
     ($genero2 == "Masculino" &&
       $medicoOno2 == "No" &&

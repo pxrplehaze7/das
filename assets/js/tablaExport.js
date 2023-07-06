@@ -775,25 +775,25 @@ $(document).ready(function () {
       {
         extend: 'excel',
         text: '<i class="fas fa-file-excel"></i> Exportar a Excel',
-        title: 'Decretos por finalizar',
-        filename: 'Decretos_por_finalizar',
+        title: 'Decretos del Trabajador',
+        filename: 'Decretos_del_Trabajador',
         orientation: 'landscape',
         className: 'btn btn-dexcel btn-success',
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 6, 7],
-          title: 'Lista de Decretos por Finalizar'
+          title: 'Lista de Decretos del Trabajador'
         }
       },
       {
         extend: 'pdf',
         text: '<i class="fas fa-file-pdf"></i> Exportar a PDF',
-        title: 'Decretos por finalizar',
-        filename: 'Decretos_por_finalizar',
+        title: 'Decretos del Trabajador',
+        filename: 'Decretos_del_Trabajador',
         orientation: 'landscape',
         className: 'btn btn-dpdf btn-danger',
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 6, 7],
-          title: 'Lista de Decretos por Finalizar'
+          title: 'Lista de Decretos del Trabajador'
         },
         customize: function (doc) {
           doc.defaultStyle.alignment = 'left';
@@ -804,7 +804,7 @@ $(document).ready(function () {
           doc.styles.tableBodyEven.fontSize = 10;
           doc.styles.tableBodyOdd.fontSize = 10;
           doc.content[1].table.body[0].forEach(function (cell) {
-            cell.fillColor = '#E76500';
+            cell.fillColor = '#463bfa';
             cell.color = '#fafafa';
 
             // Agregar padding a la izquierda del texto
@@ -901,7 +901,7 @@ $(document).ready(function () {
           doc.styles.tableBodyEven.fontSize = 10;
           doc.styles.tableBodyOdd.fontSize = 10;
           doc.content[1].table.body[0].forEach(function (cell) {
-            cell.fillColor = '#E76500';
+            cell.fillColor = '#463bfa';
             cell.color = '#fafafa';
 
             // Agregar padding a la izquierda del texto

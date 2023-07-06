@@ -288,6 +288,153 @@ if (isset($_GET['id'])) {
                             </div>
                         </form>
                         <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div id="editcal">
+                            <?php
+                            $sqlDec = "SELECT d.IDdecreto, d.IDLugar, d.IDSector, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, c.NombreCon, l.NombreLug, s.NombreSector, d.Estado
+                            FROM decretos d
+                            INNER JOIN contrato c ON (c.IDCon = d.IDCon)
+                            INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
+                            INNER JOIN sector s ON (s.IDSector = d.IDSector)
+                             WHERE IDTra = $idtra";
+                            $resultadoDecreto = mysqli_query($conn, $sqlDec);
+                            ?>
+
+                            <div class="documentacion seccion seccion-cal">
+                                <h6>Decretos</h6>
+
+                                <div class="" style="overflow-x: auto;">
+                                    <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
+
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">N° Doc.</th>
+                                                <th class="text-center">Fecha Doc.</th>
+                                                <th class="text-center">Tipo Contrato</th>
+                                                <th class="text-center">Fecha Inicio</th>
+                                                <th class="text-center">Fecha Termino</th>
+                                                <th class="text-center">Lugar</th>
+                                                <th class="text-center">Sector</th>
+                                                <th class="text-center">Estado</th>
+                                                <th class="text-center">Editar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($decreto = mysqli_fetch_array($resultadoDecreto)) { ?>
+                                                <form method="POST" enctype="multipart/form-data" id="edicion_calif_<?php echo $decreto['IDdecreto'] ?>" class="edicionCalif">
+                                                    <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
+                                                    <tr>
+
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NDecreto'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['FechaDoc'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NombreCon'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['FechaInicio'] ?>
+                                                        </td>
+
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['FechaTermino'] ?>
+                                                        </td>
+
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NombreLug'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NombreSector'] ?>
+                                                        </td>
+
+                                                        <td class="align-middle" style="text-align: center; font-weight: 700;">
+                                                            <?php
+                                                            if ($decreto['Estado'] == 1) {
+                                                                echo '<span style="color: #00886f;">Vigente</span>';
+                                                            } elseif ($decreto['Estado'] == 2) {
+                                                                echo '<span style="color: #ff9900;">Por finalizar</span>';
+                                                            } elseif ($decreto['Estado'] == 0) {
+                                                                echo '<span style="color: #ff0000;">Finalizado</span>';
+                                                            }
+                                                            ?>
+
+                                                        </td>
+
+
+                                                        <td class="text-center">
+                                                            <div class="d-flex align-items-center justify-content-around">
+                                                                <a href="editar_decreto.php?idd=<?php echo $decreto['IDdecreto']; ?>" class="btn btn-warning text-black"><i class="fas fa-pen"></i></a>
+                                                            </div>
+                                                        </td>
+                                                </form>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <br>
                         <div id="c_docs">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs_c">
                                 <input type="hidden" name="nameRutEditar" value="<?php echo $editContrata['Rut'] ?>">

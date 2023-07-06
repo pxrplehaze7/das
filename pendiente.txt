@@ -75,3 +75,18 @@ en el otro sistema mencionan acces, base de datos en nube, que se actualice la i
 creo que lo de editar los decretos debe hacerse como el informe, pero con validaciones ya que pueden vencer
 
 agregue que si se elimina la vcarpeta de los archivos y luego se actualizan los documentos, aunque no este la carpeta, se crea y se guardan donde corresponde, solo en contrata. falta para todos los otros documentos.
+
+ver si cpuedo ver el estado del ultimodecreto segun fecha para mostrarlo en la tabla del trabajador
+
+hacer que al presionar el editar decreto, enviea algo similar alregistro de decreto
+
+hacer que cuando se traiga la informacion de editar decreto, cuando esa indefinido secambie la fecha termino.
+
+revisar los add decreto porque parece que se establece en cumple una vez se registre un decreto aunqueno suba todos los documentos
+
+lo que agregue para cambiar el sector al editar no funciona, no se cambia
+
+seme creo una carpeta con id 19 en contrata
+
+ponerle largo minimo a correo
+input n decreto solo deben ser numeros

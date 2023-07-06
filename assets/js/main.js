@@ -1417,3 +1417,51 @@ $("#informelab").on("submit", function (event) {
 });
 
 
+
+
+
+
+$("#EdicionDecretos").on("submit", function (event) {
+  event.preventDefault();
+  Swal.fire({
+    title: '¿Realmente actualizar este decreto?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+
+      formData.append('iddecreto', $('#iddec').attr('value'));
+
+      $.ajax({
+        url: "./controller/edit_decreto_contrata.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+          console.log(respuesta)
+
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+          console.log(respuesta)
+
+        })
+        .always(function (respuesta) {
+          console.info(respuesta)
+        });
+    }
+  });
+});
+

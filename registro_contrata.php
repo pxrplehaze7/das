@@ -17,7 +17,7 @@ if ($_SESSION['rol'] !== '1') {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro </title>
+    <title>Registro de Personal</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -37,7 +37,7 @@ if ($_SESSION['rol'] !== '1') {
                 <div class="container-md">
                     <form id="documentosObligatorios" enctype="multipart/form-data" method="POST" autocomplete="off">
                         <div class="title">
-                            <h1 class="mt-4">Registro de Trabajador a Contrata e Indefinido</h1>
+                            <h1 class="mt-4">Registro de trabajador a Contrata e Indefinido</h1>
                         </div>
                         <br>
                         <div class="alert alert-info" role="alert">
@@ -73,21 +73,24 @@ if ($_SESSION['rol'] !== '1') {
                             </div>
                             <div class="art">
                                 <div class="row">
-
-
                                     <div class="col-md-6"> <!-- CATEGORIA -->
-                                        <?php include("./controller/consulta_select/select_categoria.php"); ?>
+                                        <?php
+                                        $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
+                                        $resultadoCategoria = mysqli_query($conn, $sqlCategoria);
+                                        echo "<label for='idSelectCat'><span style='color: #c40055;'>*</span> Categoría </label>";
+                                        echo "<select name='nameSelectCat' id='idSelectCat' class='form-select' required>";
+                                        echo '<option hidden value=""> Selecciona</option>';
+                                        while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
+                                            echo "<option value='" . $fila['IDCat'] . "'>" . $fila['NombreCat'] . "</option>";
+                                        }
+                                        echo "</select>";
+                                        ?>
                                         <br>
                                     </div>
-
-
                                     <div class="col-md-6">
                                         <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                         <input type="text" name="nameProfesion" id="idProfesion" class="form-control" required>
                                     </div>
-
-
-
                                 </div>
                                 <div id="idInscripcion" class="radioCentro row">
                                     <center>
@@ -121,7 +124,6 @@ if ($_SESSION['rol'] !== '1') {
                                 <div id="idPreguntaCat1" style="display:none;" class="radioCentro row">
                                     <center>
                                         <label><span style="color: #c40055;">*</span> ¿Es médico?</label>
-
                                         <div class="radio-inputs">
                                             <label>
                                                 <input type="radio" name="nameMedico" id="idSiMedico" value="Si" class="radio-input">
@@ -148,8 +150,6 @@ if ($_SESSION['rol'] !== '1') {
                                         </div>
                                     </center>
                                 </div>
-
-
                             </div>
                             <br>
                             <div class="radioCentro row">
@@ -204,7 +204,18 @@ if ($_SESSION['rol'] !== '1') {
                             <h6>Documentación</h6>
                             <div class="row document" id="afp"> <!-- AFP -->
                                 <div class=" col-md-3">
-                                    <?php include("./controller/consulta_select/select_afp.php"); ?>
+                                    <?php
+                                    $sqlAFP = "SELECT IDAFP, NombreAFP FROM afp";
+                                    $resultadoAFP = mysqli_query($conn, $sqlAFP);
+                                    echo "<label for='idSelectAFP'><span style='color: #c40055;'>*</span> AFP </label>";
+                                    echo "<select name='nameSelectAFP' id='idSelectAFP' class='form-select' required>";
+                                    echo '<option value="" hidden> Selecciona</option>';
+
+                                    while ($fila = mysqli_fetch_assoc($resultadoAFP)) {
+                                        echo "<option value='" . $fila['IDAFP'] . "'>" . $fila['NombreAFP'] . "</option>";
+                                    }
+                                    echo "</select>";
+                                    ?>
                                 </div>
                                 <div class="col-md-9">
                                     <label for="idAFPinput"><span style="color: #c40055;">*</span> Certificado de Afiliación a AFP</label>
@@ -223,7 +234,17 @@ if ($_SESSION['rol'] !== '1') {
                             <br>
                             <div class="row document" id="prevision"> <!-- PREVISION -->
                                 <div class=" col-md-3">
-                                    <?php include("./controller/consulta_select/select_prevision.php"); ?>
+                                    <?php
+                                    $sqlPrevision = "SELECT IDPrev, NombrePrev FROM prevision";
+                                    $resultadoPrevision = mysqli_query($conn, $sqlPrevision);
+                                    echo "<label for='idSelectCat'><span style='color: #c40055;'>*</span> Previsión </label>";
+                                    echo "<select name='nameSelectPrev' id='idSelectPrev' class='form-select' required>";
+                                    echo '<option hidden value=""> Selecciona</option>';
+                                    while ($fila = mysqli_fetch_assoc($resultadoPrevision)) {
+                                        echo "<option value='" . $fila['IDPrev'] . "'>" . $fila['NombrePrev'] . "</option>";
+                                    }
+                                    echo "</select>";
+                                    ?>
                                 </div>
                                 <div class="col-md-9">
                                     <label for="idPREVinput"><span style="color: #c40055;">*</span> Certificado de Afiliación a Previsión</label>
@@ -239,9 +260,6 @@ if ($_SESSION['rol'] !== '1') {
                                 </div>
                             </div>
                             <br>
-
-
-
                             <div class="document" id="nacimiento">
                                 <label for="idNACinput"><span style="color: #c40055;">*</span> Certificado de Nacimiento</label>
                                 <div class="input-group ">
@@ -255,7 +273,6 @@ if ($_SESSION['rol'] !== '1') {
                                 </div>
                                 <br>
                             </div>
-
                             <div class="document">
                                 <label for="idANTECEinput"><span style="color: #c40055;">*</span> Certificado de Antecedentes</label>
                                 <div class="input-group ">
@@ -269,7 +286,6 @@ if ($_SESSION['rol'] !== '1') {
                                 </div>
                                 <br>
                             </div>
-
                             <div class="document">
                                 <label for="idCedulainput"><span style="color: #c40055;">*</span> Fotocopia Cédula de Identidad</label>
                                 <div class="input-group ">
@@ -284,7 +300,6 @@ if ($_SESSION['rol'] !== '1') {
                                 </div>
                                 <br>
                             </div>
-
                             <div class="document" id="cv">
                                 <label for="idCVinput"><span style="color: #c40055;">*</span> Curriculum Vitae</label>
                                 <div class="input-group ">
@@ -402,7 +417,6 @@ if ($_SESSION['rol'] !== '1') {
             </main>
         </div>
     </div>
-
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
