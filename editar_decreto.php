@@ -117,7 +117,7 @@ if (isset($_GET['idd'])) {
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idDecreto"><span style="color: #c40055;">*</span> N° Decreto</label>
-                                        <input type="text" name="nameDecreto" value="<?php echo $de['NDecreto'] ?>" class="form-control" maxlength="10" required>
+                                        <input type="text" name="nameDecreto" value="<?php echo $de['NDecreto'] ?>" class="form-control" maxlength="10" >
                                         <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
@@ -125,9 +125,9 @@ if (isset($_GET['idd'])) {
                                         <input type="date" name="nameFechaDocumento" value="<?php echo $de['FechaDoc'] ?>" class="form-control" id="idFechaDocumento" required>
                                     </div>
                                     <div class="col-md-6 col-sm-6 document">
-                                        <label for="idDocContratoInput"><span style="color: #c40055;">*</span> Contrato</label>
+                                        <label for="idDocContratoInput"><span style="color: #c40055;">*</span> Subir o cambiar archivo</label>
                                         <div class="input-group">
-                                            <!-- <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf"> -->
+                                            <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
                                             <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">

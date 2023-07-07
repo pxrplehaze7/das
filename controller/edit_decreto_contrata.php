@@ -25,6 +25,8 @@ echo "la id del trabajador es:".$idtra;
   $fechaDocumento = date('Y-m-d', strtotime($fechaDocumento));
   $inicioDecreto = $_POST['nameFechaInicio'];
   $inicioDecreto = date('Y-m-d', strtotime($inicioDecreto));
+  echo "inicio decreto del trabajador es:".$inicioDecreto;
+  echo "fecha doc decreto del trabajador es:".$fechaDocumento;
 
   if (empty($_POST['nameFechaTermino'])) {
     if ($tipoContrato != 3) {
@@ -42,6 +44,7 @@ echo "la id del trabajador es:".$idtra;
     $finDecreto = $_POST['nameFechaTermino'];
     $finDecreto = date('Y-m-d', strtotime($finDecreto));
   }
+  echo "fin decreto del trabajador es:".$finDecreto;
 
   $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
   $fechaActual = $fechaActual->format('Y-m-d');
@@ -51,13 +54,13 @@ echo "la id del trabajador es:".$idtra;
   $carpetaIdtra = $ruta . $idtra . '/';
   $carpetaContrato = $carpetaIdtra . 'CONTRATO/';
 
-  // if (!file_exists($carpetaIdtra)) {
-  //   mkdir($carpetaIdtra, 0777, true);
-  // }
+  if (!file_exists($carpetaIdtra)) {
+    mkdir($carpetaIdtra, 0777, true);
+  }
 
-  // if (!file_exists($carpetaContrato)) {
-  //   mkdir($carpetaContrato, 0777, true);
-  // }
+  if (!file_exists($carpetaContrato)) {
+    mkdir($carpetaContrato, 0777, true);
+  }
 
   if ($fechaActual < $fechaAlerta) {
     $estadoDecreto = 1;
@@ -77,7 +80,7 @@ echo "la id del trabajador es:".$idtra;
   $sector = mysqli_real_escape_string($conn, $sector);
   $numdecreto = mysqli_real_escape_string($conn, $numdecreto);
 
-  // $pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
+  $pdfContrato = (!empty($_FILES['nameDocContratoInput']['name'])) ? uniqid() . '.pdf' : '';
 
 
   if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
@@ -249,40 +252,20 @@ echo "la id del trabajador es:".$idtra;
       $cumple = 0;
     }
 
-
     $sqlDecretos = "UPDATE decretos SET
     IDCon = $tipoContrato,
     IDLugar = $lugar,
     IDSector = $sector,
     NDecreto = $numdecreto,
-    FechaDoc = $fechaDocumento,
-    -- RutaCon = $ruta_ContratoFINAL,
-    FechaInicio = $inicioDecreto,
-    FechaTermino = $finDecreto,
-    FechaAlerta = $fechaAlerta,
+    RutaCon = '$ruta_ContratoFINAL',
+    FechaDoc = '$fechaDocumento',
+    FechaInicio = '$inicioDecreto',
+    FechaTermino = '$finDecreto',
+    FechaAlerta = '$fechaAlerta',
     Estado = $estadoDecreto
     WHERE IDdecreto = $iddecreto";
 
-    echo "la consulta es:".$sqlDecretos;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo "la consulta es: " . $sqlDecretos;
 
 
 
