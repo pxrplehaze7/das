@@ -17,7 +17,7 @@ if ($_SESSION['rol'] !== '1') {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro de Honorario</title>
+    <title>Registro</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -45,7 +45,7 @@ if ($_SESSION['rol'] !== '1') {
                             <strong>¡Importante!</strong> Decreto se registra en el siguiente paso.
                         </div>
                         <div class="seccion">
-                            <h6>Datos Personales</h6>
+                        <h6 style="padding-top: 20px !important;">Datos Personales</h6>
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
@@ -183,7 +183,7 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="seccion">
-                            <h6>Datos de Contacto</h6>
+                        <h6 style="padding-top: 20px !important;">Datos de Contacto</h6>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="idCelular">Celular</label>
@@ -200,7 +200,7 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="seccion">
-                            <h6>Documentación</h6>
+                        <h6 style="padding-top: 20px !important;">Documentación</h6>
 
                             <div class="document">
                                 <label for="idANTECEinput">Certificado de Antecedentes</label>
@@ -289,7 +289,7 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="observaciones seccion">
-                            <h6>Observaciones</h6>
+                        <h6 style="padding-top: 20px !important;">Observaciones</h6>
                             <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50" maxlength="1000"></textarea>
                         </div>
                         <br>

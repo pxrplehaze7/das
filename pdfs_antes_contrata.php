@@ -8,19 +8,6 @@ if (!isset($_SESSION['rol'])) {
 $id = $_GET['id'];
 
 
-// $query = "SELECT Rut FROM trabajador WHERE IDTra='$id' LIMIT 1";
-// $result = mysqli_query($conn, $query);
-
-// if ($result) {
-//     $row = mysqli_fetch_assoc($result);
-
-//     if ($row) {
-//         $rutant = $row['Rut'];
-//     }
-// }
-// Liberar el resultado de la consulta
-// mysqli_free_result($result);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">

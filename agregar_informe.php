@@ -47,6 +47,7 @@ if (isset($_GET['idh'])) {
                 <?php if (isset($datosinforme)) { ?>
                     <div class="container-md">
                         <form id="informelab" enctype="multi/form-data" method="POST">
+                        <input id="idRut" name="nameRut" value="<?php echo $rut ?>" class="form-control" hidden>
                             <div class="title">
                                 <div class="ti">
                                     <h1 class="mt-4">Informe de Labores</h1>
@@ -59,16 +60,15 @@ if (isset($_GET['idh'])) {
                             </div>
                             <br>
                             <div class="datosPersonales seccion">
-                                <h6>Datos Personales</h6>
                                 <div class="primerGrupo row ">
                                     <div class="rut-ver col-md-4">
-                                        <label for="idRutCa">Rut</label>
-                                        <input id="idRutCa" name="nameRut" value="<?php echo $rut ?>" class="form-control" readonly>
+                                        <label for="idRutCa2">Rut</label>
+                                        <input id="idRutCa2" name="nameRut2" value="<?php echo $rut ?>" class="form-control" disabled>
                                         <br>
                                     </div>
                                     <div class="nombre col-md-4">
                                         <label for="namePersonaCa"> Nombre Completo</label>
-                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" id="idPersonaCa" class="form-control" readonly>
+                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" id="idPersonaCa" class="form-control" disabled>
                                         <br>
                                     </div>
                                     <div class="nombre col-md-4">
@@ -76,7 +76,7 @@ if (isset($_GET['idh'])) {
                                         <input type="text" name="nameFuncion" id="idFuncion" class="form-control" required>
                                         <br>
                                     </div>
-                                    <input id="idTrabCa" name="nameIDH" value="<?php echo $idH ?>" class="form-control" hidden>
+                                    <input  name="nameIDH" value="<?php echo $idH ?>" class="form-control" hidden>
                                 </div>
 
                                 <div class="row">
@@ -144,10 +144,35 @@ if (isset($_GET['idh'])) {
             </main>
         </div>
     </div>
+    <script>
+        
+$("#annoinforme").on("input", function () {
+  var input = $(this).val();
+  var regex = /^\d{4}-\d{4}$/;
+  if (!regex.test(input)) {
+    $(this).addClass("is-invalid");
+  } else {
+    $(this).removeClass("is-invalid");
+  }
+});
+
+const annoinf = document.getElementById('idAnno');
+
+annoinf.addEventListener('input', annonum);
+
+function annonum(event) {
+  const input = event.target;
+  const sanitizedValue = input.value.replace(/[^0-9]/g, '');
+  input.value = sanitizedValue;
+}
+
+
+    </script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

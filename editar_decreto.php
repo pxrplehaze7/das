@@ -32,6 +32,7 @@ if (isset($_GET['idd'])) {
     $resultDecreto = mysqli_query($conn, $decre);
     if (mysqli_num_rows($resultDecreto) == 1) {
         $de = mysqli_fetch_assoc($resultDecreto);
+        $id = $de['IDTra'];
     }
 } else {
     echo "No se recibió ningún ID de usuario";
@@ -45,7 +46,7 @@ if (isset($_GET['idd'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Editar Usuario</title>
+    <title>Editar Decreto</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -53,7 +54,7 @@ if (isset($_GET['idd'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
-   
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
@@ -70,9 +71,18 @@ if (isset($_GET['idd'])) {
                         <input name="nameiddec" value="<?php echo $iddecreto ?>" id="iddec" hidden>
                         <input type="text" name="nameRutt" value="<?php echo $de['Rut'] ?>" hidden>
 
+
                         <div class="title">
-                            <h1 class="mt-4">Editar Decreto</h1>
+                            <div class="ti">
+                                <h1 class="mt-4">Editar Decreto</h1>
+                            </div>
+                            <div class="container-volver">
+                                <a class="button-volver" href="editar_registro_contrata.php?id=<?php echo $id ?>">
+                                    Volver <i class="fas fa-reply" style="display: flex; align-items: center; margin-left:6px;"></i>
+                                </a>
+                            </div>
                         </div>
+
                         <br>
                         <div class="seccion">
                             <div id="document-container">
@@ -88,13 +98,25 @@ if (isset($_GET['idd'])) {
                                         <br>
                                     </div>
                                     <div class="col-md-2">
-                                    <label for="archivo">Archivo</label>
+                                        <label for="archivo">Archivo</label>
 
-                                        <div class="contenedor-botones" id="archivo">
-                                            <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $de['RutaCon']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
-                                            <a href="<?php echo $de['RutaCon'] ?>" download class="btn btn-primary boton-descargar w-100" style="border-top-right-radius: 6px !important;    border-bottom-right-radius: 6px !important;"><i class="fa-sharp fa-solid fa-download"></i></a>
 
-                                        </div>
+
+
+                                        <?php if (!empty($de['RutaCon'])) { ?>
+                                            <div class="contenedor-botones" id="archivo">
+                                                <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $de['RutaCon']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                <a href="<?php echo $de['RutaCon'] ?>" download class="btn btn-primary boton-descargar w-100" style="border-top-right-radius: 6px !important;    border-bottom-right-radius: 6px !important;"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                            </div>
+                                        <?php
+                                        } else { ?>
+
+                                            <div class="contenedor-botones">
+                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                            </div>
+                                        <?php } ?>
+
+
                                     </div>
                                 </div>
                                 <div class="row document">
@@ -117,7 +139,7 @@ if (isset($_GET['idd'])) {
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idDecreto"><span style="color: #c40055;">*</span> N° Decreto</label>
-                                        <input type="text" name="nameDecreto" value="<?php echo $de['NDecreto'] ?>" class="form-control" maxlength="10" >
+                                        <input type="text" name="nameDecreto" value="<?php echo $de['NDecreto'] ?>" class="form-control" maxlength="10" oninput="validarNumeros(this)">
                                         <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
@@ -125,7 +147,7 @@ if (isset($_GET['idd'])) {
                                         <input type="date" name="nameFechaDocumento" value="<?php echo $de['FechaDoc'] ?>" class="form-control" id="idFechaDocumento" required>
                                     </div>
                                     <div class="col-md-6 col-sm-6 document">
-                                        <label for="idDocContratoInput"><span style="color: #c40055;">*</span> Subir o cambiar archivo</label>
+                                        <label for="idDocContratoInput"> Subir o cambiar archivo</label>
                                         <div class="input-group">
                                             <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
                                             <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')">
@@ -156,20 +178,26 @@ if (isset($_GET['idd'])) {
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <label for="idSelectSector"><span style="color: #c40055;">*</span> Sector</label>
-                                                <select name="nameSelectSector" id="idSelectSector" class="form-select" required onchange="cargarSectores()">
-                                                    <option value="" hidden>Selecciona un Sector</option>
+                                                <select name="nameSelectSector" id="idSelectSector" class="form-select" required>
                                                     <?php
-                                                    $sqlSector = "SELECT IDSector, NombreSector FROM sector";
+                                                    $idLugarSeleccionado = $de['IDLugar'];
+
+                                                    $sqlSector = "SELECT IDSector, NombreSector FROM sector WHERE IDLugar = '$idLugarSeleccionado'";
                                                     $resultadoSector = mysqli_query($conn, $sqlSector);
                                                     while ($fila3 = mysqli_fetch_assoc($resultadoSector)) {
-                                                        $Sectorselected = ($fila3['IDSector'] == $de['IDSector']) ? "selected" : "";
-                                                        echo "<option value='" . $fila3['IDSector'] . "' $Sectorselected>" . $fila3['NombreSector'] . "</option>";
+                                                        $sectorSeleccionado = ($fila3['IDSector'] == $de['IDSector']) ? 'selected' : '';
+                                                        echo "<option value='" . $fila3['IDSector'] . "' " . $sectorSeleccionado . ">" . $fila3['NombreSector'] . "</option>";
                                                     }
                                                     ?>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+
+
+
+
+                                    
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idFechaInicio"><span style="color: #c40055;">*</span> Fecha de Inicio</label>
                                         <input type="date" name="nameFechaInicio" value="<?php echo $de['FechaInicio'] ?>" class="form-control" id="idFechaInicio" required>
@@ -177,14 +205,21 @@ if (isset($_GET['idd'])) {
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idFechaTermino"><span style="color: #c40055;">*</span> Fecha de Termino</label>
-                                        <input type="date" name="nameFechaTermino" value="<?php echo $de['FechaTermino'] ?>" class="form-control" id="idFechaTermino" required>
+                                        <?php if ($de['FechaTermino'] == '2200-05-10') { ?>
+                                            <input type="date" name="nameFechaTermino" value="" class="form-control" id="idFechaTermino" required>
+
+                                        <?php } else { ?>
+                                            <input type="date" name="nameFechaTermino" value="<?php echo $de['FechaTermino'] ?>" class="form-control" id="idFechaTermino" required>
+
+                                        <?php } ?>
+
                                         <br>
                                     </div>
                                 </div>
                             </div>
 
 
-                            <div class="boton-registrar">
+                            <!-- <div class="boton-registrar">
                                 <button id="btnRegistrar" type="submit" class="boton-registrarB">
                                     <div class="svg-wrapper-1">
                                         <div class="svg-wrapper">
@@ -196,47 +231,24 @@ if (isset($_GET['idd'])) {
                                     </div>
                                     <span>Registrar</span>
                                 </button>
+                            </div> -->
+
+
+                            <div class="boton">
+                                <button class="Btn2" id="btn-editP" type="submit">Actualizar
+                                    <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                    </svg>
+                                </button>
                             </div>
+
                     </form>
                 </div>
             </main>
         </div>
     </div>
-    <!-- <script>
-        $(document).ready(function() {
-            // Llama a la función cargarSectores al cargar la página
-            cargarSectores();
-
-            // Asigna un evento de cambio al campo de selección de lugar
-            $('#idSelectLugar').change(cargarSectores);
-        });
-
-        // FUNCION QUE CARGA SECTOR SEGUN ID LUGAR
-        function cargarSectores() {
-            const lugarSeleccionado = document.getElementById("idSelectLugar").value;
-            $.ajax({
-                url: './controller/lugar_sector.php',
-                method: "POST",
-                data: {
-                    lugarSeleccionado: lugarSeleccionado
-                },
-                dataType: 'json',
-                success: function(respuesta) {
-                    let largo = respuesta.length;
-                    $("#idSelectSector").empty();
-
-                    for (let i = 0; i < largo; i++) {
-                        let idSector = respuesta[i]['IDSector'];
-                        let nombreSector = respuesta[i]['NombreSector'];
-                        $("#idSelectSector").append("<option value='" + idSector + "'>" + nombreSector + "</option>");
-                    }
-                },
-                error: function(error) {
-                    console.error("ERROR", error.responseText);
-                }
-            });
-        }
-    </script> -->
+   
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>

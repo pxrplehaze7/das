@@ -65,6 +65,8 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Sector</th>
                                                 <th>Estado</th>
                                                 <th>Confirmar</th>
+                                                <th>EDITAR</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -103,6 +105,13 @@ if (!isset($_SESSION['rol'])) {
                                                             <button class="btn btn-warning btn-confirma" style="background-color: #E76500 !important; border-color:#E76500!important; color:white; font-size:700;" data-iddecreto="<?php echo $rowpFin['IDdecreto'] ?>">OK</button>
                                                         </div>
                                                     </td>
+                                               
+                                                    <td class="text-center">
+                                                            <div class="d-flex align-items-center justify-content-around">
+                                                                <a href="editar_decreto.php?idd=<?php echo $rowpFin['IDdecreto']; ?>" class="btn btn-warning text-black"><i class="fas fa-pen"></i></a>
+                                                            </div>
+                                                        </td>
+
                                                 </tr>
                                             <?php } ?>
                                         </tbody>

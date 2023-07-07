@@ -27,7 +27,7 @@ if (isset($_GET['idh'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Editar Trabajador</title>
+    <title>Editar Honorario</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -62,7 +62,7 @@ if (isset($_GET['idh'])) {
                             </div>
                             <br>
                             <div class="seccion">
-                                <h6>Datos Personales</h6>
+                                <h6 style="padding-top: 20px !important;">Datos Personales</h6>
                                 <div class="row ">
                                     <div class="col-md">
                                         <input name="editcontra" value="<?php echo $idh ?>" class="form-control" id="idtrabid" hidden>
@@ -225,7 +225,7 @@ if (isset($_GET['idh'])) {
                         <form id="editInfoContactoH" action="./controller/editar_contacto_h.php" method="POST">
                             <input name="editcontra" value="<?php echo $idh ?>" class="form-control" id="idtrabid" hidden>
                             <div class="seccion">
-                                <h6>Datos de Contacto</h6>
+                                <h6 style=" padding-top: 20px !important;">Datos de Contacto</h6>
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="idCelular">Celular</label>
@@ -250,6 +250,113 @@ if (isset($_GET['idh'])) {
                                 </div>
                             </div>
                         </form>
+                        <br>
+
+                        <div id="editcal">
+                            <?php
+                            $sqlDec = "SELECT d.IDdecretoH, d.IDLugar, d.IDSector, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, l.NombreLug, s.NombreSector, d.Estado, d.TipodeHono
+                            FROM decretosh d
+                            INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
+                            INNER JOIN sector s ON (s.IDSector = d.IDSector)
+                             WHERE IDTraH = $idh";
+                            $resultadoDecreto = mysqli_query($conn, $sqlDec);
+                            ?>
+
+                            <div class="documentacion seccion seccion-cal">
+                                <h6>Decretos</h6>
+
+                                    <table id="decretoshonorarioedit" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
+
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">N° Doc.</th>
+                                                <th class="text-center">Fecha Doc.</th>
+                                                <th class="text-center">Tipo Honorario</th>
+                                                <th class="text-center">Fecha Inicio</th>
+                                                <th class="text-center">Fecha Termino</th>
+                                                <th class="text-center">Lugar</th>
+                                                <th class="text-center">Sector</th>
+                                                <th class="text-center">Estado</th>
+                                                <th class="text-center">Editar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php while ($decreto = mysqli_fetch_array($resultadoDecreto)) { ?>
+                                                <form method="POST" enctype="multipart/form-data" id="edicion_calif_<?php echo $decreto['IDdecretoH'] ?>" class="edicionCalif">
+                                                    <input name="idtracal" value="<?php echo $idh ?>" class="form-control" id="idtracal" hidden>
+                                                    <tr>
+
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NDecreto'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['FechaDoc'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['TipodeHono'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['FechaInicio'] ?>
+                                                        </td>
+
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['FechaTermino'] ?>
+                                                        </td>
+
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NombreLug'] ?>
+                                                        </td>
+                                                        <td class="align-middle text-center">
+                                                            <?php echo $decreto['NombreSector'] ?>
+                                                        </td>
+
+                                                        <td class="align-middle" style="text-align: center; font-weight: 700;">
+                                                            <?php
+                                                            if ($decreto['Estado'] == 1) {
+                                                                echo '<span style="color: #00886f;">Vigente</span>';
+                                                            } elseif ($decreto['Estado'] == 2) {
+                                                                echo '<span style="color: #ff9900;">Por finalizar</span>';
+                                                            } elseif ($decreto['Estado'] == 0) {
+                                                                echo '<span style="color: #ff0000;">Finalizado</span>';
+                                                            }
+                                                            ?>
+
+                                                        </td>
+
+
+                                                        <td class="text-center">
+                                                            <div class="d-flex align-items-center justify-content-around">
+                                                                <a href="editar_decreto_h.php?iddh=<?php echo $decreto['IDdecretoH']; ?>" class="btn btn-warning text-black"><i class="fas fa-pen"></i></a>
+                                                            </div>
+                                                        </td>
+                                                </form>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                <br>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <br>
                         <div id="c_docs">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs_h">

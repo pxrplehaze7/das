@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Registro de Decreto</title>
+    <title>Registro Decreto</title>
     <link rel="icon" type="image/png" href="./assets/img/favicon-32x32.png">
     <link href="./assets/styles/styles.css" rel="stylesheet" />
     <link href="./assets/styles/form.css" rel="stylesheet" />
@@ -50,22 +50,22 @@ if (isset($_GET['id'])) {
                 <div class="container-md">
                     <form id="RegistroDecretos" enctype="multipart/form-data" method="POST" autocomplete="off">
                         <input name="idtraname" value="<?php echo $idtra ?>" id="idtrabid" hidden>
+                        <input name="nameRut" id="idRutInputdec" class="form-control" value="<?php echo $rut ?>" hidden>
                         <div class="title">
                             <h1 class="mt-4">Registro de Decreto</h1>
                         </div>
                         <br>
                         <div class="seccion">
-                            <h6>Documentación</h6>
                             <div id="document-container">
                                 <div class="row ">
                                     <div class="col-md-3">
                                         <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
-                                        <input type="text" name="nameRut" id="idRutInputdec" class="form-control" maxlength="10" value="<?php echo $rut ?>" readonly>
+                                        <input type="text" name="nameRut2" id="idRutInputdec2" class="form-control" maxlength="10" value="<?php echo $rut ?>" disabled>
                                         <br>
                                     </div>
                                     <div class="col-md-9">
                                         <label for="idPersona"><span style="color: #c40055;">*</span> Nombre</label>
-                                        <input type="text" name="namePersona" id="idPersona" class="form-control" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" readonly>
+                                        <input type="text" name="namePersona" id="idPersona" class="form-control" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" disabled>
                                         <br>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
                                     </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idDecreto"><span style="color: #c40055;">*</span> N° Decreto</label>
-                                        <input type="text" name="nameDecreto" class="form-control" maxlength="10" required>
+                                        <input type="text" name="nameDecreto" class="form-control" maxlength="10" oninput="validarNumeros(this)" required>
                                         <br>
                                     </div>
                                     <div class="col-md-6 col-sm-6">
@@ -163,7 +163,7 @@ if (isset($_GET['id'])) {
             </main>
         </div>
     </div>
-
+  
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>

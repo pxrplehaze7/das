@@ -6,21 +6,8 @@ $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
     preguntar que hacer con el admin, 
 
 
-decretos siempre son solo numeros
 
 arreglar graficos separando a contrata y a honorario segun el lugar
-
-
-
-
-hacer que los decretos se puedan editar en el a contrata tambien
-
-
-
- ? hacer que se haga una consulta de los decretos segun el id del trabajador y si existe alguno con estado 0 , se haga update en la tabla de tra para que no cumpla,
-hacer que cuando agregue un decreto, haga una consulta para hacerle update a cumple del trabajador dependiento el estado deese decreto.
-
-en tabla de decretos esta lo de confirmar, hacer que cuando se confirmemediante el boton, ese decreto quede con confirmacio=1 y que se haga update de que ya cumple.
 
 
 ver que hacer con las validaciones de cada documento.
@@ -28,17 +15,6 @@ ver que hacer con las validaciones de cada documento.
 
 vercomo cambiar los graficos, ya que los trabajadores no estan asociados aun solo cesfam o lugar.
 
-hacer que en tabla de decretos, se pueda ir a ver, se pueda editar o confirmar,
-se pueda exportar esta tabla asi que debo cambiar la id de la tabla
-
-
-
-
-
-
-
-
----necesito hacer que cuando registre a un trabajador, por obligacion deba registrar un decreto ya que puede volver atras.
 
 
 ver por que cuando en mostrar y presiono en paginacion de contratos, se ve la parte de los botones, es decir la tabla baja(
@@ -53,21 +29,16 @@ echo "El valor de finDecreto es: " . $finDecreto;
 buscar como montar servidor y sus requerimientos, entregar informe
 
 
-botones se me desordenan cuando se muestra la info
-
-
 
 ver si seusan o nolos consulta archivo.
 
-revisar si se eliminan bien o se suben bien los archivos editados.
 
-cuando voy a la lista de honorarios, luego veo el perfil deuno de la lista y luego presiono los desplegables del sidebar, se pone un #.
-falla porque no tengo lo de calificaciones
+
+
 
 ver dondemas agregar lode tablap en container-md
 
 
-cuando quiero acyualizar un documento, se guarda la ruta pero no el archivo porque borre la parte dondediceque si la rutanoexiste, se crea
 
 eliminar autocompletar de calif y informe
 
@@ -76,17 +47,16 @@ creo que lo de editar los decretos debe hacerse como el informe, pero con valida
 
 agregue que si se elimina la vcarpeta de los archivos y luego se actualizan los documentos, aunque no este la carpeta, se crea y se guardan donde corresponde, solo en contrata. falta para todos los otros documentos.
 
-ver si cpuedo ver el estado del ultimodecreto segun fecha para mostrarlo en la tabla del trabajador
-
-hacer que al presionar el editar decreto, enviea algo similar alregistro de decreto
-
-hacer que cuando se traiga la informacion de editar decreto, cuando esa indefinido secambie la fecha termino.
-
-revisar los add decreto porque parece que se establece en cumple una vez se registre un decreto aunqueno suba todos los documentos
-
-lo que agregue para cambiar el sector al editar no funciona, no se cambia
 
 seme creo una carpeta con id 19 en contrata
 
-ponerle largo minimo a correo
-input n decreto solo deben ser numeros
+cambiar nombre de los vbotones
+
+
+agregar meses a las calificaciones?
+
+a editar decretos contrata ponerle no required en fecha termino
+
+ver por que cuando edito decretos, me muestra solo el primer select. si se guarda pero muestra otros
+
+intentar enviar a pagina de error

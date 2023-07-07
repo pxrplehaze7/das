@@ -5,7 +5,7 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
-// include("./controller/consulta_bar.php");
+include("./controller/consulta_bar.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -37,54 +37,8 @@ if (!isset($_SESSION['rol'])) {
                 <br>
                 <div class="container-md">
                     <div class="row">
-                        <div class="col-md-6">
-
-                            <div class="card text-white mb-4 bg-dark d-flex align-items-center">
-                                <div class="text-center">
-
-
-                                    <form class="d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0" action="info_honorario.php" method="POST" id="searchFormHonorario">
-                                        <label for="nameBuscaRutHonorario">Buscar Honorario:</label>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" name="nameBuscaRutHonorario" id="nameBuscaRutHonorario" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchHonorario" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="card text-white mb-4 bg-dark d-flex align-items-center">
-                                <div class="text-center">
-
-                                    <!-- Navbar Search-->
-                                    <form class="d-md-inline-block form-inline ms-auto me-0  my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
-                                        <label for="nameBuscaRutContrata">Buscar a Contrata e Indefinido</label>
-                                        <div class="input-group">
-
-                                            <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
-                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-
-
+                        <br>
+                        <h1>Personal a contrata</h1>
                         <br>
                         <ol class="breadcrumb mb-4"></ol>
                         <div class="row">
@@ -94,9 +48,7 @@ if (!isset($_SESSION['rol'])) {
                                         <div class="card-body">Personal Registrado</div>
                                         <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
                                     </div>
-                                    <div class="card-body numero">A Contrata e Indefinido: 5</div>
-                                    <div class="card-body numero">A Honorarios: 5</div>
-
+                                    <div class="card-body numero"><?php echo $pinaresC; ?></div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
@@ -105,7 +57,7 @@ if (!isset($_SESSION['rol'])) {
                                         <div class="card-body">Documentación al Día</div>
                                         <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
                                     </div>
-                                    <div class="card-body numero"></div>
+                                    <div class="card-body numero"><?php echo $total_c; ?></div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
@@ -114,7 +66,7 @@ if (!isset($_SESSION['rol'])) {
                                         <div class="card-body">Documentación Pendiente</div>
                                         <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
                                     </div>
-                                    <div class="card-body numero" style="max-height: 150px; overflow-y: auto;"></div>
+                                    <div class="card-body numero" style="max-height: 150px; overflow-y: auto;"><?php echo $total_nc; ?></div>
                                 </div>
                             </div>
                         </div>

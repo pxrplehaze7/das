@@ -45,6 +45,7 @@ if (isset($_GET['id'])) {
                 <?php if (isset($datosCali)) { ?>
                     <div class="container-md">
                         <form id="documentosApelacion" enctype="multi/form-data" method="POST">
+                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" hidden>
                             <div class="title">
                                 <div class="ti">
                                     <h1 class="mt-4">Calificaciones</h1>
@@ -57,16 +58,15 @@ if (isset($_GET['id'])) {
                             </div>
                             <br>
                             <div class="datosPersonales seccion">
-                                <h6>Datos Personales</h6>
                                 <div class="primerGrupo row ">
                                     <div class="rut-ver col-md-3">
-                                        <label>Rut</label>
-                                        <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" readonly>
+                                        <label for="idRutCa2">Rut</label>
+                                        <input id="idRutCa2" name="nameRutCa2" value="<?php echo $rut ?>" class="form-control" disabled>
                                         <br>
                                     </div>
                                     <div class="nombre col-md-9">
                                         <label> Nombre Completo</label>
-                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre.' '.$paterno.' '.$materno?>" id="idPersonaCa" class="form-control" readonly>
+                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre.' '.$paterno.' '.$materno?>" id="idPersonaCa" class="form-control" disabled>
                                         <br>
                                     </div>
                                     <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" hidden>

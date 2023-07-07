@@ -3,11 +3,9 @@ if (isset($_POST['iddecreto'])) {
   include("./config/conexion.php");
   $idtra = $_POST['nameidtrab'];
   $iddecreto = $_POST['iddecreto'];
-echo "la id del trabajador es:".$idtra;
 
   $rutPersona = $_POST['nameRutt'];
 
-  echo "el rut del trabajador es:".$rutPersona;
 
   $numdecreto  = $_POST['nameDecreto'];
   if ($_POST['nameSelectLugar'] != "") {
@@ -25,8 +23,7 @@ echo "la id del trabajador es:".$idtra;
   $fechaDocumento = date('Y-m-d', strtotime($fechaDocumento));
   $inicioDecreto = $_POST['nameFechaInicio'];
   $inicioDecreto = date('Y-m-d', strtotime($inicioDecreto));
-  echo "inicio decreto del trabajador es:".$inicioDecreto;
-  echo "fecha doc decreto del trabajador es:".$fechaDocumento;
+
 
   if (empty($_POST['nameFechaTermino'])) {
     if ($tipoContrato != 3) {
@@ -44,7 +41,6 @@ echo "la id del trabajador es:".$idtra;
     $finDecreto = $_POST['nameFechaTermino'];
     $finDecreto = date('Y-m-d', strtotime($finDecreto));
   }
-  echo "fin decreto del trabajador es:".$finDecreto;
 
   $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
   $fechaActual = $fechaActual->format('Y-m-d');
@@ -85,14 +81,23 @@ echo "la id del trabajador es:".$idtra;
 
   if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM trabajador WHERE Rut = '$rutPersona'")) > 0) {
 
+    $sqld="SELECT * FROM decretos WHERE IDdecreto = '$iddecreto'";
+    $resd = mysqli_query($conn, $sqld);
+
+    if (mysqli_num_rows($resd) == 1) {
     $ruta_ContratoFINAL = NULL;
+    $RDoc = mysqli_fetch_assoc($resd);
+
     if (!empty($pdfContrato)) {
       $nombreContrato = 'CONTRATO_' . str_replace('-', '_', $fechaSubidaCon) . '_' . $pdfContrato;
       $ruta_ContratoFINAL = $carpetaContrato . $nombreContrato;
       move_uploaded_file($_FILES['nameDocContratoInput']['tmp_name'], $ruta_ContratoFINAL);
       $ruta_ContratoFINAL = 'http://' . $host . '/das/controller/' . $ruta_ContratoFINAL;
+    } else {
+      $ruta_ContratoFINAL = $RDoc['RutaCon'];
     }
 
+  }
     $consultaFile = "SELECT * FROM trabajador WHERE IDTra = $idtra";
     $resFile = mysqli_query($conn, $consultaFile);
     if (mysqli_num_rows($resFile) == 1) {
@@ -265,7 +270,6 @@ echo "la id del trabajador es:".$idtra;
     Estado = $estadoDecreto
     WHERE IDdecreto = $iddecreto";
 
-echo "la consulta es: " . $sqlDecretos;
 
 
 
@@ -285,7 +289,11 @@ echo "la consulta es: " . $sqlDecretos;
         cancelButtonText: 'No',
         confirmButtonText: 'OK',
         confirmButtonColor: '#009CFD'
-      })
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     </script>";
 
         
@@ -320,17 +328,3 @@ echo "la consulta es: " . $sqlDecretos;
   echo "No se ha recibido una ID válida";
   exit();
 }
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -16,6 +16,12 @@ function validarTexto(input) {
   }
   
 
+  function validarNumeros(input) {
+    // Eliminar cualquier caracter no numérico
+    input.value = input.value.replace(/\D/g, '').substring(0, 10);
+  
+  }
+  
   
   //VALIDACION DEL RUT EN REGISTRAR
   //PERMITE SOLO EL INGRESO DE NUMEROS, k O k y -

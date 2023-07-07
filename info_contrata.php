@@ -49,37 +49,47 @@ if (isset($_GET['id'])) {
             <main>
                 <?php if (isset($persona)) { ?>
                     <div class="container-md tablap">
+
+
+                        <!-- <div class="title">
+                            <div class="ti">
+                                <h1 class="mt-4">Información</h1>
+                            </div>
+                        </div> -->
+
                         <div class="title">
                             <div class="ti">
                                 <h1 class="mt-4">Información</h1>
                             </div>
+                            <?php if ($_SESSION['rol'] === '1') { ?>
+                                <form action="editar_registro_contrata.php" method="GET">
+                                    <div class="container-volver">
+                                        <div class="title">
+                                            <button class="btn btn-editar" style="width: 90px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
+                                            <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
+                                        </div>
+                                    </div>
+                                </form>
+                            <?php } ?>
                         </div>
+
                         <br>
                         <div class="seccion">
                             <div class="title">
                                 <div class="ti">
                                     <h6 class="mt-4">Datos Personales</h6>
                                 </div>
-                                <?php if ($_SESSION['rol'] === '1') { ?>
-                                    <form action="editar_registro_contrata.php" method="GET">
-                                        <div class="container-volver">
-                                            <div class="title">
-                                                <button class="btn btn-editar" style="width: 90px;" type="submit">Editar <i class="fa-solid fa-pen-to-square"></i></button>
-                                                <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
-                                            </div>
-                                        </div>
-                                    </form>
-                                <?php } ?>
+                               
                             </div>
                             <div class="row ">
                                 <div class="col-md-3">
                                     <label>Rut</label>
-                                    <input value="<?php echo $persona['Rut'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $persona['Rut'] ?>" class="form-control" disabled>
                                     <br>
                                 </div>
                                 <div class="col-md-9">
                                     <label> Nombre Completo</label>
-                                    <input value="<?php echo $persona['NombreTra'] . ' ' . $persona['PaternoTra'] . ' ' . $persona['MaternoTra'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $persona['NombreTra'] . ' ' . $persona['PaternoTra'] . ' ' . $persona['MaternoTra'] ?>" class="form-control" disabled>
                                     <br>
                                 </div>
                             </div>
@@ -88,7 +98,7 @@ if (isset($_GET['id'])) {
                             <div class="row">
                                 <div class="col-md">
                                     <label>Categoria </label>
-                                    <textarea class="form-control" rows="2" readonly style="resize: none;"><?php echo $persona['NombreCat'] ?></textarea>
+                                    <textarea class="form-control" rows="2" disabled style="resize: none;"><?php echo $persona['NombreCat'] ?></textarea>
                                 </div>
                             </div>
                             <br>
@@ -96,37 +106,38 @@ if (isset($_GET['id'])) {
                             <div class="row">
                                 <div class="col-md">
                                     <label>Profesion</label>
-                                    <input value="<?php echo $persona['Profesion'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $persona['Profesion'] ?>" class="form-control" disabled>
                                     <br>
                                 </div>
                                 <div class="col-md">
                                     <label>Género</label>
-                                    <input value="<?php echo $persona['Genero'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $persona['Genero'] ?>" class="form-control" disabled>
                                     <br>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md">
                                     <label>Celular </label>
-                                    <input value="<?php echo $persona['CelularTra'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $persona['CelularTra'] ?>" class="form-control" disabled>
                                     <br>
                                 </div>
                                 <br>
                                 <div class="col-md">
                                     <label>Correo</label>
-                                    <input value="<?php echo $persona['CorreoTra'] ?>" class="form-control" readonly>
+                                    <input value="<?php echo $persona['CorreoTra'] ?>" class="form-control" disabled>
                                     <br>
                                 </div>
                             </div>
+                            <br>
                             <h6>Observaciones</h6>
                             <?php if (empty($persona['Observ'])) : ?>
-                                <textarea class="form-control" rows="5" cols="50" readonly>Sin observaciones</textarea>
+                                <textarea class="form-control" rows="5" cols="50" disabled>Sin observaciones</textarea>
                             <?php else : ?>
-                                <textarea class="form-control" rows="5" cols="50" readonly><?php echo $persona['Observ'] ?></textarea>
+                                <textarea class="form-control" rows="5" cols="50" disabled><?php echo $persona['Observ'] ?></textarea>
                             <?php endif; ?>
                         </div>
 
-                        <br>
+                       
                         <div class="documentacion seccion">
                             <div class="title">
                                 <div class="ti">
@@ -135,12 +146,14 @@ if (isset($_GET['id'])) {
                                 <form action="registro_dec_contrata.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
-                                            <button class="btn btn-editar" type="submit" style="width: 120px;">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                            <button class="btn btn-editar" type="submit" style="width: 120px;margin-bottom: 27px;">Añadir <i class="fa-solid fa-circle-plus"></i></button>
                                             <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                         </div>
                                     </div>
                                 </form>
                             </div>
+
+
 
                             <table id="decretosp" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
@@ -174,14 +187,14 @@ if (isset($_GET['id'])) {
                                             <td class="align-middle"><?php echo  $decsper['NombreCon'] ?></td>
                                             <td class="align-middle"><?php echo date('d-m-Y', strtotime($decsper['FechaInicio'])) ?></td>
                                             <td class="align-middle" style="text-align: center;">
-                                                        <?php
-                                                        if ($decsper['IDCon'] == 3) {
-                                                            echo ' ';
-                                                        } else{
-                                                            echo date('d-m-Y', strtotime($decsper['FechaTermino']));
-                                                        }
-                                                        ?>
-                                                    </td>
+                                                <?php
+                                                if ($decsper['IDCon'] == 3) {
+                                                    echo ' ';
+                                                } else {
+                                                    echo date('d-m-Y', strtotime($decsper['FechaTermino']));
+                                                }
+                                                ?>
+                                            </td>
                                             <td class="align-middle"><?php echo  $decsper['NombreLug'] ?></td>
                                             <td class="align-middle"><?php echo  $decsper['NombreSector'] ?></td>
 
@@ -235,7 +248,7 @@ if (isset($_GET['id'])) {
                                 <form action="pdfs_antes_contrata.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
-                                            <button class="btn btn-editar" type="submit" style="width: 120px;">Anteriores <i class="fas fa-history"></i></button>
+                                            <button class="btn btn-editar" type="submit" style="width: 120px;margin-bottom: 27px;">Anteriores <i class="fas fa-history"></i></button>
                                             <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                         </div>
                                     </div>
@@ -473,7 +486,7 @@ if (isset($_GET['id'])) {
                                     <form action="agregar_calificacion.php" method="GET">
                                         <div class="container-volver">
                                             <div class="title">
-                                                <button class="btn btn-calificacion" style="width: 100px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
+                                                <button class="btn btn-calificacion" style="width: 100px;margin-bottom: 27px;" type="submit">Añadir <i class="fa-solid fa-circle-plus"></i></button>
                                                 <input type="hidden" name="id" id="idtraid" value="<?php echo $persona['IDTra'] ?>">
                                             </div>
                                         </div>
@@ -503,7 +516,8 @@ if (isset($_GET['id'])) {
                                         <tr>
                                             <td class='align-middle text-center'><?php echo $mostrar['fecha'] ?></td>
 
-                                            <td class='align-middle text-center'>
+                                       
+                                            <td class='centrado'>
                                                 <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
                                                     <center>
                                                         <div class="contenedor-botones">
@@ -511,8 +525,16 @@ if (isset($_GET['id'])) {
                                                             <a href="<?php echo $mostrar['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar2 w-100"><i class="fa-sharp fa-solid fa-download"></i></a>
                                                         </div>
                                                     </center>
+                                                <?php } elseif (empty($mostrar['RutaCalificacion'])) { ?>
+                                                    <div class="contenedor-botones">
+                                                        <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                    </div>
                                                 <?php } ?>
                                             </td>
+
+
+
+
                                             <td class='align-middle text-center'><?php echo $mostrar['apelo'] ?></td>
                                             <td class='centrado'>
                                                 <?php if (!empty($mostrar['RutaApelacion']) && $mostrar['apelo'] == "Si") { ?>

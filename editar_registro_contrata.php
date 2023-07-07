@@ -67,7 +67,7 @@ if (isset($_GET['id'])) {
                             </div>
                             <br>
                             <div class="seccion">
-                                <h6>Datos Personales</h6>
+                                <h6 style="padding-top: 20px !important;">Datos Personales</h6>
                                 <div class="row ">
                                     <div class="col-md">
                                         <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
@@ -262,7 +262,7 @@ if (isset($_GET['id'])) {
                         <form id="editInfoContacto" action="./controller/editar_contacto.php" method="POST">
                             <input name="editcontra" value="<?php echo $idtra ?>" class="form-control" id="idtrabid" hidden>
                             <div class="seccion">
-                                <h6>Datos de Contacto</h6>
+                                <h6 style=" padding-top: 20px !important;">Datos de Contacto</h6>
                                 <div class="row">
                                     <div class="col-6">
                                         <label for="idCelular">Celular</label>
@@ -294,24 +294,6 @@ if (isset($_GET['id'])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <div id="editcal">
                             <?php
                             $sqlDec = "SELECT d.IDdecreto, d.IDLugar, d.IDSector, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, c.NombreCon, l.NombreLug, s.NombreSector, d.Estado
@@ -326,8 +308,7 @@ if (isset($_GET['id'])) {
                             <div class="documentacion seccion seccion-cal">
                                 <h6>Decretos</h6>
 
-                                <div class="" style="overflow-x: auto;">
-                                    <table id="calEDIT" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
+                                    <table id="decretoscontrataedit" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
 
                                         <thead>
                                             <tr>
@@ -397,29 +378,10 @@ if (isset($_GET['id'])) {
                                             <?php } ?>
                                         </tbody>
                                     </table>
-                                </div>
+                                
                                 <br>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -438,8 +400,8 @@ if (isset($_GET['id'])) {
                         <div id="c_docs">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs_c">
                                 <input type="hidden" name="nameRutEditar" value="<?php echo $editContrata['Rut'] ?>">
-                                <div class="documentacion seccion">
-                                    <h6>Documentación</h6>
+                                <div class=" seccion">
+                                    <h6 style=" padding-top: 20px !important; padding-bottom:0 !important">Documentación</h6>
                                     <table id="docsEDIT" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
                                         <thead>
                                             <tr>
@@ -831,9 +793,8 @@ if (isset($_GET['id'])) {
                                                 <form method="POST" enctype="multipart/form-data" id="edicion_calif_<?php echo $mostrar['IDCalif'] ?>" class="edicionCalif">
                                                     <input name="idtracal" value="<?php echo $idtra ?>" class="form-control" id="idtracal" hidden>
                                                     <tr>
-
                                                         <td class="align-middle text-center">
-                                                            <input style="min-width: 99px; max-width:100px" maxlength="9" type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_<?php echo $mostrar['IDCalif'] ?>" id="fechacalif">
+                                                            <input style="min-width: 99px; max-width: 100px" maxlength="9" type="text" class="form-control" value="<?php echo $mostrar['fecha'] ?>" name="namefecha_<?php echo $mostrar['IDCalif'] ?>" id="fechacalif" oninput="validarFechaCalif(this)">
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
@@ -926,6 +887,17 @@ if (isset($_GET['id'])) {
             </main>
         </div>
     </div>
+    <script>
+        function validarFechaCalif(input) {
+            // Remueve todos los caracteres que no sean números ni guiones
+            input.value = input.value.replace(/[^0-9-]/g, '');
+
+            // Verifica si hay más de un guion y lo remueve
+            if (input.value.indexOf('-') !== input.value.lastIndexOf('-')) {
+                input.value = input.value.replace(/-/g, '');
+            }
+        }
+    </script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/elimina.js"></script>

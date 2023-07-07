@@ -15,6 +15,11 @@ function validarCelular(input) {
   }
 }
 
+function validarNumeros(input) {
+  // Eliminar cualquier caracter no numérico
+  input.value = input.value.replace(/\D/g, '').substring(0, 10);
+
+}
 
 //VALIDA EL RUT DE USUARIO
 //PERMITE SOLO EL INGRESO DE NUMEROS, k O k y -
