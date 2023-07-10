@@ -1,18 +1,40 @@
 <?php
-// $cumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 1;";
-// $sqlCumplen = mysqli_query($conn, $cumplen);
-// $row = mysqli_fetch_row($sqlCumplen);
-// $total_c = $row[0];
 
-// $NOcumplen = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 0;";
-// $sqlNOCumplen = mysqli_query($conn, $NOcumplen);
-// $row = mysqli_fetch_row($sqlNOCumplen);
-// $total_nc = $row[0];
+//CANTIDAD DE LOS QUE CUMPLEN
+$cumplent = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 1;";
+$sqlCumplent = mysqli_query($conn, $cumplent);
+$rowct = mysqli_fetch_row($sqlCumplent);
+$total_ct = $rowct[0];
 
-// $totalTRA = "SELECT COUNT(*) FROM `trabajador`;";
-// $sqlT = mysqli_query($conn, $totalTRA);
-// $row = mysqli_fetch_row($sqlT);
-// $total_t = $row[0];
+$cumplenh = "SELECT COUNT(*) FROM `honorario` WHERE Cumple = 1;";
+$sqlCumplenh = mysqli_query($conn, $cumplenh);
+$rowch = mysqli_fetch_row($sqlCumplenh);
+$total_ch = $rowch[0];
+
+
+
+
+//CANTIDAD DE LOS QUE NO CUMPLEN
+
+$NOcumplent = "SELECT COUNT(*) FROM `trabajador` WHERE Cumple = 0;";
+$sqlNOCumplent = mysqli_query($conn, $NOcumplent);
+$rownct = mysqli_fetch_row($sqlNOCumplent);
+$total_nct = $rownct[0];
+
+$NOcumplenh = "SELECT COUNT(*) FROM `honorario` WHERE Cumple = 0;";
+$sqlNOCumplenh = mysqli_query($conn, $NOcumplenh);
+$rownch = mysqli_fetch_row($sqlNOCumplenh);
+$total_nch = $rownch[0];
+
+$totalTRA = "SELECT COUNT(*) FROM `trabajador`;";
+$sqlT = mysqli_query($conn, $totalTRA);
+$row = mysqli_fetch_row($sqlT);
+$total_t = $row[0];
+
+$totalH = "SELECT COUNT(*) FROM `honorario`;";
+$sqlH = mysqli_query($conn, $totalH);
+$row2 = mysqli_fetch_row($sqlH);
+$total_h = $row2[0];
 
 // //trabajadores que cumplen con documentacion y son de la das
 // $dasC = "SELECT COUNT(*) FROM `trabajador` WHERE `IDLugar` = 1 AND `Cumple` = 1";

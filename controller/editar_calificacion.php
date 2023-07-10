@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
             $fechaActual = $fechaActual->format('d-m-Y');
             $host = $_SERVER['HTTP_HOST'];
-            $ruta = 'PDFS/CONTRATA/';
+            $ruta = 'PDFS/CONTRATA_E_INDEFINIDOS/';
             $pdfcalificacion = (!empty($_FILES['nameCalif_'.$idCalificacion]['name'])) ? uniqid() . '.pdf' : '';
             $pdfapelo = (!empty($_FILES['nameApela_'.$idCalificacion]['name'])) ? uniqid() . '.pdf' : '';
             $consultaDoc = "SELECT * FROM calificaciones WHERE IDCalif = '$idCalificacion'";

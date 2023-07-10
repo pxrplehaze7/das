@@ -3,16 +3,25 @@ include("./config/conexion.php");
 if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['nameFin']) && isset($_POST['nameApeloRes']) && isset($_POST['nameRutCa'])) {
     //SE RECIBEN LOS DATOS DE LOS INPUTS DESDE EL FORM
     $idTrabajador = $_POST['nameTrabCa'];
-    $desde        = $_POST['nameInicio'];
-    $hasta        = $_POST['nameFin'];
+    $annoInicio        = $_POST['nameInicio'];
+    $annoFin        = $_POST['nameFin'];
+    $mesInicio       = $_POST['mesinicio'];
+    $mesFin        = $_POST['mesfin'];
     $apelo        = $_POST['nameApeloRes'];
     $rut          = $_POST['nameRutCa'];
     $host = $_SERVER['HTTP_HOST'];
-    $ruta = 'PDFS/CONTRATA/';
-    $desde = mysqli_real_escape_string($conn, $desde);
-    $hasta = mysqli_real_escape_string($conn, $hasta);
+    $ruta = 'PDFS/CONTRATA_E_INDEFINIDOS/';
+    $annoInicio = mysqli_real_escape_string($conn, $annoInicio);
+    $annoFin = mysqli_real_escape_string($conn, $annoFin);
+    $mesInicio = mysqli_real_escape_string($conn, $mesInicio);
+    $mesFin = mysqli_real_escape_string($conn, $mesFin);
+
     $apelo = mysqli_real_escape_string($conn, $apelo);
-    $fecha = $desde . '-' . $hasta;
+    $fecha = $mesInicio. '_' .$annoInicio . '-' . $mesFin. '_' .$annoFin;
+
+
+
+
     $fecha = mysqli_real_escape_string($conn, $fecha);
     $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
     $fechaActual = $fechaActual->format('d-m-Y');
@@ -49,8 +58,10 @@ if (isset($_POST['nameTrabCa']) && isset($_POST['nameInicio']) && isset($_POST['
             $ruta_ApelaFINAL = '';
         }
 
-        $sqlCalificacion = "INSERT INTO calificaciones (IDTra, fecha, apelo, RutaApelacion, RutaCalificacion) 
-        VALUES ('$idTrabajador','$fecha','$apelo','$ruta_ApelaFINAL', '$ruta_CalifFINAL')";
+        $sqlCalificacion = "INSERT INTO calificaciones (IDTra, MesInicio, AnnoInicio, MesFin, AnnoFin, apelo, RutaApelacion, RutaCalificacion) 
+        VALUES ('$idTrabajador','$mesInicio','$annoInicio','$mesFin','$annoFin','$apelo','$ruta_ApelaFINAL', '$ruta_CalifFINAL')";
+
+
 
         if (mysqli_query($conn, $sqlCalificacion)) {
             echo json_encode([

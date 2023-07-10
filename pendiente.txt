@@ -32,7 +32,6 @@ eliminar autocompletar de calif y informe
 en el otro sistema mencionan acces, base de datos en nube, que se actualice la informacion, que no se bloquee al modificar el mismo dato al mismo tiempo, las telefonistas
 creo que lo de editar los decretos debe hacerse como el informe, pero con validaciones ya que pueden vencer
 
-agregue que si se elimina la vcarpeta de los archivos y luego se actualizan los documentos, aunque no este la carpeta, se crea y se guardan donde corresponde, solo en contrata. falta para todos los otros documentos.
 
 agregar verificacion de usuario si es admin o no
 

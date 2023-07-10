@@ -27,7 +27,7 @@ $host = $_SERVER['HTTP_HOST'];
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
 $fechaSubidaDoc = $fechaActual;
-$ruta = 'PDFS/CONTRATA/';
+$ruta = 'PDFS/CONTRATA_E_INDEFINIDOS/';
 $fechaActual = strtotime($fechaActual);
 $cumple = 0;
 

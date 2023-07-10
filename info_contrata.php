@@ -80,7 +80,7 @@ if (isset($_GET['id'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Datos Personales</h6>
                                 </div>
-                               
+
                             </div>
                             <div class="row ">
                                 <div class="col-md-3">
@@ -138,7 +138,7 @@ if (isset($_GET['id'])) {
                             <?php endif; ?>
                         </div>
 
-                       
+
                         <div class="documentacion seccion">
                             <div class="title">
                                 <div class="ti">
@@ -497,7 +497,9 @@ if (isset($_GET['id'])) {
                             <table id="calif" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">Fecha</th>
+                                        <th class="text-center">Desde</th>
+                                        <th class="text-center">Hasta</th>
+
                                         <th class="text-center">Calificación</th>
                                         <th class="text-center">Apelo</th>
                                         <th class="text-center">Apelación</th>
@@ -515,9 +517,10 @@ if (isset($_GET['id'])) {
                                     while ($mostrar = mysqli_fetch_array($resultadoCalif)) {
                                     ?>
                                         <tr>
-                                            <td class='align-middle text-center'><?php echo $mostrar['fecha'] ?></td>
+                                            <td class='align-middle text-center'><?php echo $mostrar['MesInicio'] . ' ' . $mostrar['AnnoInicio'] ?></td>
 
-                                       
+                                            <td class='align-middle text-center'><?php echo $mostrar['MesFin'] . ' ' . $mostrar['AnnoFin'] ?></td>
+
                                             <td class='centrado'>
                                                 <?php if (!empty($mostrar['RutaCalificacion'])) { ?>
                                                     <center>

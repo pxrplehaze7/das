@@ -17,6 +17,13 @@ $pdfExamenM = (!empty($_FILES['nameExaMdocEDIT']['name'])) ? uniqid() . '.pdf' :
 $pdfEstudios = (!empty($_FILES['nameEstudiodocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfInscripcion = (!empty($_FILES['nameInscripdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 
+
+// CARPETAS CON NOMBRE LA ID, SI NO EXISTE LA CREA
+if (!file_exists($ruta . $idh)) {
+  mkdir($ruta . $idh, 0777, true);
+}
+
+
 $consultaFile = "SELECT * FROM honorario WHERE Rut = '$rutHonorario'";
 $resFile = mysqli_query($conn, $consultaFile);
 if (mysqli_num_rows($resFile) == 1) {

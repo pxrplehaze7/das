@@ -183,7 +183,11 @@ CREATE TABLE `das`.`decretos` (
 CREATE TABLE `das`.`calificaciones` (
     `IDCalif` INT NOT NULL AUTO_INCREMENT,
     `IDTra` INT NOT NULL,
-    `fecha` VARCHAR(9) NOT NULL,
+    -- `fecha` VARCHAR(9) NOT NULL,
+    `MesInicio` VARCHAR (10) NOT NULL,
+    `MesFin` VARCHAR (10) NOT NULL,
+    `AnnoInicio` VARCHAR(4) NOT NULL,
+    `AnnoFin` VARCHAR(4) NOT NULL,
     `apelo` VARCHAR(2) NOT NULL,
     `RutaCalificacion` VARCHAR(400) NULL,
     `RutaApelacion` VARCHAR(400) NULL,

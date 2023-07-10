@@ -5,7 +5,7 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
-// include("./controller/consulta_bar.php");
+include("./controller/consulta_bar.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -34,77 +34,150 @@ if (!isset($_SESSION['rol'])) {
         <?php require("./components/sidebar.php"); ?>
         <div id="layoutSidenav_content">
             <main>
+                   <div class="title">
+                        <h1 class="mt-4">Registro de Usuario</h1>
+                    </div>
                 <br>
-                <div class="container-md">
+                <div class="container-md d-flex justify-content-center" style="width: 90%;">
+                 
                     <br>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="text-center">
-                                <form class="d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0" action="info_honorario.php" method="POST" id="searchFormHonorario">
-                                    <label for="nameBuscaRutHonorario">Buscar Honorario:</label>
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" name="nameBuscaRutHonorario" id="nameBuscaRutHonorario" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                        <button class="btn btn-primary btn-buscar" id="btnNavbarSearchHonorario" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
+                    
+                    <div class="row d-flex d-flex justify-content-center">
+                        <div class="contenedor-buscador row">
+                            <div class="col-md-5 col-sm-5" style="background-color:#212529; width:45%;height: 112px;border-radius: 7px;">
+                                <div class="text-center">
+                                    <form class="d-md-inline-block form-inline" action="info_honorario.php" method="POST" id="searchFormHonorario">
+                                        <label for="nameBuscaRutHonorario" class="text-white">Buscar Honorario:</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="nameBuscaRutHonorario" id="nameBuscaRutHonorario" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchHonorario" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-5" style="background-color:#212529; width:45%;height: 112px;border-radius: 7px;">
+                                <div class="text-center">
+                                    <form class="d-md-inline-block form-inline" action="info_contrata.php" method="POST" id="searchFormContrata">
+                                        <label for="nameBuscaRutContrata" class="text-white">Buscar a Contrata e Indefinido</label>
+                                        <div class="input-group">
+                                            <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
+                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="text-center">
-                                <form class="d-md-inline-block form-inline ms-auto me-0  my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
-                                    <label for="nameBuscaRutContrata">Buscar a Contrata e Indefinido</label>
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
-                                        <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
 
 
 
 
                         <br>
                         <ol class="breadcrumb mb-4"></ol>
-                        <div class="row">
+                        <div class="row d-flex justify-content-center" style="padding-left: 0 !important;padding-right: 0 !important;">
+
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
                                 <div class="card text-white mb-4" style="background-color:#463bfa;">
-                                    <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
-                                        <div class="card-body">Personal Registrado</div>
-                                        <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
+                                    <div style="display:flex; justify-content:space-around;font-size: 20px; align-items:center;">
+                                        <div class="info-icon" style="padding-left: 10px;">
+                                            <span class="tooltip">Cantidad total de trabajadores registrados</span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
+
+                                        <div class="card-body" style="padding-left: 5px;">Personal Registrado</div>
+                                        <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
+
                                     </div>
-                                    <div class="card-body numero">A Contrata e Indefinido: 5</div>
-                                    <div class="card-body numero">A Honorarios: 5</div>
+                                    <div class="card-body" style="font-size: 18px;">
+                                        A Contrata e Indefinidos: 1 <br>
+                                        A Honorarios: 1 </div>
 
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
                                 <div class="card text-white mb-4" style="background-color:#00c4a0;">
-                                    <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
+                                    <div style="display:flex; justify-content:space-around;font-size: 20px; align-items:center;">
+                                        <div class="info-icon" style="padding-left: 10px;">
+                                            <span class="tooltip" style="bottom: -240px !important;width: 285px;">
+                                                Documentacion básica corresponde a:
+                                                <br>Certificado de Nacimiento.
+                                                <br>Certificado de Antecedentes.
+                                                <br>Fotocopia de Cédula de identidad.
+                                                <br>Declaración Jurada.
+                                                <br>Certificado de S.M al día.
+                                                <br>EUNACOM.
+                                                <br>Certificado de Inscripción.
+                                                <br>Certificado de Salud Compatible.
+                                                <br>Certificado de afiliación AFP.
+                                                <br>Certificado de afiliación Previsión.
+                                                <br>Currículum Vitae.
+                                                <br>Certificado de Estudios o Título Profesional.
+
+                                            </span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
                                         <div class="card-body">Documentación al Día</div>
-                                        <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
+                                        <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
                                     </div>
-                                    <div class="card-body numero"></div>
+                                    <div class="card-body" style="font-size: 18px;">
+                                        A Contrata e Indefinidos: <?php echo $total_ct ?>
+                                        <br>
+                                        A Honorarios: <?php echo $total_ch ?>
+                                    </div>
+
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
-                                <div class="card text-white mb-4" style="background-color:#f3ab00">
-                                    <div style="display:flex; justify-content:space-around;font-size: 23px; align-items:center;">
+                                <div class="card text-white mb-4" style="background-color:#f3ab00;">
+                                    <div style="display:flex; justify-content:space-around;font-size: 20px; align-items:center;">
+                                        <div class="info-icon" style="padding-left: 10px;">
+                                            <span class="tooltip" style="bottom: -240px !important;width: 285px;">
+                                                Documentacion básica corresponde a:
+                                                <br>Certificado de Nacimiento.
+                                                <br>Certificado de Antecedentes.
+                                                <br>Fotocopia de Cédula de identidad.
+                                                <br>Declaración Jurada.
+                                                <br>Certificado de S.M al día.
+                                                <br>EUNACOM.
+                                                <br>Certificado de Inscripción.
+                                                <br>Certificado de Salud Compatible.
+                                                <br>Certificado de afiliación AFP.
+                                                <br>Certificado de afiliación Previsión.
+                                                <br>Currículum Vitae.
+                                                <br>Certificado de Estudios o Título Profesional.
+
+                                            </span>
+                                            <i class="fas fa-info-circle"></i>
+                                        </div>
                                         <div class="card-body">Documentación Pendiente</div>
-                                        <div class="card-body" style="font-size:40px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
+                                        <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
                                     </div>
-                                    <div class="card-body numero" style="max-height: 150px; overflow-y: auto;"></div>
+                                    <div class="card-body" style="font-size: 18px;">
+                                        A Contrata e Indefinidos: <?php echo $total_nct ?>
+                                        <br>
+                                        A Honorarios: <?php echo $total_nch ?>
+                                    </div>
+
                                 </div>
                             </div>
+
+
+
                         </div>
+
+
+
+
+
+
+
+
+
                         <div class="row">
                             <div class="col-lg-4 col-md-6 grafico">
                                 <div class=" card mb-4">

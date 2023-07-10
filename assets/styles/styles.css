@@ -11317,7 +11317,7 @@ body {
 
 
 /* AQUI ES DONDE SE ACHICA EL MENU */
-@media (min-width: 1250px) {
+@media (min-width: 1400px) {
   #layoutSidenav #layoutSidenav_nav {
     transform: translateX(0);
   }

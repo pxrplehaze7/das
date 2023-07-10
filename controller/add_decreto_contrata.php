@@ -13,7 +13,7 @@ if (isset($_POST['idcontrata'])) {
   $sector = $_POST['nameSelectSector'];
   $tipoContrato = $_POST['nameSelectCon'];
   $host = $_SERVER['HTTP_HOST'];
-  $ruta = 'PDFS/CONTRATA/';
+  $ruta = 'PDFS/CONTRATA_E_INDEFINIDOS/';
   $estadoDecreto = -1;
   $fechaDocumento = $_POST['nameFechaDocumento'];
   $fechaDocumento = date('Y-m-d', strtotime($fechaDocumento));

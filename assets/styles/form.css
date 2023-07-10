@@ -393,7 +393,7 @@ th {
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  height: 100% !important;
+  /* height: 100% !important; */
   margin-bottom: 10px !important;
 }
 
@@ -934,3 +934,40 @@ color: black;
   color: rgb(119, 0, 174);
   }
   
+
+
+
+
+  .info-icon {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: -27%;
+    left: 117%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+  }
+  
+
+  .info-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+.contenedor-buscador{
+  display: flex;
+  justify-content: space-between;
+}

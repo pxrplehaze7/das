@@ -3,14 +3,13 @@ include("./config/conexion.php");
 $idtrab = $_POST['laid'];
 $rutPersona = $_POST['nameRutEditar'];
 $host = $_SERVER['HTTP_HOST'];
-$ruta = 'PDFS/CONTRATA/';
 
 // Obtén la fecha actual en la zona horaria correcta
 $fechaActual = new DateTime('now', new DateTimeZone('America/Santiago'));
 $fechaActual = $fechaActual->format('d-m-Y');
 
 // CARPETA DONDE SE GUARDARAN CARPETAS SEGUN LA ID
-$ruta = 'PDFS/CONTRATA/';
+$ruta = 'PDFS/CONTRATA_E_INDEFINIDOS/';
 $pdfNacimiento = (!empty($_FILES['nameNACdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfAntecedentes = (!empty($_FILES['nameANTECEdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
 $pdfAFP = (!empty($_FILES['nameAFPdocEDIT']['name'])) ? uniqid() . '.pdf' : '';
