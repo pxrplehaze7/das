@@ -9,14 +9,20 @@ if ($_SESSION['rol'] !== '1') {
     header('Location: ./components/error.html');
     exit();
 }
-if (isset($_GET['id'])) {
-    $idtracal = $_GET['id'];
+if (isset($_GET['idcal'])) {
+    $idcal = $_GET['idcal'];
 
-    $datosCali = "SELECT idTra, Rut, NombreTra, PaternoTra, MaternoTra FROM `trabajador`
-    WHERE IDTra='$idtracal' LIMIT 1";
+    $datosCali = "SELECT c.MesInicio, c.MesFin, c.AnnoInicio, c.AnnoFin, c.apelo, c.RutaCalificacion, c.RutaApelacion, t.Rut, t.NombreTra, t.PaternoTra, t.MaternoTra, t.IDTra
+    FROM calificaciones c
+    INNER JOIN trabajador t ON (t.IDTra = c.IDTra)
+    WHERE IDCalif='$idcal' LIMIT 1";
 
-    $datosCali = mysqli_query($conn, $datosCali);
-    list($idTrabajador, $rut, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
+
+    $result = mysqli_query($conn, $datosCali);
+    if (mysqli_num_rows($result) == 1) {
+        $calif = mysqli_fetch_assoc($result);
+        $idTrabajador = $calif['IDTra'];
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -53,8 +59,10 @@ if (isset($_GET['id'])) {
             <main>
                 <?php if (isset($datosCali)) { ?>
                     <div class="container-md">
-                        <form id="documentosApelacion" enctype="multi/form-data" method="POST">
+                        <form id="editarcalificacion" enctype="multi/form-data" method="POST">
                             <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" hidden>
+                            <input id="idCa" name="nameCa" value="<?php echo $idcal ?>" class="form-control" hidden>
+
                             <div class="title">
                                 <div class="ti">
                                     <h1 class="mt-4">Calificaciones</h1>
@@ -70,12 +78,12 @@ if (isset($_GET['id'])) {
                                 <div class="primerGrupo row ">
                                     <div class="rut-ver col-md-3">
                                         <label for="idRutCa2">Rut</label>
-                                        <input id="idRutCa2" name="nameRutCa2" value="<?php echo $rut ?>" class="form-control" disabled>
+                                        <input id="idRutCa2" name="nameRutCa2" value="<?php echo $calif['Rut'] ?>" class="form-control" disabled>
                                         <br>
                                     </div>
                                     <div class="nombre col-md-9">
                                         <label> Nombre Completo</label>
-                                        <input type="text" name="namePersonaCa" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" id="idPersonaCa" class="form-control" disabled>
+                                        <input type="text" name="namePersonaCa" value="<?php echo $calif['NombreTra'] . ' ' . $calif['PaternoTra'] . ' ' . $calif['MaternoTra'] ?>" id="idPersonaCa" class="form-control" disabled>
                                         <br>
                                     </div>
                                     <input id="idTrabCa" name="nameTrabCa" value="<?php echo $idTrabajador ?>" class="form-control" hidden>
@@ -86,24 +94,25 @@ if (isset($_GET['id'])) {
                                         <label for="idInicio"><span style="color: red;">*</span> Desde</label>
                                         <div class="col-md-6">
                                             <select name="mesinicio" class="form-select" id="mes">
-                                                <option hidden value=""> Selecciona</option>;
-                                                <option value="Enero">Enero</option>
-                                                <option value="Febrero">Febrero</option>
-                                                <option value="Marzo">Marzo</option>
-                                                <option value="Abril">Abril</option>
-                                                <option value="Mayo">Mayo</option>
-                                                <option value="Junio">Junio</option>
-                                                <option value="Julio">Julio</option>
-                                                <option value="Agosto">Agosto</option>
-                                                <option value="Septiembre">Septiembre</option>
-                                                <option value="Octubre">Octubre</option>
-                                                <option value="Noviembre">Noviembre</option>
-                                                <option value="Diciembre">Diciembre</option>
+                                                <option hidden value="">Selecciona</option>
+                                                <option value="Enero" <?php echo ($calif['MesInicio'] == 'Enero') ? 'selected' : ''; ?>>Enero</option>
+                                                <option value="Febrero" <?php echo ($calif['MesInicio'] == 'Febrero') ? 'selected' : ''; ?>>Febrero</option>
+                                                <option value="Marzo" <?php echo ($calif['MesInicio'] == 'Marzo') ? 'selected' : ''; ?>>Marzo</option>
+                                                <option value="Abril" <?php echo ($calif['MesInicio'] == 'Abril') ? 'selected' : ''; ?>>Abril</option>
+                                                <option value="Mayo" <?php echo ($calif['MesInicio'] == 'Mayo') ? 'selected' : ''; ?>>Mayo</option>
+                                                <option value="Junio" <?php echo ($calif['MesInicio'] == 'Junio') ? 'selected' : ''; ?>>Junio</option>
+                                                <option value="Julio" <?php echo ($calif['MesInicio'] == 'Julio') ? 'selected' : ''; ?>>Julio</option>
+                                                <option value="Agosto" <?php echo ($calif['MesInicio'] == 'Agosto') ? 'selected' : ''; ?>>Agosto</option>
+                                                <option value="Septiembre" <?php echo ($calif['MesInicio'] == 'Septiembre') ? 'selected' : ''; ?>>Septiembre</option>
+                                                <option value="Octubre" <?php echo ($calif['MesInicio'] == 'Octubre') ? 'selected' : ''; ?>>Octubre</option>
+                                                <option value="Noviembre" <?php echo ($calif['MesInicio'] == 'Noviembre') ? 'selected' : ''; ?>>Noviembre</option>
+                                                <option value="Diciembre" <?php echo ($calif['MesInicio'] == 'Diciembre') ? 'selected' : ''; ?>>Diciembre</option>
+
                                             </select>
                                             <br>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="nameInicio" id="idInicio" class="form-control input-small" minlength="4" maxlength="4" placeholder="2023" required>
+                                            <input type="text" name="nameInicio" id="idInicio" value="<?php echo $calif['AnnoInicio'] ?>" class="form-control input-small" minlength="4" maxlength="4" placeholder="2023" required>
                                         </div>
                                     </div>
                                     <br>
@@ -115,24 +124,25 @@ if (isset($_GET['id'])) {
                                         <label for="idInicio"><span style="color: red;">*</span> Hasta</label>
                                         <div class="col-md-6">
                                             <select name="mesfin" class="form-select" id="mes">
-                                                <option hidden value=""> Selecciona</option>;
-                                                <option value="Enero">Enero</option>
-                                                <option value="Febrero">Febrero</option>
-                                                <option value="Marzo">Marzo</option>
-                                                <option value="Abril">Abril</option>
-                                                <option value="Mayo">Mayo</option>
-                                                <option value="Junio">Junio</option>
-                                                <option value="Julio">Julio</option>
-                                                <option value="Agosto">Agosto</option>
-                                                <option value="Septiembre">Septiembre</option>
-                                                <option value="Octubre">Octubre</option>
-                                                <option value="Noviembre">Noviembre</option>
-                                                <option value="Diciembre">Diciembre</option>
+                                                <option hidden value="">Selecciona</option>
+                                                <option value="Enero" <?php echo ($calif['MesFin'] == 'Enero') ? 'selected' : ''; ?>>Enero</option>
+                                                <option value="Febrero" <?php echo ($calif['MesFin'] == 'Febrero') ? 'selected' : ''; ?>>Febrero</option>
+                                                <option value="Marzo" <?php echo ($calif['MesFin'] == 'Marzo') ? 'selected' : ''; ?>>Marzo</option>
+                                                <option value="Abril" <?php echo ($calif['MesFin'] == 'Abril') ? 'selected' : ''; ?>>Abril</option>
+                                                <option value="Mayo" <?php echo ($calif['MesFin'] == 'Mayo') ? 'selected' : ''; ?>>Mayo</option>
+                                                <option value="Junio" <?php echo ($calif['MesFin'] == 'Junio') ? 'selected' : ''; ?>>Junio</option>
+                                                <option value="Julio" <?php echo ($calif['MesFin'] == 'Julio') ? 'selected' : ''; ?>>Julio</option>
+                                                <option value="Agosto" <?php echo ($calif['MesFin'] == 'Agosto') ? 'selected' : ''; ?>>Agosto</option>
+                                                <option value="Septiembre" <?php echo ($calif['MesFin'] == 'Septiembre') ? 'selected' : ''; ?>>Septiembre</option>
+                                                <option value="Octubre" <?php echo ($calif['MesFin'] == 'Octubre') ? 'selected' : ''; ?>>Octubre</option>
+                                                <option value="Noviembre" <?php echo ($calif['MesFin'] == 'Noviembre') ? 'selected' : ''; ?>>Noviembre</option>
+                                                <option value="Diciembre" <?php echo ($calif['MesFin'] == 'Diciembre') ? 'selected' : ''; ?>>Diciembre</option>
+
                                             </select>
                                             <br>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" name="nameFin" id="idFin" class="form-control input-small" minlength="4" maxlength="4" placeholder="2023" required>
+                                            <input type="text" name="nameFin" id="idFin" class="form-control input-small" value="<?php echo $calif['AnnoFin'] ?>" minlength="4" maxlength="4" placeholder="2023" required>
                                             <br>
                                         </div>
                                     </div>
@@ -140,7 +150,7 @@ if (isset($_GET['id'])) {
 
 
                                 <div class="col-md-12">
-                                    <label for="idCalifInput"><span style="color: red;">*</span> Calificación</label>
+                                    <label for="idCalifInput"><span style="color: red;">*</span> Subir o Cambiar Calificación</label>
                                     <div class="input-group">
                                         <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
                                         <button class="button" type="button" onclick="clearFileInput('idCalifInput')">
@@ -156,7 +166,7 @@ if (isset($_GET['id'])) {
                                         <label><span style="color: #f36f03;">*</span> ¿Realizó una Apelación?</label>
                                         <div class="radio-inputs">
                                             <label>
-                                                <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radio-input">
+                                                <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radio-input"<?php if ($calif['apelo'] == 'Si') echo "checked"; ?>>
                                                 <span class=" radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -167,7 +177,7 @@ if (isset($_GET['id'])) {
                                                 </span>
                                             </label>
                                             <label>
-                                                <input type="radio" name="nameApeloRes" id="idNoApelo" value="No" required class="radio-input">
+                                                <input type="radio" name="nameApeloRes" id="idNoApelo" value="No" required class="radio-input" <?php if ($calif['apelo'] == 'No') echo "checked"; ?>>
                                                 <span class="radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -181,7 +191,7 @@ if (isset($_GET['id'])) {
                                     </center>
                                 </div>
                                 <div id="adjuntaApelacion">
-                                    <label for="idApelacionDoc"><span style="color: red;">*</span> Apelación</label>
+                                    <label for="idApelacionDoc"><span style="color: red;">*</span> Subir o Cambiar Apelación</label>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
                                         <button class="button" type="button" onclick="clearFileInput('idApelacionDoc')">

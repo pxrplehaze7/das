@@ -254,11 +254,90 @@ $("#documentosApelacion").on("submit", function (event) {
           });
         })
         .always(function (respuesta) {
-          console.info( respuesta);
+          console.info(respuesta);
         });
     }
   });
 });
+
+$("#editarcalificacion").on("submit", function (event) {
+  event.preventDefault();
+  if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
+    Swal.fire('Debe indicar si apeló o no');
+    return;
+  }
+  Swal.fire({
+    title: '¿Está seguro de añadir calificación?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+      $.ajax({
+        url: "./controller/editar_calificacion.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+      })
+        .done(function (respuesta) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Calificación guardada exitosamente',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+
+
+          // Limpia el campo de entrada de archivo solo si se seleccionó "No" en el input radio
+          if ($('#idNoApelo').is(":checked")) {
+            $('#idApelacionDoc').val('');
+          } else {
+            // Si se seleccionó "Si" en el input radio
+            $('#idApelacionDoc').val('');
+          }
+
+        })
+        .fail(function (respuesta) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al guardar los archivos: ' + respuesta.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        })
+        .always(function (respuesta) {
+          console.info(respuesta);
+        });
+    }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $("#edicion_pdfs_c").on("submit", function (event) {
   event.stopPropagation();
@@ -286,15 +365,15 @@ $("#edicion_pdfs_c").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-      .done(function (respuesta) {
-        $('body').append(respuesta);
-      })
-      .fail(function (respuesta) {
-        $('body').append(respuesta);
-      })
-      .always(function (respuesta) {
-        console.info("DATA:", respuesta);
-      });
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .always(function (respuesta) {
+          console.info("DATA:", respuesta);
+        });
     }
   });
 });
@@ -435,7 +514,7 @@ $("#editInfoContacto").on("submit", function (event) {
 
 
 $("#editInfoPersonal").on("submit", function (event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   var formData = new FormData(this);
 
@@ -468,7 +547,7 @@ $("#editInfoPersonal").on("submit", function (event) {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#009CFD'
           }).then(function () {
-            location.reload(); 
+            location.reload();
           });
         } else {
           Swal.fire({
@@ -525,7 +604,7 @@ $(document).ready(function () {
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       });
-      return; 
+      return;
     }
 
     Swal.fire({
@@ -622,7 +701,7 @@ $(document).ready(function () {
               confirmButtonText: 'Aceptar',
               confirmButtonColor: '#009CFD'
             }).then(function () {
-              location.reload(); 
+              location.reload();
             });
           } else {
             Swal.fire({
@@ -683,7 +762,7 @@ $(document).ready(function () {
               confirmButtonText: 'Aceptar',
               confirmButtonColor: '#009CFD'
             }).then(function () {
-              location.reload(); 
+              location.reload();
             });
           } else {
             Swal.fire({
@@ -709,8 +788,8 @@ $(document).ready(function () {
     });
   });
 });
-$(document).ready(function() {
-  $("#miperfil").on("submit", function(event) {
+$(document).ready(function () {
+  $("#miperfil").on("submit", function (event) {
     event.preventDefault();
 
     // Obtener el valor de la contraseña
@@ -726,7 +805,7 @@ $(document).ready(function() {
         confirmButtonText: 'Aceptar',
         confirmButtonColor: '#009CFD'
       });
-      return; 
+      return;
     }
 
     Swal.fire({
@@ -747,7 +826,7 @@ $(document).ready(function() {
           cache: false,
           contentType: false,
           processData: false
-        }).done(function(response) {
+        }).done(function (response) {
           response = JSON.parse(response);
           if (response.success) {
             Swal.fire({
@@ -756,7 +835,7 @@ $(document).ready(function() {
               showConfirmButton: true,
               confirmButtonText: 'Aceptar',
               confirmButtonColor: '#009CFD'
-            }).then(function() {
+            }).then(function () {
               location.reload(); // Actualiza la página
             });
           } else {
@@ -769,7 +848,7 @@ $(document).ready(function() {
               confirmButtonColor: '#009CFD'
             });
           }
-        }).fail(function(response) {
+        }).fail(function (response) {
           Swal.fire({
             icon: 'error',
             title: 'Error al actualizar su información',
@@ -785,275 +864,275 @@ $(document).ready(function() {
 });
 
 
-  $(".edicionCalif").each(function () {
-    var formularioID = $(this).attr("id");
+$(".edicionCalif").each(function () {
+  var formularioID = $(this).attr("id");
 
-    $(this).submit(function (event) {
-      event.preventDefault();
-      Swal.fire({
-        title: '¿Desea actualizar la calificación?',
-        showDenyButton: true,
-        showCancelButton: false,
-        allowOutsideClick: false,
-        confirmButtonText: 'Sí',
-        confirmButtonColor: '#00c4a0',
-        denyButtonColor: '#ba0051'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-            url: "./controller/editar_calificacion.php",
-            type: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (response) {
-              console.log(response);
-              Swal.fire({
-                icon: 'success',
-                title: 'Calificación actualizada correctamente',
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'            
-                }).then(function () {
-                location.reload(); 
-              });
-            },
-            error: function (xhr, status, error) {
-              console.error(error);
-              Swal.fire({
-                title: "Error",
-                text: "Ocurrió un error al actualizar la calificación",
-                icon: "error",
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'
-              });
-            }
-          });
-        }
-      });
-    });
-
-    
-    $(".boton-eliminar-calif").click(function (event) {
-      event.preventDefault();
-      var idCalificacion = $(this).data("idcalific");
-    
-      Swal.fire({
-        title: '¿Desea eliminar la calificación?',
-        showDenyButton: true,
-        showCancelButton: false,
-        allowOutsideClick: false,
-        confirmButtonText: 'Sí',
-        confirmButtonColor: '#00c4a0',
-        denyButtonColor: '#ba0051'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-            url: "./controller/eliminaCalificacionCompleta.php",
-            type: "POST",
-            data: { idCalificacion: idCalificacion },
-            success: function (response) {
-              console.log(response);
-    
-              Swal.fire({
-                icon: 'success',
-                title: 'Calificación eliminada correctamente',
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'            
-              }).then(function () {
-                location.reload(); 
-              });
-            },
-            error: function (xhr, status, error) {
-              console.error(error);
-              Swal.fire({
-                title: "Error",
-                text: "Ocurrió un error al eliminar la calificación",
-                icon: "error",
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'
-              });
-            }
-          });
-        }
-      });
-    });
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  $(".edicionInforme").each(function () {
-    var formularioIDinforme = $(this).attr("id");
-
-    $(this).submit(function (event) {
-      event.preventDefault();
-      Swal.fire({
-        title: '¿Desea actualizar el informe?',
-        showDenyButton: true,
-        showCancelButton: false,
-        allowOutsideClick: false,
-        confirmButtonText: 'Sí',
-        confirmButtonColor: '#00c4a0',
-        denyButtonColor: '#ba0051'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-            url: "./controller/editar_informe.php",
-            type: "POST",
-            data: new FormData(this),
-            processData: false,
-            contentType: false,
-            success: function (response) {
-              console.log(response);
-              Swal.fire({
-                icon: 'success',
-                title: 'Informe actualizada correctamente',
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'            
-                }).then(function () {
-                location.reload(); 
-              });
-            },
-            error: function (xhr, status, error) {
-              console.error(error);
-              Swal.fire({
-                title: "Error",
-                text: "Ocurrió un error al actualizar el informe",
-                icon: "error",
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'
-              });
-            }
-          });
-        }
-      });
-    });
-
-    
-    $(".boton-eliminar-inf").click(function (event) {
-      event.preventDefault();
-      var idinf = $(this).data("informee");
-
-      Swal.fire({
-        title: '¿Desea eliminar el informe?',
-        showDenyButton: true,
-        showCancelButton: false,
-        allowOutsideClick: false,
-        confirmButtonText: 'Sí',
-        confirmButtonColor: '#00c4a0',
-        denyButtonColor: '#ba0051'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          $.ajax({
-            url: "./controller/elimina_informe_completo.php",
-            type: "POST",
-            data: { idinf: idinf },
-            success: function (response) {
-              console.log(response);
-    
-              Swal.fire({
-                icon: 'success',
-                title: 'Informe eliminado correctamente',
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'            
-              }).then(function () {
-                location.reload(); 
-              });
-            },
-            error: function (xhr, status, error) {
-              console.error(error);
-              Swal.fire({
-                title: "Error",
-                text: "Ocurrió un error al eliminar el informe",
-                icon: "error",
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                confirmButtonColor: '#009CFD'
-              });
-            }
-          });
-        }
-      });
-    });
-  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  $("#RegistroDecretos").on("submit", function (event) {
+  $(this).submit(function (event) {
     event.preventDefault();
     Swal.fire({
-      title: '¿Realmente registrar este decreto?',
+      title: '¿Desea actualizar la calificación?',
       showDenyButton: true,
       showCancelButton: false,
       allowOutsideClick: false,
-      confirmButtonText: 'Si',
+      confirmButtonText: 'Sí',
       confirmButtonColor: '#00c4a0',
-      denyButtonText: 'No',
-      denyButtonColor: '#ba0051',
+      denyButtonColor: '#ba0051'
     }).then((result) => {
-      if (result.isDenied) {
-        return;
-      } else {
-        let formData = new FormData(this);
-  
-        formData.append('idcontrata', $('#idtrabid').attr('value'));
-  
+      if (result.isConfirmed) {
         $.ajax({
-          url: "./controller/add_decreto_contrata.php",
-          method: "POST",
-          data: formData,
-          cache: false,
+          url: "./controller/editar_calificacion.php",
+          type: "POST",
+          data: new FormData(this),
+          processData: false,
           contentType: false,
-          processData: false
-        })
-          .done(function (respuesta) {
-            $('body').append(respuesta);
-            console.log(respuesta)
-
-          })
-          .fail(function (respuesta) {
-            $('body').append(respuesta);
-            console.log(respuesta)
-  
-          })
-          .always(function (respuesta) {
-            console.info(respuesta)
-          });
+          success: function (response) {
+            console.log(response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Calificación actualizada correctamente',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            }).then(function () {
+              location.reload();
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+            Swal.fire({
+              title: "Error",
+              text: "Ocurrió un error al actualizar la calificación",
+              icon: "error",
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            });
+          }
+        });
       }
     });
   });
+
+
+  $(".boton-eliminar-calif").click(function (event) {
+    event.preventDefault();
+    var idCalificacion = $(this).data("idcalific");
+
+    Swal.fire({
+      title: '¿Desea eliminar la calificación?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "./controller/eliminaCalificacionCompleta.php",
+          type: "POST",
+          data: { idCalificacion: idCalificacion },
+          success: function (response) {
+            console.log(response);
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Calificación eliminada correctamente',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            }).then(function () {
+              location.reload();
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+            Swal.fire({
+              title: "Error",
+              text: "Ocurrió un error al eliminar la calificación",
+              icon: "error",
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            });
+          }
+        });
+      }
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(".edicionInforme").each(function () {
+  var formularioIDinforme = $(this).attr("id");
+
+  $(this).submit(function (event) {
+    event.preventDefault();
+    Swal.fire({
+      title: '¿Desea actualizar el informe?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "./controller/editar_informe.php",
+          type: "POST",
+          data: new FormData(this),
+          processData: false,
+          contentType: false,
+          success: function (response) {
+            console.log(response);
+            Swal.fire({
+              icon: 'success',
+              title: 'Informe actualizada correctamente',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            }).then(function () {
+              location.reload();
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+            Swal.fire({
+              title: "Error",
+              text: "Ocurrió un error al actualizar el informe",
+              icon: "error",
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            });
+          }
+        });
+      }
+    });
+  });
+
+
+  $(".boton-eliminar-inf").click(function (event) {
+    event.preventDefault();
+    var idinf = $(this).data("informee");
+
+    Swal.fire({
+      title: '¿Desea eliminar el informe?',
+      showDenyButton: true,
+      showCancelButton: false,
+      allowOutsideClick: false,
+      confirmButtonText: 'Sí',
+      confirmButtonColor: '#00c4a0',
+      denyButtonColor: '#ba0051'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "./controller/elimina_informe_completo.php",
+          type: "POST",
+          data: { idinf: idinf },
+          success: function (response) {
+            console.log(response);
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Informe eliminado correctamente',
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            }).then(function () {
+              location.reload();
+            });
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+            Swal.fire({
+              title: "Error",
+              text: "Ocurrió un error al eliminar el informe",
+              icon: "error",
+              showConfirmButton: true,
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#009CFD'
+            });
+          }
+        });
+      }
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#RegistroDecretos").on("submit", function (event) {
+  event.preventDefault();
+  Swal.fire({
+    title: '¿Realmente registrar este decreto?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+
+      formData.append('idcontrata', $('#idtrabid').attr('value'));
+
+      $.ajax({
+        url: "./controller/add_decreto_contrata.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false
+      })
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+          console.log(respuesta)
+
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+          console.log(respuesta)
+
+        })
+        .always(function (respuesta) {
+          console.info(respuesta)
+        });
+    }
+  });
+});
 
 
 
@@ -1172,11 +1251,11 @@ $("#RegistroDecretosHonorario").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-      .done(function (respuesta) {
-        $('body').append(respuesta);
-        console.log(respuesta)
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+          console.log(respuesta)
 
-      })
+        })
         .fail(function (respuesta) {
           $('body').append(respuesta);
         })
@@ -1264,7 +1343,7 @@ $("#editInfoContactoH").on("submit", function (event) {
 
 
 $("#editInfoPersonalH").on("submit", function (event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   var formData = new FormData(this);
 
@@ -1297,7 +1376,7 @@ $("#editInfoPersonalH").on("submit", function (event) {
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#009CFD'
           }).then(function () {
-            location.reload(); 
+            location.reload();
           });
         } else {
           Swal.fire({
@@ -1352,15 +1431,15 @@ $("#edicion_pdfs_h").on("submit", function (event) {
         contentType: false,
         processData: false
       })
-      .done(function (respuesta) {
-        $('body').append(respuesta);
-      })
-      .fail(function (respuesta) {
-        $('body').append(respuesta);
-      })
-      .always(function (respuesta) {
-        console.info("DATA:", respuesta);
-      });
+        .done(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .fail(function (respuesta) {
+          $('body').append(respuesta);
+        })
+        .always(function (respuesta) {
+          console.info("DATA:", respuesta);
+        });
     }
   });
 });
@@ -1369,7 +1448,7 @@ $("#edicion_pdfs_h").on("submit", function (event) {
 
 $("#informelab").on("submit", function (event) {
   event.preventDefault();
- 
+
   Swal.fire({
     title: '¿Está seguro de añadir informe?',
     showDenyButton: true,
@@ -1416,7 +1495,7 @@ $("#informelab").on("submit", function (event) {
           });
         })
         .always(function (respuesta) {
-          console.info( respuesta);
+          console.info(respuesta);
         });
     }
   });
@@ -1457,7 +1536,7 @@ $("#EdicionDecretos").on("submit", function (event) {
         .done(function (respuesta) {
           $('body').append(respuesta);
           console.log(respuesta)
-      
+
         })
         .fail(function (respuesta) {
           $('body').append(respuesta);
@@ -1505,7 +1584,7 @@ $("#EdicionDecretosH").on("submit", function (event) {
         .done(function (respuesta) {
           $('body').append(respuesta);
           console.log(respuesta)
-      
+
         })
         .fail(function (respuesta) {
           $('body').append(respuesta);
