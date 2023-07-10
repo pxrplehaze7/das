@@ -120,15 +120,14 @@ if (!isset($_SESSION['rol'])) {
                                                     }
                                                     ?>
                                                 </td>
-                                                <td style="vertical-align: middle;">
-                                                    <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                                        <a class="button-ir" href="info_honorario.php?idh=<?php echo $ptotalHono['IDTraH']; ?>">
-                                                            <span style="display: flex; align-items: center;">
-                                                                <i class="fas fa-share"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
+
+                                     
+                                                <td  style="vertical-align: middle; text-align: center;">
+                                                    <a class="a-ir" href="info_honorario.php?idh=<?php echo $ptotalHono['IDTraH']; ?>" style="text-decoration: none;">
+                                                        <span>Ir <i class="fa-solid fa-circle-arrow-right"></i></span>
+                                                    </a>
                                                 </td>
+
                                             </tr>
                                         <?php } ?>
                                     </tbody>

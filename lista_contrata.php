@@ -41,7 +41,7 @@ if (!isset($_SESSION['rol'])) {
                     <div class="">
                         <div class="card mb-4">
                             <div class="card-body">
-                                
+
                                 <table id="total_contrata" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
@@ -53,7 +53,6 @@ if (!isset($_SESSION['rol'])) {
                                             <th class="align-middle">Celular</th>
                                             <th class="align-middle">Correo Electrónico</th>
                                             <th class="align-middle" style="width: 90px;">Documentacion Básica</th>
-
                                             <th class="align-middle">Ver</th>
                                         </tr>
                                     </thead>
@@ -82,14 +81,12 @@ if (!isset($_SESSION['rol'])) {
                                                     }
                                                     ?>
                                                 </td>
-                                                <td style="vertical-align: middle;">
-                                                    <div class="container-ver" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                                        <a class="button-ir" href="info_contrata.php?id=<?php echo $ptotal['IDTra']; ?>">
-                                                            <span style="display: flex; align-items: center;">
-                                                                <i class="fas fa-share"></i>
-                                                            </span>
-                                                        </a>
-                                                    </div>
+                                         
+
+                                                <td class="contenedor-ir" style="vertical-align: middle; text-align: center;">
+                                                    <a class="a-ir" href="info_contrata.php?id=<?php echo $ptotal['IDTra']; ?> " style="text-decoration: none;">
+                                                        <span>Ir <i class="fa-solid fa-circle-arrow-right"></i></span>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

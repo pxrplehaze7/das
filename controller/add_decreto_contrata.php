@@ -54,17 +54,19 @@ if (isset($_POST['idcontrata'])) {
   }
 
   if ($fechaActual < $fechaAlerta) {
-    $estadoDecreto = 1;
+    $estadoDecreto = 1;  //VIGENTE
   } elseif ($fechaActual >= $fechaAlerta && $fechaActual < $finDecreto) {
-    $estadoDecreto = 2;
+    $estadoDecreto = 2;  //POR VENCER
   } elseif ($fechaActual > $finDecreto) {
-    $estadoDecreto = 0;
+    $estadoDecreto = 0;  //VENCIDO
   }
 
+
+
   if ($estadoDecreto == 1 || $estadoDecreto == 0) {
-    $confirmacion = 1;
+    $confirmacion = 1; //CONFIRMADO
   } elseif ($estadoDecreto == 2) {
-    $confirmacion = 0;
+    $confirmacion = 0;  //NO CONFIRMADO
   }
 
   $lugar = mysqli_real_escape_string($conn, $lugar);

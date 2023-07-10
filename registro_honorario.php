@@ -45,7 +45,7 @@ if ($_SESSION['rol'] !== '1') {
                             <strong>¡Importante!</strong> Decreto se registra en el siguiente paso.
                         </div>
                         <div class="seccion">
-                        <h6 style="padding-top: 20px !important;">Datos Personales</h6>
+                            <h6 style="padding-top: 20px !important;">Datos Personales</h6>
                             <div class="row ">
                                 <div class="col-md">
                                     <label for="idRutInput"><span style="color: #f36f03;">*</span> Rut</label>
@@ -74,7 +74,19 @@ if ($_SESSION['rol'] !== '1') {
                             <div class="art">
                                 <div class="row">
                                     <div class="col-md-6"> <!-- CATEGORIA -->
-                                        <?php include("./controller/consulta_select/select_categoria.php"); ?>
+                                        <?php
+                                        $sqlCategoria = "SELECT IDCat, NombreCat FROM categoria";
+                                        $resultadoCategoria = mysqli_query($conn, $sqlCategoria);
+                                        echo "<label for='idSelectCat'><span style='color: #c40055;'>*</span> Categoría </label>";
+                                        echo "<select name='nameSelectCat' id='idSelectCat' class='form-select' required>";
+                                        echo '<option hidden value=""> Selecciona</option>';
+                                        while ($fila = mysqli_fetch_assoc($resultadoCategoria)) {
+                                            echo "<option value='" . $fila['IDCat'] . "'>" . $fila['NombreCat'] . "</option>";
+                                        }
+                                        echo "</select>";
+                                        ?>
+
+
                                         <br>
                                     </div>
 
@@ -86,7 +98,7 @@ if ($_SESSION['rol'] !== '1') {
                                     <br>
                                 </div>
 
-                     
+
                                 <br>
                                 <div id="idInscripcion" class="radioCentro row">
                                     <center>
@@ -183,7 +195,7 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="seccion">
-                        <h6 style="padding-top: 20px !important;">Datos de Contacto</h6>
+                            <h6 style="padding-top: 20px !important;">Datos de Contacto</h6>
                             <div class="row">
                                 <div class="col-6">
                                     <label for="idCelular">Celular</label>
@@ -200,7 +212,7 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="seccion">
-                        <h6 style="padding-top: 20px !important;">Documentación</h6>
+                            <h6 style="padding-top: 20px !important;">Documentación</h6>
 
                             <div class="document">
                                 <label for="idANTECEinput">Certificado de Antecedentes</label>
@@ -289,7 +301,7 @@ if ($_SESSION['rol'] !== '1') {
                         </div>
                         <br>
                         <div class="observaciones seccion">
-                        <h6 style="padding-top: 20px !important;">Observaciones</h6>
+                            <h6 style="padding-top: 20px !important;">Observaciones</h6>
                             <textarea id="idObserv" name="nameObserv" class="form-control" rows="5" cols="50" maxlength="1000"></textarea>
                         </div>
                         <br>

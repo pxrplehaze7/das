@@ -65,6 +65,7 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Sector</th>
                                                 <th>Estado</th>
                                                 <th>Confirmar</th>
+                                                <th>Editar</th>
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -89,10 +90,17 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <span style="color: #E76500;">Por Finalizar</span>
                                                     </td>
-                                                    <td style="vertical-align: middle;">
-                                                        <div class="" style="display: flex; justify-content: center; align-items: center;">
-                                                            <button class="btn btn-warning btn-confirma" style="background-color: #E76500 !important; border-color:#E76500!important; color:white; font-size:700;" data-iddecreto="<?php echo $rowpFin['IDdecretoH'] ?>">OK</button>
-                                                        </div>
+                                                  
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <button class="btn btn-confirma btn-confirm" data-iddecreto="<?php echo $rowpFin['IDdecretoH'] ?>">
+                                                            <i class="fa-solid fa-square-check" style="color: #e76550; font-size: 32px;"></i>
+                                                        </button>
+                                                    </td>
+
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto_h.php?iddh=<?php echo $rowpFin['IDdecretoH']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -124,6 +132,8 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Lugar</th>
                                                 <th>Sector</th>
                                                 <th>Estado</th>
+                                                <th>Editar</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -148,6 +158,11 @@ if (!isset($_SESSION['rol'])) {
 
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <span style="color: #e91818;">Finalizado</span>
+                                                    </td>
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto_h.php?iddh=<?php echo $rowFin['IDdecretoH']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
@@ -177,6 +192,8 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Lugar</th>
                                                 <th>Sector</th>
                                                 <th>Estado</th>
+                                                <th>Editar</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -201,6 +218,11 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle"><?php echo  $rowvig['NombreSector'] ?></td>
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <span style="color: #119f00;">Vigente</span>
+                                                    </td>
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto_h.php?iddh=<?php echo $rowvig['IDdecretoH']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

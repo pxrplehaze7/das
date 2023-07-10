@@ -17,20 +17,7 @@ vercomo cambiar los graficos, ya que los trabajadores no estan asociados aun sol
 
 
 
-ver por que cuando en mostrar y presiono en paginacion de contratos, se ve la parte de los botones, es decir la tabla baja(
-cuando hay muchos registros)
-
-
-
-eliminar esto delosadd decreto:
-echo "El valor de finDecreto es: " . $finDecreto;
-
-
 buscar como montar servidor y sus requerimientos, entregar informe
-
-
-
-ver si seusan o nolos consulta archivo.
 
 
 
@@ -47,16 +34,10 @@ creo que lo de editar los decretos debe hacerse como el informe, pero con valida
 
 agregue que si se elimina la vcarpeta de los archivos y luego se actualizan los documentos, aunque no este la carpeta, se crea y se guardan donde corresponde, solo en contrata. falta para todos los otros documentos.
 
-
-seme creo una carpeta con id 19 en contrata
-
-cambiar nombre de los vbotones
-
+agregar verificacion de usuario si es admin o no
 
 agregar meses a las calificaciones?
 
-a editar decretos contrata ponerle no required en fecha termino
-
-ver por que cuando edito decretos, me muestra solo el primer select. si se guarda pero muestra otros
-
 intentar enviar a pagina de error
+
+https://chat.openai.com/share/5fabf12f-c16b-4847-a384-8cbdad6f41ab

@@ -42,6 +42,7 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
 </head>
@@ -53,7 +54,7 @@ if (isset($_GET['id'])) {
         <div id="layoutSidenav_content">
             <main>
                 <?php if (isset($editContrata)) { ?>
-                    <div class="container-md">
+                    <div class="container-md tablap">
                         <form id="editInfoPersonal" action="./controller/edit_infop_c.php" method="POST">
                             <div class="title">
                                 <div class="ti">
@@ -111,7 +112,7 @@ if (isset($_GET['id'])) {
                                             ?>
                                             <br>
                                         </div>
-                                        <br>
+                                      
                                         <div class="col-md-6">
                                             <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                             <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $editContrata['Profesion'] ?>" class="form-control" require>
@@ -296,7 +297,7 @@ if (isset($_GET['id'])) {
 
                         <div id="editcal">
                             <?php
-                            $sqlDec = "SELECT d.IDdecreto, d.IDLugar, d.IDSector, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, c.NombreCon, l.NombreLug, s.NombreSector, d.Estado
+                            $sqlDec = "SELECT d.IDdecreto,d.IDCon, d.IDLugar, d.IDSector, d.NDecreto, d.FechaDoc, d.RutaCon, d.FechaInicio, d.FechaTermino, c.NombreCon, l.NombreLug, s.NombreSector, d.Estado
                             FROM decretos d
                             INNER JOIN contrato c ON (c.IDCon = d.IDCon)
                             INNER JOIN lugar l ON (l.IDLugar = d.IDLugar)
@@ -308,7 +309,7 @@ if (isset($_GET['id'])) {
                             <div class="documentacion seccion seccion-cal">
                                 <h6>Decretos</h6>
 
-                                    <table id="decretoscontrataedit" class="table table-striped table-bordered table-centered table-responsive " style="width:100%">
+                                    <table id="decretoscontrataedit" class="table table-striped table-bordered" style="width:100%">
 
                                         <thead>
                                             <tr>
@@ -334,18 +335,25 @@ if (isset($_GET['id'])) {
                                                             <?php echo $decreto['NDecreto'] ?>
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <?php echo $decreto['FechaDoc'] ?>
+                                                            <?php echo date('d-m-Y', strtotime($decreto['FechaDoc'])); ?>
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <?php echo $decreto['NombreCon'] ?>
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <?php echo $decreto['FechaInicio'] ?>
+                                                            <?php echo date('d-m-Y', strtotime($decreto['FechaInicio'])); ?>
                                                         </td>
 
                                                         <td class="align-middle text-center">
-                                                            <?php echo $decreto['FechaTermino'] ?>
+                                                            <?php
+                                                              if ($decreto['IDCon'] == 3) {
+                                                                echo ' ';
+                                                            } else {
+                                                                echo date('d-m-Y', strtotime($decreto['FechaTermino']));
+                                                            }
+                                                            ?>
                                                         </td>
+
 
                                                         <td class="align-middle text-center">
                                                             <?php echo $decreto['NombreLug'] ?>
@@ -368,11 +376,13 @@ if (isset($_GET['id'])) {
                                                         </td>
 
 
-                                                        <td class="text-center">
-                                                            <div class="d-flex align-items-center justify-content-around">
-                                                                <a href="editar_decreto.php?idd=<?php echo $decreto['IDdecreto']; ?>" class="btn btn-warning text-black"><i class="fas fa-pen"></i></a>
-                                                            </div>
-                                                        </td>
+                                                 
+
+                                                        <td class="align-middle" style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto.php?idd=<?php echo $decreto['IDdecreto']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
+                                                    </td>
                                                 </form>
                                                 </tr>
                                             <?php } ?>
@@ -386,21 +396,11 @@ if (isset($_GET['id'])) {
 
 
 
-
-
-
-
-
-
-
-
-
-
                         <br>
-                        <div id="c_docs">
+                        <div id="editcal">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs_c">
                                 <input type="hidden" name="nameRutEditar" value="<?php echo $editContrata['Rut'] ?>">
-                                <div class=" seccion">
+                                <div class="documentacion seccion seccion-cal">
                                     <h6 style=" padding-top: 20px !important; padding-bottom:0 !important">Documentación</h6>
                                     <table id="docsEDIT" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
                                         <thead>
@@ -910,6 +910,12 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.4.1/js/responsive.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 </body>
 
 </html>

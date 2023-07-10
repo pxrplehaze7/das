@@ -36,48 +36,35 @@ if (!isset($_SESSION['rol'])) {
             <main>
                 <br>
                 <div class="container-md">
+                    <br>
                     <div class="row">
                         <div class="col-md-6">
-
-                            <div class="card text-white mb-4 bg-dark d-flex align-items-center">
-                                <div class="text-center">
-
-
-                                    <form class="d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0" action="info_honorario.php" method="POST" id="searchFormHonorario">
-                                        <label for="nameBuscaRutHonorario">Buscar Honorario:</label>
-                                        <div class="input-group">
-                                            <input class="form-control" type="text" name="nameBuscaRutHonorario" id="nameBuscaRutHonorario" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchHonorario" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </form>
-
-                                </div>
-
+                            <div class="text-center">
+                                <form class="d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0" action="info_honorario.php" method="POST" id="searchFormHonorario">
+                                    <label for="nameBuscaRutHonorario">Buscar Honorario:</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="nameBuscaRutHonorario" id="nameBuscaRutHonorario" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                        <button class="btn btn-primary btn-buscar" id="btnNavbarSearchHonorario" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-
                         </div>
 
                         <div class="col-md-6">
-                            <div class="card text-white mb-4 bg-dark d-flex align-items-center">
-                                <div class="text-center">
-
-                                    <!-- Navbar Search-->
-                                    <form class="d-md-inline-block form-inline ms-auto me-0  my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
-                                        <label for="nameBuscaRutContrata">Buscar a Contrata e Indefinido</label>
-                                        <div class="input-group">
-
-                                            <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
-                                            <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-
+                            <div class="text-center">
+                                <form class="d-md-inline-block form-inline ms-auto me-0  my-2 my-md-0" action="info_contrata.php" method="POST" id="searchFormContrata">
+                                    <label for="nameBuscaRutContrata">Buscar a Contrata e Indefinido</label>
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" name="nameBuscaRutContrata" id="nameBuscaRutContrata" placeholder="19876543-K" pattern="^\d{7,8}-[kK\d]$" maxlength="10" minlength="9" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearchContrata" />
+                                        <button class="btn btn-primary btn-buscar" id="btnNavbarSearchContrata" type="submit" disabled><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 

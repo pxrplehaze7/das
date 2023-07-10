@@ -925,3 +925,12 @@ main {
   padding: 20px;
   background-color: #f2f2f2;
 } */
+
+
+.a-ir span{
+color: black;
+}
+.a-ir span:hover{
+  color: rgb(119, 0, 174);
+  }
+  

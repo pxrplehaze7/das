@@ -206,10 +206,10 @@ if (isset($_GET['idd'])) {
                                     <div class="col-md-6 col-sm-6">
                                         <label for="idFechaTermino"><span style="color: #c40055;">*</span> Fecha de Termino</label>
                                         <?php if ($de['FechaTermino'] == '2200-05-10') { ?>
-                                            <input type="date" name="nameFechaTermino" value="" class="form-control" id="idFechaTermino" required>
+                                            <input type="date" name="nameFechaTermino" value="" class="form-control" id="idFechaTermino">
 
                                         <?php } else { ?>
-                                            <input type="date" name="nameFechaTermino" value="<?php echo $de['FechaTermino'] ?>" class="form-control" id="idFechaTermino" required>
+                                            <input type="date" name="nameFechaTermino" value="<?php echo $de['FechaTermino'] ?>" class="form-control" id="idFechaTermino">
 
                                         <?php } ?>
 
@@ -218,20 +218,6 @@ if (isset($_GET['idd'])) {
                                 </div>
                             </div>
 
-
-                            <!-- <div class="boton-registrar">
-                                <button id="btnRegistrar" type="submit" class="boton-registrarB">
-                                    <div class="svg-wrapper-1">
-                                        <div class="svg-wrapper">
-                                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M0 0h24v24H0z" fill="none"></path>
-                                                <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z" fill="currentColor"></path>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <span>Registrar</span>
-                                </button>
-                            </div> -->
 
 
                             <div class="boton">

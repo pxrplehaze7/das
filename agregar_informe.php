@@ -36,6 +36,12 @@ if (isset($_GET['idh'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <style>
+        .seccion {
+            padding-top: 40px;
+            padding-bottom: 80px;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -47,7 +53,9 @@ if (isset($_GET['idh'])) {
                 <?php if (isset($datosinforme)) { ?>
                     <div class="container-md">
                         <form id="informelab" enctype="multi/form-data" method="POST">
-                        <input id="idRut" name="nameRut" value="<?php echo $rut ?>" class="form-control" hidden>
+                            <input id="idRut" name="nameRut" value="<?php echo $rut ?>" class="form-control" hidden>
+                            <input name="nameIDH" value="<?php echo $idH ?>" class="form-control" hidden>
+
                             <div class="title">
                                 <div class="ti">
                                     <h1 class="mt-4">Informe de Labores</h1>
@@ -60,29 +68,28 @@ if (isset($_GET['idh'])) {
                             </div>
                             <br>
                             <div class="datosPersonales seccion">
-                                <div class="primerGrupo row ">
-                                    <div class="rut-ver col-md-4">
+                                <div class="row ">
+                                    <div class="rut-ver col-md-3">
                                         <label for="idRutCa2">Rut</label>
                                         <input id="idRutCa2" name="nameRut2" value="<?php echo $rut ?>" class="form-control" disabled>
                                         <br>
                                     </div>
-                                    <div class="nombre col-md-4">
+                                    <div class="nombre col-md-9">
                                         <label for="namePersonaCa"> Nombre Completo</label>
                                         <input type="text" name="namePersonaCa" value="<?php echo $nombre . ' ' . $paterno . ' ' . $materno ?>" id="idPersonaCa" class="form-control" disabled>
                                         <br>
                                     </div>
-                                    <div class="nombre col-md-4">
-                                        <label for="nameFuncion"><span style="color: #c40055;">*</span> Función</label>
-                                        <input type="text" name="nameFuncion" id="idFuncion" class="form-control" required>
-                                        <br>
-                                    </div>
-                                    <input  name="nameIDH" value="<?php echo $idH ?>" class="form-control" hidden>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <div class="row">
-                                            <div class="col-md-6 col-sm-6">
+                                            <div class="nombre col-md-12">
+                                                <label for="nameFuncion"><span style="color: #c40055;">*</span> Función</label>
+                                                <input type="text" name="nameFuncion" id="idFuncion" class="form-control" required>
+                                                <br>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <label for="mes"><span style="color: #c40055;">*</span> Mes</label>
                                                 <select name="namemes" class="form-select" id="mes">
                                                     <option hidden value=""> Selecciona</option>;
@@ -102,27 +109,28 @@ if (isset($_GET['idh'])) {
                                                 <br>
                                             </div>
 
-                                            <div class="col">
+                                            <div class="col-md-6">
                                                 <label for="idAnno"><span style="color: red;">*</span> Año</label>
                                                 <input type="text" name="nameAnno" id="idAnno" class="form-control input-small" minlength="4" maxlength="4" placeholder="2023" required>
+                                            <br>
                                             </div>
+                                           
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <label for="idInformeInput"><span style="color: red;">*</span> Informe de Labores</label>
-                                        <div class="input-group">
-                                            <input type="file" id="idInformeInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
-                                            <button class="button" type="button" onclick="clearFileInput('idInformeInput')">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                                </svg>
-                                            </button>
-                                        </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="idInformeInput"><span style="color: red;">*</span> Informe de Labores</label>
+                                    <div class="input-group">
+                                        <input type="file" id="idInformeInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
+                                        <button class="button" type="button" onclick="clearFileInput('idInformeInput')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
-                                <br>
-                               
-                               
+
                             </div>
                             <br>
                             <div class="boton-registrar">
@@ -145,28 +153,25 @@ if (isset($_GET['idh'])) {
         </div>
     </div>
     <script>
-        
-$("#annoinforme").on("input", function () {
-  var input = $(this).val();
-  var regex = /^\d{4}-\d{4}$/;
-  if (!regex.test(input)) {
-    $(this).addClass("is-invalid");
-  } else {
-    $(this).removeClass("is-invalid");
-  }
-});
+        $("#annoinforme").on("input", function() {
+            var input = $(this).val();
+            var regex = /^\d{4}-\d{4}$/;
+            if (!regex.test(input)) {
+                $(this).addClass("is-invalid");
+            } else {
+                $(this).removeClass("is-invalid");
+            }
+        });
 
-const annoinf = document.getElementById('idAnno');
+        const annoinf = document.getElementById('idAnno');
 
-annoinf.addEventListener('input', annonum);
+        annoinf.addEventListener('input', annonum);
 
-function annonum(event) {
-  const input = event.target;
-  const sanitizedValue = input.value.replace(/[^0-9]/g, '');
-  input.value = sanitizedValue;
-}
-
-
+        function annonum(event) {
+            const input = event.target;
+            const sanitizedValue = input.value.replace(/[^0-9]/g, '');
+            input.value = sanitizedValue;
+        }
     </script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>

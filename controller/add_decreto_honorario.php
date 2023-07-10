@@ -140,10 +140,9 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
 
 
   $sqlDecretos = "INSERT INTO decretosh (IDTraH,TipodeHono,IDLugar,IDSector,NDecreto,FechaDoc,RutaCon,FechaInicio,FechaTermino,FechaAlerta,Estado,Confirmacion)
-    VALUES ('$idtraH','$tipoHonorario','$lugar','$sector','$numdecreto','$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta','$estadoDecreto','$confirmacion')";
+    VALUES ($idtraH,'$tipoHonorario',$lugar,$sector,$numdecreto,'$fechaDocumento','$ruta_ContratoFINAL','$inicioDecreto','$finDecreto','$fechaAlerta',$estadoDecreto,$confirmacion)";
 
   $sqlcumpleH = "UPDATE honorario SET Cumple = $cumple WHERE IDTraH = $idtraH";
-  echo $sqlcumpleH;
 
   try {
     $resultadoDecretos = mysqli_query($conn, $sqlDecretos);
@@ -173,7 +172,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM honorario WHERE Rut = '$r
           }
         } else {
           // Redireccionar a info_honorario.php
-          location.href = 'info_honorario.php?id=$idtraH';
+          location.href = 'info_honorario.php?idh=$idtraH';
         }
       });
     </script>";

@@ -25,6 +25,21 @@ if (!isset($_SESSION['rol'])) {
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+    <style>
+        .btn-confirm {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-confirm:focus {
+            outline: none;
+        }
+
+        .btn-confirm:active {
+            border-color: none;
+        }
+    </style>
 </head>
 
 <body class="sb-nav-fixed">
@@ -65,7 +80,7 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Sector</th>
                                                 <th>Estado</th>
                                                 <th>Confirmar</th>
-                                                <th>EDITAR</th>
+                                                <th>Editar</th>
 
                                             </tr>
                                         </thead>
@@ -100,17 +115,17 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <span style="color: #E76500;">Por Finalizar</span>
                                                     </td>
-                                                    <td style="vertical-align: middle;">
-                                                        <div class="" style="display: flex; justify-content: center; align-items: center;">
-                                                            <button class="btn btn-warning btn-confirma" style="background-color: #E76500 !important; border-color:#E76500!important; color:white; font-size:700;" data-iddecreto="<?php echo $rowpFin['IDdecreto'] ?>">OK</button>
-                                                        </div>
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <button class="btn btn-confirma btn-confirm" data-iddecreto="<?php echo $rowpFin['IDdecreto'] ?>">
+                                                            <i class="fa-solid fa-square-check" style="color: #e76550; font-size: 32px;"></i>
+                                                        </button>
                                                     </td>
-                                               
-                                                    <td class="text-center">
-                                                            <div class="d-flex align-items-center justify-content-around">
-                                                                <a href="editar_decreto.php?idd=<?php echo $rowpFin['IDdecreto']; ?>" class="btn btn-warning text-black"><i class="fas fa-pen"></i></a>
-                                                            </div>
-                                                        </td>
+
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto.php?idd=<?php echo $rowpFin['IDdecreto']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
+                                                    </td>
 
                                                 </tr>
                                             <?php } ?>
@@ -142,6 +157,8 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Lugar</th>
                                                 <th>Sector</th>
                                                 <th>Estado</th>
+                                                <th>Editar</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -176,6 +193,12 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <span style="color: #e91818;">Finalizado</span>
                                                     </td>
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto.php?idd=<?php echo $rowFin['IDdecreto']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
+                                                    </td>
+
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -204,6 +227,8 @@ if (!isset($_SESSION['rol'])) {
                                                 <th>Lugar</th>
                                                 <th>Sector</th>
                                                 <th>Estado</th>
+                                                <th>Editar</th>
+
                                             </tr>
                                         </thead>
                                         <tbody id="trabajadores_tbody">
@@ -238,6 +263,12 @@ if (!isset($_SESSION['rol'])) {
                                                     <td class="align-middle" style="text-align: center; font-weight: 700;">
                                                         <span style="color: #119f00;">Vigente</span>
                                                     </td>
+                                                    <td style="vertical-align: middle; text-align: center;">
+                                                        <a class="a-ir" href="editar_decreto.php?idd=<?php echo $rowvig['IDdecreto']; ?>" style="text-decoration: none;">
+                                                            <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                        </a>
+                                                    </td>
+
                                                 </tr>
                                             <?php } ?>
                                         </tbody>

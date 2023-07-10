@@ -48,7 +48,7 @@ if (isset($_GET['idh'])) {
         <div id="layoutSidenav_content">
             <main>
                 <?php if (isset($editHonorario)) { ?>
-                    <div class="container-md">
+                    <div class="container-md tablap">
                         <form id="editInfoPersonalH" action="./controller/edit_infop_h.php" method="POST">
                             <div class="title">
                                 <div class="ti">
@@ -106,7 +106,6 @@ if (isset($_GET['idh'])) {
                                             ?>
                                             <br>
                                         </div>
-                                        <br>
                                         <div class="col-md-6">
                                             <label for="idProfesion"><span style="color: #c40055;">*</span> Profesión</label>
                                             <input type="text" name="nameProfesion" id="idProfesion" value="<?php echo $editHonorario['Profesion'] ?>" class="form-control" require>
@@ -290,19 +289,22 @@ if (isset($_GET['idh'])) {
                                                         <td class="align-middle text-center">
                                                             <?php echo $decreto['NDecreto'] ?>
                                                         </td>
+                                            
                                                         <td class="align-middle text-center">
-                                                            <?php echo $decreto['FechaDoc'] ?>
+                                                            <?php echo date('d-m-Y', strtotime($decreto['FechaDoc'])); ?>
                                                         </td>
                                                         <td class="align-middle text-center">
                                                             <?php echo $decreto['TipodeHono'] ?>
                                                         </td>
                                                         <td class="align-middle text-center">
-                                                            <?php echo $decreto['FechaInicio'] ?>
+                                                            <?php echo date('d-m-Y', strtotime($decreto['FechaInicio'])); ?>
                                                         </td>
 
                                                         <td class="align-middle text-center">
-                                                            <?php echo $decreto['FechaTermino'] ?>
+                                                            <?php echo date('d-m-Y', strtotime($decreto['FechaTermino'])); ?>
                                                         </td>
+
+                                                       
 
                                                         <td class="align-middle text-center">
                                                             <?php echo $decreto['NombreLug'] ?>
@@ -339,29 +341,11 @@ if (isset($_GET['idh'])) {
                             </div>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <br>
-                        <div id="c_docs">
+                        <div id="editcal">
                             <form method="POST" enctype="multipart/form-data" id="edicion_pdfs_h">
                                 <input type="hidden" name="nameRutEditar" value="<?php echo $editHonorario['Rut'] ?>">
-                                <div class="documentacion seccion">
+                                <div class="documentacion seccion seccion-cal">
                                     <h6>Documentación</h6>
                                     <table id="docsEDIT" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
                                         <thead>

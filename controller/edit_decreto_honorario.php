@@ -160,7 +160,8 @@ if (isset($_POST['iddecreto'])) {
     FechaInicio = '$inicioDecreto',
     FechaTermino = '$finDecreto',
     FechaAlerta = '$fechaAlerta',
-    Estado = $estadoDecreto
+    Estado = $estadoDecreto,
+    Confirmacion = $confirmacion
     WHERE IDdecretoH = $iddecreto";
 
 

@@ -38,6 +38,7 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.5/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
 
 </head>
 
@@ -155,7 +156,7 @@ if (isset($_GET['id'])) {
 
 
 
-                            <table id="decretosp" class="table table-striped table-bordered" style="width:100%">
+                            <table id="decretosp" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                 <thead>
                                     <tr>
                                         <th>N° Doc.</th>

@@ -176,6 +176,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#decretoscontrataedit').DataTable({
+        responsive: true,
+        searching: true,
+        paging: true,
         language: {
             "sEmptyTable": "No se encontraron datos disponibles en la tabla",
             "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
@@ -207,6 +210,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#decretoshonorarioedit').DataTable({
+        responsive: true,
+        searching: true,
+        paging: true,
         language: {
             "sEmptyTable": "No se encontraron datos disponibles en la tabla",
             "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ registros",
