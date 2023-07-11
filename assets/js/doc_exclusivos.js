@@ -66,8 +66,13 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+  console.log($('input[name="nameApeloRes"]').val())
   // Oculta el campo al cargar la página
-  $("#adjuntaApelacion").hide();
+  if($('input[name="nameApeloRes"]').val() == "No" || 
+  (!$("#idSiApelo").prop('checked') && !$("#idNoApelo").prop('checked') )){
+
+    $("#adjuntaApelacion").hide();
+  }
   // Agrega un evento change a los inputs de tipo radio
   $('input[name="nameApeloRes"]').change(function () {
     // Obtiene el valor del input de tipo radio seleccionado
@@ -80,6 +85,8 @@ $(document).ready(function () {
     }
   });
 });
+
+
 
 var selectCat = document.getElementById("idSelectCat");
 if (selectCat) {

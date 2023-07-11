@@ -61,7 +61,7 @@ if (isset($_GET['idcal'])) {
                     <div class="container-md">
                         <form id="editarcalificacion" enctype="multi/form-data" method="POST">
                             <input id="idRutCa" name="nameRutCa" value="<?php echo $rut ?>" class="form-control" hidden>
-                            <input id="idCa" name="nameCa" value="<?php echo $idcal ?>" class="form-control" hidden>
+                            <input id="idCal" name="nameCa" value="<?php echo $idcal ?>" class="form-control" hidden>
 
                             <div class="title">
                                 <div class="ti">
@@ -152,7 +152,7 @@ if (isset($_GET['idcal'])) {
                                 <div class="col-md-12">
                                     <label for="idCalifInput"><span style="color: red;">*</span> Subir o Cambiar Calificación</label>
                                     <div class="input-group">
-                                        <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf" required>
+                                        <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf">
                                         <button class="button" type="button" onclick="clearFileInput('idCalifInput')">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
                                                 <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
@@ -166,7 +166,7 @@ if (isset($_GET['idcal'])) {
                                         <label><span style="color: #f36f03;">*</span> ¿Realizó una Apelación?</label>
                                         <div class="radio-inputs">
                                             <label>
-                                                <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radio-input"<?php if ($calif['apelo'] == 'Si') echo "checked"; ?>>
+                                                <input type="radio" name="nameApeloRes" id="idSiApelo" value="Si" required class="radio-input" <?php if ($calif['apelo'] == 'Si') echo "checked"; ?>>
                                                 <span class=" radio-tile">
                                                     <span class="radio-icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

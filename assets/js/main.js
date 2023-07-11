@@ -260,70 +260,6 @@ $("#documentosApelacion").on("submit", function (event) {
   });
 });
 
-$("#editarcalificacion").on("submit", function (event) {
-  event.preventDefault();
-  if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
-    Swal.fire('Debe indicar si apeló o no');
-    return;
-  }
-  Swal.fire({
-    title: '¿Está seguro de añadir calificación?',
-    showDenyButton: true,
-    showCancelButton: false,
-    allowOutsideClick: false,
-    confirmButtonText: 'Si',
-    confirmButtonColor: '#00c4a0',
-    denyButtonText: 'No',
-    denyButtonColor: '#ba0051',
-  }).then((result) => {
-    if (result.isDenied) {
-      return;
-    } else {
-      let formData = new FormData(this);
-      $.ajax({
-        url: "./controller/editar_calificacion.php",
-        method: "POST",
-        data: formData,
-        cache: false,
-        contentType: false,
-        processData: false,
-      })
-        .done(function (respuesta) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Calificación guardada exitosamente',
-            showConfirmButton: true,
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#009CFD'
-          });
-
-
-          // Limpia el campo de entrada de archivo solo si se seleccionó "No" en el input radio
-          if ($('#idNoApelo').is(":checked")) {
-            $('#idApelacionDoc').val('');
-          } else {
-            // Si se seleccionó "Si" en el input radio
-            $('#idApelacionDoc').val('');
-          }
-
-        })
-        .fail(function (respuesta) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error al guardar los archivos: ' + respuesta.responseText,
-            showConfirmButton: true,
-            confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#009CFD'
-          });
-        })
-        .always(function (respuesta) {
-          console.info(respuesta);
-        });
-    }
-  });
-});
-
-
 
 
 
@@ -1509,7 +1445,7 @@ $("#informelab").on("submit", function (event) {
 $("#EdicionDecretos").on("submit", function (event) {
   event.preventDefault();
   Swal.fire({
-    title: '¿Realmente actualizar este decreto?',
+    title: '¿Realmente desea actualizar este decreto?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -1557,7 +1493,7 @@ $("#EdicionDecretos").on("submit", function (event) {
 $("#EdicionDecretosH").on("submit", function (event) {
   event.preventDefault();
   Swal.fire({
-    title: '¿Realmente actualizar este decreto?',
+    title: '¿Realmente desea actualizar este decreto?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -1597,3 +1533,125 @@ $("#EdicionDecretosH").on("submit", function (event) {
     }
   });
 });
+
+
+
+
+// $("editarcalificacion").on("submit", function (event) {
+//   event.preventDefault();
+//   Swal.fire({
+//     title: '¿Realmente desea actualizar esta calificación?',
+//     showDenyButton: true,
+//     showCancelButton: false,
+//     allowOutsideClick: false,
+//     confirmButtonText: 'Si',
+//     confirmButtonColor: '#00c4a0',
+//     denyButtonText: 'No',
+//     denyButtonColor: '#ba0051',
+//   }).then((result) => {
+//     if (result.isDenied) {
+//       return;
+//     } else {
+//       let formData = new FormData(this);
+
+//       formData.append('idcalificacion', $('#idCal').val());
+//       console.log('esta en el js');
+//       $.ajax({
+//         url: "./controller/edit_calificacion.php",
+//         method: "POST",
+//         data: formData,
+//         cache: false,
+//         contentType: false,
+//         processData: false
+//       })
+//         .done(function (respuesta) {
+//           $('body').append(respuesta);
+//           console.log(respuesta)
+
+//         })
+//         .fail(function (respuesta) {
+//           $('body').append(respuesta);
+//           console.log(respuesta)
+
+//         })
+//         .always(function (respuesta) {
+//           console.info(respuesta)
+//         });
+//     }
+//   });
+// });
+
+
+
+
+
+
+
+
+
+
+$("#editarcalificacion").on("submit", function (event) {
+  event.preventDefault();
+  if (!$('#idNoApelo').is(":checked") && !$('#idSiApelo').is(":checked")) {
+    Swal.fire('Debe indicar si apeló o no');
+    return;
+  }
+  Swal.fire({
+    title: '¿Está seguroOO de añadir calificación?',
+    showDenyButton: true,
+    showCancelButton: false,
+    allowOutsideClick: false,
+    confirmButtonText: 'Si',
+    confirmButtonColor: '#00c4a0',
+    denyButtonText: 'No',
+    denyButtonColor: '#ba0051',
+  }).then((result) => {
+    if (result.isDenied) {
+      return;
+    } else {
+      let formData = new FormData(this);
+      formData.append('idcalificacion', $('#idCal').val());
+
+      $.ajax({
+        url: "./controller/edit_calificacion.php",
+        method: "POST",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+      })
+        .done(function (respuesta) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Calificación guardada exitosamente',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+
+
+          // Limpia el campo de entrada de archivo solo si se seleccionó "No" en el input radio
+          if ($('#idNoApelo').is(":checked")) {
+            $('#idApelacionDoc').val('');
+          } else {
+            // Si se seleccionó "Si" en el input radio
+            $('#idApelacionDoc').val('');
+          }
+
+        })
+        .fail(function (respuesta) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al guardar los archivos: ' + respuesta.responseText,
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#009CFD'
+          });
+        })
+        .always(function (respuesta) {
+          console.info(respuesta);
+        });
+    }
+  });
+});
+
