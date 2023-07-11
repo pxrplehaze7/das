@@ -35,10 +35,8 @@ creo que lo de editar los decretos debe hacerse como el informe, pero con valida
 
 agregar verificacion de usuario si es admin o no
 
-agregar meses a las calificaciones?
 
 intentar enviar a pagina de error
 
 https://chat.openai.com/share/5fabf12f-c16b-4847-a384-8cbdad6f41ab
 
-arreglar nombre duplicado de un archivo

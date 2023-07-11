@@ -62,7 +62,7 @@ if (isset($_GET['rut'])) {
                         <div class="card mb-4">
                             <div class="card-body">
                                 <?php if (isset($resultTrabajador) && mysqli_num_rows($resultTrabajador) > 0) : ?>
-                                    <h2>Trabajador</h2>
+                                    <h2>A contrata o Indefinido</h2>
                                     <table id="trabajadorTable" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
                                         <thead>
                                             <tr>

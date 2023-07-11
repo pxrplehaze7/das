@@ -26,6 +26,8 @@ $sqlNOCumplenh = mysqli_query($conn, $NOcumplenh);
 $rownch = mysqli_fetch_row($sqlNOCumplenh);
 $total_nch = $rownch[0];
 
+
+//CANTIDAD TOTAL
 $totalTRA = "SELECT COUNT(*) FROM `trabajador`;";
 $sqlT = mysqli_query($conn, $totalTRA);
 $row = mysqli_fetch_row($sqlT);

@@ -1597,7 +1597,7 @@ $("#editarcalificacion").on("submit", function (event) {
     return;
   }
   Swal.fire({
-    title: '¿Está seguroOO de añadir calificación?',
+    title: '¿Está seguro de añadir calificación?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -1627,6 +1627,8 @@ $("#editarcalificacion").on("submit", function (event) {
             showConfirmButton: true,
             confirmButtonText: 'Aceptar',
             confirmButtonColor: '#009CFD'
+          }).then(function () {
+            location.reload(); // Actualiza la página
           });
 
 

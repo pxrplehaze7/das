@@ -6,7 +6,7 @@ if (!isset($_SESSION['rol'])) {
     exit();
 }
 if ($_SESSION['rol'] !== '1') {
-    header('Location: ./components/error.html');
+    header('Location:./components/error.html');
     exit();
 }
 if (isset($_GET['id'])) {

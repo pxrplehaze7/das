@@ -136,7 +136,7 @@ if (isset($_GET['idh'])) {
                         <div class="documentacion seccion">
                             <div class="title">
                                 <div class="ti">
-                                    <h6 class="mt-4">Contratos</h6>
+                                    <h6 class="mt-4">Decretos</h6>
                                 </div>
                                 <form action="registro_dec_honorario.php" method="GET">
                                     <div class="container-volver">

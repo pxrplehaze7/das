@@ -99,9 +99,6 @@ if (isset($_GET['iddh'])) {
                                     <div class="col-md-2">
                                         <label for="archivo">Archivo</label>
 
-
-
-
                                         <?php if (!empty($de['RutaCon'])) { ?>
                                             <div class="contenedor-botones" id="archivo">
                                                 <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $de['RutaCon']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
@@ -132,10 +129,6 @@ if (isset($_GET['iddh'])) {
                                         </select>
                                         <br>
                                     </div>
-
-
-
-
 
 
 
@@ -232,7 +225,7 @@ if (isset($_GET['iddh'])) {
             </main>
         </div>
     </div>
-    
+
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/doc_exclusivos.js"></script>

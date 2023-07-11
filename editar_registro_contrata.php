@@ -834,14 +834,14 @@ if (isset($_GET['id'])) {
                                                     <td class="text-center">
 
                                                         <div class="contenedor-botones">
-                                                            <a class="a-ir" href="editar_calificacion.php?idcal=<?php echo $mostrar['IDCalif']; ?>" style="text-decoration: none;">
-                                                                <span><i class="fa-sharp fa-solid fa-square-pen fa-lg" style="color: #eaaf00; font-size:32px; width:30px"></i></span>
+                                                            <a class="btn btn-warning text-white" href="editar_calificacion.php?idcal=<?php echo $mostrar['IDCalif']; ?>" >
+                                                            <i class="fa-solid fa-pen-to-square"></i>
                                                             </a>
 
 
 
 
-                                                            <button type="button" class="btn btn-danger w-100 boton-eliminar-calif d-calif" data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
+                                                            <button type="button" class="btn btn-danger boton-eliminar-calif " data-idcalific="<?php echo $mostrar['IDCalif'] ?>">
                                                                 <i class="fas fa-times"></i>
                                                             </button>
                                                         </div>

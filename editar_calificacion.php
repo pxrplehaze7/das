@@ -12,7 +12,7 @@ if ($_SESSION['rol'] !== '1') {
 if (isset($_GET['idcal'])) {
     $idcal = $_GET['idcal'];
 
-    $datosCali = "SELECT c.MesInicio, c.MesFin, c.AnnoInicio, c.AnnoFin, c.apelo, c.RutaCalificacion, c.RutaApelacion, t.Rut, t.NombreTra, t.PaternoTra, t.MaternoTra, t.IDTra
+    $datosCali = "SELECT c.MesInicio, c.MesFin, c.AnnoInicio, c.AnnoFin, c.apelo, c.RutaCalificacion, c.RutaApelacion, t.Rut, t.NombreTra, t.PaternoTra, t.MaternoTra, t.IDTra, c.IDCalif
     FROM calificaciones c
     INNER JOIN trabajador t ON (t.IDTra = c.IDTra)
     WHERE IDCalif='$idcal' LIMIT 1";
@@ -147,19 +147,43 @@ if (isset($_GET['idcal'])) {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
 
 
-                                <div class="col-md-12">
-                                    <label for="idCalifInput"><span style="color: red;">*</span> Subir o Cambiar Calificación</label>
-                                    <div class="input-group">
-                                        <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf">
-                                        <button class="button" type="button" onclick="clearFileInput('idCalifInput')">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                            </svg>
-                                        </button>
+                                    <div class="col-md-3">
+                                        <label for="archivo">Calificación</label>
+                                        <?php if (!empty($calif['RutaCalificacion'])) { ?>
+                                            <div class="contenedor-botones" id="archivo">
+                                                <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $calif['RutaCalificacion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                <a href="<?php echo $calif['RutaCalificacion'] ?>" download class="btn btn-primary boton-descargar w-100" style="border-top-right-radius: px !important;    border-bottom-right-radius: px !important;"><i class="fa-sharp fa-solid fa-download"></i></a>
+                                                <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileCal('<?php echo $calif['RutaCalificacion'] ?>', '<?php echo $calif['IDCalif'] ?>')">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+
+                                            </div>
+                                        <?php
+                                        } else { ?>
+                                            <div class="contenedor-botones">
+                                                <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                            </div>
+                                        <?php } ?>
                                     </div>
+
+                                    <div class="col-md-9">
+                                        <label for="idCalifInput"><span style="color: red;">*</span> Subir o Cambiar Calificación</label>
+                                        <div class="input-group">
+                                            <input type="file" id="idCalifInput" name="nameCalifdoc" class="form-control" accept=".pdf">
+                                            <button class="button" type="button" onclick="clearFileInput('idCalifInput')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
                                 </div>
+
                                 <br>
                                 <div class="radioCentro row">
                                     <center>
@@ -191,16 +215,46 @@ if (isset($_GET['idcal'])) {
                                     </center>
                                 </div>
                                 <div id="adjuntaApelacion">
-                                    <label for="idApelacionDoc"><span style="color: red;">*</span> Subir o Cambiar Apelación</label>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
-                                        <button class="button" type="button" onclick="clearFileInput('idApelacionDoc')">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
-                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-                                            </svg>
-                                        </button>
+                                    <div class="row">
+
+
+                                        <div class="col-md-3">
+                                            <label for="archivo">Apelación</label>
+                                            <?php if (!empty($calif['RutaApelacion'])) { ?>
+                                                <div class="contenedor-botones" id="archivo">
+                                                    <button type="button" class="btn btn-primary boton-ver w-100" onclick="window.open('<?php echo $calif['RutaApelacion']; ?>', '_blank')"><i class="fa-solid fa-expand"></i></button>
+                                                    <a href="<?php echo $calif['RutaApelacion'] ?>" download class="btn btn-primary boton-descargar w-100" style="border-top-right-radius: 0px !important;    border-bottom-right-radius: 0px !important;"><i class="fa-sharp fa-solid fa-download"></i></a>
+
+                                                    <button type="button" class="btn btn-danger w-100 d-calif " onclick="event.preventDefault(); deleteFileApela('<?php echo $calif['RutaApelacion'] ?>', '<?php echo $calif['IDCalif'] ?>')">
+                                                        <i class="fa-solid fa-trash"></i>
+
+                                                    </button>
+                                                </div>
+                                            <?php
+                                            } else { ?>
+                                                <div class="contenedor-botones">
+                                                    <button disabled class="btn btn-primary pendiente w-100"><i class="fa-sharp fa-solid fa-clock"></i></button>
+                                                </div>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <label for="idApelacionDoc"><span style="color: red;">*</span> Subir o Cambiar Apelación</label>
+                                            <div class="input-group col-md-9">
+                                                <input type="file" class="form-control" id="idApelacionDoc" name="nameApelacionDoc" accept=".pdf">
+                                                <button class="button" type="button" onclick="clearFileInput('idApelacionDoc')">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" class="bell">
+                                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+
                                     </div>
+
+
+
                                 </div>
+
 
                             </div>
                             <div class="boton-registrar">
@@ -228,6 +282,8 @@ if (isset($_GET['idcal'])) {
     <script src="./assets/js/doc_exclusivos.js"></script>
     <script src="./assets/js/validaciones_input.js"></script>
     <script src="./assets/js/calificacion_fecha.js"></script>
+    <script src="./assets/js/elimina.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
