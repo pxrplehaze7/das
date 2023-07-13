@@ -5,7 +5,9 @@ if (!isset($_SESSION['rol'])) {
     header('Location: index.php');
     exit();
 }
-include("./controller/consulta_bar.php");
+include("./controller/consulta_estado_contrata.php");
+include("./controller/consulta_estado_honorario.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,6 +28,7 @@ include("./controller/consulta_bar.php");
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.bootstrap5.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -50,7 +53,7 @@ include("./controller/consulta_bar.php");
                         <ol class="breadcrumb mb-4"></ol>
                         <div class="row d-flex justify-content-center" style="padding-left: 0 !important;padding-right: 0 !important;">
 
-                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
+                            <div class="col-lg-4 col-md-6 col-sm-12 tarjeta">
                                 <div class="card text-white mb-4" style="background-color:#463bfa;">
                                     <div style="display:flex; justify-content:space-around;font-size: 20px; align-items:center;">
                                         <div class="info-icon" style="padding-left: 10px;">
@@ -58,7 +61,7 @@ include("./controller/consulta_bar.php");
                                             <i class="fas fa-info-circle"></i>
                                         </div>
 
-                                        <div class="card-body" style="padding-left: 5px;">Personal Registrado</div>
+                                        <div class="card-body">Personal Registrado</div>
                                         <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right"><i class="fas fa-address-card"></i></div>
 
                                     </div>
@@ -78,9 +81,10 @@ include("./controller/consulta_bar.php");
                                         </table>
                                     </div>
 
+
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
+                            <div class="col-lg-4 col-md-6 col-sm-12 tarjeta">
                                 <div class="card text-white mb-4" style="background-color:#00c4a0;">
                                     <div style="display:flex; justify-content:space-around;font-size: 20px; align-items:center;">
                                         <div class="info-icon" style="padding-left: 10px;">
@@ -105,7 +109,7 @@ include("./controller/consulta_bar.php");
                                         <div class="card-body">Documentación al Día</div>
                                         <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right"><i class="fas fa-check-circle"></i></div>
                                     </div>
-                                   
+
                                     <div class="card-body" style="font-size: 18px;width:100%">
                                         <table style="font-size: 18px;width:100%">
                                             <tbody>
@@ -123,7 +127,7 @@ include("./controller/consulta_bar.php");
 
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-12 col-12 tarjeta">
+                            <div class="col-lg-4 col-md-6 col-sm-12 tarjeta">
                                 <div class="card text-white mb-4" style="background-color:#f3ab00;">
                                     <div style="display:flex; justify-content:space-around;font-size: 20px; align-items:center;">
                                         <div class="info-icon" style="padding-left: 10px;">
@@ -146,7 +150,7 @@ include("./controller/consulta_bar.php");
                                             <i class="fas fa-info-circle"></i>
                                         </div>
                                         <div class="card-body">Documentación Pendiente</div>
-                                        <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right"><i class="fas fa-clock"></i></div>
+                                        <div class="card-body" style="font-size:30px;display:flex;align-items:center;justify-content:right; width:auto"><i class="fas fa-clock"></i></div>
                                     </div>
                                     <div class="card-body" style="font-size: 18px;width:100%">
                                         <table style="font-size: 18px;width:100%">
@@ -165,38 +169,65 @@ include("./controller/consulta_bar.php");
 
                                 </div>
                             </div>
-
-
-
                         </div>
 
 
 
-
-
-
-
-
-
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 grafico">
-                                <div class=" card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Porcentaje de Cumplimiento Total
+                        <div class="graficos_pie">
+                        <div class="title">
+                                <h6 class="mt-4">Porcentaje de cumplimiento de documentación básica: A contrata e Indefinidos.</h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class=" card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-chart-area me-1"></i>
+                                            Cumplimiento Total
+                                        </div>
+                                        <div class="card-body" style="display: flex;justify-content: center;height: 350px;"><canvas id="myChart"></canvas></div>
                                     </div>
-                                    <div class="card-body"><canvas id="myChart" width="80%"></canvas></div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-chart-bar me-1"></i>
+                                            Cumplimiento según lugar
+                                        </div>
+                                        <div class="card-body" style="min-height: 350px;"><canvas id="myChartBar"></canvas></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-lg-8 col-md-6 grafico">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Porcentaje de Cumplimiento según Lugar
+                        </div>
+
+
+
+                        <div class="graficos_barra">
+                            <div class="title">
+                                <h6 class="mt-4">Porcentaje de cumplimiento de documentación básica: Honorarios.</h6>
+                            </div>
+                            <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                    <div class=" card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-chart-area me-1"></i>
+                                            Porcentaje de Cumplimiento Total
+                                        </div>
+                                        <div class="card-body" style="display: flex;justify-content: center;height: 350px;"><canvas id="myChartHonorario"></canvas></div>
                                     </div>
-                                    <div class="card-body"><canvas id="myChartBar" width="80%"></canvas></div>
+                                </div>
+
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                    <div class="card mb-4">
+                                        <div class="card-header">
+                                            <i class="fas fa-chart-bar me-1"></i>
+                                            Honorarios
+                                        </div>
+                                        <div class="card-body" style="min-height: 350px;"><canvas id="myChartBarHonorario"></canvas></div>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
             </main>
@@ -233,6 +264,8 @@ include("./controller/consulta_bar.php");
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
@@ -285,6 +318,150 @@ include("./controller/consulta_bar.php");
             }
         });
     </script>
+
+
+
+
+    <script>
+        var ctx1 = document.getElementById("myChartBarHonorario").getContext('2d');
+        var myChart = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ['DAS', 'CESFAM Pinares', 'CESFAM La Leonera', 'CESFAM Valle La Piedra', 'CESFAM Chiguayante'],
+                datasets: [{
+                    data: [<?php echo $redondeadodash ?>,
+                        <?php echo $redondeadopinh ?>,
+                        <?php echo $redondeadoleoh ?>,
+                        <?php echo $redondeadovalleh ?>,
+                        <?php echo $redondeadochih ?>
+                    ],
+                    backgroundColor: [
+                        '#463bfa',
+                        '#006FFF',
+                        '#00B283',
+                        '#9558DC',
+                        '#CB3B9D'
+                    ],
+                    borderColor: [
+                        '#463bfa',
+                        '#006FFF',
+                        '#00B283',
+                        '#9558DC',
+                        '#CB3B9D'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var label = context.dataset.label || '';
+
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y + '%';
+                                }
+
+                                return label;
+                            }
+                        }
+                    },
+                    legend: {
+                        display: false
+                    },
+                    annotation: {
+                        annotations: [{
+                            type: 'text',
+                            fontColor: 'black',
+                            fontSize: 12,
+                            fontStyle: 'bold',
+                            x: function(context) {
+                                return context.chart.width - context.parsed.x - 20;
+                            },
+                            y: function(context) {
+                                return context.chart.height - context.parsed.y - 10;
+                            },
+                            text: function(context) {
+                                return context.parsed.y + '%';
+                            }
+                        }]
+                    }
+                }
+            }
+        });
+    </script>
+
+
+    <script>
+        const data3 = {
+            labels: [
+                'Al Día',
+                'Pendiente'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [<?php echo $total_ct ?>, <?php echo $total_nct ?>],
+                backgroundColor: [
+                    '#00c4a0',
+                    '#f3ab00',
+                ],
+                hoverOffset: 4
+            }]
+        };
+        const config3 = {
+            type: 'pie',
+            data: data3,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 30,
+                            font: {
+                                size: 14,
+                                fontStyle: "bold"
+                            }
+                        },
+                        onClick: () => {}
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                const label = context.label || '';
+                                const value = context.raw || '';
+                                const percentage = ((context.parsed / context.dataset.data.reduce((a, b) => a + b)) * 100).toFixed(0);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        const ctx3 = document.getElementById('myChartHonorario').getContext('2d');
+        const myPieChart2 = new Chart(ctx3, config3);
+    </script>
+
+
     <script>
         const data2 = {
             labels: [
@@ -293,7 +470,7 @@ include("./controller/consulta_bar.php");
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [<?php echo $total_c ?>, <?php echo $total_nc ?>],
+                data: [<?php echo $total_ct ?>, <?php echo $total_nct ?>],
                 backgroundColor: [
                     '#00c4a0',
                     '#f3ab00',
@@ -305,6 +482,8 @@ include("./controller/consulta_bar.php");
             type: 'pie',
             data: data2,
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: {
                     legend: {
                         position: 'bottom',
@@ -334,94 +513,7 @@ include("./controller/consulta_bar.php");
         const ctx2 = document.getElementById('myChart').getContext('2d');
         const myPieChart = new Chart(ctx2, config2);
     </script>
-    <script>
-        document.getElementById("searchFormContrata").addEventListener("submit", function(e) {
-            e.preventDefault();
 
-            var input = document.getElementById("nameBuscaRutContrata").value.trim();
-            if (input.length < 9) {
-                e.preventDefault();
-                alert("El campo debe tener al menos 9 caracteres.");
-            } else {
-                $.ajax({
-                        url: "./controller/buscar_contrata.php",
-                        method: "POST",
-                        data: {
-                            nameBuscaRutContrata: input
-                        }
-                    })
-                    .done(function(respuesta) {
-                        //alert('LA RESPUESTA ES:'+respuesta)
-                        console.log('200 LA RESPUESTA ES id:', respuesta)
-                        window.location.href = "info_contrata.php?id=" + respuesta
-
-                    })
-                    .fail(function(error) {
-                        //alert('400??LA RESPUESTA ES:'+respuesta)
-                        console.error(error)
-                        $('body').append(error.responseText);
-                    })
-                    .always(function(respuesta) {
-                        console.info("LA RESPUESTA: ", respuesta)
-                    });
-            }
-        });
-
-        document.getElementById("nameBuscaRutContrata").addEventListener("input", function() {
-            var input = this.value.trim();
-            var btnBuscar = document.getElementById("btnNavbarSearchContrata");
-
-            if (input.length >= 9) {
-                btnBuscar.removeAttribute("disabled");
-            } else {
-                btnBuscar.setAttribute("disabled", "disabled");
-            }
-        });
-    </script>
-    <script>
-        document.getElementById("searchFormHonorario").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            var input = document.getElementById("nameBuscaRutHonorario").value.trim();
-            if (input.length < 9) {
-                e.preventDefault();
-                alert("El campo debe tener al menos 9 caracteres.");
-            } else {
-                $.ajax({
-                        url: "./controller/buscar_honorario.php",
-                        method: "POST",
-                        data: {
-                            nameBuscaRutHonorario: input
-                        }
-                    })
-                    .done(function(respuesta) {
-                        //alert('LA RESPUESTA ES:'+respuesta)
-                        console.log('200 LA RESPUESTA ES id:', respuesta)
-                        window.location.href = "info_honorario.php?idh=" + respuesta
-
-                    })
-                    .fail(function(error) {
-                        //alert('400??LA RESPUESTA ES:'+respuesta)
-                        console.error(error)
-                        $('body').append(error.responseText);
-                    })
-                    .always(function(respuesta) {
-                        console.info("LA RESPUESTA: ", respuesta)
-                    });
-            }
-        });
-
-        document.getElementById("nameBuscaRutHonorario").addEventListener("input", function() {
-            var input = this.value.trim();
-            var btnBuscar = document.getElementById("btnNavbarSearchHonorario");
-
-            if (input.length >= 9) {
-                btnBuscar.removeAttribute("disabled");
-            } else {
-                btnBuscar.setAttribute("disabled", "disabled");
-            }
-        });
-    </script>
     <script src="./assets/js/sidebar.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
