@@ -397,8 +397,8 @@ $(document).ready(function () {
       {
         extend: 'excel',
         text: '<i class="fas fa-file-excel"></i> Exportar a Excel',
-        title: 'Decretos por finalizar',
-        filename: 'Decretos_por_finalizar',
+        title: 'Lista de Decretos',
+        filename: 'Lista de Decretos',
         orientation: 'landscape',
         className: 'btn btn-dexcel btn-success',
         exportOptions: {
@@ -410,7 +410,7 @@ $(document).ready(function () {
         extend: 'pdf',
         text: '<i class="fas fa-file-pdf"></i> Exportar a PDF',
         title: 'Decretos por finalizar',
-        filename: 'Decretos_por_finalizar',
+        filename: 'Lista de Decretos',
         orientation: 'landscape',
         className: 'btn btn-dpdf btn-danger',
         exportOptions: {
@@ -671,25 +671,25 @@ $(document).ready(function () {
       {
         extend: 'excel',
         text: '<i class="fas fa-file-excel"></i> Exportar a Excel',
-        title: 'Decretos por finalizar',
-        filename: 'Decretos_por_finalizar',
+        title: 'Decretos del Honorario',
+        filename: 'Decretos_del_honorario',
         orientation: 'landscape',
         className: 'btn btn-dexcel btn-success',
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-          title: 'Lista de Decretos por Finalizar'
+          title: 'Decretos del Honorario'
         }
       },
       {
         extend: 'pdf',
         text: '<i class="fas fa-file-pdf"></i> Exportar a PDF',
-        title: 'Decretos por finalizar',
-        filename: 'Decretos_por_finalizar',
+        title: 'Decretos del Honorario',
+        filename: 'Decretos_del_honorario',
         orientation: 'landscape',
         className: 'btn btn-dpdf btn-danger',
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-          title: 'Lista de Decretos por Finalizar'
+          title: 'Decretos del Honorario'
         },
         customize: function (doc) {
           doc.defaultStyle.alignment = 'left';
@@ -872,25 +872,25 @@ $(document).ready(function () {
       {
         extend: 'excel',
         text: '<i class="fas fa-file-excel"></i> Exportar a Excel',
-        title: 'Decretos por finalizar',
+        title: 'Decretos de Honorario',
         filename: 'Decretos_por_finalizar',
         orientation: 'landscape',
         className: 'btn btn-dexcel btn-success',
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 6, 7],
-          title: 'Lista de Decretos por Finalizar'
+          title: 'Decretos de Honorario'
         }
       },
       {
         extend: 'pdf',
         text: '<i class="fas fa-file-pdf"></i> Exportar a PDF',
-        title: 'Decretos por finalizar',
+        title: 'Decretos de Honorario',
         filename: 'Decretos_por_finalizar',
         orientation: 'landscape',
         className: 'btn btn-dpdf btn-danger',
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 6, 7],
-          title: 'Lista de Decretos por Finalizar'
+          title: 'Decretos de Honorario'
         },
         customize: function (doc) {
           doc.defaultStyle.alignment = 'left';

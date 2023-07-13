@@ -28,23 +28,21 @@ $total_h = $row2[0];
 
 
 //trabajadores que cumplen con documentacion y tiene un decreto vigente en la das
-$dasC = "SELECT COUNT(*) AS cantidad_trabajadores
+$dasC = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
 WHERE h.Cumple = 1
-AND dh.IDLugar = 1
-AND dh.Estado IN (1, 2)";
+AND dh.IDLugar = 1";
 $sqldas = mysqli_query($conn, $dasC);
 $row1 = mysqli_fetch_row($sqldas);
 $das_c = $row1[0];
 
 
 //total de trabajadores de la das
-$dasT = "SELECT COUNT(*) AS cantidad_trabajadores 
+$dasT = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores 
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
-WHERE dh.IDLugar = 1
-AND dh.Estado IN (1, 2)";
+WHERE dh.IDLugar = 1";
 $sqldast = mysqli_query($conn, $dasT);
 $row2 = mysqli_fetch_row($sqldast);
 $das_t = $row2[0];
@@ -59,22 +57,20 @@ if ($das_t != 0) {
 }
 
 // //trabajadores que cumplen con documentacion y son de cesfam pinares
-$pinaresC = "SELECT COUNT(*) AS cantidad_trabajadores
+$pinaresC = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
 WHERE h.Cumple = 1
-AND dh.IDLugar = 2
-AND dh.Estado IN (1, 2)";
+AND dh.IDLugar = 2";
 $sqlpin = mysqli_query($conn, $pinaresC);
 $row3 = mysqli_fetch_row($sqlpin);
 $pin_c = $row3[0];
 
 //total de trabajadores de cesfam pinares
-$pinaresT = "SELECT COUNT(*) AS cantidad_trabajadores 
+$pinaresT = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores 
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
-WHERE dh.IDLugar = 2
-AND dh.Estado IN (1, 2)";
+WHERE dh.IDLugar = 2";
 $sqlpinT = mysqli_query($conn, $pinaresT);
 $row4 = mysqli_fetch_row($sqlpinT);
 $pin_t = $row4[0];
@@ -87,23 +83,23 @@ if ($pin_t != 0) {
     $redondeadopinh = 0;
 }
 
-//trabajadores que cumplen con documentacion y son de cesfam la leonera
-$leoC = "SELECT COUNT(*) AS cantidad_trabajadores
+
+
+// trabajadores que cumplen con documentacion y son de cesfam/sapu la leonera
+$leoC = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
 WHERE h.Cumple = 1
-AND dh.IDLugar = 3
-AND dh.Estado IN (1, 2)";
+AND dh.IDLugar = 3";
 $sqlleoC = mysqli_query($conn, $leoC);
 $row5 = mysqli_fetch_row($sqlleoC);
 $leo_c = $row5[0];
 
 //total de trabajadores de cesfam/sapu la leonera
-$leoT = "SELECT COUNT(*) AS cantidad_trabajadores 
+$leoT = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores 
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
-WHERE dh.IDLugar = 3
-AND dh.Estado IN (1, 2)";
+WHERE dh.IDLugar = 3";
 $sqlleoT = mysqli_query($conn, $leoT);
 $row6 = mysqli_fetch_row($sqlleoT);
 $leo_t = $row6[0];
@@ -125,22 +121,20 @@ if ($leo_t != 0) {
 
 
 //trabajadores que cumplen con documentacion y son de valle la piedra
-$valleC = "SELECT COUNT(*) AS cantidad_trabajadores
+$valleC = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
 WHERE h.Cumple = 1
-AND dh.IDLugar = 4
-AND dh.Estado IN (1, 2)";
+AND dh.IDLugar = 4";
 $sqlvalleC = mysqli_query($conn, $valleC);
 $row7 = mysqli_fetch_row($sqlvalleC);
 $valle_c = $row7[0];
 
 //total de trabajadores de valle la piedra
-$valleT = "SELECT COUNT(*) AS cantidad_trabajadores 
+$valleT = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores 
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
-WHERE dh.IDLugar = 4
-AND dh.Estado IN (1, 2)";
+WHERE dh.IDLugar = 4";
 $sqlvalleT = mysqli_query($conn, $valleT);
 $row8 = mysqli_fetch_row($sqlvalleT);
 $valle_t = $row8[0];
@@ -163,22 +157,20 @@ if ($valle_t != 0) {
 
 
 // //trabajadores que cumplen con documentacion y son de cesfam chiguayante
-$chiguaC = "SELECT COUNT(*) AS cantidad_trabajadores
+$chiguaC = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
 WHERE h.Cumple = 1
-AND dh.IDLugar = 5
-AND dh.Estado IN (1, 2)";
+AND dh.IDLugar = 5";
 $sqllchiguaC = mysqli_query($conn, $chiguaC);
 $row9 = mysqli_fetch_row($sqllchiguaC);
 $chigua_c = $row9[0];
 
 //total de trabajadores de cesfam chiguayante
-$chiguaT = "SELECT COUNT(*) AS cantidad_trabajadores 
+$chiguaT = "SELECT COUNT(DISTINCT h.Rut) AS cantidad_trabajadores 
 FROM honorario h
 INNER JOIN decretosh dh ON h.IDTraH = dh.IDTraH
-WHERE dh.IDLugar = 5
-AND dh.Estado IN (1, 2)";
+WHERE dh.IDLugar = 5";
 $sqllchiguaT = mysqli_query($conn, $chiguaT);
 $row10 = mysqli_fetch_row($sqllchiguaT);
 $chigua_t = $row10[0];

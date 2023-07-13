@@ -23,7 +23,7 @@ if (isset($_GET['idcal'])) {
         $calif = mysqli_fetch_assoc($result);
         $idTrabajador = $calif['IDTra'];
     }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -290,3 +290,10 @@ if (isset($_GET['idcal'])) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

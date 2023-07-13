@@ -23,10 +23,7 @@ if (isset($_SESSION['idperfil'])) {
         echo "No se encontraron datos de perfil";
         exit();
     }
-} else {
-    echo "No se ha establecido la variable de sesión 'idperfil'";
-    exit();
-} ?>
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -138,3 +135,8 @@ if (isset($_SESSION['idperfil'])) {
 </body>
 
 </html>
+<?php
+} else {
+    header('Location: home.php');
+}
+?>

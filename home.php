@@ -161,7 +161,7 @@ include("./controller/consulta_estado_honorario.php");
                                                 </tr>
                                                 <tr>
                                                     <td>A Honorarios: </td>
-                                                    <td style="text-align: end;"><?php echo $total_ch ?></td>
+                                                    <td style="text-align: end;"><?php echo $total_nch ?></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -174,7 +174,7 @@ include("./controller/consulta_estado_honorario.php");
 
 
                         <div class="graficos_pie">
-                        <div class="title">
+                            <div class="title">
                                 <h6 class="mt-4">Porcentaje de cumplimiento de documentación básica: A contrata e Indefinidos.</h6>
                             </div>
                             <div class="row">
@@ -200,18 +200,18 @@ include("./controller/consulta_estado_honorario.php");
                             </div>
                         </div>
 
-
+                        <br>
 
                         <div class="graficos_barra">
                             <div class="title">
                                 <h6 class="mt-4">Porcentaje de cumplimiento de documentación básica: Honorarios.</h6>
                             </div>
                             <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
                                     <div class=" card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-chart-area me-1"></i>
-                                            Porcentaje de Cumplimiento Total
+                                            Cumplimiento Total
                                         </div>
                                         <div class="card-body" style="display: flex;justify-content: center;height: 350px;"><canvas id="myChartHonorario"></canvas></div>
                                     </div>
@@ -221,7 +221,7 @@ include("./controller/consulta_estado_honorario.php");
                                     <div class="card mb-4">
                                         <div class="card-header">
                                             <i class="fas fa-chart-bar me-1"></i>
-                                            Honorarios
+                                            Cumplimiento según lugar
                                         </div>
                                         <div class="card-body" style="min-height: 350px;"><canvas id="myChartBarHonorario"></canvas></div>
                                     </div>
@@ -417,7 +417,7 @@ include("./controller/consulta_estado_honorario.php");
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [<?php echo $total_ct ?>, <?php echo $total_nct ?>],
+                data: [<?php echo $total_ch ?>, <?php echo $total_nch ?>],
                 backgroundColor: [
                     '#00c4a0',
                     '#f3ab00',

@@ -13,15 +13,6 @@ if (isset($_GET['iddh'])) {
     $iddecreto = $_GET['iddh']; //ID DEL DECRETO
 
 
-    // $idpersona = "SELECT IDTra FROM decretos WHERE IDdecreto = '$iddecreto' LIMIT 1 ";
-    // $resultp = mysqli_query($conn, $idpersona);
-    // if (mysqli_num_rows($resultp) == 1) {
-    //     $idtra = mysqli_fetch_assoc($resultp);
-    // }
-
-
-
-
     $decre = "SELECT h.IDTraH,h.NombreH, h.PaternoH, h.MaternoH, h.Rut, l.NombreLug, s.NombreSector, d.NDecreto, d.FechaDoc, d.FechaInicio,d.FechaTermino,l.IDLugar, s.IDSector, d.RutaCon, d.TipodeHono
     FROM decretosh d
     INNER JOIN honorario h ON (h.IDTraH= d.IDTraH)
@@ -33,9 +24,7 @@ if (isset($_GET['iddh'])) {
         $de = mysqli_fetch_assoc($resultDecreto);
         $id = $de['IDTraH'];
     }
-} else {
-    echo "No se recibió ningún ID de usuario";
-}
+
 ?>
 <?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
@@ -234,3 +223,10 @@ if (isset($_GET['iddh'])) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

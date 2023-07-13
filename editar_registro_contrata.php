@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($resultDatosEditar) == 1) {
         $editContrata = mysqli_fetch_assoc($resultDatosEditar);
     }
-} ?>
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -893,3 +893,10 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

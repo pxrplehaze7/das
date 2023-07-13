@@ -138,6 +138,8 @@ if (isset($_GET['idh'])) {
                                 <div class="ti">
                                     <h6 class="mt-4">Decretos</h6>
                                 </div>
+                                <?php if ($_SESSION['rol'] === '1') { ?>
+
                                 <form action="registro_dec_honorario.php" method="GET">
                                     <div class="container-volver">
                                         <div class="title">
@@ -146,6 +148,7 @@ if (isset($_GET['idh'])) {
                                         </div>
                                     </div>
                                 </form>
+                                <?php } ?>
                             </div>
 
                             <table id="decretosh" class="table table-striped table-bordered" style="width:100%">
@@ -455,3 +458,6 @@ if (isset($_GET['idh'])) {
 </body>
 
 </html>
+
+
+

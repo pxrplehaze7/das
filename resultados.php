@@ -61,65 +61,71 @@ if (isset($_GET['rut'])) {
                     <div class="">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <?php if (isset($resultTrabajador) && mysqli_num_rows($resultTrabajador) > 0) : ?>
-                                    <h2>A contrata o Indefinido</h2>
-                                    <table id="trabajadorTable" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
-                                        <thead>
-                                            <tr>
-
-                                                <th>RUT</th>
-                                                <th>Nombre</th>
-                                                <th>Apellido Paterno</th>
-                                                <th>Apellido Materno</th>
-                                                <th>Ir</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php while ($row = mysqli_fetch_assoc($resultTrabajador)) : ?>
+                                <?php if ((isset($resultTrabajador) && mysqli_num_rows($resultTrabajador) > 0) || (isset($resultHonorario) && mysqli_num_rows($resultHonorario) > 0)) : ?>
+                                    <?php if (isset($resultTrabajador) && mysqli_num_rows($resultTrabajador) > 0) : ?>
+                                        
+                                        <h2 style="font-size: 25px;">A contrata o Indefinido</h2>
+                                        <table id="trabajadorTable" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
+                                            <thead>
                                                 <tr>
-                                                    <td><?php echo $row['Rut']; ?></td>
-                                                    <td><?php echo $row['NombreTra']; ?></td>
-                                                    <td><?php echo $row['PaternoTra']; ?></td>
-                                                    <td><?php echo $row['MaternoTra']; ?></td>
-                                                    <td class="contenedor-ir" style="vertical-align: middle; text-align: center;">
-                                                        <a class="a-ir" href="info_contrata.php?id=<?php echo $row['IDTra']; ?> " style="text-decoration: none;">
-                                                            <span>Ir <i class="fa-solid fa-circle-arrow-right"></i></span>
-                                                        </a>
-                                                    </td>
+                                                    <th>RUT</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido Paterno</th>
+                                                    <th>Apellido Materno</th>
+                                                    <th>Ir</th>
                                                 </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
-                                    </table>
-                                <?php endif; ?>
+                                            </thead>
+                                            <tbody>
+                                                <?php while ($row = mysqli_fetch_assoc($resultTrabajador)) : ?>
+                                                    <tr>
+                                                        <td><?php echo $row['Rut']; ?></td>
+                                                        <td><?php echo $row['NombreTra']; ?></td>
+                                                        <td><?php echo $row['PaternoTra']; ?></td>
+                                                        <td><?php echo $row['MaternoTra']; ?></td>
+                                                        <td class="contenedor-ir" style="vertical-align: middle; text-align: center;">
+                                                            <a class="a-ir" href="info_contrata.php?id=<?php echo $row['IDTra']; ?> " style="text-decoration: none;">
+                                                                <span>Ir <i class="fa-solid fa-circle-arrow-right"></i></span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endwhile; ?>
+                                            </tbody>
+                                        </table>
+                                    <?php endif; ?>
 
-                                <?php if (isset($resultHonorario) && mysqli_num_rows($resultHonorario) > 0) : ?>
-                                    <h2>Honorario</h2>
-                                    <table id="honorarioTable" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
-                                        <thead>
-                                            <tr>
-                                                <th>RUT</th>
-                                                <th>Nombre</th>
-                                                <th>Apellido Paterno</th>
-                                                <th>Apellido Materno</th>
-                                                <th>Ir</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php while ($row = mysqli_fetch_assoc($resultHonorario)) : ?>
+                                    <?php if (isset($resultHonorario) && mysqli_num_rows($resultHonorario) > 0) : ?>
+                                        <h2 style="font-size: 25px;">Honorario</h2>
+                                        <table id="honorarioTable" class="table table-striped table-bordered table-centered" style="width:100%" data-search="true">
+                                            <thead>
                                                 <tr>
-                                                    <td><?php echo $row['Rut']; ?></td>
-                                                    <td><?php echo $row['NombreH']; ?></td>
-                                                    <td><?php echo $row['PaternoH']; ?></td>
-                                                    <td><?php echo $row['MaternoH']; ?></td>
-                                                    <td style="vertical-align: middle; text-align: center;">
-                                                        <a class="a-ir" href="info_honorario.php?idh=<?php echo $row['IDTraH']; ?>" style="text-decoration: none;">
-                                                            <span>Ir <i class="fa-solid fa-circle-arrow-right"></i></span>
-                                                        </a>
-                                                    </td>
+                                                    <th>RUT</th>
+                                                    <th>Nombre</th>
+                                                    <th>Apellido Paterno</th>
+                                                    <th>Apellido Materno</th>
+                                                    <th>Ir</th>
                                                 </tr>
-                                            <?php endwhile; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php while ($row = mysqli_fetch_assoc($resultHonorario)) : ?>
+                                                    <tr>
+                                                        <td><?php echo $row['Rut']; ?></td>
+                                                        <td><?php echo $row['NombreH']; ?></td>
+                                                        <td><?php echo $row['PaternoH']; ?></td>
+                                                        <td><?php echo $row['MaternoH']; ?></td>
+                                                        <td style="vertical-align: middle; text-align: center;">
+                                                            <a class="a-ir" href="info_honorario.php?idh=<?php echo $row['IDTraH']; ?>" style="text-decoration: none;">
+                                                                <span>Ir <i class="fa-solid fa-circle-arrow-right"></i></span>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endwhile; ?>
+                                            </tbody>
+                                        </table>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <h2 style="font-size: 25px;">Sin resultados</h2>
+
+                                    <p>RUT no registrado.</p>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -146,5 +152,6 @@ if (isset($_GET['rut'])) {
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 </body>
+
 
 </html>

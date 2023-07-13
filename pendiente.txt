@@ -1,7 +1,5 @@
 
 
-
-
 $pass = "ADMINDAS2023" es la clave de admin@gmail.com,
     preguntar que hacer con el admin, 
 
@@ -40,3 +38,7 @@ intentar enviar a pagina de error
 
 https://chat.openai.com/share/5fabf12f-c16b-4847-a384-8cbdad6f41ab
 
+
+
+
+revisar iconos de muni

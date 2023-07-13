@@ -19,7 +19,7 @@ if (isset($_GET['idh'])) {
     if (mysqli_num_rows($resultDatosEditar) == 1) {
         $editHonorario = mysqli_fetch_assoc($resultDatosEditar);
     }
-} ?>
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -680,3 +680,9 @@ if (isset($_GET['idh'])) {
 </body>
 
 </html>
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

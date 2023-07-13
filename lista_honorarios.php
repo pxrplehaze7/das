@@ -41,45 +41,7 @@ if (!isset($_SESSION['rol'])) {
                     <div class="">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <label for="filtrobuscar">Filtrar Búsqueda:</label>
-                                <br>
-                                <div class="row align-items-end" id="filtrobuscar">
-                                    <div class="col-md-3 col-sm-6"> <!-- LUGAR -->
-                                        <label for="idSelectLugar">Lugar</label>
-                                        <select name="nameSelectLugar" id="idSelectLugar" class="form-select filtro" required onchange="cargarSectoresTABLA()">
-                                            <option value="0" hidden> Selecciona</option>
-                                            <?php
-                                            $sqlLugar = "SELECT IDLugar, NombreLug FROM lugar";
-                                            $resultadoLugar = mysqli_query($conn, $sqlLugar);
-                                            while ($fila = mysqli_fetch_assoc($resultadoLugar)) {
-                                                echo "<option value='" . $fila['IDLugar'] . "'>" . $fila['NombreLug'] . "</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6">
-                                        <label for="idSelectSector">Sector</label>
-                                        <select name="nameSelectSector" id="idSelectSector" class="form-select filtro" required>
-                                            <option value="0"> Selecciona</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6">
-                                        <label for="idSelectCumple">Estado</label>
-                                        <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
-                                            <option value=""> Selecciona</option>
-                                            <option value="1">Si Cumple</option>
-                                            <option value="0">No Cumple</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6">
-                                        <div class="d-flex justify-content-end gap-2">
-                                            <button id="btn-filtro" class="btn btn-filtro">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
-                                            <button id="limpia-filtro" class="btn btn-filtro">Limpiar <i class="fas fa-eraser"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <hr>
+                                
                                 <br>
                                 <table id="total_contrata" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>

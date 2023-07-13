@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
 
     $datosCali = mysqli_query($conn, $datosCali);
     list($idTrabajador, $rut, $nombre, $paterno, $materno) = mysqli_fetch_row($datosCali);
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -224,3 +224,10 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

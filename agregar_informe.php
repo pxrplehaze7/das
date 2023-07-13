@@ -17,7 +17,7 @@ if (isset($_GET['idh'])) {
 
     $datosinforme = mysqli_query($conn, $datosinforme);
     list($idH, $rut, $nombre, $paterno, $materno) = mysqli_fetch_row($datosinforme);
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -184,3 +184,11 @@ if (isset($_GET['idh'])) {
 </body>
 
 </html>
+
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

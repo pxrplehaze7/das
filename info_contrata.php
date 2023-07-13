@@ -19,7 +19,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($resultDatos) == 1) {
         $persona = mysqli_fetch_assoc($resultDatos);
     }
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,11 +52,6 @@ if (isset($_GET['id'])) {
                     <div class="container-md tablap">
 
 
-                        <!-- <div class="title">
-                            <div class="ti">
-                                <h1 class="mt-4">Información</h1>
-                            </div>
-                        </div> -->
 
                         <div class="title">
                             <div class="ti">
@@ -586,3 +581,10 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+

@@ -16,9 +16,7 @@ if (isset($_GET['id'])) {
     if (mysqli_num_rows($ruser) == 1) {
         $us = mysqli_fetch_assoc($ruser);
     }
-} else {
-    echo "No se recibió ningún ID de usuario";
-}
+
 ?>
 <?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
@@ -125,3 +123,9 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<?php
+} else {
+    header('Location: home.php');
+}
+?>

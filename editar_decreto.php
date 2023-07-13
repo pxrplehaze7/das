@@ -34,9 +34,7 @@ if (isset($_GET['idd'])) {
         $de = mysqli_fetch_assoc($resultDecreto);
         $id = $de['IDTra'];
     }
-} else {
-    echo "No se recibió ningún ID de usuario";
-}
+
 ?>
 <?php include("./controller/config/conexion.php"); ?>
 <!DOCTYPE html>
@@ -243,3 +241,9 @@ if (isset($_GET['idd'])) {
 </body>
 
 </html>
+<?php
+} else {
+    header('Location: home.php');
+}
+?>
+
