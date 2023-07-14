@@ -103,8 +103,6 @@ CREATE TABLE `das`.`trabajador` (
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 
-
-
 CREATE TABLE `das`.`honorario` (
     `IDTraH` INT NOT NULL,
     `IDCat` INT NOT NULL,
@@ -132,9 +130,6 @@ CREATE TABLE `das`.`honorario` (
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 
-
-
-
 CREATE TABLE `das`.`decretosH` (
     `IDdecretoH` INT NOT NULL AUTO_INCREMENT,
     `IDTraH` INT NOT NULL,
@@ -153,9 +148,6 @@ CREATE TABLE `das`.`decretosH` (
     FOREIGN KEY (`IDTraH`) REFERENCES honorario (`IDTraH`),
     FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
-
-
-
 
 
 CREATE TABLE `das`.`decretos` (
@@ -178,8 +170,6 @@ CREATE TABLE `das`.`decretos` (
     FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
-
-
 CREATE TABLE `das`.`calificaciones` (
     `IDCalif` INT NOT NULL AUTO_INCREMENT,
     `IDTra` INT NOT NULL,
@@ -194,7 +184,6 @@ CREATE TABLE `das`.`calificaciones` (
     PRIMARY KEY (`IDCalif`),
     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`)
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
-
 
 CREATE TABLE `das`.`informes` (
     `IDinf` INT NOT NULL AUTO_INCREMENT,
