@@ -94,7 +94,7 @@ if (isset($_GET['id'])) {
                                         <input type="date" name="nameFechaDocumento" class="form-control" id="idFechaDocumento" required>
                                     </div>
                                     <div class="col-md-6 col-sm-6 document">
-                                        <label for="idDocContratoInput"><span style="color: #c40055;">*</span> Contrato</label>
+                                        <label for="idDocContratoInput"><span style="color: #c40055;">*</span> Documento</label>
                                         <div class="input-group">
                                             <input type="file" id="idDocContratoInput" name="nameDocContratoInput" class="form-control" accept=".pdf">
                                             <button class="button" type="button" onclick="clearFileInput('idDocContratoInput')">

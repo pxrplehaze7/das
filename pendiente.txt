@@ -44,3 +44,4 @@ https://chat.openai.com/share/5fabf12f-c16b-4847-a384-8cbdad6f41ab
 revisar iconos de muni
 
 
+revisar como funciona porque me faltaba la llave foranea de idsector en los decretos

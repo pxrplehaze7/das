@@ -146,7 +146,9 @@ CREATE TABLE `das`.`decretosH` (
     `Confirmacion` INT (1) NOT NULL,
     PRIMARY KEY (`IDdecretoH`),
     FOREIGN KEY (`IDTraH`) REFERENCES honorario (`IDTraH`),
-    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
+    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`),
+    FOREIGN KEY (`IDSector`) REFERENCES sector (`IDSector`)
+
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 
@@ -167,7 +169,9 @@ CREATE TABLE `das`.`decretos` (
     PRIMARY KEY (`IDdecreto`),
     FOREIGN KEY (`IDTra`) REFERENCES trabajador (`IDTra`),
     FOREIGN KEY (`IDCon`) REFERENCES contrato (`IDCon`),
-    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`)
+    FOREIGN KEY (`IDLugar`) REFERENCES lugar (`IDLugar`),
+    FOREIGN KEY (`IDSector`) REFERENCES sector (`IDSector`)
+
 ) ENGINE = InnoDB CHARSET = utf8 COLLATE utf8_spanish_ci;
 
 CREATE TABLE `das`.`calificaciones` (
