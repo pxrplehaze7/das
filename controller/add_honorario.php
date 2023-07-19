@@ -11,14 +11,13 @@ if ($ultimoIDH === null) {
 $idtraH = $ultimoIDH + 1;
 
 $rutPersona = $_POST['rut'];
-$nombreP    = $_POST['namePersona'];
-$paternoP   = $_POST['namePaterno'];
-$maternoP   = $_POST['nameMaterno'];
+$nombreP    = trim($_POST['namePersona']);
+$paternoP   = trim($_POST['namePaterno']);
+$maternoP   = trim($_POST['nameMaterno']);
 $generoP    = $_POST['nameGenero'];
 $CelularP   = $_POST['nameCelular'];
-$correoP    = $_POST['nameCorreo'];
-$correoP    = strtolower($correoP);
-$profesionP = $_POST['nameProfesion'];
+$correoP    = strtolower(trim($_POST['nameCorreo']));
+$profesionP = trim($_POST['nameProfesion']);
 $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
 $cumple = 0;

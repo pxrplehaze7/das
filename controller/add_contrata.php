@@ -11,14 +11,13 @@ if ($ultimoID === null) {
 $idtra = $ultimoID + 1;
 
 $rutPersona = $_POST['rut'];
-$nombreP    = $_POST['namePersona'];
-$paternoP   = $_POST['namePaterno'];
-$maternoP   = $_POST['nameMaterno'];
+$nombreP    = trim($_POST['namePersona']);
+$paternoP   = trim($_POST['namePaterno']);
+$maternoP   = trim($_POST['nameMaterno']);
 $generoP    = $_POST['nameGenero'];
 $CelularP   = $_POST['nameCelular'];
-$correoP    = $_POST['nameCorreo'];
-$correoP    = strtolower($correoP);
-$profesionP = $_POST['nameProfesion'];
+$correoP    = strtolower(trim($_POST['nameCorreo']));
+$profesionP = trim($_POST['nameProfesion']);
 $obsP       = $_POST['nameObserv'];
 $inscripcionOno = $_POST['nameInscrip'];
 $afpP       = $_POST['nameSelectAFP'];
@@ -31,7 +30,6 @@ $ruta = 'PDFS/CONTRATA_E_INDEFINIDOS/';
 $fechaActual = strtotime($fechaActual);
 $cumple = 0;
 
-
 $categoriaP = $_POST['nameSelectCat'];
 if ($categoriaP == 1) {
   // SI ES IGUAL A 1 (CATEGORIA A) TOMA EL VALOR DEL INPUT RADIO Y LO ASIGNA A LA VARIABLE
@@ -40,7 +38,6 @@ if ($categoriaP == 1) {
   //SI ES DISTINTO DE 1, SE ASIGNA UN NO
   $medicoOno  = 'No';
 }
-
 
 $nombreP    = mysqli_real_escape_string($conn, $nombreP);
 $paternoP   = mysqli_real_escape_string($conn, $paternoP);

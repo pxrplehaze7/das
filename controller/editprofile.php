@@ -2,10 +2,10 @@
 include("../controller/config/conexion.php");
 
 $idperf = $_POST['idperson'];
-$nombreU = $_POST['namePersona'];
-$paternoU = $_POST['namePaterno'];
-$maternoU = $_POST['nameMaterno'];
-$correoU = $_POST['nameCorreo'];
+$nombreU = trim($_POST['namePersona']);
+$paternoU = trim($_POST['namePaterno']);
+$maternoU = trim($_POST['nameMaterno']);
+$correoU = trim($_POST['nameCorreo']);
 $nuevaContraseña = $_POST["namePassNueva"];
 $correoU = str_replace(" ", "", $correoU);
 $correoU = strtolower($correoU);
@@ -60,3 +60,4 @@ mysqli_close($conn);
 
 
 
+trim()

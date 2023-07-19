@@ -1,8 +1,8 @@
 <?php
 include("../controller/config/conexion.php");
 $idtrab = $_POST['laid'];
-$CelularP   = $_POST['nameCelular'];
-$correoP    = $_POST['nameCorreo'];
+$CelularP   = trim($_POST['nameCelular']);
+$correoP    = trim($_POST['nameCorreo']);
 $CelularP   = str_replace(" ", "", $CelularP);
 $correoP    = str_replace(" ", "", $correoP); 
 $correoP    = strtolower($correoP);

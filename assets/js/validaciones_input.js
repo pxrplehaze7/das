@@ -1,8 +1,8 @@
 //PERMITE SOLO LETRAS EN MAYUSCULAN MINUSCULA Y ESPACIOS
 function validarTexto(input) {
-  var regex = /^[A-Za-z\s]+$/;
+  var regex = /^[A-Za-z\u00C0-\u017F\s]*$/;
   if (!regex.test(input.value)) {
-    input.value = input.value.replace(/[^A-Za-z\s]+/, '');
+    input.value = input.value.replace(/[^A-Za-z\u00C0-\u017F\s]/g, '');
   }
 }
 

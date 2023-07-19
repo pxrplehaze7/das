@@ -1,10 +1,10 @@
 <?php
 include("../controller/config/conexion.php");
 $rut        = $_POST['nameRut'];
-$nombreU    = $_POST['namePersona'];
-$paternoU   = $_POST['namePaterno'];
-$maternoU   = $_POST['nameMaterno'];
-$correoU    = $_POST['nameCorreo'];
+$nombreU    = trim($_POST['namePersona']);
+$paternoU   = trim($_POST['namePaterno']);
+$maternoU   = trim($_POST['nameMaterno']);
+$correoU    = trim($_POST['nameCorreo']);
 $permiso    = $_POST['namePermiso'];
 $rutSinGuion = str_replace('-', '', $rut);
 $pass = substr($rutSinGuion, 0, -1); 

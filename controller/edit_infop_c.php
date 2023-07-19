@@ -2,11 +2,11 @@
 include("../controller/config/conexion.php");
 $idtrab = $_POST['laid'];
 $rutInput = $_POST['RutInput'];
-$nombreP    = $_POST['namePersona'];
-$paternoP   = $_POST['namePaterno'];
-$maternoP   = $_POST['nameMaterno'];
+$nombreP    = trim($_POST['namePersona']);
+$paternoP   = trim($_POST['namePaterno']);
+$maternoP   = trim($_POST['nameMaterno']);
 $generoP    = $_POST['nameGenero'];
-$profesionP = $_POST['nameProfesion'];
+$profesionP = trim($_POST['nameProfesion']);
 $inscripcionOno = $_POST['nameInscrip'];
 $afpP       = $_POST['nameSelectAFP'];
 $prevP       = $_POST['nameSelectPrev'];

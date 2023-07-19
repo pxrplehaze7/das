@@ -41,12 +41,34 @@ if (!isset($_SESSION['rol'])) {
                     <div class="">
                         <div class="card mb-4">
                             <div class="card-body">
-
+                            <label for="filtrobuscar">Filtrar Búsqueda:</label>
+                                <br>
+                                <div class="row" id="filtrobuscar">
+                    
+                                    <div class="col-md-3">
+                                        <label for="idSelectCumple">Estado</label>
+                                        <select name="nameSelectCumple" class="form-control filtro" id="idSelectCumple">
+                                            <option value=""> Selecciona</option>
+                                            <option value=1>Si Cumple</option>
+                                            <option value=0>No Cumple</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3 row">
+                                        <div class="col mt-auto text-center">
+                                            <button id="btn-filtro" class="btn btn-enviar">Buscar <i class="fa-solid fa-magnifying-glass"></i></button>
+                                        </div>
+                                        <div class="col mt-auto text-center">
+                                            <button id="limpia-filtro" class="btn btn-enviar limpia-filtro">Limpiar <i class="fas fa-eraser"></i></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <hr>
+                                <br>
                                 <table id="total_contrata" class="table table-striped table-bordered" style="width:100%" data-search="true">
                                     <thead>
                                         <tr>
                                             <th class="align-middle" style="width: 75px;">Rut</th>
-
                                             <th class="align-middle">Nombres</th>
                                             <th class="align-middle">Apellidos</th>
                                             <th class="align-middle">Profesión</th>
@@ -101,6 +123,7 @@ if (!isset($_SESSION['rol'])) {
     </div>
 
     <script src="./assets/js/sidebar.js"></script>
+    <script src="./assets/js/filtro_contrata.js"></script>
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/tablaExport.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

@@ -201,7 +201,7 @@ $("#documentosApelacion").on("submit", function (event) {
     return;
   }
   Swal.fire({
-    title: '¿Está seguro de añadir calificación?',
+    title: '¿Está seguro de añadir esta calificación?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -315,64 +315,41 @@ $("#edicion_pdfs_c").on("submit", function (event) {
 });
 
 
-$("#btn-filtro").on("click", function () {
-  let datos = {
-    cumple: $("#idSelectCumple").val(),
-    lugar: $("#idSelectLugar").val(),
-    sector: $("#idSelectSector").val(),
-  }
-  console.log(datos);
-  $.ajax({
-    url: "./controller/cargaTabla.php",
-    method: "POST",
-    data: datos,
-  }).done(function (data) {
-    $('#trabajadores_tbody').html(data);
-  });
-});
 
 
-$("#btn-filtro").on("click", function () {
-  let datos = {
-    cumple: $("#idSelectCumple").val(),
-    lugar: $("#idSelectLugar").val(),
-    sector: $("#idSelectSector").val(),
-  }
-  console.log(datos);
-  $.ajax({
-    url: "./controller/cargaTabla.php",
-    method: "POST",
-    data: datos,
-  })
-    .done(function (data) {
-      $('#trabajadores_tbody').html(data);
-
-      // ACTUALIZA LOS DATOS DE LA TABLA
-      var table = $('#total').DataTable();
-      table.clear().rows.add($('#total tbody tr')).draw();
-    });
-});
 
 
-$("#limpia-filtro").on("click", function () {
-  // RSTABLECE LOS VALORES DE LOS SELECT
-  $("#idSelectLugar").val(0);
-  $("#idSelectSector").val(0);
-  $("#idSelectCumple").val("");
-  $("#idSelectSector").html("<option value='0' hidden> Selecciona</option>");
-  // RECARGA LA TABLA CON LOS REGISTROS
-  $.ajax({
-    url: "./controller/cargaTabla.php",
-    method: "POST",
-    data: { cumple: "", lugar: 0, sector: 0 },
-  })
-    .done(function (data) {
-      $('#trabajadores_tbody').html(data);
-      // ACTUALIZA LOS DATOS DE LA TABLA
-      var table = $('#total').DataTable();
-      table.clear().rows.add($('#total tbody tr')).draw();
-    });
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1386,7 +1363,7 @@ $("#informelab").on("submit", function (event) {
   event.preventDefault();
 
   Swal.fire({
-    title: '¿Está seguro de añadir informe?',
+    title: '¿Está seguro de añadir este informe?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -1597,7 +1574,7 @@ $("#editarcalificacion").on("submit", function (event) {
     return;
   }
   Swal.fire({
-    title: '¿Está seguro de añadir calificación?',
+    title: '¿Está seguro de actualizar esta calificación?',
     showDenyButton: true,
     showCancelButton: false,
     allowOutsideClick: false,
@@ -1656,4 +1633,6 @@ $("#editarcalificacion").on("submit", function (event) {
     }
   });
 });
+
+
 
