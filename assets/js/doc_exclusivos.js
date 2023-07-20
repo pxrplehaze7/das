@@ -66,9 +66,9 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  console.log($('input[name="nameApeloRes"]').val())
+  //console.log($('input[name="nameApeloRes"]').val())
   // Oculta el campo al cargar la página
-  if($('input[name="nameApeloRes"]').val() == "No" || 
+  if($('input[name="nameApeloRes"]:checked').val() == "No" || 
   (!$("#idSiApelo").prop('checked') && !$("#idNoApelo").prop('checked') )){
 
     $("#adjuntaApelacion").hide();
