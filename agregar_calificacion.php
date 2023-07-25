@@ -85,7 +85,7 @@ if (isset($_GET['id'])) {
                                     <div class="col-md-5 row">
                                         <label for="idInicio"><span style="color: red;">*</span> Desde</label>
                                         <div class="col-md-6">
-                                            <select name="mesinicio" class="form-select" id="mes">
+                                            <select name="mesinicio" class="form-select" id="mesinicio">
                                                 <option hidden value=""> Selecciona</option>;
                                                 <option value="Enero">Enero</option>
                                                 <option value="Febrero">Febrero</option>
@@ -114,7 +114,7 @@ if (isset($_GET['id'])) {
                                     <div class="col-md-5 row">
                                         <label for="idInicio"><span style="color: red;">*</span> Hasta</label>
                                         <div class="col-md-6">
-                                            <select name="mesfin" class="form-select" id="mes">
+                                            <select name="mesfin" class="form-select" id="mesfin">
                                                 <option hidden value=""> Selecciona</option>;
                                                 <option value="Enero">Enero</option>
                                                 <option value="Febrero">Febrero</option>

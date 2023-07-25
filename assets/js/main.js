@@ -235,6 +235,14 @@ $("#documentosApelacion").on("submit", function (event) {
           $('#idFin').val('');
           $('.radio-input').prop('checked', false);
 
+            var selects = document.querySelectorAll('select');
+            for (var i = 0; i < selects.length; i++) {
+              selects[i].selectedIndex = 0;
+            }
+            document.getElementById('mesinicio').value = '';
+            document.getElementById('mesfin').value = '';
+
+
           // Limpia el campo de entrada de archivo solo si se seleccionó "No" en el input radio
           if ($('#idNoApelo').is(":checked")) {
             $('#idApelacionDoc').val('');

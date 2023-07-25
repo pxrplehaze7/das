@@ -28,7 +28,7 @@ h1 {
   padding-right: 10%;
   padding-top: 1%;
   padding-bottom: 4%;
-  background-color: #ffffff;
+  background-color: #fafafa;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.18);
 }
 
@@ -39,7 +39,7 @@ h1 {
   padding-right: 3% !important;
   padding-top: 4%;
   padding-bottom: 4%;
-  background-color: #ffffff;
+  background-color: #fafafa;
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.18);
 }
 
@@ -47,7 +47,7 @@ h1 {
 h6 {
   text-align: center;
   font-size: 30px !important;
-  color: #5c5c5c;
+  color: rgb(27, 27, 27);
   font-weight: bold;
   padding-bottom: 20px !important;
 }
@@ -60,6 +60,7 @@ label {
   padding-left: 9px;
   padding-right: 9px;
   font-size: 16px;
+  color: rgb(27, 27, 27);
 }
 
 /* INICIO RADIOS */
@@ -340,7 +341,7 @@ p {
 .dataTables_paginate .pagination .page-item.active .page-link {
   background-color: #463bfa;
   border-color: #463bfa;
-  color: #ffffff;
+  color: #fafafa;
 }
 
 
@@ -616,7 +617,7 @@ button.boton-registrarB:active {
 .btn-enviar {
   background-color: #212529 !important;
   border-color: #212529 !important;
-  color: #ffffff !important;
+  color: #fafafa !important;
 }
 
 .btn-enviar:hover {
@@ -733,7 +734,7 @@ button.boton-registrarB:active {
 .btn-filtro {
   background-color: #212529 !important;
   border-color: #212529 !important;
-  color: #ffffff !important;
+  color: #fafafa !important;
 }
 
 .btn-filtro:hover {
@@ -866,7 +867,7 @@ align-items: center !important;
 
 /* .pterminar th {
   background-color: #8f3e00 !important; 
-  color: #FFFFFF; 
+  color: #fafafa; 
   font-weight: 600 !important;
 } */
 

@@ -269,7 +269,7 @@ if (isset($_POST['idcontrata'])) {
       }).then((result) => {
         if (result.isConfirmed) {
           // Limpiar los input y select
-          var inputs = document.querySelectorAll('input:not(#idRutInputdec):not(#idPersona)');
+          var inputs = document.querySelectorAll('input:not(#idRutInputdec2):not(#idPersona)');
           for (var i = 0; i < inputs.length; i++) {
             inputs[i].value = '';
           }
@@ -297,7 +297,7 @@ if (isset($_POST['idcontrata'])) {
         }).then((result) => {
           if (result.isConfirmed) {
             // Limpiar los input y select
-            var inputs = document.querySelectorAll('input:not(#idRutInputdec):not(#idPersona)');
+            var inputs = document.querySelectorAll('input:not(#idRutInputdec2):not(#idPersona)');
             for (var i = 0; i < inputs.length; i++) {
               inputs[i].value = '';
             }
